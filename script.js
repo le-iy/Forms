@@ -25,36 +25,38 @@ const themeStorageKeys = {
 };
 
 const themeSolidSwatches = [
+    /* Matte */
+    "#b83aa3",
+    "#c00000",
+    "#1117a0",
+    "#118000",
+    "#56009b",
+    "#c75d00",
+    "#e3c500",
+    "#8c4a0a",
     "#000000",
-    "#5c5c5c",
-    "#970000",
-    "#ff3434",
-    "#8848f5",
-    "#0b9db5",
-    "#38a9ef",
-    "#343840",
-    "#dedb29",
-    "#5273f6",
-    "#0c56ba",
-    "#3c241b",
-    "#08bf67",
-    "#adf663",
-    "#ffda59",
-    "#ff914d",
-    "#0f9bad",
-    "#8f6200"
-];
 
-const themeGradientSwatches = [
-    "linear-gradient(135deg, #000000, #13105e, #3744ff)",
-    "linear-gradient(135deg, #079cad, #30b7a3, #72e042)",
-    "linear-gradient(135deg, #6b45ff, #bd5de0, #ff8f4e)",
-    "linear-gradient(180deg, #7649e9, #b96fa5, #ffda3d)",
-    "linear-gradient(135deg, #c9f6dc, #c4f4df, #8cc4ff)",
-    "linear-gradient(135deg, #5ee4cd, #18aab5, #1671e5)",
-    "linear-gradient(135deg, #7d4dff, #d65bce, #ff8458)",
-    "linear-gradient(135deg, #2262ff, #7545ee, #e161dc)",
-    "linear-gradient(135deg, #ff2733, #ff553e, #ff8744)"
+    /* Soft / pastel-ish */
+    "#dc8ed2",
+    "#c94f4b",
+    "#4854b8",
+    "#56ad45",
+    "#9356c2",
+    "#d18c5d",
+    "#f0d85a",
+    "#b98754",
+    "#7a7a7a",
+
+    /* Neon */
+    "#f000c4",
+    "#ff1111",
+    "#1528ff",
+    "#22f20f",
+    "#8700ff",
+    "#ff6900",
+    "#ffd400",
+    "#6b3500",
+    "#b7b7b7"
 ];
 
 const pageContent =
@@ -949,15 +951,8 @@ function buildThemeSwatches(
     const currentValue =
         getSavedThemeValue(setting);
 
-    let values =
+    const values =
         [...themeSolidSwatches];
-
-    if (allowGradient) {
-        values =
-            values.concat(
-                themeGradientSwatches
-            );
-    }
 
     return values.map(
         function (value) {
