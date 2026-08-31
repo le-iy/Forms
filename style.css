@@ -581,6 +581,7 @@ body {
 .page-title {
     font-size: 28px;
 
+    margin-top: 70px;
     margin-bottom: 12px;
 
     color: var(--theme-non-outline-text);
