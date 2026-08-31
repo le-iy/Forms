@@ -8,7 +8,29 @@ const IT0035 = {
     color: "#d899e8",
 
     categories: {
-        formatives: [],
-        summatives: []
+        formatives: [
+            {
+                title: "Formative 1",
+                description: "Introduction to Operating Systems",
+                link: "",
+                collabLink: ""
+            }
+        ],
+
+        summatives: [
+            {
+                title: "Summative 1",
+                description: "Processes and Threads",
+                link: "",
+                collabLink: ""
+            },
+
+            {
+                title: "Summative 2",
+                description: "Memory Management",
+                link: "",
+                collabLink: ""
+            }
+        ]
     }
 };
