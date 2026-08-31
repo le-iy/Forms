@@ -162,6 +162,11 @@ body {
 }
 
 
+.search-container input:focus {
+    background-color: #dddddd;
+}
+
+
 .main-content h1 {
     font-size: 42px;
     margin-bottom: 18px;
@@ -172,7 +177,9 @@ body {
 
 .subject-grid {
     display: grid;
+
     grid-template-columns: repeat(auto-fit, 310px);
+
     gap: 25px 30px;
 }
 
@@ -181,9 +188,13 @@ body {
 
 .subject-card {
     width: 310px;
+
     overflow: hidden;
+
     border-radius: 38px;
+
     cursor: pointer;
+
     transition: transform 0.2s ease;
 }
 
@@ -193,19 +204,56 @@ body {
 }
 
 
+/* CARD IMAGE AREA */
+
 .card-image {
+    position: relative;
+
+    width: 100%;
     height: 160px;
 
     display: grid;
     place-items: center;
+
+    overflow: hidden;
+
+    cursor: pointer;
 }
 
+
+/* UPLOADED SUBJECT IMAGE */
+
+.subject-image {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+}
+
+
+/* PLACEHOLDER ICON */
 
 .placeholder-icon {
+    position: relative;
+
     font-size: 46px;
+
     color: black;
+
+    z-index: 1;
+
+    pointer-events: none;
 }
 
+
+/* CARD INFORMATION */
 
 .card-info {
     min-height: 118px;
@@ -228,6 +276,7 @@ body {
 
 .card-info p {
     font-size: 14px;
+
     line-height: 1.35;
 }
 
