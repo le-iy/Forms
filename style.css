@@ -191,9 +191,9 @@ body {
    ========================================================= */
 
 .main-nav .nav-item.active:not(#home-link) {
-    background: var(--theme-outline);
+    background: #111111;
 
-    color: var(--theme-text);
+    color: #ffffff;
 
     font-weight: bold;
 
@@ -202,7 +202,7 @@ body {
 
 
 .main-nav .nav-item.active:not(#home-link):hover {
-    background: var(--theme-outline);
+    background: #111111;
 }
 
 
