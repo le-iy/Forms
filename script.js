@@ -59,6 +59,676 @@ const themeSolidSwatches = [
     "#b7b7b7"
 ];
 
+
+/* =========================================================
+   PREMADE THEMES
+
+   IMPORTANT:
+   These change WEBSITE THEME settings only.
+   They do NOT change card colors or card images.
+   ========================================================= */
+
+const premadeThemes = [
+    {
+        id: "theme-1",
+        name: "Theme 1",
+
+        palette: [
+            "#0E0000",
+            "#440000",
+            "#6E1313",
+            "#F4B3B3",
+            "#002028"
+        ],
+
+        settings: {
+            background: "#F4B3B3",
+            outline: "#002028",
+            text: "#F4B3B3",
+            nonOutlineText: "#0E0000"
+        }
+    },
+
+    {
+        id: "theme-2",
+        name: "Theme 2",
+
+        palette: [
+            "#777374",
+            "#262224",
+            "#AB141C",
+            "#68222A",
+            "#94919E"
+        ],
+
+        settings: {
+            background: "#94919E",
+            outline: "#262224",
+            text: "#F6F6F6",
+            nonOutlineText: "#262224"
+        }
+    },
+
+    {
+        id: "theme-3",
+        name: "Theme 3",
+
+        palette: [
+            "#4E0714",
+            "#781727",
+            "#AC5B67",
+            "#E2B3C2",
+            "#EFD4C4"
+        ],
+
+        settings: {
+            background: "#EFD4C4",
+            outline: "#4E0714",
+            text: "#EFD4C4",
+            nonOutlineText: "#4E0714"
+        }
+    },
+
+    {
+        id: "theme-4",
+        name: "Theme 4",
+
+        palette: [
+            "#3F2A52",
+            "#75619D",
+            "#BEAEDB",
+            "#E6EFF7",
+            "#3A2D34"
+        ],
+
+        settings: {
+            background: "#E6EFF7",
+            outline: "#3F2A52",
+            text: "#E6EFF7",
+            nonOutlineText: "#3A2D34"
+        }
+    },
+
+    {
+        id: "theme-5",
+        name: "Theme 5",
+
+        palette: [
+            "#766DA7",
+            "#15191E",
+            "#7A9663",
+            "#556842",
+            "#A0AE91"
+        ],
+
+        settings: {
+            background: "#A0AE91",
+            outline: "#15191E",
+            text: "#A0AE91",
+            nonOutlineText: "#15191E"
+        }
+    },
+
+    {
+        id: "theme-6",
+        name: "Theme 6",
+
+        palette: [
+            "#BC6C25",
+            "#DDA15E",
+            "#FEFAE0",
+            "#283618",
+            "#606C38"
+        ],
+
+        settings: {
+            background: "#FEFAE0",
+            outline: "#283618",
+            text: "#FEFAE0",
+            nonOutlineText: "#283618"
+        }
+    },
+
+    {
+        id: "theme-7",
+        name: "Theme 7",
+
+        palette: [
+            "#4C3D19",
+            "#354024",
+            "#889063",
+            "#CFBB99",
+            "#E5D7C4"
+        ],
+
+        settings: {
+            background: "#E5D7C4",
+            outline: "#354024",
+            text: "#E5D7C4",
+            nonOutlineText: "#354024"
+        }
+    },
+
+    {
+        id: "theme-8",
+        name: "Theme 8",
+
+        palette: [
+            "#23330E",
+            "#3C5718",
+            "#678E34",
+            "#A2CA6C",
+            "#C7DFA7"
+        ],
+
+        settings: {
+            background: "#C7DFA7",
+            outline: "#23330E",
+            text: "#C7DFA7",
+            nonOutlineText: "#23330E"
+        }
+    },
+
+    {
+        id: "theme-9",
+        name: "Theme 9",
+
+        palette: [
+            "#22303F",
+            "#E7E8E7",
+            "#8FBFDA",
+            "#2C6485",
+            "#394A56"
+        ],
+
+        settings: {
+            background: "#E7E8E7",
+            outline: "#22303F",
+            text: "#E7E8E7",
+            nonOutlineText: "#22303F"
+        }
+    },
+
+    {
+        id: "theme-10",
+        name: "Theme 10",
+
+        palette: [
+            "#EEE2DF",
+            "#DEC1DB",
+            "#5B61B2",
+            "#2F80E4",
+            "#6DA0E1"
+        ],
+
+        settings: {
+            background: "#EEE2DF",
+            outline: "#5B61B2",
+            text: "#EEE2DF",
+            nonOutlineText: "#5B61B2"
+        }
+    },
+
+    {
+        id: "theme-11",
+        name: "Theme 11",
+
+        palette: [
+            "#F2E199",
+            "#6FB8E6",
+            "#ECB44D",
+            "#1B3A68",
+            "#191939"
+        ],
+
+        settings: {
+            background: "#F2E199",
+            outline: "#1B3A68",
+            text: "#F2E199",
+            nonOutlineText: "#191939"
+        }
+    },
+
+    {
+        id: "theme-12",
+        name: "Theme 12",
+
+        palette: [
+            "#0C141A",
+            "#28487B",
+            "#4468A6",
+            "#6E94CF",
+            "#B9CDEE"
+        ],
+
+        settings: {
+            background: "#B9CDEE",
+            outline: "#0C141A",
+            text: "#B9CDEE",
+            nonOutlineText: "#0C141A"
+        }
+    },
+
+    {
+        id: "theme-13",
+        name: "Theme 13",
+
+        palette: [
+            "#041A38",
+            "#4A9ACB",
+            "#97D4F1",
+            "#394C5C",
+            "#D8E7EE"
+        ],
+
+        settings: {
+            background: "#D8E7EE",
+            outline: "#041A38",
+            text: "#D8E7EE",
+            nonOutlineText: "#041A38"
+        }
+    },
+
+    {
+        id: "theme-14",
+        name: "Theme 14",
+
+        palette: [
+            "#24221B",
+            "#E4DFD8",
+            "#F2D04E"
+        ],
+
+        settings: {
+            background: "#E4DFD8",
+            outline: "#24221B",
+            text: "#E4DFD8",
+            nonOutlineText: "#24221B"
+        }
+    },
+
+    {
+        id: "theme-15",
+        name: "Theme 15",
+
+        palette: [
+            "#E5E5E5",
+            "#D9D7A3",
+            "#B79E66",
+            "#B48634",
+            "#6B3F19"
+        ],
+
+        settings: {
+            background: "#E5E5E5",
+            outline: "#6B3F19",
+            text: "#E5E5E5",
+            nonOutlineText: "#6B3F19"
+        }
+    },
+
+    {
+        id: "theme-16",
+        name: "Theme 16",
+
+        palette: [
+            "#ECDAB3",
+            "#FCC36E",
+            "#F7C02F",
+            "#AA6B1C",
+            "#3D230A"
+        ],
+
+        settings: {
+            background: "#ECDAB3",
+            outline: "#3D230A",
+            text: "#ECDAB3",
+            nonOutlineText: "#3D230A"
+        }
+    },
+
+    {
+        id: "theme-17",
+        name: "Theme 17",
+
+        palette: [
+            "#D1861C",
+            "#D89F3F",
+            "#E7681D",
+            "#A02E01",
+            "#657A1C"
+        ],
+
+        settings: {
+            background: "#D89F3F",
+            outline: "#A02E01",
+            text: "#F6F6F6",
+            nonOutlineText: "#A02E01"
+        }
+    },
+
+    {
+        id: "theme-18",
+        name: "Theme 18",
+
+        palette: [
+            "#F6724B",
+            "#FC8A55",
+            "#8F4E51",
+            "#2B3349",
+            "#223C63"
+        ],
+
+        settings: {
+            background: "#FC8A55",
+            outline: "#223C63",
+            text: "#F6F6F6",
+            nonOutlineText: "#2B3349"
+        }
+    },
+
+    {
+        id: "theme-19",
+        name: "Theme 19",
+
+        palette: [
+            "#3D1203",
+            "#BA3D03",
+            "#E48523",
+            "#E8C580",
+            "#C5A07E"
+        ],
+
+        settings: {
+            background: "#E8C580",
+            outline: "#3D1203",
+            text: "#E8C580",
+            nonOutlineText: "#3D1203"
+        }
+    },
+
+    {
+        id: "theme-20",
+        name: "Theme 20",
+
+        palette: [
+            "#6A2B09",
+            "#C5620B",
+            "#FCB861",
+            "#6F7781",
+            "#040404"
+        ],
+
+        settings: {
+            background: "#FCB861",
+            outline: "#040404",
+            text: "#FCB861",
+            nonOutlineText: "#6A2B09"
+        }
+    },
+
+    {
+        id: "theme-21",
+        name: "Theme 21",
+
+        palette: [
+            "#3A345B",
+            "#F3C8DD",
+            "#D183A9",
+            "#71557A",
+            "#4B1535"
+        ],
+
+        settings: {
+            background: "#F3C8DD",
+            outline: "#3A345B",
+            text: "#F3C8DD",
+            nonOutlineText: "#4B1535"
+        }
+    },
+
+    {
+        id: "theme-22",
+        name: "Theme 22",
+
+        palette: [
+            "#AA4761",
+            "#C58997",
+            "#746885",
+            "#978E87",
+            "#372D35"
+        ],
+
+        settings: {
+            background: "#978E87",
+            outline: "#372D35",
+            text: "#F6F6F6",
+            nonOutlineText: "#372D35"
+        }
+    },
+
+    {
+        id: "theme-23",
+        name: "Theme 23",
+
+        palette: [
+            "#391B49",
+            "#795690",
+            "#9570C6",
+            "#C29CE4",
+            "#999ECF"
+        ],
+
+        settings: {
+            background: "#C29CE4",
+            outline: "#391B49",
+            text: "#F6F6F6",
+            nonOutlineText: "#391B49"
+        }
+    },
+
+    {
+        id: "theme-24",
+        name: "Theme 24",
+
+        palette: [
+            "#11100D",
+            "#7B3221",
+            "#AC5840",
+            "#828D85",
+            "#7F858B"
+        ],
+
+        settings: {
+            background: "#828D85",
+            outline: "#11100D",
+            text: "#F6F6F6",
+            nonOutlineText: "#11100D"
+        }
+    },
+
+    {
+        id: "theme-25",
+        name: "Theme 25",
+
+        palette: [
+            "#13110C",
+            "#675449",
+            "#AA9088",
+            "#838382",
+            "#9CA39D"
+        ],
+
+        settings: {
+            background: "#9CA39D",
+            outline: "#13110C",
+            text: "#F6F6F6",
+            nonOutlineText: "#13110C"
+        }
+    },
+
+    {
+        id: "theme-26",
+        name: "Theme 26",
+
+        palette: [
+            "#AA4761",
+            "#C58997",
+            "#746885",
+            "#978E87",
+            "#372D35"
+        ],
+
+        settings: {
+            background: "#978E87",
+            outline: "#372D35",
+            text: "#F6F6F6",
+            nonOutlineText: "#372D35"
+        }
+    },
+
+    {
+        id: "theme-27",
+        name: "Theme 27",
+
+        palette: [
+            "#541533",
+            "#722548",
+            "#221932",
+            "#775E88",
+            "#8882B9"
+        ],
+
+        settings: {
+            background: "#8882B9",
+            outline: "#060407",
+            text: "#F6F6F6",
+            nonOutlineText: "#221932"
+        }
+    },
+
+    {
+        id: "theme-28",
+        name: "Theme 28",
+
+        palette: [
+            "#792E29",
+            "#24201D",
+            "#565538",
+            "#ABA38F",
+            "#D9D4C8"
+        ],
+
+        settings: {
+            background: "#D9D4C8",
+            outline: "#24201D",
+            text: "#D9D4C8",
+            nonOutlineText: "#24201D"
+        }
+    },
+
+    {
+        id: "theme-29",
+        name: "Theme 29",
+
+        palette: [
+            "#26140C",
+            "#492617",
+            "#713B24",
+            "#944E2F",
+            "#B7603A"
+        ],
+
+        settings: {
+            background: "#B7603A",
+            outline: "#26140C",
+            text: "#F6F6F6",
+            nonOutlineText: "#26140C"
+        }
+    },
+
+    {
+        id: "theme-30",
+        name: "Theme 30",
+
+        palette: [
+            "#33261F",
+            "#4E4A27",
+            "#D2A683",
+            "#C66848",
+            "#231C40"
+        ],
+
+        settings: {
+            background: "#D2A683",
+            outline: "#33261F",
+            text: "#F6F6F6",
+            nonOutlineText: "#33261F"
+        }
+    },
+
+    {
+        id: "theme-31",
+        name: "Theme 31",
+
+        palette: [
+            "#684627",
+            "#DAA38F",
+            "#DFC49B",
+            "#9B7D61",
+            "#FED8A6"
+        ],
+
+        settings: {
+            background: "#FED8A6",
+            outline: "#684627",
+            text: "#FED8A6",
+            nonOutlineText: "#684627"
+        }
+    },
+
+    {
+        id: "theme-32",
+        name: "Theme 32",
+
+        palette: [
+            "#F9E3B6",
+            "#FBCE6B",
+            "#D5A007",
+            "#6C8B08",
+            "#2B2202"
+        ],
+
+        settings: {
+            background: "#F9E3B6",
+            outline: "#2B2202",
+            text: "#F9E3B6",
+            nonOutlineText: "#2B2202"
+        }
+    },
+
+    {
+        id: "theme-33",
+        name: "Theme 33",
+
+        palette: [
+            "#CAEDB8",
+            "#56694F",
+            "#963F2E",
+            "#CD9B59",
+            "#EDE490"
+        ],
+
+        settings: {
+            background: "#CAEDB8",
+            outline: "#56694F",
+            text: "#F6F6F6",
+            nonOutlineText: "#56694F"
+        }
+    }
+];
+
+
 const pageContent =
     document.getElementById("page-content");
 
@@ -136,6 +806,11 @@ let editorTarget = {
 const homePageHTML =
     pageContent.innerHTML;
 
+
+/* =========================================================
+   SEARCH BAR VISIBILITY
+   ========================================================= */
+
 function showSearchBar() {
     if (searchContainer) {
         searchContainer.style.display = "";
@@ -148,6 +823,11 @@ function hideSearchBar() {
     }
 }
 
+
+/* =========================================================
+   THEME STORAGE
+   ========================================================= */
+
 function getSavedThemeValue(setting) {
     const saved =
         localStorage.getItem(
@@ -156,6 +836,11 @@ function getSavedThemeValue(setting) {
 
     return saved || themeDefaults[setting];
 }
+
+
+/* =========================================================
+   APPLY THEME SETTING
+   ========================================================= */
 
 function applyThemeSetting(
     setting,
@@ -208,6 +893,11 @@ function applyThemeSetting(
     }
 }
 
+
+/* =========================================================
+   BACKGROUND IMAGE
+   ========================================================= */
+
 function applyThemeBackgroundImage(
     imageData,
     save = true
@@ -256,6 +946,11 @@ function applyThemeBackgroundImage(
     scheduleAdaptiveBackgroundTextRefresh();
 }
 
+
+/* =========================================================
+   LOAD SAVED THEME
+   ========================================================= */
+
 function loadSavedTheme() {
     applyThemeSetting(
         "background",
@@ -294,6 +989,11 @@ function loadSavedTheme() {
     }
 }
 
+
+/* =========================================================
+   RESET GLOBAL THEME
+   ========================================================= */
+
 function resetGlobalTheme() {
     Object.keys(themeDefaults).forEach(
         function (setting) {
@@ -329,7 +1029,9 @@ const adaptiveBackgroundTextSelector = [
     ".empty-category-message",
     ".theme-page-header h1",
     ".theme-control-title",
-    ".theme-remove-background-button"
+    ".theme-remove-background-button",
+    ".premade-themes-title",
+    ".premade-theme-name"
 ].join(", ");
 
 const adaptiveBackgroundImageCache = {
@@ -401,9 +1103,17 @@ function parseThemeColor(value) {
 
     if (rgbMatch) {
         return {
-            r: clampColorChannel(Number(rgbMatch[1])),
-            g: clampColorChannel(Number(rgbMatch[2])),
-            b: clampColorChannel(Number(rgbMatch[3]))
+            r: clampColorChannel(
+                Number(rgbMatch[1])
+            ),
+
+            g: clampColorChannel(
+                Number(rgbMatch[2])
+            ),
+
+            b: clampColorChannel(
+                Number(rgbMatch[3])
+            )
         };
     }
 
@@ -502,7 +1212,10 @@ function getRelativeLuminance(color) {
     );
 }
 
-function getContrastRatio(firstColor, secondColor) {
+function getContrastRatio(
+    firstColor,
+    secondColor
+) {
     const first =
         getRelativeLuminance(
             firstColor
@@ -535,7 +1248,9 @@ function rgbToCss(color) {
     return `rgb(${clampColorChannel(color.r)}, ${clampColorChannel(color.g)}, ${clampColorChannel(color.b)})`;
 }
 
-function getReadableAdaptiveTextColor(backgroundColor) {
+function getReadableAdaptiveTextColor(
+    backgroundColor
+) {
     const preferredValue =
         getSavedThemeValue(
             "nonOutlineText"
@@ -1041,7 +1756,10 @@ function updateSelectedThemeSwatch(
                     swatch.dataset.themeValue
                 );
 
-            if (swatchValue === value) {
+            if (
+                swatchValue.toLowerCase() ===
+                value.toLowerCase()
+            ) {
                 swatch.classList.add(
                     "selected"
                 );
@@ -1070,6 +1788,212 @@ function addThemeSettingsButtonEvents() {
             showThemeSettingsPage();
         }
     );
+}
+
+
+
+/* =========================================================
+   PREMADE THEME HELPERS
+   ========================================================= */
+
+function getActivePremadeThemeId() {
+    const backgroundImage =
+        localStorage.getItem(
+            themeStorageKeys.backgroundImage
+        );
+
+    if (backgroundImage) {
+        return null;
+    }
+
+    const currentSettings = {
+        background:
+            getSavedThemeValue(
+                "background"
+            ),
+
+        outline:
+            getSavedThemeValue(
+                "outline"
+            ),
+
+        text:
+            getSavedThemeValue(
+                "text"
+            ),
+
+        nonOutlineText:
+            getSavedThemeValue(
+                "nonOutlineText"
+            )
+    };
+
+    const match =
+        premadeThemes.find(
+            function (theme) {
+                return (
+                    theme.settings.background.toLowerCase() ===
+                        currentSettings.background.toLowerCase() &&
+
+                    theme.settings.outline.toLowerCase() ===
+                        currentSettings.outline.toLowerCase() &&
+
+                    theme.settings.text.toLowerCase() ===
+                        currentSettings.text.toLowerCase() &&
+
+                    theme.settings.nonOutlineText.toLowerCase() ===
+                        currentSettings.nonOutlineText.toLowerCase()
+                );
+            }
+        );
+
+    return match
+        ? match.id
+        : null;
+}
+
+function buildPremadeThemesHTML() {
+    const activeThemeId =
+        getActivePremadeThemeId();
+
+    return premadeThemes.map(
+        function (theme) {
+            const activeClass =
+                theme.id === activeThemeId
+                    ? " active"
+                    : "";
+
+            const paletteHTML =
+                theme.palette.map(
+                    function (color) {
+                        return `
+                            <span
+                                class="premade-theme-color"
+                                style="background: ${color};"
+                                aria-hidden="true"
+                            ></span>
+                        `;
+                    }
+                ).join("");
+
+            return `
+                <button
+                    type="button"
+                    class="premade-theme-option${activeClass}"
+                    data-premade-theme="${theme.id}"
+                    aria-label="Apply ${theme.name}"
+                >
+
+                    <span class="premade-theme-name">
+                        ${theme.name}
+                    </span>
+
+                    <span class="premade-theme-palette">
+                        ${paletteHTML}
+                    </span>
+
+                </button>
+            `;
+        }
+    ).join("");
+}
+
+function updatePremadeThemeSelection() {
+    const activeThemeId =
+        getActivePremadeThemeId();
+
+    document.querySelectorAll(
+        ".premade-theme-option"
+    ).forEach(
+        function (button) {
+            button.classList.toggle(
+                "active",
+                button.dataset.premadeTheme ===
+                    activeThemeId
+            );
+        }
+    );
+}
+
+function clearThemeBackgroundPreview() {
+    const preview =
+        document.getElementById(
+            "theme-background-preview-image"
+        );
+
+    const icon =
+        document.getElementById(
+            "theme-background-preview-icon"
+        );
+
+    const removeButton =
+        document.getElementById(
+            "theme-remove-background-button"
+        );
+
+    if (preview) {
+        preview.src = "";
+
+        preview.style.display =
+            "none";
+    }
+
+    if (icon) {
+        icon.style.display =
+            "";
+    }
+
+    if (removeButton) {
+        removeButton.hidden =
+            true;
+    }
+}
+
+function applyPremadeTheme(themeId) {
+    const theme =
+        premadeThemes.find(
+            function (item) {
+                return item.id === themeId;
+            }
+        );
+
+    if (!theme) {
+        return;
+    }
+
+    applyThemeBackgroundImage(
+        null
+    );
+
+    clearThemeBackgroundPreview();
+
+    Object.keys(
+        theme.settings
+    ).forEach(
+        function (setting) {
+            const value =
+                theme.settings[setting];
+
+            applyThemeSetting(
+                setting,
+                value
+            );
+
+            updateThemePreview(
+                setting,
+                value
+            );
+
+            updateSelectedThemeSwatch(
+                setting,
+                value
+            );
+        }
+    );
+
+    updatePremadeThemeSelection();
+
+    scheduleAdaptiveBackgroundTextRefresh();
 }
 
 
@@ -1171,11 +2095,12 @@ function showThemeSettingsPage() {
                         <div class="theme-swatch-grid">
                             ${buildThemeSwatches(
                                 "background",
-                                true
+                                false
                             )}
                         </div>
 
                     </div>
+
 
                     <div class="theme-control-group">
 
@@ -1213,6 +2138,7 @@ function showThemeSettingsPage() {
 
                 </div>
 
+
                 <div class="theme-settings-column">
 
                     <div class="theme-control-group">
@@ -1240,11 +2166,12 @@ function showThemeSettingsPage() {
                         <div class="theme-swatch-grid">
                             ${buildThemeSwatches(
                                 "outline",
-                                true
+                                false
                             )}
                         </div>
 
                     </div>
+
 
                     <div class="theme-control-group">
 
@@ -1283,6 +2210,46 @@ function showThemeSettingsPage() {
 
             </div>
 
+
+            <section class="premade-themes-section">
+
+                <button
+                    type="button"
+                    class="premade-themes-toggle"
+                    id="premade-themes-toggle"
+                    aria-expanded="false"
+                    aria-controls="premade-themes-content"
+                >
+
+                    <span class="premade-themes-title">
+                        THEMES
+                    </span>
+
+                    <span
+                        class="premade-themes-arrow"
+                        id="premade-themes-arrow"
+                        aria-hidden="true"
+                    >
+                        ▼
+                    </span>
+
+                </button>
+
+                <div
+                    class="premade-themes-content"
+                    id="premade-themes-content"
+                    hidden
+                >
+
+                    <div class="premade-themes-grid">
+                        ${buildPremadeThemesHTML()}
+                    </div>
+
+                </div>
+
+            </section>
+
+
             <div class="theme-actions">
 
                 <button
@@ -1309,7 +2276,14 @@ function showThemeSettingsPage() {
     `;
 
     addThemePageEvents();
+
+    scheduleAdaptiveBackgroundTextRefresh();
 }
+
+
+/* =========================================================
+   THEME PAGE EVENTS
+   ========================================================= */
 
 function addThemePageEvents() {
     document.querySelectorAll(
@@ -1339,37 +2313,7 @@ function addThemePageEvents() {
                             null
                         );
 
-                        const preview =
-                            document.getElementById(
-                                "theme-background-preview-image"
-                            );
-
-                        const icon =
-                            document.getElementById(
-                                "theme-background-preview-icon"
-                            );
-
-                        const removeButton =
-                            document.getElementById(
-                                "theme-remove-background-button"
-                            );
-
-                        if (preview) {
-                            preview.src = "";
-
-                            preview.style.display =
-                                "none";
-                        }
-
-                        if (icon) {
-                            icon.style.display =
-                                "";
-                        }
-
-                        if (removeButton) {
-                            removeButton.hidden =
-                                true;
-                        }
+                        clearThemeBackgroundPreview();
                     }
 
                     applyThemeSetting(
@@ -1386,10 +2330,75 @@ function addThemePageEvents() {
                         setting,
                         value
                     );
+
+                    updatePremadeThemeSelection();
                 }
             );
         }
     );
+
+
+    document.querySelectorAll(
+        ".premade-theme-option"
+    ).forEach(
+        function (button) {
+            button.addEventListener(
+                "click",
+                function () {
+                    applyPremadeTheme(
+                        button.dataset.premadeTheme
+                    );
+                }
+            );
+        }
+    );
+
+
+    const premadeThemesToggle =
+        document.getElementById(
+            "premade-themes-toggle"
+        );
+
+    const premadeThemesContent =
+        document.getElementById(
+            "premade-themes-content"
+        );
+
+    const premadeThemesArrow =
+        document.getElementById(
+            "premade-themes-arrow"
+        );
+
+    if (
+        premadeThemesToggle &&
+        premadeThemesContent
+    ) {
+        premadeThemesToggle.addEventListener(
+            "click",
+            function () {
+                const willOpen =
+                    premadeThemesContent.hidden;
+
+                premadeThemesContent.hidden =
+                    !willOpen;
+
+                premadeThemesToggle.setAttribute(
+                    "aria-expanded",
+                    String(willOpen)
+                );
+
+                if (premadeThemesArrow) {
+                    premadeThemesArrow.textContent =
+                        willOpen
+                            ? "▲"
+                            : "▼";
+                }
+
+                scheduleAdaptiveBackgroundTextRefresh();
+            }
+        );
+    }
+
 
     const backgroundButton =
         document.getElementById(
@@ -1405,6 +2414,7 @@ function addThemePageEvents() {
         document.getElementById(
             "theme-remove-background-button"
         );
+
 
     if (
         backgroundButton &&
@@ -1476,6 +2486,8 @@ function addThemePageEvents() {
                                 );
                             }
                         );
+
+                        updatePremadeThemeSelection();
                     };
 
                 reader.readAsDataURL(
@@ -1485,6 +2497,7 @@ function addThemePageEvents() {
         );
     }
 
+
     if (removeButton) {
         removeButton.addEventListener(
             "click",
@@ -1493,30 +2506,7 @@ function addThemePageEvents() {
                     null
                 );
 
-                const preview =
-                    document.getElementById(
-                        "theme-background-preview-image"
-                    );
-
-                const icon =
-                    document.getElementById(
-                        "theme-background-preview-icon"
-                    );
-
-                if (preview) {
-                    preview.src = "";
-
-                    preview.style.display =
-                        "none";
-                }
-
-                if (icon) {
-                    icon.style.display =
-                        "";
-                }
-
-                removeButton.hidden =
-                    true;
+                clearThemeBackgroundPreview();
 
                 updateSelectedThemeSwatch(
                     "background",
@@ -1524,9 +2514,12 @@ function addThemePageEvents() {
                         "background"
                     )
                 );
+
+                updatePremadeThemeSelection();
             }
         );
     }
+
 
     const resetButton =
         document.getElementById(
@@ -1543,6 +2536,7 @@ function addThemePageEvents() {
             }
         );
     }
+
 
     const backButton =
         document.getElementById(
@@ -1612,7 +2606,9 @@ function getSubjectColor(
 ) {
     return (
         localStorage.getItem(
-            getHomeColorStorageKey(subjectId)
+            getHomeColorStorageKey(
+                subjectId
+            )
         ) ||
         subjectData[subjectId].color
     );
@@ -1650,6 +2646,11 @@ function getItemColor(
     );
 }
 
+
+/* =========================================================
+   APPLY SUBJECT COLOR
+   ========================================================= */
+
 function applySubjectColor(
     subjectId,
     color
@@ -1675,6 +2676,11 @@ function applySubjectColor(
     }
 }
 
+
+/* =========================================================
+   APPLY MENU COLOR
+   ========================================================= */
+
 function applyMenuColor(
     subjectId,
     category,
@@ -1690,6 +2696,11 @@ function applyMenuColor(
             color;
     }
 }
+
+
+/* =========================================================
+   APPLY ITEM CUSTOMIZATION
+   ========================================================= */
 
 function applyItemCustomization(
     subjectId,
@@ -1737,7 +2748,8 @@ function applyItemCustomization(
             }
 
             else {
-                image.src = "";
+                image.src =
+                    "";
 
                 image.style.display =
                     "none";
@@ -1746,16 +2758,28 @@ function applyItemCustomization(
     );
 }
 
+
+/* =========================================================
+   LOAD SAVED CARD COLORS
+   ========================================================= */
+
 function loadSavedColors() {
     Object.keys(subjectData).forEach(
         function (subjectId) {
             applySubjectColor(
                 subjectId,
-                getSubjectColor(subjectId)
+                getSubjectColor(
+                    subjectId
+                )
             );
         }
     );
 }
+
+
+/* =========================================================
+   HOME IMAGE
+   ========================================================= */
 
 function showHomeImage(
     subjectId,
@@ -1794,6 +2818,11 @@ function hideHomeImage(
     image.style.display =
         "none";
 }
+
+
+/* =========================================================
+   MENU IMAGE
+   ========================================================= */
 
 function showMenuImage(
     subjectId,
@@ -1835,6 +2864,11 @@ function hideMenuImage(
         "none";
 }
 
+
+/* =========================================================
+   LOAD SAVED IMAGES
+   ========================================================= */
+
 function loadSavedImages() {
     Object.keys(subjectData).forEach(
         function (subjectId) {
@@ -1860,6 +2894,11 @@ function loadSavedImages() {
         }
     );
 }
+
+
+/* =========================================================
+   LOAD SUBJECT MENU CUSTOMIZATION
+   ========================================================= */
 
 function loadSubjectMenuCustomization(
     subjectId
@@ -2140,9 +3179,7 @@ function closeCardEditor() {
         "";
 }
 
-function saveEditorImage(
-    file
-) {
+function saveEditorImage(file) {
     if (
         !file ||
         !editorTarget.subjectId
@@ -2215,6 +3252,11 @@ function saveEditorImage(
     );
 }
 
+
+/* =========================================================
+   HOME EDIT EVENTS
+   ========================================================= */
+
 function addHomeEditEvents() {
     document.querySelectorAll(
         ".edit-image-button"
@@ -2235,6 +3277,11 @@ function addHomeEditEvents() {
         }
     );
 }
+
+
+/* =========================================================
+   MENU EDIT EVENTS
+   ========================================================= */
 
 function addMenuEditEvents() {
     document.querySelectorAll(
@@ -2257,6 +3304,11 @@ function addMenuEditEvents() {
         }
     );
 }
+
+
+/* =========================================================
+   ITEM EDIT EVENTS
+   ========================================================= */
 
 function addItemEditEvents() {
     document.querySelectorAll(
@@ -2392,9 +3444,7 @@ colorOptions.forEach(
     }
 );
 
-function applyEditorColor(
-    color
-) {
+function applyEditorColor(color) {
     if (editorTarget.type === "home") {
         localStorage.setItem(
             getHomeColorStorageKey(
@@ -2479,9 +3529,7 @@ function applyEditorColor(
     );
 }
 
-function updateSelectedColor(
-    color
-) {
+function updateSelectedColor(color) {
     colorOptions.forEach(
         function (button) {
             button.classList.remove(
@@ -2666,9 +3714,7 @@ function clearActiveNavigation() {
     );
 }
 
-function setActiveSubject(
-    subjectId
-) {
+function setActiveSubject(subjectId) {
     clearActiveNavigation();
 
     const link =
@@ -2733,11 +3779,16 @@ function showHomePage() {
         "";
 
     addSubjectCardEvents();
+
     addHomeEditEvents();
+
     addThemeSettingsButtonEvents();
 
     loadSavedColors();
+
     loadSavedImages();
+
+    scheduleAdaptiveBackgroundTextRefresh();
 }
 
 
@@ -2746,9 +3797,7 @@ function showHomePage() {
    SUBJECT PAGE
    ========================================================= */
 
-function showSubjectPage(
-    subjectId
-) {
+function showSubjectPage(subjectId) {
     const subject =
         subjectData[subjectId];
 
@@ -2857,6 +3906,7 @@ function showSubjectPage(
 
             </div>
 
+
             <div
                 class="subject-menu-card"
                 data-subject="${subjectId}"
@@ -2920,6 +3970,8 @@ function showSubjectPage(
     );
 
     addSubjectMenuEvents();
+
+    scheduleAdaptiveBackgroundTextRefresh();
 }
 
 function addSubjectMenuEvents() {
@@ -2993,7 +4045,8 @@ function openSubjectCategory(
             ? subjectMenuDefaults[category].title
             : category.toUpperCase();
 
-    let itemsHTML = "";
+    let itemsHTML =
+        "";
 
     if (items.length === 0) {
         itemsHTML = `
@@ -3036,7 +4089,8 @@ function openSubjectCategory(
                         )
                     );
 
-                let links = "";
+                let links =
+                    "";
 
                 if (item.link) {
                     links += `
@@ -3199,6 +4253,8 @@ function openSubjectCategory(
     );
 
     addItemEditEvents();
+
+    scheduleAdaptiveBackgroundTextRefresh();
 }
 
 
@@ -3207,9 +4263,7 @@ function openSubjectCategory(
    GLOBAL FORMATIVES / SUMMATIVES
    ========================================================= */
 
-function showAllCategoryItems(
-    category
-) {
+function showAllCategoryItems(category) {
     showSearchBar();
 
     currentSubjectId =
@@ -3247,7 +4301,8 @@ function showAllCategoryItems(
     const title =
         subjectMenuDefaults[category].title;
 
-    let html = "";
+    let html =
+        "";
 
     Object.keys(subjectData).forEach(
         function (subjectId) {
@@ -3398,6 +4453,8 @@ function showAllCategoryItems(
     );
 
     addItemEditEvents();
+
+    scheduleAdaptiveBackgroundTextRefresh();
 }
 
 
@@ -3551,7 +4608,8 @@ function showReviewersPage() {
     searchInput.value =
         "";
 
-    let cards = "";
+    let cards =
+        "";
 
     Object.keys(subjectData).forEach(
         function (subjectId) {
@@ -3696,6 +4754,8 @@ function showReviewersPage() {
     addReviewerCardEvents();
 
     addItemEditEvents();
+
+    scheduleAdaptiveBackgroundTextRefresh();
 }
 
 
