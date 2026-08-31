@@ -2080,7 +2080,7 @@ function showSubjectPage(
                 <span
                     class="subject-heading-highlight"
                 >
-                    ${subject.code} - ${subject.name}
+                    ${subject.code}
                 </span>
 
             </h1>
@@ -2550,7 +2550,7 @@ function openSubjectCategory(
                     id="breadcrumb-subject"
                     style="--subject-color: ${subjectColor};"
                 >
-                    ${subject.code} - ${subject.name}
+                    ${subject.code}
                 </button>
 
 
