@@ -57,6 +57,10 @@ body {
     padding: 10px 12px;
 
     border-radius: 12px;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
 
 
@@ -65,7 +69,12 @@ body {
 }
 
 
-.nav-item.active {
+
+/* =========================================================
+   HOME ACTIVE BUTTON
+   ========================================================= */
+
+#home-link.active {
     background-color: #e0e0e0;
 
     color: black;
@@ -73,6 +82,37 @@ body {
     font-weight: bold;
 
     text-align: center;
+}
+
+
+#home-link.active:hover {
+    background-color: #e0e0e0;
+}
+
+
+
+/* =========================================================
+   OTHER MAIN NAV ACTIVE BUTTONS
+
+   Formatives
+   Summatives
+   Reviewers
+   Leaks
+   ========================================================= */
+
+.main-nav .nav-item.active:not(#home-link) {
+    background-color: #000000;
+
+    color: white;
+
+    font-weight: bold;
+
+    text-align: center;
+}
+
+
+.main-nav .nav-item.active:not(#home-link):hover {
+    background-color: #000000;
 }
 
 
@@ -560,8 +600,6 @@ body {
 
 /* =========================================================
    FORMATIVES / SUMMATIVES CARD
-
-   Same proportions and behavior as Home cards
    ========================================================= */
 
 .subject-menu-card {
@@ -585,8 +623,6 @@ body {
 
 /* =========================================================
    SUBJECT MENU IMAGE AREA
-
-   Same size as .card-image
    ========================================================= */
 
 .subject-menu-image {
@@ -630,8 +666,6 @@ body {
 
 /* =========================================================
    SUBJECT MENU EDIT BUTTON
-
-   Same look and placement as Home edit button
    ========================================================= */
 
 .menu-edit-button {
@@ -683,8 +717,6 @@ body {
 
 /* =========================================================
    SUBJECT MENU INFORMATION
-
-   Same look and dimensions as Home .card-info
    ========================================================= */
 
 .subject-menu-info {
@@ -716,10 +748,190 @@ body {
 
 
 /* =========================================================
-   OLD FORMATIVES / SUMMATIVES BACKGROUNDS
+   CATEGORY ITEM CARDS
+   ========================================================= */
 
-   Kept only in case old cached HTML still uses them.
-   New script overrides backgrounds dynamically.
+.category-item-card {
+    cursor: default;
+}
+
+
+.category-item-card:hover {
+    transform: translateY(-5px);
+}
+
+
+
+/* =========================================================
+   CATEGORY ITEM IMAGE AREA
+   ========================================================= */
+
+.category-item-image {
+    height: 160px;
+}
+
+
+
+/* =========================================================
+   CATEGORY ITEM INFO
+   ========================================================= */
+
+.category-item-info {
+    min-height: 118px;
+
+    background-color: #343840;
+
+    padding: 16px 20px 20px;
+
+    color: white;
+}
+
+
+.category-item-info h2 {
+    font-size: 21px;
+
+    font-weight: normal;
+
+    margin-bottom: 4px;
+}
+
+
+.category-item-info p {
+    font-size: 14px;
+
+    line-height: 1.35;
+}
+
+
+
+/* =========================================================
+   CATEGORY ITEM LINKS
+   ========================================================= */
+
+.category-item-links {
+    display: flex;
+
+    gap: 14px;
+
+    margin-top: 12px;
+}
+
+
+.category-item-link {
+    color: white;
+
+    font-size: 14px;
+
+    text-decoration: underline;
+}
+
+
+.category-item-link:hover {
+    opacity: 0.75;
+}
+
+
+
+/* =========================================================
+   EMPTY CATEGORY MESSAGE
+   ========================================================= */
+
+.empty-category-message {
+    font-size: 18px;
+
+    color: #666;
+
+    margin-top: 10px;
+}
+
+
+
+/* =========================================================
+   GLOBAL CATEGORY CARDS
+
+   Used by:
+   - FORMATIVES
+   - SUMMATIVES
+   ========================================================= */
+
+.global-category-card {
+    width: 310px;
+
+    overflow: hidden;
+
+    border-radius: 38px;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+
+.global-category-card:hover {
+    transform: translateY(-5px);
+}
+
+
+
+/* =========================================================
+   GLOBAL CATEGORY IMAGE AREA
+   ========================================================= */
+
+.global-category-image {
+    width: 100%;
+    height: 160px;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+
+
+/* =========================================================
+   GLOBAL CATEGORY INFO AREA
+   ========================================================= */
+
+.global-category-info {
+    min-height: 118px;
+
+    background-color: #343840;
+
+    padding: 16px 20px 20px;
+
+    color: white;
+}
+
+
+.global-category-info h2 {
+    font-size: 21px;
+
+    font-weight: normal;
+
+    margin-bottom: 4px;
+}
+
+
+.global-category-info p {
+    font-size: 14px;
+
+    line-height: 1.35;
+}
+
+
+
+/* =========================================================
+   HIDDEN GLOBAL SEARCH TEXT
+   ========================================================= */
+
+.global-search-text {
+    display: none;
+}
+
+
+
+/* =========================================================
+   OLD FORMATIVES / SUMMATIVES BACKGROUNDS
    ========================================================= */
 
 .formatives-bg {
