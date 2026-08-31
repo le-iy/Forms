@@ -2104,18 +2104,15 @@ body {
    ========================================================= */
 
 .theme-swatch-grid {
-    width: 100%;
-
     display: grid;
 
-    grid-template-columns:
-        repeat(5, 1fr);
+    grid-template-columns: repeat(9, 30px);
 
-    gap: 14px 12px;
-
-    justify-items: center;
+    gap: 10px 12px;
 
     align-items: center;
+
+    justify-content: start;
 }
 
 
