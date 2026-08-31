@@ -3,7 +3,6 @@
    ========================================================= */
 
 const subjectMenuDefaults = {
-
     formatives: {
         title: "FORMATIVES",
         color: "#8b2ca3"
@@ -13,7 +12,6 @@ const subjectMenuDefaults = {
         title: "SUMMATIVES",
         color: "#2110b8"
     }
-
 };
 
 
@@ -25,33 +23,23 @@ const subjectMenuDefaults = {
 const pageContent =
     document.getElementById("page-content");
 
-
 const homeLink =
     document.getElementById("home-link");
-
 
 const formativesLink =
     document.getElementById("formatives-link");
 
-
 const summativesLink =
     document.getElementById("summatives-link");
 
-
 const mainNavLinks =
-    document.querySelectorAll(
-        ".main-nav .nav-item"
-    );
-
+    document.querySelectorAll(".main-nav .nav-item");
 
 const searchInput =
     document.getElementById("search-input");
 
-
 const subjectLinks =
-    document.querySelectorAll(
-        ".subject-link"
-    );
+    document.querySelectorAll(".subject-link");
 
 
 
@@ -60,75 +48,40 @@ const subjectLinks =
    ========================================================= */
 
 const cardEditorOverlay =
-    document.getElementById(
-        "card-editor-overlay"
-    );
-
+    document.getElementById("card-editor-overlay");
 
 const cardEditor =
-    document.getElementById(
-        "card-editor"
-    );
-
+    document.getElementById("card-editor");
 
 const cardEditorClose =
-    document.getElementById(
-        "card-editor-close"
-    );
-
+    document.getElementById("card-editor-close");
 
 const editorSubjectCode =
-    document.getElementById(
-        "editor-subject-code"
-    );
-
+    document.getElementById("editor-subject-code");
 
 const editorImageArea =
-    document.getElementById(
-        "editor-image-area"
-    );
-
+    document.getElementById("editor-image-area");
 
 const editorImagePreview =
-    document.getElementById(
-        "editor-image-preview"
-    );
-
+    document.getElementById("editor-image-preview");
 
 const editorImagePlaceholder =
-    document.getElementById(
-        "editor-image-placeholder"
-    );
-
+    document.getElementById("editor-image-placeholder");
 
 const editorAddImage =
-    document.getElementById(
-        "editor-add-image"
-    );
-
+    document.getElementById("editor-add-image");
 
 const editorImageInput =
-    document.getElementById(
-        "editor-image-input"
-    );
-
+    document.getElementById("editor-image-input");
 
 const editorRemoveImage =
-    document.getElementById(
-        "editor-remove-image"
-    );
-
+    document.getElementById("editor-remove-image");
 
 const editorResetButton =
-    document.getElementById(
-        "editor-reset-button"
-    );
-
+    document.getElementById("editor-reset-button");
 
 const colorOptions =
-    document.querySelectorAll(
-        ".color-option"
-    );
+    document.querySelectorAll(".color-option");
 
 
 
@@ -136,27 +89,26 @@ const colorOptions =
    CURRENT PAGE STATE
    ========================================================= */
 
-let currentSubjectId =
-    null;
+let currentSubjectId = null;
 
-
-let currentCategory =
-    null;
+let currentCategory = null;
 
 
 
 /* =========================================================
    CURRENT EDITOR TARGET
+
+   type:
+   - home
+   - menu
+   - item
    ========================================================= */
 
 let editorTarget = {
-
     type: null,
-
     subjectId: null,
-
-    category: null
-
+    category: null,
+    itemIndex: null
 };
 
 
@@ -174,44 +126,47 @@ const homePageHTML =
    STORAGE KEYS
    ========================================================= */
 
-function getHomeImageStorageKey(
-    subjectId
-) {
-
+function getHomeImageStorageKey(subjectId) {
     return `subject-image-${subjectId}`;
-
 }
 
 
-
-function getHomeColorStorageKey(
-    subjectId
-) {
-
+function getHomeColorStorageKey(subjectId) {
     return `subject-color-${subjectId}`;
-
 }
-
 
 
 function getMenuImageStorageKey(
     subjectId,
     category
 ) {
-
     return `subject-menu-image-${subjectId}-${category}`;
-
 }
-
 
 
 function getMenuColorStorageKey(
     subjectId,
     category
 ) {
-
     return `subject-menu-color-${subjectId}-${category}`;
+}
 
+
+function getItemImageStorageKey(
+    subjectId,
+    category,
+    itemIndex
+) {
+    return `subject-item-image-${subjectId}-${category}-${itemIndex}`;
+}
+
+
+function getItemColorStorageKey(
+    subjectId,
+    category,
+    itemIndex
+) {
+    return `subject-item-color-${subjectId}-${category}-${itemIndex}`;
 }
 
 
@@ -220,28 +175,20 @@ function getMenuColorStorageKey(
    GET SUBJECT COLOR
    ========================================================= */
 
-function getSubjectColor(
-    subjectId
-) {
+function getSubjectColor(subjectId) {
 
     const savedColor =
         localStorage.getItem(
-            getHomeColorStorageKey(
-                subjectId
-            )
+            getHomeColorStorageKey(subjectId)
         );
 
 
     if (savedColor) {
-
         return savedColor;
-
     }
 
 
-    return subjectData[
-        subjectId
-    ].color;
+    return subjectData[subjectId].color;
 
 }
 
@@ -266,15 +213,49 @@ function getMenuColor(
 
 
     if (savedColor) {
-
         return savedColor;
-
     }
 
 
     return subjectMenuDefaults[
         category
     ].color;
+
+}
+
+
+
+/* =========================================================
+   GET INDIVIDUAL ITEM COLOR
+   ========================================================= */
+
+function getItemColor(
+    subjectId,
+    category,
+    itemIndex
+) {
+
+    const savedColor =
+        localStorage.getItem(
+            getItemColorStorageKey(
+                subjectId,
+                category,
+                itemIndex
+            )
+        );
+
+
+    if (savedColor) {
+        return savedColor;
+    }
+
+
+    /*
+        If no custom item color,
+        use the subject's color.
+    */
+
+    return getSubjectColor(subjectId);
 
 }
 
@@ -296,10 +277,7 @@ function applySubjectColor(
 
 
     if (cardImage) {
-
-        cardImage.style.background =
-            color;
-
+        cardImage.style.background = color;
     }
 
 
@@ -310,10 +288,7 @@ function applySubjectColor(
 
 
     if (subjectDot) {
-
-        subjectDot.style.backgroundColor =
-            color;
-
+        subjectDot.style.backgroundColor = color;
     }
 
 }
@@ -337,46 +312,105 @@ function applyMenuColor(
 
 
     if (!cardImage) {
-
         return;
-
     }
 
 
-    cardImage.style.background =
-        color;
+    cardImage.style.background = color;
 
 }
 
 
 
 /* =========================================================
-   LOAD SAVED COLORS
+   APPLY INDIVIDUAL ITEM CUSTOMIZATION
+   ========================================================= */
+
+function applyItemCustomization(
+    subjectId,
+    category,
+    itemIndex
+) {
+
+    const color =
+        getItemColor(
+            subjectId,
+            category,
+            itemIndex
+        );
+
+
+    const savedImage =
+        localStorage.getItem(
+            getItemImageStorageKey(
+                subjectId,
+                category,
+                itemIndex
+            )
+        );
+
+
+    const visuals =
+        document.querySelectorAll(
+            `.item-visual[data-subject="${subjectId}"][data-category="${category}"][data-item-index="${itemIndex}"]`
+        );
+
+
+    visuals.forEach(function (visual) {
+
+        visual.style.background = color;
+
+
+        const image =
+            visual.querySelector(
+                ".item-custom-image"
+            );
+
+
+        if (!image) {
+            return;
+        }
+
+
+        if (savedImage) {
+
+            image.src = savedImage;
+
+            image.style.display =
+                "block";
+
+        }
+
+        else {
+
+            image.src = "";
+
+            image.style.display =
+                "none";
+
+        }
+
+    });
+
+}
+
+
+
+/* =========================================================
+   LOAD SAVED SUBJECT COLORS
    ========================================================= */
 
 function loadSavedColors() {
 
-    Object.keys(
-        subjectData
-    ).forEach(
-
-        function (
-            subjectId
-        ) {
-
-            const color =
-                getSubjectColor(
-                    subjectId
-                );
-
+    Object.keys(subjectData).forEach(
+        function (subjectId) {
 
             applySubjectColor(
                 subjectId,
-                color
+                getSubjectColor(subjectId)
             );
 
         }
-
     );
 
 }
@@ -399,26 +433,18 @@ function showHomeImage(
 
 
     if (!image) {
-
         return;
-
     }
 
 
-    image.src =
-        imageData;
+    image.src = imageData;
 
-
-    image.style.display =
-        "block";
+    image.style.display = "block";
 
 }
 
 
-
-function hideHomeImage(
-    subjectId
-) {
+function hideHomeImage(subjectId) {
 
     const image =
         document.getElementById(
@@ -427,18 +453,13 @@ function hideHomeImage(
 
 
     if (!image) {
-
         return;
-
     }
 
 
-    image.src =
-        "";
+    image.src = "";
 
-
-    image.style.display =
-        "none";
+    image.style.display = "none";
 
 }
 
@@ -461,21 +482,15 @@ function showMenuImage(
 
 
     if (!image) {
-
         return;
-
     }
 
 
-    image.src =
-        imageData;
+    image.src = imageData;
 
-
-    image.style.display =
-        "block";
+    image.style.display = "block";
 
 }
-
 
 
 function hideMenuImage(
@@ -490,18 +505,13 @@ function hideMenuImage(
 
 
     if (!image) {
-
         return;
-
     }
 
 
-    image.src =
-        "";
+    image.src = "";
 
-
-    image.style.display =
-        "none";
+    image.style.display = "none";
 
 }
 
@@ -513,13 +523,8 @@ function hideMenuImage(
 
 function loadSavedImages() {
 
-    Object.keys(
-        subjectData
-    ).forEach(
-
-        function (
-            subjectId
-        ) {
+    Object.keys(subjectData).forEach(
+        function (subjectId) {
 
             const savedImage =
                 localStorage.getItem(
@@ -547,7 +552,6 @@ function loadSavedImages() {
             }
 
         }
-
     );
 
 }
@@ -555,7 +559,7 @@ function loadSavedImages() {
 
 
 /* =========================================================
-   LOAD MENU CUSTOMIZATION
+   LOAD SUBJECT MENU CUSTOMIZATION
    ========================================================= */
 
 function loadSubjectMenuCustomization(
@@ -569,10 +573,7 @@ function loadSubjectMenuCustomization(
 
 
     categories.forEach(
-
-        function (
-            category
-        ) {
+        function (category) {
 
             const color =
                 getMenuColor(
@@ -617,7 +618,6 @@ function loadSubjectMenuCustomization(
             }
 
         }
-
     );
 
 }
@@ -650,20 +650,15 @@ function showEditorImage(
 }
 
 
-
 function showEditorPlaceholder() {
 
-    editorImagePreview.src =
-        "";
-
+    editorImagePreview.src = "";
 
     editorImagePreview.style.display =
         "none";
 
-
     editorImagePlaceholder.style.display =
         "";
-
 
     editorRemoveImage.hidden =
         true;
@@ -679,8 +674,7 @@ function showEditorPlaceholder() {
 function getEditorColor() {
 
     if (
-        editorTarget.type ===
-        "home"
+        editorTarget.type === "home"
     ) {
 
         return getSubjectColor(
@@ -691,13 +685,25 @@ function getEditorColor() {
 
 
     if (
-        editorTarget.type ===
-        "menu"
+        editorTarget.type === "menu"
     ) {
 
         return getMenuColor(
             editorTarget.subjectId,
             editorTarget.category
+        );
+
+    }
+
+
+    if (
+        editorTarget.type === "item"
+    ) {
+
+        return getItemColor(
+            editorTarget.subjectId,
+            editorTarget.category,
+            editorTarget.itemIndex
         );
 
     }
@@ -716,8 +722,7 @@ function getEditorColor() {
 function getEditorImage() {
 
     if (
-        editorTarget.type ===
-        "home"
+        editorTarget.type === "home"
     ) {
 
         return localStorage.getItem(
@@ -730,14 +735,28 @@ function getEditorImage() {
 
 
     if (
-        editorTarget.type ===
-        "menu"
+        editorTarget.type === "menu"
     ) {
 
         return localStorage.getItem(
             getMenuImageStorageKey(
                 editorTarget.subjectId,
                 editorTarget.category
+            )
+        );
+
+    }
+
+
+    if (
+        editorTarget.type === "item"
+    ) {
+
+        return localStorage.getItem(
+            getItemImageStorageKey(
+                editorTarget.subjectId,
+                editorTarget.category,
+                editorTarget.itemIndex
             )
         );
 
@@ -788,7 +807,7 @@ function prepareEditor() {
 
 
 /* =========================================================
-   OPEN HOME EDITOR
+   OPEN HOME CARD EDITOR
    ========================================================= */
 
 function openHomeCardEditor(
@@ -796,26 +815,19 @@ function openHomeCardEditor(
 ) {
 
     const subject =
-        subjectData[
-            subjectId
-        ];
+        subjectData[subjectId];
 
 
     if (!subject) {
-
         return;
-
     }
 
 
     editorTarget = {
-
         type: "home",
-
         subjectId: subjectId,
-
-        category: null
-
+        category: null,
+        itemIndex: null
     };
 
 
@@ -830,7 +842,7 @@ function openHomeCardEditor(
 
 
 /* =========================================================
-   OPEN MENU EDITOR
+   OPEN MENU CARD EDITOR
    ========================================================= */
 
 function openMenuCardEditor(
@@ -839,40 +851,110 @@ function openMenuCardEditor(
 ) {
 
     const subject =
-        subjectData[
-            subjectId
-        ];
+        subjectData[subjectId];
 
 
     const menu =
-        subjectMenuDefaults[
-            category
-        ];
+        subjectMenuDefaults[category];
 
 
     if (
         !subject ||
         !menu
     ) {
-
         return;
-
     }
 
 
     editorTarget = {
-
         type: "menu",
-
         subjectId: subjectId,
-
-        category: category
-
+        category: category,
+        itemIndex: null
     };
 
 
     editorSubjectCode.textContent =
         `${subject.code} - ${menu.title}`;
+
+
+    prepareEditor();
+
+}
+
+
+
+/* =========================================================
+   OPEN INDIVIDUAL ITEM EDITOR
+   ========================================================= */
+
+function openItemCardEditor(
+    subjectId,
+    category,
+    itemIndex
+) {
+
+    const subject =
+        subjectData[subjectId];
+
+
+    if (
+        !subject ||
+        !subject.categories ||
+        !Array.isArray(
+            subject.categories[category]
+        )
+    ) {
+        return;
+    }
+
+
+    const item =
+        subject.categories[
+            category
+        ][itemIndex];
+
+
+    if (!item) {
+        return;
+    }
+
+
+    let fallbackTitle =
+        `Item ${itemIndex + 1}`;
+
+
+    if (
+        category === "formatives"
+    ) {
+        fallbackTitle =
+            `Formative ${itemIndex + 1}`;
+    }
+
+
+    if (
+        category === "summatives"
+    ) {
+        fallbackTitle =
+            `Summative ${itemIndex + 1}`;
+    }
+
+
+    const itemTitle =
+        item.title ||
+        fallbackTitle;
+
+
+    editorTarget = {
+        type: "item",
+        subjectId: subjectId,
+        category: category,
+        itemIndex: itemIndex
+    };
+
+
+    editorSubjectCode.textContent =
+        `${subject.code} - ${itemTitle}`;
 
 
     prepareEditor();
@@ -892,18 +974,14 @@ function closeCardEditor() {
 
 
     editorTarget = {
-
         type: null,
-
         subjectId: null,
-
-        category: null
-
+        category: null,
+        itemIndex: null
     };
 
 
-    editorImageInput.value =
-        "";
+    editorImageInput.value = "";
 
 }
 
@@ -913,17 +991,13 @@ function closeCardEditor() {
    SAVE EDITOR IMAGE
    ========================================================= */
 
-function saveEditorImage(
-    file
-) {
+function saveEditorImage(file) {
 
     if (
         !file ||
         !editorTarget.subjectId
     ) {
-
         return;
-
     }
 
 
@@ -938,6 +1012,8 @@ function saveEditorImage(
                 reader.result;
 
 
+
+            /* HOME */
 
             if (
                 editorTarget.type ===
@@ -960,6 +1036,8 @@ function saveEditorImage(
             }
 
 
+
+            /* SUBJECT MENU */
 
             if (
                 editorTarget.type ===
@@ -984,6 +1062,33 @@ function saveEditorImage(
             }
 
 
+
+            /* INDIVIDUAL ITEM */
+
+            if (
+                editorTarget.type ===
+                "item"
+            ) {
+
+                localStorage.setItem(
+                    getItemImageStorageKey(
+                        editorTarget.subjectId,
+                        editorTarget.category,
+                        editorTarget.itemIndex
+                    ),
+                    imageData
+                );
+
+
+                applyItemCustomization(
+                    editorTarget.subjectId,
+                    editorTarget.category,
+                    editorTarget.itemIndex
+                );
+
+            }
+
+
             showEditorImage(
                 imageData
             );
@@ -991,16 +1096,14 @@ function saveEditorImage(
         };
 
 
-    reader.readAsDataURL(
-        file
-    );
+    reader.readAsDataURL(file);
 
 }
 
 
 
 /* =========================================================
-   EDIT BUTTON EVENTS
+   HOME EDIT BUTTON EVENTS
    ========================================================= */
 
 function addHomeEditEvents() {
@@ -1012,18 +1115,11 @@ function addHomeEditEvents() {
 
 
     buttons.forEach(
-
-        function (
-            button
-        ) {
+        function (button) {
 
             button.addEventListener(
-
                 "click",
-
-                function (
-                    event
-                ) {
+                function (event) {
 
                     event.preventDefault();
 
@@ -1035,38 +1131,33 @@ function addHomeEditEvents() {
                     );
 
                 }
-
             );
 
         }
-
     );
 
 }
 
 
 
+/* =========================================================
+   MENU EDIT BUTTON EVENTS
+   ========================================================= */
+
 function addMenuEditEvents() {
 
     const buttons =
         document.querySelectorAll(
-            ".menu-edit-button"
+            ".menu-edit-button:not(.item-edit-button)"
         );
 
 
     buttons.forEach(
-
-        function (
-            button
-        ) {
+        function (button) {
 
             button.addEventListener(
-
                 "click",
-
-                function (
-                    event
-                ) {
+                function (event) {
 
                     event.preventDefault();
 
@@ -1079,11 +1170,9 @@ function addMenuEditEvents() {
                     );
 
                 }
-
             );
 
         }
-
     );
 
 }
@@ -1091,7 +1180,49 @@ function addMenuEditEvents() {
 
 
 /* =========================================================
-   EDITOR IMAGE BUTTONS
+   INDIVIDUAL ITEM EDIT EVENTS
+   ========================================================= */
+
+function addItemEditEvents() {
+
+    const buttons =
+        document.querySelectorAll(
+            ".item-edit-button"
+        );
+
+
+    buttons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    openItemCardEditor(
+                        button.dataset.editSubject,
+                        button.dataset.editCategory,
+                        Number(
+                            button.dataset.editIndex
+                        )
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   OPEN IMAGE PICKER
    ========================================================= */
 
 function openImagePicker() {
@@ -1099,9 +1230,7 @@ function openImagePicker() {
     if (
         !editorTarget.subjectId
     ) {
-
         return;
-
     }
 
 
@@ -1111,38 +1240,32 @@ function openImagePicker() {
 
 
 
+/* =========================================================
+   IMAGE PICKER EVENTS
+   ========================================================= */
+
 editorImageArea.addEventListener(
-
     "click",
-
     function () {
 
         openImagePicker();
 
     }
-
 );
-
 
 
 editorAddImage.addEventListener(
-
     "click",
-
     function () {
 
         openImagePicker();
 
     }
-
 );
 
 
-
 editorImageInput.addEventListener(
-
     "change",
-
     function () {
 
         const file =
@@ -1150,18 +1273,13 @@ editorImageInput.addEventListener(
 
 
         if (!file) {
-
             return;
-
         }
 
 
-        saveEditorImage(
-            file
-        );
+        saveEditorImage(file);
 
     }
-
 );
 
 
@@ -1171,24 +1289,21 @@ editorImageInput.addEventListener(
    ========================================================= */
 
 editorRemoveImage.addEventListener(
-
     "click",
-
     function () {
 
         if (
             !editorTarget.subjectId
         ) {
-
             return;
-
         }
 
 
 
+        /* HOME */
+
         if (
-            editorTarget.type ===
-            "home"
+            editorTarget.type === "home"
         ) {
 
             localStorage.removeItem(
@@ -1206,9 +1321,10 @@ editorRemoveImage.addEventListener(
 
 
 
+        /* MENU */
+
         if (
-            editorTarget.type ===
-            "menu"
+            editorTarget.type === "menu"
         ) {
 
             localStorage.removeItem(
@@ -1227,14 +1343,37 @@ editorRemoveImage.addEventListener(
         }
 
 
+
+        /* ITEM */
+
+        if (
+            editorTarget.type === "item"
+        ) {
+
+            localStorage.removeItem(
+                getItemImageStorageKey(
+                    editorTarget.subjectId,
+                    editorTarget.category,
+                    editorTarget.itemIndex
+                )
+            );
+
+
+            applyItemCustomization(
+                editorTarget.subjectId,
+                editorTarget.category,
+                editorTarget.itemIndex
+            );
+
+        }
+
+
         showEditorPlaceholder();
 
 
-        editorImageInput.value =
-            "";
+        editorImageInput.value = "";
 
     }
-
 );
 
 
@@ -1244,23 +1383,16 @@ editorRemoveImage.addEventListener(
    ========================================================= */
 
 colorOptions.forEach(
-
-    function (
-        button
-    ) {
+    function (button) {
 
         button.addEventListener(
-
             "click",
-
             function () {
 
                 if (
                     !editorTarget.subjectId
                 ) {
-
                     return;
-
                 }
 
 
@@ -1269,22 +1401,16 @@ colorOptions.forEach(
 
 
                 if (!color) {
-
                     return;
-
                 }
 
 
-                applyEditorColor(
-                    color
-                );
+                applyEditorColor(color);
 
             }
-
         );
 
     }
-
 );
 
 
@@ -1293,13 +1419,12 @@ colorOptions.forEach(
    APPLY EDITOR COLOR
    ========================================================= */
 
-function applyEditorColor(
-    color
-) {
+function applyEditorColor(color) {
+
+    /* HOME */
 
     if (
-        editorTarget.type ===
-        "home"
+        editorTarget.type === "home"
     ) {
 
         localStorage.setItem(
@@ -1309,6 +1434,10 @@ function applyEditorColor(
             color
         );
 
+
+        /*
+            Color and image are mutually exclusive.
+        */
 
         localStorage.removeItem(
             getHomeImageStorageKey(
@@ -1331,9 +1460,10 @@ function applyEditorColor(
 
 
 
+    /* SUBJECT MENU */
+
     if (
-        editorTarget.type ===
-        "menu"
+        editorTarget.type === "menu"
     ) {
 
         localStorage.setItem(
@@ -1368,30 +1498,58 @@ function applyEditorColor(
     }
 
 
+
+    /* INDIVIDUAL ITEM */
+
+    if (
+        editorTarget.type === "item"
+    ) {
+
+        localStorage.setItem(
+            getItemColorStorageKey(
+                editorTarget.subjectId,
+                editorTarget.category,
+                editorTarget.itemIndex
+            ),
+            color
+        );
+
+
+        localStorage.removeItem(
+            getItemImageStorageKey(
+                editorTarget.subjectId,
+                editorTarget.category,
+                editorTarget.itemIndex
+            )
+        );
+
+
+        applyItemCustomization(
+            editorTarget.subjectId,
+            editorTarget.category,
+            editorTarget.itemIndex
+        );
+
+    }
+
+
     showEditorPlaceholder();
 
 
-    updateSelectedColor(
-        color
-    );
+    updateSelectedColor(color);
 
 }
 
 
 
 /* =========================================================
-   UPDATE SELECTED COLOR
+   SELECTED COLOR
    ========================================================= */
 
-function updateSelectedColor(
-    color
-) {
+function updateSelectedColor(color) {
 
     colorOptions.forEach(
-
-        function (
-            button
-        ) {
+        function (button) {
 
             button.classList.remove(
                 "selected"
@@ -1406,9 +1564,7 @@ function updateSelectedColor(
                 !buttonColor ||
                 !color
             ) {
-
                 return;
-
             }
 
 
@@ -1424,7 +1580,6 @@ function updateSelectedColor(
             }
 
         }
-
     );
 
 }
@@ -1436,24 +1591,23 @@ function updateSelectedColor(
    ========================================================= */
 
 editorResetButton.addEventListener(
-
     "click",
-
     function () {
 
         if (
             !editorTarget.subjectId
         ) {
-
             return;
-
         }
 
 
 
+        /* =================================================
+           RESET HOME CARD
+           ================================================= */
+
         if (
-            editorTarget.type ===
-            "home"
+            editorTarget.type === "home"
         ) {
 
             const subject =
@@ -1495,9 +1649,12 @@ editorResetButton.addEventListener(
 
 
 
+        /* =================================================
+           RESET SUBJECT MENU CARD
+           ================================================= */
+
         if (
-            editorTarget.type ===
-            "menu"
+            editorTarget.type === "menu"
         ) {
 
             const defaultColor =
@@ -1542,43 +1699,78 @@ editorResetButton.addEventListener(
         }
 
 
+
+        /* =================================================
+           RESET INDIVIDUAL ITEM
+
+           Falls back to subject color.
+           ================================================= */
+
+        if (
+            editorTarget.type === "item"
+        ) {
+
+            localStorage.removeItem(
+                getItemImageStorageKey(
+                    editorTarget.subjectId,
+                    editorTarget.category,
+                    editorTarget.itemIndex
+                )
+            );
+
+
+            localStorage.removeItem(
+                getItemColorStorageKey(
+                    editorTarget.subjectId,
+                    editorTarget.category,
+                    editorTarget.itemIndex
+                )
+            );
+
+
+            applyItemCustomization(
+                editorTarget.subjectId,
+                editorTarget.category,
+                editorTarget.itemIndex
+            );
+
+
+            updateSelectedColor(
+                getSubjectColor(
+                    editorTarget.subjectId
+                )
+            );
+
+        }
+
+
         showEditorPlaceholder();
 
 
-        editorImageInput.value =
-            "";
+        editorImageInput.value = "";
 
     }
-
 );
 
 
 
 /* =========================================================
-   EDITOR CLOSE EVENTS
+   CLOSE EDITOR EVENTS
    ========================================================= */
 
 cardEditorClose.addEventListener(
-
     "click",
-
     function () {
 
         closeCardEditor();
 
     }
-
 );
 
 
-
 cardEditorOverlay.addEventListener(
-
     "click",
-
-    function (
-        event
-    ) {
+    function (event) {
 
         if (
             event.target ===
@@ -1590,23 +1782,16 @@ cardEditorOverlay.addEventListener(
         }
 
     }
-
 );
 
 
-
 cardEditor.addEventListener(
-
     "click",
-
-    function (
-        event
-    ) {
+    function (event) {
 
         event.stopPropagation();
 
     }
-
 );
 
 
@@ -1624,15 +1809,10 @@ function addSubjectCardEvents() {
 
 
     subjectCards.forEach(
-
-        function (
-            card
-        ) {
+        function (card) {
 
             card.addEventListener(
-
                 "click",
-
                 function () {
 
                     showSubjectPage(
@@ -1640,11 +1820,9 @@ function addSubjectCardEvents() {
                     );
 
                 }
-
             );
 
         }
-
     );
 
 }
@@ -1659,20 +1837,15 @@ function addSubjectMenuEvents() {
 
     const menuCards =
         document.querySelectorAll(
-            ".subject-menu-card[data-category]"
+            ".subject-menu-card[data-category]:not(.global-category-card):not(.category-item-card)"
         );
 
 
     menuCards.forEach(
-
-        function (
-            card
-        ) {
+        function (card) {
 
             card.addEventListener(
-
                 "click",
-
                 function () {
 
                     openSubjectCategory(
@@ -1681,11 +1854,9 @@ function addSubjectMenuEvents() {
                     );
 
                 }
-
             );
 
         }
-
     );
 
 
@@ -1702,25 +1873,18 @@ function addSubjectMenuEvents() {
 function clearActiveNavigation() {
 
     mainNavLinks.forEach(
-
-        function (
-            link
-        ) {
+        function (link) {
 
             link.classList.remove(
                 "active"
             );
 
         }
-
     );
 
 
     subjectLinks.forEach(
-
-        function (
-            link
-        ) {
+        function (link) {
 
             link.classList.remove(
                 "active"
@@ -1732,7 +1896,6 @@ function clearActiveNavigation() {
             );
 
         }
-
     );
 
 }
@@ -1743,9 +1906,7 @@ function clearActiveNavigation() {
    SET ACTIVE SUBJECT
    ========================================================= */
 
-function setActiveSubject(
-    subjectId
-) {
+function setActiveSubject(subjectId) {
 
     clearActiveNavigation();
 
@@ -1757,9 +1918,7 @@ function setActiveSubject(
 
 
     if (!subjectLink) {
-
         return;
-
     }
 
 
@@ -1770,9 +1929,7 @@ function setActiveSubject(
 
     subjectLink.style.setProperty(
         "--subject-color",
-        getSubjectColor(
-            subjectId
-        )
+        getSubjectColor(subjectId)
     );
 
 }
@@ -1785,12 +1942,9 @@ function setActiveSubject(
 
 function showHomePage() {
 
-    currentSubjectId =
-        null;
+    currentSubjectId = null;
 
-
-    currentCategory =
-        null;
+    currentCategory = null;
 
 
     pageContent.innerHTML =
@@ -1805,18 +1959,14 @@ function showHomePage() {
     );
 
 
-    searchInput.value =
-        "";
+    searchInput.value = "";
 
 
     addSubjectCardEvents();
 
-
     addHomeEditEvents();
 
-
     loadSavedColors();
-
 
     loadSavedImages();
 
@@ -1828,20 +1978,14 @@ function showHomePage() {
    SHOW SUBJECT PAGE
    ========================================================= */
 
-function showSubjectPage(
-    subjectId
-) {
+function showSubjectPage(subjectId) {
 
     const subject =
-        subjectData[
-            subjectId
-        ];
+        subjectData[subjectId];
 
 
     if (!subject) {
-
         return;
-
     }
 
 
@@ -1858,8 +2002,7 @@ function showSubjectPage(
     );
 
 
-    searchInput.value =
-        "";
+    searchInput.value = "";
 
 
     const subjectColor =
@@ -1885,11 +2028,9 @@ function showSubjectPage(
                     HOME
                 </button>
 
-
                 <span class="breadcrumb-slash">
                     /
                 </span>
-
 
                 <span
                     class="subject-heading-highlight"
@@ -1900,7 +2041,6 @@ function showSubjectPage(
             </h1>
 
         </div>
-
 
 
         <section class="subject-menu-grid">
@@ -2014,7 +2154,6 @@ function showSubjectPage(
 
             </div>
 
-
         </section>
 
     `;
@@ -2027,15 +2166,12 @@ function showSubjectPage(
 
 
     breadcrumbHome.addEventListener(
-
         "click",
-
         function () {
 
             showHomePage();
 
         }
-
     );
 
 
@@ -2052,6 +2188,9 @@ function showSubjectPage(
 
 /* =========================================================
    OPEN SUBJECT CATEGORY
+
+   Example:
+   HOME / IT0035 / FORMATIVES
    ========================================================= */
 
 function openSubjectCategory(
@@ -2060,18 +2199,14 @@ function openSubjectCategory(
 ) {
 
     const subject =
-        subjectData[
-            subjectId
-        ];
+        subjectData[subjectId];
 
 
     if (
         !subject ||
         !subject.categories
     ) {
-
         return;
-
     }
 
 
@@ -2081,10 +2216,10 @@ function openSubjectCategory(
         ];
 
 
-    if (!items) {
-
+    if (
+        !Array.isArray(items)
+    ) {
         return;
-
     }
 
 
@@ -2101,8 +2236,7 @@ function openSubjectCategory(
     );
 
 
-    searchInput.value =
-        "";
+    searchInput.value = "";
 
 
     const subjectColor =
@@ -2123,10 +2257,13 @@ function openSubjectCategory(
             : category.toUpperCase();
 
 
+    let itemsHTML = "";
 
-    let itemsHTML =
-        "";
 
+
+    /* =====================================================
+       EMPTY CATEGORY
+       ===================================================== */
 
     if (
         items.length === 0
@@ -2142,18 +2279,49 @@ function openSubjectCategory(
 
     }
 
+
+
+    /* =====================================================
+       CATEGORY ITEMS
+       ===================================================== */
+
     else {
 
         items.forEach(
-
             function (
                 item,
                 index
             ) {
 
+                let fallbackTitle =
+                    `${categoryTitle} ${index + 1}`;
+
+
+                if (
+                    category ===
+                    "formatives"
+                ) {
+
+                    fallbackTitle =
+                        `Formative ${index + 1}`;
+
+                }
+
+
+                if (
+                    category ===
+                    "summatives"
+                ) {
+
+                    fallbackTitle =
+                        `Summative ${index + 1}`;
+
+                }
+
+
                 const itemTitle =
                     item.title ||
-                    `${categoryTitle} ${index + 1}`;
+                    fallbackTitle;
 
 
                 const itemDescription =
@@ -2161,14 +2329,31 @@ function openSubjectCategory(
                     "No description yet.";
 
 
-                let linksHTML =
-                    "";
+                const itemColor =
+                    getItemColor(
+                        subjectId,
+                        category,
+                        index
+                    );
+
+
+                const savedItemImage =
+                    localStorage.getItem(
+                        getItemImageStorageKey(
+                            subjectId,
+                            category,
+                            index
+                        )
+                    );
+
+
+                let linksHTML = "";
 
 
 
-                if (
-                    item.link
-                ) {
+                /* ITEM LINK */
+
+                if (item.link) {
 
                     linksHTML += `
 
@@ -2187,9 +2372,9 @@ function openSubjectCategory(
 
 
 
-                if (
-                    item.collabLink
-                ) {
+                /* COLLAB LINK */
+
+                if (item.collabLink) {
 
                     linksHTML += `
 
@@ -2212,15 +2397,50 @@ function openSubjectCategory(
 
                     <div
                         class="subject-menu-card category-item-card"
+                        data-subject="${subjectId}"
+                        data-category="${category}"
                         data-item-index="${index}"
                     >
 
+                        <!-- UPPER VISUAL AREA -->
+
                         <div
-                            class="subject-menu-image category-item-image"
-                            style="background: ${subjectColor};"
+                            class="subject-menu-image category-item-image item-visual"
+                            data-subject="${subjectId}"
+                            data-category="${category}"
+                            data-item-index="${index}"
+                            style="background: ${itemColor};"
                         >
+
+                            <img
+                                class="subject-menu-custom-image item-custom-image"
+                                src="${savedItemImage || ""}"
+                                alt="${itemTitle} image"
+                                style="display: ${savedItemImage ? "block" : "none"};"
+                            >
+
+
+                            <button
+                                class="menu-edit-button item-edit-button"
+                                type="button"
+                                data-edit-subject="${subjectId}"
+                                data-edit-category="${category}"
+                                data-edit-index="${index}"
+                                aria-label="Customize ${itemTitle}"
+                            >
+
+                                <img
+                                    src="File_Bank/ASSETS/editImg_icon.png"
+                                    alt=""
+                                >
+
+                            </button>
+
                         </div>
 
+
+
+                        <!-- LOWER INFO AREA -->
 
                         <div
                             class="subject-menu-info category-item-info"
@@ -2255,12 +2475,15 @@ function openSubjectCategory(
                 `;
 
             }
-
         );
 
     }
 
 
+
+    /* =====================================================
+       CATEGORY PAGE
+       ===================================================== */
 
     pageContent.innerHTML = `
 
@@ -2309,7 +2532,6 @@ function openSubjectCategory(
         </div>
 
 
-
         <section class="subject-menu-grid">
 
             ${itemsHTML}
@@ -2320,6 +2542,8 @@ function openSubjectCategory(
 
 
 
+    /* HOME BREADCRUMB */
+
     const breadcrumbHome =
         document.getElementById(
             "breadcrumb-home"
@@ -2327,18 +2551,17 @@ function openSubjectCategory(
 
 
     breadcrumbHome.addEventListener(
-
         "click",
-
         function () {
 
             showHomePage();
 
         }
-
     );
 
 
+
+    /* SUBJECT BREADCRUMB */
 
     const breadcrumbSubject =
         document.getElementById(
@@ -2347,9 +2570,7 @@ function openSubjectCategory(
 
 
     breadcrumbSubject.addEventListener(
-
         "click",
-
         function () {
 
             showSubjectPage(
@@ -2357,8 +2578,13 @@ function openSubjectCategory(
             );
 
         }
-
     );
+
+
+
+    /* INDIVIDUAL ITEM EDIT BUTTONS */
+
+    addItemEditEvents();
 
 }
 
@@ -2367,29 +2593,28 @@ function openSubjectCategory(
 /* =========================================================
    SHOW ALL CATEGORY ITEMS
 
-   Used for:
-   - FORMATIVES
-   - SUMMATIVES
+   Sidebar:
+   - Formatives
+   - Summatives
    ========================================================= */
 
 function showAllCategoryItems(
     category
 ) {
 
-    currentSubjectId =
-        null;
+    currentSubjectId = null;
 
-
-    currentCategory =
-        category;
+    currentCategory = category;
 
 
     clearActiveNavigation();
 
 
+
+    /* ACTIVE NAV */
+
     if (
-        category ===
-        "formatives" &&
+        category === "formatives" &&
         formativesLink
     ) {
 
@@ -2401,8 +2626,7 @@ function showAllCategoryItems(
 
 
     if (
-        category ===
-        "summatives" &&
+        category === "summatives" &&
         summativesLink
     ) {
 
@@ -2413,8 +2637,7 @@ function showAllCategoryItems(
     }
 
 
-    searchInput.value =
-        "";
+    searchInput.value = "";
 
 
     const categoryInfo =
@@ -2429,22 +2652,16 @@ function showAllCategoryItems(
             : category.toUpperCase();
 
 
-    let itemsHTML =
-        "";
+    let itemsHTML = "";
 
 
 
     /* =====================================================
-       LOOP THROUGH EVERY SUBJECT
-       ========================================================= */
+       LOOP THROUGH ALL SUBJECTS
+       ===================================================== */
 
-    Object.keys(
-        subjectData
-    ).forEach(
-
-        function (
-            subjectId
-        ) {
+    Object.keys(subjectData).forEach(
+        function (subjectId) {
 
             const subject =
                 subjectData[
@@ -2456,9 +2673,7 @@ function showAllCategoryItems(
                 !subject ||
                 !subject.categories
             ) {
-
                 return;
-
             }
 
 
@@ -2469,35 +2684,24 @@ function showAllCategoryItems(
 
 
             if (
-                !Array.isArray(
-                    items
-                )
+                !Array.isArray(items)
             ) {
-
                 return;
-
             }
 
 
-            const subjectColor =
-                getSubjectColor(
-                    subjectId
-                );
 
-
-
-            /* =================================================
-               LOOP THROUGH EVERY ITEM
-               ================================================= */
+            /* =============================================
+               LOOP THROUGH SUBJECT ITEMS
+               ============================================= */
 
             items.forEach(
-
                 function (
                     item,
                     index
                 ) {
 
-                    let defaultTitle =
+                    let fallbackTitle =
                         `${categoryTitle} ${index + 1}`;
 
 
@@ -2506,7 +2710,7 @@ function showAllCategoryItems(
                         "formatives"
                     ) {
 
-                        defaultTitle =
+                        fallbackTitle =
                             `Formative ${index + 1}`;
 
                     }
@@ -2517,7 +2721,7 @@ function showAllCategoryItems(
                         "summatives"
                     ) {
 
-                        defaultTitle =
+                        fallbackTitle =
                             `Summative ${index + 1}`;
 
                     }
@@ -2525,12 +2729,30 @@ function showAllCategoryItems(
 
                     const itemTitle =
                         item.title ||
-                        defaultTitle;
+                        fallbackTitle;
 
 
                     const itemDescription =
                         item.description ||
                         "";
+
+
+                    const itemColor =
+                        getItemColor(
+                            subjectId,
+                            category,
+                            index
+                        );
+
+
+                    const savedItemImage =
+                        localStorage.getItem(
+                            getItemImageStorageKey(
+                                subjectId,
+                                category,
+                                index
+                            )
+                        );
 
 
                     itemsHTML += `
@@ -2539,18 +2761,48 @@ function showAllCategoryItems(
                             class="subject-menu-card global-category-card"
                             data-subject="${subjectId}"
                             data-category="${category}"
+                            data-item-index="${index}"
                         >
 
-                            <!-- UPPER VISUAL AREA -->
+                            <!-- UPPER AREA -->
 
                             <div
-                                class="subject-menu-image global-category-image"
-                                style="background: ${subjectColor};"
+                                class="subject-menu-image global-category-image item-visual"
+                                data-subject="${subjectId}"
+                                data-category="${category}"
+                                data-item-index="${index}"
+                                style="background: ${itemColor};"
                             >
+
+                                <img
+                                    class="subject-menu-custom-image item-custom-image"
+                                    src="${savedItemImage || ""}"
+                                    alt="${itemTitle} image"
+                                    style="display: ${savedItemImage ? "block" : "none"};"
+                                >
+
+
+                                <button
+                                    class="menu-edit-button item-edit-button"
+                                    type="button"
+                                    data-edit-subject="${subjectId}"
+                                    data-edit-category="${category}"
+                                    data-edit-index="${index}"
+                                    aria-label="Customize ${subject.code} ${itemTitle}"
+                                >
+
+                                    <img
+                                        src="File_Bank/ASSETS/editImg_icon.png"
+                                        alt=""
+                                    >
+
+                                </button>
+
                             </div>
 
 
-                            <!-- LOWER INFORMATION AREA -->
+
+                            <!-- LOWER INFO AREA -->
 
                             <div
                                 class="subject-menu-info global-category-info"
@@ -2584,30 +2836,25 @@ function showAllCategoryItems(
                     `;
 
                 }
-
             );
 
         }
-
     );
 
 
 
     /* =====================================================
-       EMPTY GLOBAL CATEGORY
-       ========================================================= */
+       EMPTY CATEGORY
+       ===================================================== */
 
     if (
-        itemsHTML.trim() ===
-        ""
+        itemsHTML.trim() === ""
     ) {
 
         itemsHTML = `
 
             <p class="empty-category-message">
-
                 No ${categoryTitle.toLowerCase()} added yet.
-
             </p>
 
         `;
@@ -2617,8 +2864,8 @@ function showAllCategoryItems(
 
 
     /* =====================================================
-       RENDER PAGE
-       ========================================================= */
+       RENDER GLOBAL PAGE
+       ===================================================== */
 
     pageContent.innerHTML = `
 
@@ -2638,8 +2885,8 @@ function showAllCategoryItems(
 
 
     /* =====================================================
-       GLOBAL CARD EVENTS
-       ========================================================= */
+       GLOBAL CARD CLICK EVENTS
+       ===================================================== */
 
     const globalCards =
         document.querySelectorAll(
@@ -2648,15 +2895,10 @@ function showAllCategoryItems(
 
 
     globalCards.forEach(
-
-        function (
-            card
-        ) {
+        function (card) {
 
             card.addEventListener(
-
                 "click",
-
                 function () {
 
                     openSubjectCategory(
@@ -2665,30 +2907,32 @@ function showAllCategoryItems(
                     );
 
                 }
-
             );
 
         }
-
     );
+
+
+
+    /* =====================================================
+       ITEM EDIT BUTTON EVENTS
+       ===================================================== */
+
+    addItemEditEvents();
 
 }
 
 
 
 /* =========================================================
-   FORMATIVES SIDEBAR LINK
+   FORMATIVES SIDEBAR
    ========================================================= */
 
 if (formativesLink) {
 
     formativesLink.addEventListener(
-
         "click",
-
-        function (
-            event
-        ) {
+        function (event) {
 
             event.preventDefault();
 
@@ -2698,7 +2942,6 @@ if (formativesLink) {
             );
 
         }
-
     );
 
 }
@@ -2706,18 +2949,14 @@ if (formativesLink) {
 
 
 /* =========================================================
-   SUMMATIVES SIDEBAR LINK
+   SUMMATIVES SIDEBAR
    ========================================================= */
 
 if (summativesLink) {
 
     summativesLink.addEventListener(
-
         "click",
-
-        function (
-            event
-        ) {
+        function (event) {
 
             event.preventDefault();
 
@@ -2727,7 +2966,6 @@ if (summativesLink) {
             );
 
         }
-
     );
 
 }
@@ -2739,18 +2977,11 @@ if (summativesLink) {
    ========================================================= */
 
 subjectLinks.forEach(
-
-    function (
-        link
-    ) {
+    function (link) {
 
         link.addEventListener(
-
             "click",
-
-            function (
-                event
-            ) {
+            function (event) {
 
                 event.preventDefault();
 
@@ -2760,11 +2991,9 @@ subjectLinks.forEach(
                 );
 
             }
-
         );
 
     }
-
 );
 
 
@@ -2774,12 +3003,8 @@ subjectLinks.forEach(
    ========================================================= */
 
 homeLink.addEventListener(
-
     "click",
-
-    function (
-        event
-    ) {
+    function (event) {
 
         event.preventDefault();
 
@@ -2787,7 +3012,6 @@ homeLink.addEventListener(
         showHomePage();
 
     }
-
 );
 
 
@@ -2797,9 +3021,7 @@ homeLink.addEventListener(
    ========================================================= */
 
 searchInput.addEventListener(
-
     "input",
-
     function () {
 
         const searchText =
@@ -2811,7 +3033,7 @@ searchInput.addEventListener(
 
         /* =================================================
            HOME SUBJECT CARDS
-           ========================================================= */
+           ================================================= */
 
         const subjectCards =
             document.querySelectorAll(
@@ -2824,10 +3046,7 @@ searchInput.addEventListener(
         ) {
 
             subjectCards.forEach(
-
-                function (
-                    card
-                ) {
+                function (card) {
 
                     const subjectId =
                         card.dataset.subject;
@@ -2840,9 +3059,7 @@ searchInput.addEventListener(
 
 
                     if (!subject) {
-
                         return;
-
                     }
 
 
@@ -2859,7 +3076,6 @@ searchInput.addEventListener(
                             : "none";
 
                 }
-
             );
 
 
@@ -2871,7 +3087,7 @@ searchInput.addEventListener(
 
         /* =================================================
            SUBJECT / GLOBAL / CATEGORY CARDS
-           ========================================================= */
+           ================================================= */
 
         const innerCards =
             document.querySelectorAll(
@@ -2880,10 +3096,7 @@ searchInput.addEventListener(
 
 
         innerCards.forEach(
-
-            function (
-                card
-            ) {
+            function (card) {
 
                 const searchableText =
                     card.textContent
@@ -2899,26 +3112,21 @@ searchInput.addEventListener(
                         : "none";
 
             }
-
         );
 
     }
-
 );
 
 
 
 /* =========================================================
-   INITIALIZE
+   INITIALIZE HOME
    ========================================================= */
 
 addSubjectCardEvents();
 
-
 addHomeEditEvents();
 
-
 loadSavedColors();
-
 
 loadSavedImages();
