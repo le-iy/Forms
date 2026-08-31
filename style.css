@@ -581,7 +581,7 @@ body {
 .page-title {
     font-size: 28px;
 
-    margin-top: 70px;
+    margin-top: 40px;
     margin-bottom: 12px;
 
     color: var(--theme-non-outline-text);
@@ -593,10 +593,12 @@ body {
    HOME SUBJECT GRID
    ========================================================= */
 
-.subject-grid {
+.subject-grid,
+.subject-menu-grid {
     display: grid;
 
-    grid-template-columns: repeat(auto-fit, 208px);
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
 
     gap: 17px 20px;
 }
@@ -608,7 +610,7 @@ body {
    ========================================================= */
 
 .subject-card {
-    width: 208px;
+    width: 100%;
 
     overflow: hidden;
 
@@ -888,10 +890,12 @@ body {
    SUBJECT MENU GRID
    ========================================================= */
 
+.subject-grid,
 .subject-menu-grid {
     display: grid;
 
-    grid-template-columns: repeat(auto-fit, 208px);
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
 
     gap: 17px 20px;
 }
@@ -903,7 +907,7 @@ body {
    ========================================================= */
 
 .subject-menu-card {
-    width: 208px;
+    width: 100%;
 
     overflow: hidden;
 
@@ -1264,7 +1268,7 @@ body {
    ========================================================= */
 
 .global-category-card {
-    width: 208px;
+    width: 100%;
 
     overflow: hidden;
 
