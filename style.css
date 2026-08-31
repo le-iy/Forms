@@ -52,6 +52,31 @@
 
     /* Editor preview hover */
     --theme-editor-preview-hover: #cccccc;
+
+
+    /* =====================================================
+       UI STYLE TOKENS
+
+       Default values match the current site.
+
+       UI style presets can override these without changing
+       the user's theme colors.
+       ===================================================== */
+
+    --ui-radius-small: 7px;
+    --ui-radius-medium: 12px;
+    --ui-radius-large: 25px;
+
+    --ui-border-width: 0px;
+    --ui-border-color: transparent;
+
+    --ui-shadow-small: none;
+    --ui-shadow-medium: none;
+    --ui-shadow-large: none;
+
+    --ui-backdrop-blur: 0px;
+
+    --ui-transition-speed: 0.2s;
 }
 
 
@@ -692,9 +717,6 @@ body {
 
     pointer-events: none;
 }
-
-
-
 /* =========================================================
    HOME CARD INFORMATION
 
@@ -1656,8 +1678,6 @@ body {
 
     cursor: pointer;
 }
-
-
 .editor-add-image:hover {
     text-decoration: underline;
 }
@@ -1930,11 +1950,6 @@ body {
 
 /* =========================================================
    BACKGROUND PREVIEW
-
-   The page itself shows the selected Background.
-
-   This preview stays neutral because it is also
-   the upload/background image area.
    ========================================================= */
 
 .theme-background-preview {
@@ -1984,9 +1999,6 @@ body {
 
 /* =========================================================
    OUTLINE PREVIEW
-
-   Only the LEFT STRIP displays the chosen Outline.
-   Rest stays neutral gray, matching the mockup.
    ========================================================= */
 
 .theme-outline-preview {
@@ -2017,9 +2029,6 @@ body {
 
 /* =========================================================
    TEXT PREVIEW
-
-   Background = Outline
-   Words = Text
    ========================================================= */
 
 .theme-text-preview {
@@ -2056,9 +2065,6 @@ body {
 
 /* =========================================================
    NON-OUTLINE TEXT PREVIEW
-
-   Background stays neutral.
-   Words use Non-Outline Text.
    ========================================================= */
 
 .theme-non-outline-preview {
@@ -2357,8 +2363,6 @@ body {
 
 /* =========================================================
    THEME BACKGROUND IMAGE BUTTON
-
-   This is the ONE big Background preview/upload box.
    ========================================================= */
 
 .theme-background-image-button {
@@ -2404,6 +2408,26 @@ body {
 
     line-height: 1;
 }
+/* =========================================================
+   THEMES + UI STYLE CHOICE AREA
+
+   Both selectors live side-by-side and use the same
+   visual structure.
+   ========================================================= */
+
+.theme-choice-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 45px;
+
+    width: 100%;
+
+    margin-top: 82px;
+
+    align-items: start;
+}
 
 
 
@@ -2414,70 +2438,25 @@ body {
 .premade-themes-section {
     width: 100%;
 
-    margin-top: 100px;
+    margin: 0;
 
-    padding-top: 2px;
+    padding: 0;
+
+    border: none;
+
+    min-width: 0;
 }
-
 
 
 
 /* =========================================================
-   PREMADE THEMES TOGGLE
-
-   The Themes list is collapsed by default.
-
-   Clicking this row in JS opens / closes the
-   full premade theme palette list.
+   PREMADE THEMES TITLE
    ========================================================= */
-
-.premade-themes-toggle {
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    gap: 12px;
-
-    border: none;
-
-    border-bottom: 1px solid var(--theme-divider);
-
-    padding: 0 0 12px;
-
-    background: transparent;
-
-    color: var(--theme-non-outline-text);
-
-    text-align: left;
-
-    cursor: pointer;
-
-    transition:
-        opacity 0.2s ease,
-        border-color 0.2s ease;
-}
-
-
-.premade-themes-toggle:hover {
-    opacity: 0.72;
-}
-
-
-.premade-themes-toggle:focus-visible {
-    outline: 2px solid var(--theme-non-outline-text);
-
-    outline-offset: 5px;
-
-    border-radius: 4px;
-}
-
 
 .premade-themes-title {
     display: block;
+
+    margin: 0 0 13px;
 
     font-size: 22px;
 
@@ -2485,11 +2464,103 @@ body {
 
     font-weight: bold;
 
+    color: var(--theme-non-outline-text);
+}
+
+
+
+/* =========================================================
+   PREMADE THEMES SELECTOR BAR
+
+   Matches UI Style selector.
+   ========================================================= */
+
+.premade-themes-toggle {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
     margin: 0;
+
+    padding: 0 16px;
+
+    border: none;
+
+    border-radius: 0;
+
+    background-color: var(--theme-input-background);
+
+    color: var(--theme-non-outline-text);
+
+    text-align: left;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.premade-themes-toggle:hover {
+    background-color: var(--theme-input-focus);
+}
+
+
+.premade-themes-toggle:active {
+    transform: translateY(1px);
+}
+
+
+.premade-themes-toggle:focus-visible {
+    outline: 2px solid var(--theme-outline);
+
+    outline-offset: 2px;
+}
+
+
+
+/* =========================================================
+   THEMES SELECTOR PLACEHOLDER
+   ========================================================= */
+
+.premade-themes-placeholder {
+    display: block;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 14px;
+
+    line-height: 1;
+
+    font-weight: normal;
 
     color: var(--theme-non-outline-text);
 }
 
+
+
+/* =========================================================
+   THEMES SELECTOR ARROW
+   ========================================================= */
 
 .premade-themes-arrow {
     display: inline-grid;
@@ -2500,25 +2571,32 @@ body {
 
     min-width: 18px;
 
-    font-size: 13px;
+    font-size: 12px;
 
     line-height: 1;
 
     color: var(--theme-non-outline-text);
 
-    transition: transform 0.2s ease;
+    pointer-events: none;
 }
 
 
 
 /* =========================================================
    PREMADE THEMES COLLAPSIBLE CONTENT
+
+   This appears UNDER the two selectors and spans
+   the whole theme page width.
    ========================================================= */
 
 .premade-themes-content {
     width: 100%;
 
-    padding-top: 20px;
+    margin-top: 25px;
+
+    padding: 24px 0 5px;
+
+    border-top: 1px solid var(--theme-divider);
 }
 
 
@@ -2544,6 +2622,11 @@ body {
     width: 100%;
 }
 
+
+
+/* =========================================================
+   PREMADE THEME OPTION
+   ========================================================= */
 
 .premade-theme-option {
     width: 100%;
@@ -2626,6 +2709,268 @@ body {
 
 
 /* =========================================================
+   UI STYLE SECTION
+
+   Designed to mirror PREMADE THEMES exactly.
+   ========================================================= */
+
+.ui-style-section {
+    width: 100%;
+
+    min-width: 0;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+}
+
+
+
+/* =========================================================
+   UI STYLE TITLE
+   ========================================================= */
+
+.ui-style-title {
+    display: block;
+
+    margin: 0 0 13px;
+
+    font-size: 22px;
+
+    line-height: 1;
+
+    font-weight: bold;
+
+    color: var(--theme-non-outline-text);
+}
+
+
+
+/* =========================================================
+   OLD UI STYLE ELEMENTS
+
+   These are kept harmless in case another part of the
+   interface still references them.
+   ========================================================= */
+
+.ui-style-row {
+    display: block;
+
+    width: 100%;
+}
+
+
+.ui-style-heading {
+    min-width: 0;
+}
+
+
+.ui-style-hint {
+    display: none;
+}
+
+
+
+/* =========================================================
+   UI STYLE SELECTOR WRAPPER
+   ========================================================= */
+
+.ui-style-selector-wrap {
+    position: relative;
+
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+
+/* =========================================================
+   UI STYLE SELECT
+
+   Same size, background and typography as Themes.
+   ========================================================= */
+
+.ui-style-select {
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 43px;
+
+    margin: 0;
+
+    padding: 0 46px 0 16px;
+
+    border: none;
+
+    border-radius: 0;
+
+    background-color: var(--theme-input-background);
+
+    color: var(--theme-non-outline-text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    line-height: 1;
+
+    font-weight: normal;
+
+    cursor: pointer;
+
+    outline: none;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.ui-style-select:hover {
+    background-color: var(--theme-input-focus);
+}
+
+
+.ui-style-select:active {
+    transform: translateY(1px);
+}
+
+
+.ui-style-select:focus {
+    outline: 2px solid var(--theme-outline);
+
+    outline-offset: 2px;
+}
+
+
+
+/* =========================================================
+   CUSTOM SELECT ARROW
+   ========================================================= */
+
+.ui-style-selector-wrap::after {
+    content: "▼";
+
+    position: absolute;
+
+    top: 50%;
+    right: 16px;
+
+    transform: translateY(-50%);
+
+    display: grid;
+
+    place-items: center;
+
+    font-size: 12px;
+
+    line-height: 1;
+
+    color: var(--theme-non-outline-text);
+
+    pointer-events: none;
+}
+
+
+
+/* =========================================================
+   UI STYLE SELECT OPTIONS
+   ========================================================= */
+
+.ui-style-select option {
+    background-color: var(--theme-input-background);
+
+    color: var(--theme-non-outline-text);
+
+    font-family: inherit;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================================================
+   OPTIONAL UI STYLE PREVIEW CARDS
+
+   Kept available if clickable previews are used later.
+   ========================================================= */
+
+.ui-style-options {
+    display: grid;
+
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+
+    gap: 10px;
+
+    margin-top: 14px;
+}
+
+
+.ui-style-option {
+    min-width: 0;
+
+    min-height: 65px;
+
+    padding: 10px;
+
+    border: 1px solid var(--theme-divider);
+
+    border-radius: 12px;
+
+    background-color: var(--theme-input-background);
+
+    color: var(--theme-non-outline-text);
+
+    text-align: left;
+
+    cursor: pointer;
+}
+
+
+.ui-style-option:hover {
+    background-color: var(--theme-input-focus);
+}
+
+
+.ui-style-option.active {
+    outline: 2px solid var(--theme-non-outline-text);
+
+    outline-offset: 2px;
+}
+
+
+.ui-style-option-name {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    margin-bottom: 4px;
+}
+
+
+.ui-style-option-description {
+    display: block;
+
+    font-size: 8px;
+
+    line-height: 1.25;
+
+    opacity: 0.7;
+}
+
+
+
+/* =========================================================
    THEME ACTIONS
    ========================================================= */
 
@@ -2684,9 +3029,6 @@ body {
 
 /* =========================================================
    THEME BACK BUTTON
-
-   Outline controls the button.
-   Text controls its text.
    ========================================================= */
 
 .theme-back-button {
@@ -2799,13 +3141,6 @@ body.theme-has-background-image .main-content {
 
 /* =========================================================
    ADAPTIVE BACKGROUND TEXT
-
-   JS adds .adaptive-background-text only to text that sits
-   directly on the page background / wallpaper.
-
-   The user's Non-Outline Text color remains the preferred
-   color. JS only overrides it with a readable black/white
-   fallback when contrast is too low.
    ========================================================= */
 
 .page-title.adaptive-background-text,
@@ -2817,7 +3152,9 @@ body.theme-has-background-image .main-content {
 .theme-control-title.adaptive-background-text,
 .theme-remove-background-button.adaptive-background-text,
 .premade-themes-title.adaptive-background-text,
-.premade-theme-name.adaptive-background-text {
+.premade-theme-name.adaptive-background-text,
+.ui-style-title.adaptive-background-text,
+.ui-style-hint.adaptive-background-text {
     color: var(
         --adaptive-background-text,
         var(--theme-non-outline-text)
@@ -2828,9 +3165,6 @@ body.theme-has-background-image .main-content {
 
 /* =========================================================
    ADAPTIVE THEME HEADER UNDERLINE
-
-   ISTETIK ;P dashed underline follows the same adaptive
-   black/white fallback as the heading itself.
    ========================================================= */
 
 .theme-page-header h1.adaptive-background-text {
@@ -2844,9 +3178,6 @@ body.theme-has-background-image .main-content {
 
 /* =========================================================
    SUBJECT BREADCRUMB EXCEPTION
-
-   The subject code must stay subject-colored even though
-   it is also a breadcrumb-home element.
    ========================================================= */
 
 .breadcrumb-home.subject-heading-highlight.adaptive-background-text {
@@ -2857,9 +3188,6 @@ body.theme-has-background-image .main-content {
 
 /* =========================================================
    REMOVE BACKGROUND HOVER
-
-   Prevent the hover state from replacing the adaptive
-   readable text color.
    ========================================================= */
 
 .theme-remove-background-button.adaptive-background-text:hover {
@@ -2867,4 +3195,1658 @@ body.theme-has-background-image .main-content {
         --adaptive-background-text,
         var(--theme-non-outline-text)
     );
+}
+
+/* =========================================================
+   =========================================================
+   UI STYLE SYSTEM
+   =========================================================
+
+   IMPORTANT ARCHITECTURE:
+
+   THEME:
+   - controls colors
+
+   UI STYLE:
+   - controls shape
+   - border treatment
+   - shadows
+   - transparency
+   - typography feel
+   - interface personality
+
+   CARD CUSTOMIZATION:
+   - remains independent
+   - card upper visual colors/images remain untouched
+
+   =========================================================
+   ========================================================= */
+
+
+
+/* =========================================================
+   DEFAULT / CURRENT STYLE
+   ========================================================= */
+
+body.style-default {
+    --ui-radius-small: 7px;
+    --ui-radius-medium: 12px;
+    --ui-radius-large: 25px;
+
+    --ui-border-width: 0px;
+    --ui-border-color: transparent;
+
+    --ui-shadow-small: none;
+    --ui-shadow-medium: none;
+    --ui-shadow-large: none;
+}
+
+
+
+/* =========================================================
+   =========================================================
+   RETRO OS
+   =========================================================
+
+   Inspired by:
+   - classic desktop GUI
+   - early Windows
+   - flat system panels
+   - bitmap / terminal interfaces
+
+   Theme colors remain the source colors.
+   =========================================================
+   ========================================================= */
+
+body.style-retro-os {
+    --ui-radius-small: 1px;
+    --ui-radius-medium: 2px;
+    --ui-radius-large: 2px;
+
+    --ui-border-width: 1px;
+    --ui-border-color: #161616;
+
+    --ui-shadow-small:
+        2px 2px 0 rgba(0, 0, 0, 0.42);
+
+    --ui-shadow-medium:
+        3px 3px 0 rgba(0, 0, 0, 0.42);
+
+    --ui-shadow-large:
+        4px 4px 0 rgba(0, 0, 0, 0.45);
+
+    font-family:
+        "Courier New",
+        "Lucida Console",
+        monospace;
+}
+
+
+
+/* Retro Sidebar */
+
+body.style-retro-os .sidebar {
+    border-right:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--theme-text) 55%,
+            transparent
+        );
+
+    box-shadow:
+        3px 0 0
+        rgba(0, 0, 0, 0.18);
+}
+
+
+
+/* Retro Navigation */
+
+body.style-retro-os .nav-item,
+body.style-retro-os .subject-link {
+    border-radius: 0;
+
+    border:
+        1px solid
+        transparent;
+}
+
+
+body.style-retro-os .nav-item:hover,
+body.style-retro-os .subject-link:hover {
+    border-color:
+        color-mix(
+            in srgb,
+            var(--theme-text) 65%,
+            transparent
+        );
+
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-outline) 82%,
+            var(--theme-text) 18%
+        );
+}
+
+
+body.style-retro-os #home-link.active,
+body.style-retro-os .main-nav .nav-item.active:not(#home-link) {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        2px 2px 0
+        rgba(0, 0, 0, 0.4);
+}
+
+
+body.style-retro-os .subject-link.active {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        2px 2px 0
+        rgba(0, 0, 0, 0.4);
+}
+
+
+
+/* Retro Search */
+
+body.style-retro-os .search-container input {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        inset 1px 1px 0
+        rgba(0, 0, 0, 0.25);
+
+    font-family:
+        "Courier New",
+        monospace;
+}
+
+
+body.style-retro-os .search-container input:focus {
+    outline:
+        1px solid
+        var(--theme-outline);
+
+    outline-offset: 1px;
+}
+
+
+
+/* Retro Banner */
+
+body.style-retro-os .home-banner {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        4px 4px 0
+        rgba(0, 0, 0, 0.38);
+}
+
+
+body.style-retro-os .home-banner-left h1 {
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+}
+
+
+
+/* Retro Cards */
+
+body.style-retro-os .subject-card,
+body.style-retro-os .subject-menu-card,
+body.style-retro-os .global-category-card {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        3px 3px 0
+        rgba(0, 0, 0, 0.38);
+}
+
+
+body.style-retro-os .subject-card:hover,
+body.style-retro-os .subject-menu-card:hover,
+body.style-retro-os .global-category-card:hover,
+body.style-retro-os .reviewer-card:hover {
+    transform:
+        translate(-1px, -1px);
+
+    box-shadow:
+        4px 4px 0
+        rgba(0, 0, 0, 0.44);
+}
+
+
+body.style-retro-os .card-image,
+body.style-retro-os .subject-menu-image,
+body.style-retro-os .category-item-image,
+body.style-retro-os .global-category-image,
+body.style-retro-os .item-visual {
+    border-radius: 0;
+}
+
+
+body.style-retro-os .card-info,
+body.style-retro-os .subject-menu-info,
+body.style-retro-os .category-item-info,
+body.style-retro-os .global-category-info {
+    border-top:
+        1px solid
+        #111111;
+}
+
+
+
+/* Retro Edit Buttons */
+
+body.style-retro-os .edit-image-button,
+body.style-retro-os .menu-edit-button,
+body.style-retro-os .item-edit-button,
+body.style-retro-os .theme-settings-button {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    background:
+        color-mix(
+            in srgb,
+            #ffffff 72%,
+            transparent
+        );
+
+    box-shadow:
+        1px 1px 0
+        rgba(0, 0, 0, 0.45);
+}
+
+
+
+/* Retro Reviewer Chips */
+
+body.style-retro-os .reviewer-filter-button {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        2px 2px 0
+        rgba(0, 0, 0, 0.4);
+
+    text-shadow: none;
+}
+
+
+
+/* Retro Editor */
+
+body.style-retro-os .card-editor {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        5px 5px 0
+        rgba(0, 0, 0, 0.46);
+}
+
+
+body.style-retro-os .editor-image-area {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+}
+
+
+body.style-retro-os .card-editor-close {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+}
+
+
+body.style-retro-os .color-option {
+    border-radius: 0;
+}
+
+
+
+/* Retro Theme Page */
+
+body.style-retro-os .theme-preview,
+body.style-retro-os .theme-background-image-button {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        2px 2px 0
+        rgba(0, 0, 0, 0.3);
+}
+
+
+body.style-retro-os .theme-swatch {
+    border-radius: 0;
+}
+
+
+body.style-retro-os .premade-theme-color {
+    border-radius: 0;
+}
+
+
+body.style-retro-os .premade-theme-option.active .premade-theme-palette {
+    border-radius: 0;
+
+    outline-width: 1px;
+}
+
+
+body.style-retro-os .theme-reset-button,
+body.style-retro-os .theme-back-button,
+body.style-retro-os .ui-style-select,
+body.style-retro-os .ui-style-option {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        2px 2px 0
+        rgba(0, 0, 0, 0.35);
+
+    font-family:
+        "Courier New",
+        monospace;
+}
+
+
+
+/* =========================================================
+   =========================================================
+   LIQUID GLASS
+   =========================================================
+
+   Inspired by translucent layered glass:
+   - high blur
+   - soft glowing edges
+   - rounded floating surfaces
+   - luminous focus states
+
+   No custom gradient is forced onto individual card tops.
+   =========================================================
+   ========================================================= */
+
+body.style-liquid-glass {
+    --ui-radius-small: 14px;
+    --ui-radius-medium: 20px;
+    --ui-radius-large: 30px;
+
+    --ui-shadow-small:
+        0 7px 18px
+        rgba(0, 0, 0, 0.13);
+
+    --ui-shadow-medium:
+        0 12px 30px
+        rgba(0, 0, 0, 0.18);
+
+    --ui-shadow-large:
+        0 20px 45px
+        rgba(0, 0, 0, 0.22);
+}
+
+
+
+/* Glass Sidebar */
+
+body.style-liquid-glass .sidebar {
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-outline) 70%,
+            transparent
+        );
+
+    border-right:
+        1px solid
+        rgba(255, 255, 255, 0.24);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(140%);
+
+    box-shadow:
+        8px 0 35px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+
+/* Glass Nav */
+
+body.style-liquid-glass .nav-item,
+body.style-liquid-glass .subject-link {
+    border-radius: 13px;
+}
+
+
+body.style-liquid-glass .nav-item:hover,
+body.style-liquid-glass .subject-link:hover {
+    background:
+        rgba(255, 255, 255, 0.12);
+
+    box-shadow:
+        inset 0 0 0 1px
+        rgba(255, 255, 255, 0.15);
+}
+
+
+body.style-liquid-glass #home-link.active,
+body.style-liquid-glass .main-nav .nav-item.active:not(#home-link) {
+    border-radius: 14px;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.55),
+        0 5px 14px
+        rgba(0, 0, 0, 0.13);
+}
+
+
+
+/* Glass Search */
+
+body.style-liquid-glass .search-container input {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.46);
+
+    border-radius: 22px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-input-background) 72%,
+            transparent
+        );
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.62),
+        0 8px 20px
+        rgba(0, 0, 0, 0.1);
+}
+
+
+body.style-liquid-glass .search-container input:focus {
+    border-color:
+        rgba(255, 255, 255, 0.78);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.7),
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--theme-outline) 22%,
+            transparent
+        ),
+        0 9px 24px
+        rgba(0, 0, 0, 0.13);
+}
+
+
+
+/* Glass Banner */
+
+body.style-liquid-glass .home-banner {
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-outline) 73%,
+            transparent
+        );
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.34);
+
+    border-radius: 26px;
+
+    backdrop-filter:
+        blur(22px)
+        saturate(145%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(145%);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.35),
+        0 18px 38px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+
+/* Glass Cards */
+
+body.style-liquid-glass .subject-card,
+body.style-liquid-glass .subject-menu-card,
+body.style-liquid-glass .global-category-card {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.3);
+
+    border-radius: 28px;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.28),
+        0 14px 30px
+        rgba(0, 0, 0, 0.14);
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+}
+
+
+body.style-liquid-glass .subject-card:hover,
+body.style-liquid-glass .subject-menu-card:hover,
+body.style-liquid-glass .global-category-card:hover,
+body.style-liquid-glass .reviewer-card:hover {
+    transform:
+        translateY(-5px)
+        scale(1.01);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.35),
+        0 20px 38px
+        rgba(0, 0, 0, 0.18);
+}
+
+
+body.style-liquid-glass .card-info,
+body.style-liquid-glass .subject-menu-info,
+body.style-liquid-glass .category-item-info,
+body.style-liquid-glass .global-category-info {
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-outline) 76%,
+            transparent
+        );
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.16);
+}
+
+
+
+/* Glass Edit Buttons */
+
+body.style-liquid-glass .edit-image-button,
+body.style-liquid-glass .menu-edit-button,
+body.style-liquid-glass .item-edit-button,
+body.style-liquid-glass .theme-settings-button {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.42);
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 255, 255, 0.2);
+
+    backdrop-filter:
+        blur(10px);
+
+    -webkit-backdrop-filter:
+        blur(10px);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.6),
+        0 6px 14px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+
+/* Glass Reviewer Chips */
+
+body.style-liquid-glass .reviewer-filter-button {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.36);
+
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.42),
+        0 8px 17px
+        rgba(0, 0, 0, 0.14);
+}
+
+
+
+/* Glass Editor */
+
+body.style-liquid-glass .card-editor {
+    background:
+        rgba(255, 255, 255, 0.68);
+
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.55);
+
+    border-radius: 30px;
+
+    backdrop-filter:
+        blur(28px)
+        saturate(145%);
+
+    -webkit-backdrop-filter:
+        blur(28px)
+        saturate(145%);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.84),
+        0 24px 55px
+        rgba(0, 0, 0, 0.25);
+}
+
+
+body.style-liquid-glass .editor-image-area {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.65);
+
+    border-radius: 18px;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.7);
+}
+
+
+body.style-liquid-glass .color-option {
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.55),
+        0 4px 9px
+        rgba(0, 0, 0, 0.13);
+}
+
+
+
+/* Glass Theme Settings */
+
+body.style-liquid-glass .theme-preview,
+body.style-liquid-glass .theme-background-image-button {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.45);
+
+    border-radius: 23px;
+
+    backdrop-filter:
+        blur(16px);
+
+    -webkit-backdrop-filter:
+        blur(16px);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.7),
+        0 12px 28px
+        rgba(0, 0, 0, 0.13);
+}
+
+
+body.style-liquid-glass .theme-swatch {
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.7),
+        0 5px 12px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+body.style-liquid-glass .premade-theme-color {
+    border-radius: 14px;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.36),
+        0 5px 12px
+        rgba(0, 0, 0, 0.09);
+}
+
+
+body.style-liquid-glass .theme-reset-button,
+body.style-liquid-glass .theme-back-button,
+body.style-liquid-glass .ui-style-select,
+body.style-liquid-glass .ui-style-option {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.46);
+
+    border-radius: 18px;
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.58),
+        0 7px 17px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+
+/* =========================================================
+   =========================================================
+   POP OUTLINE
+   =========================================================
+
+   Inspired by bold outlined UI:
+   - chunky black borders
+   - high contrast
+   - playful blocks
+   - flatter graphic treatment
+   =========================================================
+   ========================================================= */
+
+body.style-pop-outline {
+    --ui-radius-small: 9px;
+    --ui-radius-medium: 13px;
+    --ui-radius-large: 17px;
+
+    --ui-shadow-small:
+        3px 3px 0 #111111;
+
+    --ui-shadow-medium:
+        4px 4px 0 #111111;
+
+    --ui-shadow-large:
+        6px 6px 0 #111111;
+}
+
+
+
+/* Pop Sidebar */
+
+body.style-pop-outline .sidebar {
+    border-right:
+        2px solid
+        #111111;
+
+    box-shadow:
+        4px 0 0
+        rgba(0, 0, 0, 0.16);
+}
+
+
+
+/* Pop Navigation */
+
+body.style-pop-outline .nav-item,
+body.style-pop-outline .subject-link {
+    font-weight: bold;
+}
+
+
+body.style-pop-outline .nav-item:hover,
+body.style-pop-outline .subject-link:hover {
+    outline:
+        2px solid
+        #111111;
+
+    outline-offset: -2px;
+}
+
+
+body.style-pop-outline #home-link.active,
+body.style-pop-outline .main-nav .nav-item.active:not(#home-link) {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 10px;
+
+    box-shadow:
+        3px 3px 0
+        #111111;
+}
+
+
+body.style-pop-outline .subject-link.active {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 10px;
+
+    box-shadow:
+        3px 3px 0
+        #111111;
+}
+
+
+
+/* Pop Search */
+
+body.style-pop-outline .search-container input {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 13px;
+
+    box-shadow:
+        3px 3px 0
+        #111111;
+}
+
+
+body.style-pop-outline .search-container input:focus {
+    transform:
+        translate(-1px, -1px);
+
+    box-shadow:
+        4px 4px 0
+        #111111;
+}
+
+
+
+/* Pop Banner */
+
+body.style-pop-outline .home-banner {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 17px;
+
+    box-shadow:
+        6px 6px 0
+        #111111;
+}
+
+
+body.style-pop-outline .home-banner-left h1 {
+    letter-spacing: 0.5px;
+}
+
+/* Pop Cards */
+
+body.style-pop-outline .subject-card,
+body.style-pop-outline .subject-menu-card,
+body.style-pop-outline .global-category-card {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 17px;
+
+    box-shadow:
+        5px 5px 0
+        #111111;
+}
+
+
+body.style-pop-outline .subject-card:hover,
+body.style-pop-outline .subject-menu-card:hover,
+body.style-pop-outline .global-category-card:hover,
+body.style-pop-outline .reviewer-card:hover {
+    transform:
+        translate(-2px, -2px);
+
+    box-shadow:
+        7px 7px 0
+        #111111;
+}
+
+
+body.style-pop-outline .card-info,
+body.style-pop-outline .subject-menu-info,
+body.style-pop-outline .category-item-info,
+body.style-pop-outline .global-category-info {
+    border-top:
+        2px solid
+        #111111;
+}
+
+
+body.style-pop-outline .card-info h2,
+body.style-pop-outline .subject-menu-info h2,
+body.style-pop-outline .category-item-info h2,
+body.style-pop-outline .global-category-info h2 {
+    font-weight: bold;
+}
+
+
+
+/* Pop Edit Buttons */
+
+body.style-pop-outline .edit-image-button,
+body.style-pop-outline .menu-edit-button,
+body.style-pop-outline .item-edit-button,
+body.style-pop-outline .theme-settings-button {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 9px;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        2px 2px 0
+        #111111;
+}
+
+
+
+/* Pop Reviewer Chips */
+
+body.style-pop-outline .reviewer-filter-button {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 11px;
+
+    box-shadow:
+        3px 3px 0
+        #111111;
+
+    text-shadow: none;
+}
+
+
+
+/* Pop Editor */
+
+body.style-pop-outline .card-editor {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 20px;
+
+    box-shadow:
+        8px 8px 0
+        #111111;
+}
+
+
+body.style-pop-outline .editor-image-area {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 12px;
+}
+
+
+body.style-pop-outline .card-editor-close {
+    border:
+        2px solid
+        #111111;
+
+    background:
+        #ffffff;
+
+    box-shadow:
+        2px 2px 0
+        #111111;
+}
+
+
+body.style-pop-outline .color-option.selected {
+    box-shadow:
+        0 0 0 2px
+        #ffffff,
+        0 0 0 4px
+        #111111;
+}
+
+
+
+/* Pop Theme Page */
+
+body.style-pop-outline .theme-preview,
+body.style-pop-outline .theme-background-image-button {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 16px;
+
+    box-shadow:
+        5px 5px 0
+        #111111;
+}
+
+
+body.style-pop-outline .theme-swatch {
+    border-width: 2px;
+
+    box-shadow:
+        2px 2px 0
+        rgba(17, 17, 17, 0.4);
+}
+
+
+body.style-pop-outline .premade-theme-color {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 8px;
+}
+
+
+body.style-pop-outline .premade-theme-option.active .premade-theme-palette {
+    outline:
+        3px solid
+        #111111;
+
+    outline-offset: 4px;
+}
+
+
+body.style-pop-outline .theme-reset-button,
+body.style-pop-outline .theme-back-button,
+body.style-pop-outline .premade-themes-toggle,
+body.style-pop-outline .ui-style-select,
+body.style-pop-outline .ui-style-option {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 10px;
+
+    box-shadow:
+        3px 3px 0
+        #111111;
+
+    font-weight: bold;
+}
+
+
+
+/* =========================================================
+   =========================================================
+   SOFT PRODUCT UI
+   =========================================================
+
+   Inspired by contemporary product style guides:
+   - smooth rounded surfaces
+   - subtle elevation
+   - soft focus glow
+   - restrained shadows
+   - clean modern structure
+   =========================================================
+   ========================================================= */
+
+body.style-soft-product {
+    --ui-radius-small: 12px;
+    --ui-radius-medium: 17px;
+    --ui-radius-large: 24px;
+
+    --ui-shadow-small:
+        0 5px 12px
+        rgba(0, 0, 0, 0.09);
+
+    --ui-shadow-medium:
+        0 10px 22px
+        rgba(0, 0, 0, 0.11);
+
+    --ui-shadow-large:
+        0 17px 36px
+        rgba(0, 0, 0, 0.14);
+}
+
+
+
+/* Soft Sidebar */
+
+body.style-soft-product .sidebar {
+    box-shadow:
+        5px 0 20px
+        rgba(0, 0, 0, 0.09);
+}
+
+
+
+/* Soft Navigation */
+
+body.style-soft-product .nav-item,
+body.style-soft-product .subject-link {
+    border-radius: 11px;
+}
+
+
+body.style-soft-product .nav-item:hover,
+body.style-soft-product .subject-link:hover {
+    background:
+        rgba(255, 255, 255, 0.1);
+}
+
+
+body.style-soft-product #home-link.active,
+body.style-soft-product .main-nav .nav-item.active:not(#home-link),
+body.style-soft-product .subject-link.active {
+    border-radius: 12px;
+
+    box-shadow:
+        0 5px 12px
+        rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Soft Search */
+
+body.style-soft-product .search-container input {
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--theme-divider) 72%,
+            transparent
+        );
+
+    border-radius: 20px;
+
+    box-shadow:
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.5),
+        0 5px 13px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+body.style-soft-product .search-container input:focus {
+    box-shadow:
+        inset 0 1px 1px
+        rgba(255, 255, 255, 0.55),
+        0 0 0 3px
+        color-mix(
+            in srgb,
+            var(--theme-outline) 22%,
+            transparent
+        ),
+        0 6px 15px
+        rgba(0, 0, 0, 0.09);
+}
+
+
+
+/* Soft Banner */
+
+body.style-soft-product .home-banner {
+    border:
+        1px solid
+        color-mix(
+            in srgb,
+            var(--theme-text) 16%,
+            transparent
+        );
+
+    border-radius: 21px;
+
+    box-shadow:
+        0 15px 30px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+
+/* Soft Cards */
+
+body.style-soft-product .subject-card,
+body.style-soft-product .subject-menu-card,
+body.style-soft-product .global-category-card {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.16);
+
+    border-radius: 23px;
+
+    box-shadow:
+        0 10px 22px
+        rgba(0, 0, 0, 0.11);
+}
+
+
+body.style-soft-product .subject-card:hover,
+body.style-soft-product .subject-menu-card:hover,
+body.style-soft-product .global-category-card:hover,
+body.style-soft-product .reviewer-card:hover {
+    transform:
+        translateY(-4px);
+
+    box-shadow:
+        0 16px 28px
+        rgba(0, 0, 0, 0.15);
+}
+
+
+body.style-soft-product .card-info,
+body.style-soft-product .subject-menu-info,
+body.style-soft-product .category-item-info,
+body.style-soft-product .global-category-info {
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.12);
+}
+
+
+
+/* Soft Edit Buttons */
+
+body.style-soft-product .edit-image-button,
+body.style-soft-product .menu-edit-button,
+body.style-soft-product .item-edit-button,
+body.style-soft-product .theme-settings-button {
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.18);
+
+    box-shadow:
+        0 5px 12px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+
+/* Soft Reviewer Chips */
+
+body.style-soft-product .reviewer-filter-button {
+    border-radius: 13px;
+
+    box-shadow:
+        0 7px 15px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+
+/* Soft Editor */
+
+body.style-soft-product .card-editor {
+    border:
+        1px solid
+        rgba(0, 0, 0, 0.06);
+
+    border-radius: 26px;
+
+    box-shadow:
+        0 22px 45px
+        rgba(0, 0, 0, 0.2);
+}
+
+
+body.style-soft-product .editor-image-area {
+    border-radius: 16px;
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.5);
+}
+
+
+
+/* Soft Theme Settings */
+
+body.style-soft-product .theme-preview,
+body.style-soft-product .theme-background-image-button {
+    border:
+        1px solid
+        rgba(0, 0, 0, 0.06);
+
+    border-radius: 19px;
+
+    box-shadow:
+        0 8px 20px
+        rgba(0, 0, 0, 0.09);
+}
+
+
+body.style-soft-product .theme-swatch {
+    box-shadow:
+        0 4px 9px
+        rgba(0, 0, 0, 0.1);
+}
+
+
+body.style-soft-product .premade-theme-color {
+    border-radius: 11px;
+
+    box-shadow:
+        0 4px 9px
+        rgba(0, 0, 0, 0.07);
+}
+
+
+body.style-soft-product .theme-reset-button,
+body.style-soft-product .theme-back-button,
+body.style-soft-product .premade-themes-toggle,
+body.style-soft-product .ui-style-select,
+body.style-soft-product .ui-style-option {
+    border:
+        1px solid
+        rgba(0, 0, 0, 0.07);
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 6px 14px
+        rgba(0, 0, 0, 0.09);
+}
+
+/* =========================================================
+   =========================================================
+   SHARED STYLE-SYSTEM DETAILS
+   =========================================================
+   ========================================================= */
+
+
+
+/* =========================================================
+   KEEP UPLOADED IMAGES NORMAL
+
+   Style presets decorate containers only.
+   They do not apply filters to uploaded card images.
+   ========================================================= */
+
+body.style-retro-os .subject-image,
+body.style-retro-os .subject-menu-custom-image,
+body.style-retro-os .item-custom-image,
+body.style-liquid-glass .subject-image,
+body.style-liquid-glass .subject-menu-custom-image,
+body.style-liquid-glass .item-custom-image,
+body.style-pop-outline .subject-image,
+body.style-pop-outline .subject-menu-custom-image,
+body.style-pop-outline .item-custom-image,
+body.style-soft-product .subject-image,
+body.style-soft-product .subject-menu-custom-image,
+body.style-soft-product .item-custom-image {
+    filter: none;
+}
+
+
+
+/* =========================================================
+   PRESERVE CARD TOP CUSTOM COLORS
+
+   Do not globally replace the card visual backgrounds.
+   ========================================================= */
+
+body.style-retro-os .card-image,
+body.style-retro-os .item-visual,
+body.style-liquid-glass .card-image,
+body.style-liquid-glass .item-visual,
+body.style-pop-outline .card-image,
+body.style-pop-outline .item-visual,
+body.style-soft-product .card-image,
+body.style-soft-product .item-visual {
+    background-image: none;
+}
+
+
+
+/* =========================================================
+   THEMES + UI STYLE:
+   RETRO OS
+
+   Keep BOTH selectors visually matched.
+   ========================================================= */
+
+body.style-retro-os .premade-themes-title,
+body.style-retro-os .ui-style-title {
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+
+body.style-retro-os .premade-themes-toggle,
+body.style-retro-os .ui-style-select {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    box-shadow:
+        2px 2px 0
+        rgba(0, 0, 0, 0.35);
+
+    font-family:
+        "Courier New",
+        monospace;
+}
+
+
+
+/* =========================================================
+   THEMES + UI STYLE:
+   LIQUID GLASS
+
+   Both selector bars receive the same glass treatment.
+   ========================================================= */
+
+body.style-liquid-glass .premade-themes-toggle,
+body.style-liquid-glass .ui-style-select {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.46);
+
+    border-radius: 18px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-input-background) 65%,
+            transparent
+        );
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.58),
+        0 7px 17px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+body.style-liquid-glass .premade-themes-toggle:hover,
+body.style-liquid-glass .ui-style-select:hover {
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-input-focus) 70%,
+            transparent
+        );
+}
+
+
+
+/* =========================================================
+   THEMES + UI STYLE:
+   POP OUTLINE
+
+   Both selector bars remain paired.
+   ========================================================= */
+
+body.style-pop-outline .premade-themes-toggle,
+body.style-pop-outline .ui-style-select {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 10px;
+
+    box-shadow:
+        3px 3px 0
+        #111111;
+
+    font-weight: bold;
+}
+
+
+body.style-pop-outline .premade-themes-title,
+body.style-pop-outline .ui-style-title {
+    letter-spacing: 0.3px;
+}
+
+
+
+/* =========================================================
+   THEMES + UI STYLE:
+   SOFT PRODUCT
+
+   Again, style both sides identically.
+   ========================================================= */
+
+body.style-soft-product .premade-themes-toggle,
+body.style-soft-product .ui-style-select {
+    border:
+        1px solid
+        rgba(0, 0, 0, 0.07);
+
+    border-radius: 13px;
+
+    box-shadow:
+        0 6px 14px
+        rgba(0, 0, 0, 0.09);
+}
+
+
+
+/* =========================================================
+   KEEP SELECTOR COLUMNS ALIGNED
+
+   Prevent one UI style from adding extra container padding
+   to only one side.
+   ========================================================= */
+
+body.style-retro-os .premade-themes-section,
+body.style-retro-os .ui-style-section,
+body.style-liquid-glass .premade-themes-section,
+body.style-liquid-glass .ui-style-section,
+body.style-pop-outline .premade-themes-section,
+body.style-pop-outline .ui-style-section,
+body.style-soft-product .premade-themes-section,
+body.style-soft-product .ui-style-section {
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    box-shadow: none;
+
+    background: transparent;
+
+    backdrop-filter: none;
+
+    -webkit-backdrop-filter: none;
+}
+
+/* =========================================================
+   ACCESSIBLE FOCUS FOR ALL STYLE MODES
+   ========================================================= */
+
+.premade-themes-toggle:focus-visible,
+.ui-style-select:focus-visible,
+.ui-style-option:focus-visible,
+.theme-reset-button:focus-visible,
+.theme-back-button:focus-visible,
+.reviewer-filter-button:focus-visible,
+.edit-image-button:focus-visible,
+.menu-edit-button:focus-visible,
+.item-edit-button:focus-visible {
+    outline:
+        2px solid
+        var(--theme-non-outline-text);
+
+    outline-offset: 3px;
 }

@@ -24,6 +24,54 @@ const themeStorageKeys = {
     backgroundImage: "theme-background-image"
 };
 
+
+/* =========================================================
+   UI STYLE SYSTEM
+
+   UI Style changes presentation only.
+   It does NOT change:
+   - theme colors
+   - wallpaper
+   - subject/card colors
+   - uploaded card images
+   ========================================================= */
+
+const uiStyleStorageKey =
+    "ui-style";
+
+const uiStyleDefault =
+    "default";
+
+const uiStyles = [
+    {
+        id: "default",
+        name: "Default"
+    },
+    {
+        id: "retro-os",
+        name: "Retro OS"
+    },
+    {
+        id: "liquid-glass",
+        name: "Liquid Glass"
+    },
+    {
+        id: "pop-outline",
+        name: "Pop Outline"
+    },
+    {
+        id: "soft-product",
+        name: "Soft Product UI"
+    }
+];
+
+const uiStyleBodyClasses =
+    uiStyles.map(
+        function (style) {
+            return `style-${style.id}`;
+        }
+    );
+
 const themeSolidSwatches = [
     /* Matte */
     "#b83aa3",
@@ -1016,6 +1064,126 @@ function resetGlobalTheme() {
 }
 
 
+/* =========================================================
+   UI STYLE STORAGE / APPLICATION
+   ========================================================= */
+
+function isValidUIStyle(styleId) {
+    return uiStyles.some(
+        function (style) {
+            return style.id === styleId;
+        }
+    );
+}
+
+function getSavedUIStyle() {
+    const saved =
+        localStorage.getItem(
+            uiStyleStorageKey
+        );
+
+    return isValidUIStyle(saved)
+        ? saved
+        : uiStyleDefault;
+}
+
+function applyUIStyle(
+    styleId,
+    save = true
+) {
+    const resolvedStyle =
+        isValidUIStyle(styleId)
+            ? styleId
+            : uiStyleDefault;
+
+    uiStyleBodyClasses.forEach(
+        function (className) {
+            document.body.classList.remove(
+                className
+            );
+        }
+    );
+
+    document.body.classList.add(
+        `style-${resolvedStyle}`
+    );
+
+    if (save) {
+        localStorage.setItem(
+            uiStyleStorageKey,
+            resolvedStyle
+        );
+    }
+
+    const selector =
+        document.getElementById(
+            "ui-style-select"
+        );
+
+    if (selector) {
+        selector.value =
+            resolvedStyle;
+    }
+
+    scheduleAdaptiveBackgroundTextRefresh();
+}
+
+function loadSavedUIStyle() {
+    applyUIStyle(
+        getSavedUIStyle(),
+        false
+    );
+}
+
+function buildUIStyleOptionsHTML() {
+    const savedStyle =
+        localStorage.getItem(
+            uiStyleStorageKey
+        );
+
+    const hasSavedStyle =
+        isValidUIStyle(
+            savedStyle
+        );
+
+    const placeholderSelected =
+        hasSavedStyle
+            ? ""
+            : " selected";
+
+    const styleOptions =
+        uiStyles.map(
+            function (style) {
+                const selected =
+                    hasSavedStyle &&
+                    style.id === savedStyle
+                        ? " selected"
+                        : "";
+
+                return `
+                    <option
+                        value="${style.id}"
+                        ${selected}
+                    >
+                        ${style.name}
+                    </option>
+                `;
+            }
+        ).join("");
+
+    return `
+        <option
+            value=""
+            disabled
+            ${placeholderSelected}
+        >
+            Select Here
+        </option>
+
+        ${styleOptions}
+    `;
+}
+
 
 /* =========================================================
    ADAPTIVE BACKGROUND TEXT
@@ -1031,7 +1199,9 @@ const adaptiveBackgroundTextSelector = [
     ".theme-control-title",
     ".theme-remove-background-button",
     ".premade-themes-title",
-    ".premade-theme-name"
+    ".premade-theme-name",
+    ".ui-style-title",
+    ".ui-style-hint"
 ].join(", ");
 
 const adaptiveBackgroundImageCache = {
@@ -1041,7 +1211,6 @@ const adaptiveBackgroundImageCache = {
 };
 
 let adaptiveRefreshFrame = null;
-
 
 
 /* =========================================================
@@ -1304,7 +1473,6 @@ function getReadableAdaptiveTextColor(
 }
 
 
-
 /* =========================================================
    BACKGROUND IMAGE CACHE
    ========================================================= */
@@ -1385,7 +1553,6 @@ function getAdaptiveBackgroundImage() {
 
     return adaptiveBackgroundImageCache.promise;
 }
-
 
 
 /* =========================================================
@@ -1581,24 +1748,22 @@ async function refreshAdaptiveBackgroundText() {
                         wallpaper,
                         element
                     );
-
-                if (sampled) {
-                    backgroundColor =
-                        sampled;
-                }
+            if (sampled) {
+                backgroundColor =
+                    sampled;
             }
-
-            const textColor =
-                getReadableAdaptiveTextColor(
-                    backgroundColor
-                );
-
-            element.style.setProperty(
-                "--adaptive-background-text",
-                textColor
-            );
         }
-    );
+
+        const textColor =
+            getReadableAdaptiveTextColor(
+                backgroundColor
+            );
+
+        element.style.setProperty(
+            "--adaptive-background-text",
+            textColor
+        );
+    });
 }
 
 function scheduleAdaptiveBackgroundTextRefresh() {
@@ -1652,7 +1817,6 @@ function startAdaptiveBackgroundTextObserver() {
         }
     );
 }
-
 
 
 /* =========================================================
@@ -1789,7 +1953,6 @@ function addThemeSettingsButtonEvents() {
         }
     );
 }
-
 
 
 /* =========================================================
@@ -1997,7 +2160,6 @@ function applyPremadeTheme(themeId) {
 }
 
 
-
 /* =========================================================
    THEME SETTINGS PAGE
    ========================================================= */
@@ -2101,7 +2263,6 @@ function showThemeSettingsPage() {
 
                     </div>
 
-
                     <div class="theme-control-group">
 
                         <h2 class="theme-control-title">
@@ -2172,7 +2333,6 @@ function showThemeSettingsPage() {
 
                     </div>
 
-
                     <div class="theme-control-group">
 
                         <h2 class="theme-control-title">
@@ -2211,43 +2371,77 @@ function showThemeSettingsPage() {
             </div>
 
 
-            <section class="premade-themes-section">
+            <!-- =========================================
+                 THEMES + UI STYLE
+                 ========================================= -->
 
-                <button
-                    type="button"
-                    class="premade-themes-toggle"
-                    id="premade-themes-toggle"
-                    aria-expanded="false"
-                    aria-controls="premade-themes-content"
-                >
+            <div class="theme-choice-grid">
 
-                    <span class="premade-themes-title">
+                <section class="premade-themes-section">
+
+                    <h2 class="premade-themes-title">
                         THEMES
-                    </span>
+                    </h2>
 
-                    <span
-                        class="premade-themes-arrow"
-                        id="premade-themes-arrow"
-                        aria-hidden="true"
+                    <button
+                        type="button"
+                        class="premade-themes-toggle"
+                        id="premade-themes-toggle"
+                        aria-expanded="false"
+                        aria-controls="premade-themes-content"
                     >
-                        ▼
-                    </span>
 
-                </button>
+                        <span class="premade-themes-placeholder">
+                            Select Here
+                        </span>
 
-                <div
-                    class="premade-themes-content"
-                    id="premade-themes-content"
-                    hidden
-                >
+                        <span
+                            class="premade-themes-arrow"
+                            id="premade-themes-arrow"
+                            aria-hidden="true"
+                        >
+                            ▼
+                        </span>
 
-                    <div class="premade-themes-grid">
-                        ${buildPremadeThemesHTML()}
+                    </button>
+
+                </section>
+
+
+                <section class="ui-style-section">
+
+                    <h2 class="ui-style-title">
+                        UI STYLE
+                    </h2>
+
+                    <div class="ui-style-selector-wrap">
+
+                        <select
+                            class="ui-style-select"
+                            id="ui-style-select"
+                            aria-label="Choose interface style"
+                        >
+                            ${buildUIStyleOptionsHTML()}
+                        </select>
+
                     </div>
 
+                </section>
+
+            </div>
+
+
+            <div
+                class="premade-themes-content"
+                id="premade-themes-content"
+                hidden
+            >
+
+                <div class="premade-themes-grid">
+                    ${buildPremadeThemesHTML()}
                 </div>
 
-            </section>
+            </div>
 
 
             <div class="theme-actions">
@@ -2300,13 +2494,17 @@ function addThemePageEvents() {
                         decodeURIComponent(
                             swatch.dataset.themeValue
                         );
-
                     if (
                         !setting ||
                         !value
                     ) {
                         return;
                     }
+
+
+                    /* -------------------------------------
+                       Background color replaces wallpaper
+                       ------------------------------------- */
 
                     if (setting === "background") {
                         applyThemeBackgroundImage(
@@ -2316,20 +2514,24 @@ function addThemePageEvents() {
                         clearThemeBackgroundPreview();
                     }
 
+
                     applyThemeSetting(
                         setting,
                         value
                     );
+
 
                     updateThemePreview(
                         setting,
                         value
                     );
 
+
                     updateSelectedThemeSwatch(
                         setting,
                         value
                     );
+
 
                     updatePremadeThemeSelection();
                 }
@@ -2337,6 +2539,11 @@ function addThemePageEvents() {
         }
     );
 
+
+
+    /* =====================================================
+       PREMADE THEME BUTTONS
+       ===================================================== */
 
     document.querySelectorAll(
         ".premade-theme-option"
@@ -2354,6 +2561,11 @@ function addThemePageEvents() {
     );
 
 
+
+    /* =====================================================
+       PREMADE THEMES DROPDOWN
+       ===================================================== */
+
     const premadeThemesToggle =
         document.getElementById(
             "premade-themes-toggle"
@@ -2369,6 +2581,7 @@ function addThemePageEvents() {
             "premade-themes-arrow"
         );
 
+
     if (
         premadeThemesToggle &&
         premadeThemesContent
@@ -2379,13 +2592,16 @@ function addThemePageEvents() {
                 const willOpen =
                     premadeThemesContent.hidden;
 
+
                 premadeThemesContent.hidden =
                     !willOpen;
+
 
                 premadeThemesToggle.setAttribute(
                     "aria-expanded",
                     String(willOpen)
                 );
+
 
                 if (premadeThemesArrow) {
                     premadeThemesArrow.textContent =
@@ -2394,11 +2610,57 @@ function addThemePageEvents() {
                             : "▼";
                 }
 
+
                 scheduleAdaptiveBackgroundTextRefresh();
             }
         );
     }
 
+
+
+    /* =====================================================
+       UI STYLE SELECTOR
+       ===================================================== */
+
+    const uiStyleSelect =
+        document.getElementById(
+            "ui-style-select"
+        );
+
+
+    if (uiStyleSelect) {
+        const savedStyle =
+            localStorage.getItem(
+                uiStyleStorageKey
+            );
+
+
+        uiStyleSelect.value =
+            isValidUIStyle(savedStyle)
+                ? savedStyle
+                : "";
+
+
+        uiStyleSelect.addEventListener(
+            "change",
+            function () {
+                if (!uiStyleSelect.value) {
+                    return;
+                }
+
+
+                applyUIStyle(
+                    uiStyleSelect.value
+                );
+            }
+        );
+    }
+
+
+
+    /* =====================================================
+       BACKGROUND IMAGE
+       ===================================================== */
 
     const backgroundButton =
         document.getElementById(
@@ -2427,27 +2689,33 @@ function addThemePageEvents() {
             }
         );
 
+
         backgroundInput.addEventListener(
             "change",
             function () {
                 const file =
                     backgroundInput.files[0];
 
+
                 if (!file) {
                     return;
                 }
 
+
                 const reader =
                     new FileReader();
+
 
                 reader.onload =
                     function () {
                         const imageData =
                             reader.result;
 
+
                         applyThemeBackgroundImage(
                             imageData
                         );
+
 
                         const preview =
                             document.getElementById(
@@ -2459,6 +2727,7 @@ function addThemePageEvents() {
                                 "theme-background-preview-icon"
                             );
 
+
                         if (preview) {
                             preview.src =
                                 imageData;
@@ -2467,15 +2736,18 @@ function addThemePageEvents() {
                                 "block";
                         }
 
+
                         if (icon) {
                             icon.style.display =
                                 "none";
                         }
 
+
                         if (removeButton) {
                             removeButton.hidden =
                                 false;
                         }
+
 
                         document.querySelectorAll(
                             '.theme-swatch[data-theme-setting="background"]'
@@ -2487,8 +2759,10 @@ function addThemePageEvents() {
                             }
                         );
 
+
                         updatePremadeThemeSelection();
                     };
+
 
                 reader.readAsDataURL(
                     file
@@ -2498,6 +2772,11 @@ function addThemePageEvents() {
     }
 
 
+
+    /* =====================================================
+       REMOVE BACKGROUND IMAGE
+       ===================================================== */
+
     if (removeButton) {
         removeButton.addEventListener(
             "click",
@@ -2506,7 +2785,9 @@ function addThemePageEvents() {
                     null
                 );
 
+
                 clearThemeBackgroundPreview();
+
 
                 updateSelectedThemeSwatch(
                     "background",
@@ -2515,16 +2796,29 @@ function addThemePageEvents() {
                     )
                 );
 
+
                 updatePremadeThemeSelection();
             }
         );
     }
 
 
+
+    /* =====================================================
+       RESET THEME
+
+       IMPORTANT:
+       This resets COLORS + WALLPAPER only.
+
+       It intentionally does NOT reset UI Style.
+       UI Style is a separate customization system.
+       ===================================================== */
+
     const resetButton =
         document.getElementById(
             "theme-reset-button"
         );
+
 
     if (resetButton) {
         resetButton.addEventListener(
@@ -2532,16 +2826,23 @@ function addThemePageEvents() {
             function () {
                 resetGlobalTheme();
 
+
                 showThemeSettingsPage();
             }
         );
     }
 
 
+
+    /* =====================================================
+       BACK TO HOME
+       ===================================================== */
+
     const backButton =
         document.getElementById(
             "theme-back-button"
         );
+
 
     if (backButton) {
         backButton.addEventListener(
@@ -2565,11 +2866,13 @@ function getHomeImageStorageKey(
     return `subject-image-${subjectId}`;
 }
 
+
 function getHomeColorStorageKey(
     subjectId
 ) {
     return `subject-color-${subjectId}`;
 }
+
 
 function getMenuImageStorageKey(
     subjectId,
@@ -2578,12 +2881,14 @@ function getMenuImageStorageKey(
     return `subject-menu-image-${subjectId}-${category}`;
 }
 
+
 function getMenuColorStorageKey(
     subjectId,
     category
 ) {
     return `subject-menu-color-${subjectId}-${category}`;
 }
+
 
 function getItemImageStorageKey(
     subjectId,
@@ -2593,6 +2898,7 @@ function getItemImageStorageKey(
     return `subject-item-image-${subjectId}-${category}-${itemIndex}`;
 }
 
+
 function getItemColorStorageKey(
     subjectId,
     category,
@@ -2600,6 +2906,7 @@ function getItemColorStorageKey(
 ) {
     return `subject-item-color-${subjectId}-${category}-${itemIndex}`;
 }
+
 
 function getSubjectColor(
     subjectId
@@ -2613,6 +2920,7 @@ function getSubjectColor(
         subjectData[subjectId].color
     );
 }
+
 
 function getMenuColor(
     subjectId,
@@ -2629,6 +2937,7 @@ function getMenuColor(
     );
 }
 
+
 function getItemColor(
     subjectId,
     category,
@@ -2642,9 +2951,12 @@ function getItemColor(
                 itemIndex
             )
         ) ||
-        getSubjectColor(subjectId)
+        getSubjectColor(
+            subjectId
+        )
     );
 }
+
 
 
 /* =========================================================
@@ -2660,21 +2972,25 @@ function applySubjectColor(
             `card-image-${subjectId}`
         );
 
+
     if (card) {
         card.style.background =
             color;
     }
+
 
     const dot =
         document.querySelector(
             `.subject-link[data-subject="${subjectId}"] .subject-dot`
         );
 
+
     if (dot) {
         dot.style.background =
             color;
     }
 }
+
 
 
 /* =========================================================
@@ -2691,11 +3007,13 @@ function applyMenuColor(
             `menu-image-${subjectId}-${category}`
         );
 
+
     if (card) {
         card.style.background =
             color;
     }
 }
+
 
 
 /* =========================================================
@@ -2714,6 +3032,7 @@ function applyItemCustomization(
             itemIndex
         );
 
+
     const imageData =
         localStorage.getItem(
             getItemImageStorageKey(
@@ -2723,6 +3042,7 @@ function applyItemCustomization(
             )
         );
 
+
     document.querySelectorAll(
         `.item-visual[data-subject="${subjectId}"][data-category="${category}"][data-item-index="${itemIndex}"]`
     ).forEach(
@@ -2730,14 +3050,17 @@ function applyItemCustomization(
             visual.style.background =
                 color;
 
+
             const image =
                 visual.querySelector(
                     ".item-custom-image"
                 );
 
+
             if (!image) {
                 return;
             }
+
 
             if (imageData) {
                 image.src =
@@ -2759,12 +3082,15 @@ function applyItemCustomization(
 }
 
 
+
 /* =========================================================
    LOAD SAVED CARD COLORS
    ========================================================= */
 
 function loadSavedColors() {
-    Object.keys(subjectData).forEach(
+    Object.keys(
+        subjectData
+    ).forEach(
         function (subjectId) {
             applySubjectColor(
                 subjectId,
@@ -2775,6 +3101,7 @@ function loadSavedColors() {
         }
     );
 }
+
 
 
 /* =========================================================
@@ -2790,16 +3117,20 @@ function showHomeImage(
             `preview-${subjectId}`
         );
 
+
     if (!image) {
         return;
     }
 
+
     image.src =
         imageData;
+
 
     image.style.display =
         "block";
 }
+
 
 function hideHomeImage(
     subjectId
@@ -2809,15 +3140,20 @@ function hideHomeImage(
             `preview-${subjectId}`
         );
 
+
     if (!image) {
         return;
     }
 
-    image.src = "";
+
+    image.src =
+        "";
+
 
     image.style.display =
         "none";
 }
+
 
 
 /* =========================================================
@@ -2834,16 +3170,20 @@ function showMenuImage(
             `menu-preview-${subjectId}-${category}`
         );
 
+
     if (!image) {
         return;
     }
 
+
     image.src =
         imageData;
+
 
     image.style.display =
         "block";
 }
+
 
 function hideMenuImage(
     subjectId,
@@ -2854,15 +3194,20 @@ function hideMenuImage(
             `menu-preview-${subjectId}-${category}`
         );
 
+
     if (!image) {
         return;
     }
 
-    image.src = "";
+
+    image.src =
+        "";
+
 
     image.style.display =
         "none";
 }
+
 
 
 /* =========================================================
@@ -2870,7 +3215,9 @@ function hideMenuImage(
    ========================================================= */
 
 function loadSavedImages() {
-    Object.keys(subjectData).forEach(
+    Object.keys(
+        subjectData
+    ).forEach(
         function (subjectId) {
             const imageData =
                 localStorage.getItem(
@@ -2878,6 +3225,7 @@ function loadSavedImages() {
                         subjectId
                     )
                 );
+
 
             if (imageData) {
                 showHomeImage(
@@ -2894,6 +3242,7 @@ function loadSavedImages() {
         }
     );
 }
+
 
 
 /* =========================================================
@@ -2917,6 +3266,7 @@ function loadSubjectMenuCustomization(
                 )
             );
 
+
             const imageData =
                 localStorage.getItem(
                     getMenuImageStorageKey(
@@ -2924,6 +3274,7 @@ function loadSubjectMenuCustomization(
                         category
                     )
                 );
+
 
             if (imageData) {
                 showMenuImage(
@@ -2955,28 +3306,37 @@ function showEditorImage(
     editorImagePreview.src =
         imageData;
 
+
     editorImagePreview.style.display =
         "block";
 
+
     editorImagePlaceholder.style.display =
         "none";
+
 
     editorRemoveImage.hidden =
         false;
 }
 
+
 function showEditorPlaceholder() {
-    editorImagePreview.src = "";
+    editorImagePreview.src =
+        "";
+
 
     editorImagePreview.style.display =
         "none";
 
+
     editorImagePlaceholder.style.display =
         "";
+
 
     editorRemoveImage.hidden =
         true;
 }
+
 
 function getEditorColor() {
     if (editorTarget.type === "home") {
@@ -2985,12 +3345,14 @@ function getEditorColor() {
         );
     }
 
+
     if (editorTarget.type === "menu") {
         return getMenuColor(
             editorTarget.subjectId,
             editorTarget.category
         );
     }
+
 
     if (editorTarget.type === "item") {
         return getItemColor(
@@ -3000,8 +3362,10 @@ function getEditorColor() {
         );
     }
 
+
     return "#d4d4d4";
 }
+
 
 function getEditorImage() {
     if (editorTarget.type === "home") {
@@ -3012,6 +3376,7 @@ function getEditorImage() {
         );
     }
 
+
     if (editorTarget.type === "menu") {
         return localStorage.getItem(
             getMenuImageStorageKey(
@@ -3020,6 +3385,7 @@ function getEditorImage() {
             )
         );
     }
+
 
     if (editorTarget.type === "item") {
         return localStorage.getItem(
@@ -3031,12 +3397,15 @@ function getEditorImage() {
         );
     }
 
+
     return null;
 }
+
 
 function prepareEditor() {
     const imageData =
         getEditorImage();
+
 
     if (imageData) {
         showEditorImage(
@@ -3048,13 +3417,16 @@ function prepareEditor() {
         showEditorPlaceholder();
     }
 
+
     updateSelectedColor(
         getEditorColor()
     );
 
+
     cardEditorOverlay.hidden =
         false;
 }
+
 
 function openHomeCardEditor(
     subjectId
@@ -3062,9 +3434,11 @@ function openHomeCardEditor(
     const subject =
         subjectData[subjectId];
 
+
     if (!subject) {
         return;
     }
+
 
     editorTarget = {
         type: "home",
@@ -3073,11 +3447,14 @@ function openHomeCardEditor(
         itemIndex: null
     };
 
+
     editorSubjectCode.textContent =
         subject.code;
 
+
     prepareEditor();
 }
+
 
 function openMenuCardEditor(
     subjectId,
@@ -3086,12 +3463,14 @@ function openMenuCardEditor(
     const subject =
         subjectData[subjectId];
 
+
     if (
         !subject ||
         !subjectMenuDefaults[category]
     ) {
         return;
     }
+
 
     editorTarget = {
         type: "menu",
@@ -3100,11 +3479,14 @@ function openMenuCardEditor(
         itemIndex: null
     };
 
+
     editorSubjectCode.textContent =
         `${subject.code} - ${subjectMenuDefaults[category].title}`;
 
+
     prepareEditor();
 }
+
 
 function getItemFallbackTitle(
     category,
@@ -3114,16 +3496,20 @@ function getItemFallbackTitle(
         return `Formative ${index + 1}`;
     }
 
+
     if (category === "summatives") {
         return `Summative ${index + 1}`;
     }
+
 
     if (category === "reviewers") {
         return `Module ${index + 1}`;
     }
 
+
     return `Item ${index + 1}`;
 }
+
 
 function openItemCardEditor(
     subjectId,
@@ -3133,8 +3519,10 @@ function openItemCardEditor(
     const subject =
         subjectData[subjectId];
 
+
     const items =
         subject?.categories?.[category];
+
 
     if (
         !subject ||
@@ -3144,12 +3532,14 @@ function openItemCardEditor(
         return;
     }
 
+
     const title =
         items[itemIndex].title ||
         getItemFallbackTitle(
             category,
             itemIndex
         );
+
 
     editorTarget = {
         type: "item",
@@ -3158,15 +3548,19 @@ function openItemCardEditor(
         itemIndex: itemIndex
     };
 
+
     editorSubjectCode.textContent =
         `${subject.code} - ${title}`;
+
 
     prepareEditor();
 }
 
+
 function closeCardEditor() {
     cardEditorOverlay.hidden =
         true;
+
 
     editorTarget = {
         type: null,
@@ -3175,9 +3569,11 @@ function closeCardEditor() {
         itemIndex: null
     };
 
+
     editorImageInput.value =
         "";
 }
+
 
 function saveEditorImage(file) {
     if (
@@ -3187,13 +3583,21 @@ function saveEditorImage(file) {
         return;
     }
 
+
     const reader =
         new FileReader();
+
 
     reader.onload =
         function () {
             const imageData =
                 reader.result;
+
+
+
+            /* ---------------------------------------------
+               HOME CARD IMAGE
+               --------------------------------------------- */
 
             if (editorTarget.type === "home") {
                 localStorage.setItem(
@@ -3203,11 +3607,18 @@ function saveEditorImage(file) {
                     imageData
                 );
 
+
                 showHomeImage(
                     editorTarget.subjectId,
                     imageData
                 );
             }
+
+
+
+            /* ---------------------------------------------
+               SUBJECT MENU IMAGE
+               --------------------------------------------- */
 
             if (editorTarget.type === "menu") {
                 localStorage.setItem(
@@ -3218,12 +3629,19 @@ function saveEditorImage(file) {
                     imageData
                 );
 
+
                 showMenuImage(
                     editorTarget.subjectId,
                     editorTarget.category,
                     imageData
                 );
             }
+
+
+
+            /* ---------------------------------------------
+               INDIVIDUAL ITEM IMAGE
+               --------------------------------------------- */
 
             if (editorTarget.type === "item") {
                 localStorage.setItem(
@@ -3235,6 +3653,7 @@ function saveEditorImage(file) {
                     imageData
                 );
 
+
                 applyItemCustomization(
                     editorTarget.subjectId,
                     editorTarget.category,
@@ -3242,15 +3661,18 @@ function saveEditorImage(file) {
                 );
             }
 
+
             showEditorImage(
                 imageData
             );
         };
 
+
     reader.readAsDataURL(
         file
     );
 }
+
 
 
 /* =========================================================
@@ -3267,7 +3689,9 @@ function addHomeEditEvents() {
                 function (event) {
                     event.preventDefault();
 
+
                     event.stopPropagation();
+
 
                     openHomeCardEditor(
                         button.dataset.editSubject
@@ -3277,6 +3701,7 @@ function addHomeEditEvents() {
         }
     );
 }
+
 
 
 /* =========================================================
@@ -3293,7 +3718,9 @@ function addMenuEditEvents() {
                 function (event) {
                     event.preventDefault();
 
+
                     event.stopPropagation();
+
 
                     openMenuCardEditor(
                         button.dataset.editSubject,
@@ -3304,6 +3731,7 @@ function addMenuEditEvents() {
         }
     );
 }
+
 
 
 /* =========================================================
@@ -3320,7 +3748,9 @@ function addItemEditEvents() {
                 function (event) {
                     event.preventDefault();
 
+
                     event.stopPropagation();
+
 
                     openItemCardEditor(
                         button.dataset.editSubject,
@@ -3335,29 +3765,40 @@ function addItemEditEvents() {
     );
 }
 
+
+
+/* =========================================================
+   OPEN IMAGE PICKER
+   ========================================================= */
+
 function openImagePicker() {
     if (!editorTarget.subjectId) {
         return;
     }
 
+
     editorImageInput.click();
 }
+
 
 editorImageArea.addEventListener(
     "click",
     openImagePicker
 );
 
+
 editorAddImage.addEventListener(
     "click",
     openImagePicker
 );
+
 
 editorImageInput.addEventListener(
     "change",
     function () {
         const file =
             editorImageInput.files[0];
+
 
         if (file) {
             saveEditorImage(
@@ -3367,12 +3808,24 @@ editorImageInput.addEventListener(
     }
 );
 
+
+
+/* =========================================================
+   REMOVE IMAGE
+   ========================================================= */
+
 editorRemoveImage.addEventListener(
     "click",
     function () {
         if (!editorTarget.subjectId) {
             return;
         }
+
+
+
+        /* ---------------------------------------------
+           HOME
+           --------------------------------------------- */
 
         if (editorTarget.type === "home") {
             localStorage.removeItem(
@@ -3381,10 +3834,17 @@ editorRemoveImage.addEventListener(
                 )
             );
 
+
             hideHomeImage(
                 editorTarget.subjectId
             );
         }
+
+
+
+        /* ---------------------------------------------
+           MENU
+           --------------------------------------------- */
 
         if (editorTarget.type === "menu") {
             localStorage.removeItem(
@@ -3394,11 +3854,18 @@ editorRemoveImage.addEventListener(
                 )
             );
 
+
             hideMenuImage(
                 editorTarget.subjectId,
                 editorTarget.category
             );
         }
+
+
+
+        /* ---------------------------------------------
+           ITEM
+           --------------------------------------------- */
 
         if (editorTarget.type === "item") {
             localStorage.removeItem(
@@ -3409,6 +3876,7 @@ editorRemoveImage.addEventListener(
                 )
             );
 
+
             applyItemCustomization(
                 editorTarget.subjectId,
                 editorTarget.category,
@@ -3416,12 +3884,20 @@ editorRemoveImage.addEventListener(
             );
         }
 
+
         showEditorPlaceholder();
+
 
         editorImageInput.value =
             "";
     }
 );
+
+
+
+/* =========================================================
+   COLOR OPTIONS
+   ========================================================= */
 
 colorOptions.forEach(
     function (button) {
@@ -3430,6 +3906,7 @@ colorOptions.forEach(
             function () {
                 const color =
                     button.dataset.color;
+
 
                 if (
                     color &&
@@ -3444,7 +3921,18 @@ colorOptions.forEach(
     }
 );
 
+
+
+/* =========================================================
+   APPLY EDITOR COLOR
+   ========================================================= */
+
 function applyEditorColor(color) {
+
+    /* =====================================================
+       HOME
+       ===================================================== */
+
     if (editorTarget.type === "home") {
         localStorage.setItem(
             getHomeColorStorageKey(
@@ -3453,21 +3941,35 @@ function applyEditorColor(color) {
             color
         );
 
+
+        /*
+            Choosing a color removes the
+            currently uploaded image.
+        */
+
         localStorage.removeItem(
             getHomeImageStorageKey(
                 editorTarget.subjectId
             )
         );
 
+
         hideHomeImage(
             editorTarget.subjectId
         );
+
 
         applySubjectColor(
             editorTarget.subjectId,
             color
         );
     }
+
+
+
+    /* =====================================================
+       SUBJECT MENU
+       ===================================================== */
 
     if (editorTarget.type === "menu") {
         localStorage.setItem(
@@ -3478,6 +3980,7 @@ function applyEditorColor(color) {
             color
         );
 
+
         localStorage.removeItem(
             getMenuImageStorageKey(
                 editorTarget.subjectId,
@@ -3485,10 +3988,12 @@ function applyEditorColor(color) {
             )
         );
 
+
         hideMenuImage(
             editorTarget.subjectId,
             editorTarget.category
         );
+
 
         applyMenuColor(
             editorTarget.subjectId,
@@ -3496,6 +4001,12 @@ function applyEditorColor(color) {
             color
         );
     }
+
+
+
+    /* =====================================================
+       ITEM
+       ===================================================== */
 
     if (editorTarget.type === "item") {
         localStorage.setItem(
@@ -3507,6 +4018,7 @@ function applyEditorColor(color) {
             color
         );
 
+
         localStorage.removeItem(
             getItemImageStorageKey(
                 editorTarget.subjectId,
@@ -3515,6 +4027,7 @@ function applyEditorColor(color) {
             )
         );
 
+
         applyItemCustomization(
             editorTarget.subjectId,
             editorTarget.category,
@@ -3522,12 +4035,20 @@ function applyEditorColor(color) {
         );
     }
 
+
     showEditorPlaceholder();
+
 
     updateSelectedColor(
         color
     );
 }
+
+
+
+/* =========================================================
+   UPDATE SELECTED CARD COLOR
+   ========================================================= */
 
 function updateSelectedColor(color) {
     colorOptions.forEach(
@@ -3535,6 +4056,7 @@ function updateSelectedColor(color) {
             button.classList.remove(
                 "selected"
             );
+
 
             if (
                 button.dataset.color &&
@@ -3550,6 +4072,12 @@ function updateSelectedColor(color) {
     );
 }
 
+
+
+/* =========================================================
+   RESET CARD CUSTOMIZATION
+   ========================================================= */
+
 editorResetButton.addEventListener(
     "click",
     function () {
@@ -3557,11 +4085,18 @@ editorResetButton.addEventListener(
             return;
         }
 
+
+
+        /* =================================================
+           RESET HOME CARD
+           ================================================= */
+
         if (editorTarget.type === "home") {
             const subject =
                 subjectData[
                     editorTarget.subjectId
                 ];
+
 
             localStorage.removeItem(
                 getHomeImageStorageKey(
@@ -3569,31 +4104,42 @@ editorResetButton.addEventListener(
                 )
             );
 
+
             localStorage.removeItem(
                 getHomeColorStorageKey(
                     editorTarget.subjectId
                 )
             );
 
+
             hideHomeImage(
                 editorTarget.subjectId
             );
+
 
             applySubjectColor(
                 editorTarget.subjectId,
                 subject.color
             );
 
+
             updateSelectedColor(
                 subject.color
             );
         }
+
+
+
+        /* =================================================
+           RESET MENU CARD
+           ================================================= */
 
         if (editorTarget.type === "menu") {
             const color =
                 subjectMenuDefaults[
                     editorTarget.category
                 ].color;
+
 
             localStorage.removeItem(
                 getMenuImageStorageKey(
@@ -3602,6 +4148,7 @@ editorResetButton.addEventListener(
                 )
             );
 
+
             localStorage.removeItem(
                 getMenuColorStorageKey(
                     editorTarget.subjectId,
@@ -3609,10 +4156,12 @@ editorResetButton.addEventListener(
                 )
             );
 
+
             hideMenuImage(
                 editorTarget.subjectId,
                 editorTarget.category
             );
+
 
             applyMenuColor(
                 editorTarget.subjectId,
@@ -3620,10 +4169,17 @@ editorResetButton.addEventListener(
                 color
             );
 
+
             updateSelectedColor(
                 color
             );
         }
+
+
+
+        /* =================================================
+           RESET INDIVIDUAL ITEM
+           ================================================= */
 
         if (editorTarget.type === "item") {
             localStorage.removeItem(
@@ -3634,6 +4190,7 @@ editorResetButton.addEventListener(
                 )
             );
 
+
             localStorage.removeItem(
                 getItemColorStorageKey(
                     editorTarget.subjectId,
@@ -3642,11 +4199,13 @@ editorResetButton.addEventListener(
                 )
             );
 
+
             applyItemCustomization(
                 editorTarget.subjectId,
                 editorTarget.category,
                 editorTarget.itemIndex
             );
+
 
             updateSelectedColor(
                 getSubjectColor(
@@ -3655,17 +4214,26 @@ editorResetButton.addEventListener(
             );
         }
 
+
         showEditorPlaceholder();
+
 
         editorImageInput.value =
             "";
     }
 );
 
+
+
+/* =========================================================
+   CLOSE CARD EDITOR
+   ========================================================= */
+
 cardEditorClose.addEventListener(
     "click",
     closeCardEditor
 );
+
 
 cardEditorOverlay.addEventListener(
     "click",
@@ -3678,6 +4246,7 @@ cardEditorOverlay.addEventListener(
         }
     }
 );
+
 
 cardEditor.addEventListener(
     "click",
@@ -3701,11 +4270,13 @@ function clearActiveNavigation() {
         }
     );
 
+
     subjectLinks.forEach(
         function (link) {
             link.classList.remove(
                 "active"
             );
+
 
             link.style.removeProperty(
                 "--subject-color"
@@ -3714,27 +4285,35 @@ function clearActiveNavigation() {
     );
 }
 
+
 function setActiveSubject(subjectId) {
     clearActiveNavigation();
+
 
     const link =
         document.querySelector(
             `.subject-link[data-subject="${subjectId}"]`
         );
 
+
     if (!link) {
         return;
     }
+
 
     link.classList.add(
         "active"
     );
 
+
     link.style.setProperty(
         "--subject-color",
-        getSubjectColor(subjectId)
+        getSubjectColor(
+            subjectId
+        )
     );
 }
+
 
 function addSubjectCardEvents() {
     document.querySelectorAll(
@@ -3752,9 +4331,6 @@ function addSubjectCardEvents() {
         }
     );
 }
-
-
-
 /* =========================================================
    HOME
    ========================================================= */
@@ -3856,6 +4432,7 @@ function showSubjectPage(subjectId) {
 
         </div>
 
+
         <section class="subject-menu-grid">
 
             <div
@@ -3892,6 +4469,7 @@ function showSubjectPage(subjectId) {
 
                 </div>
 
+
                 <div class="subject-menu-info">
 
                     <h2>
@@ -3905,6 +4483,7 @@ function showSubjectPage(subjectId) {
                 </div>
 
             </div>
+
 
 
             <div
@@ -3941,6 +4520,7 @@ function showSubjectPage(subjectId) {
 
                 </div>
 
+
                 <div class="subject-menu-info">
 
                     <h2>
@@ -3958,6 +4538,7 @@ function showSubjectPage(subjectId) {
         </section>
     `;
 
+
     document.getElementById(
         "breadcrumb-home"
     ).addEventListener(
@@ -3965,14 +4546,18 @@ function showSubjectPage(subjectId) {
         showHomePage
     );
 
+
     loadSubjectMenuCustomization(
         subjectId
     );
 
+
     addSubjectMenuEvents();
+
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
+
 
 function addSubjectMenuEvents() {
     document.querySelectorAll(
@@ -4048,6 +4633,12 @@ function openSubjectCategory(
     let itemsHTML =
         "";
 
+
+
+    /* =====================================================
+       EMPTY CATEGORY
+       ===================================================== */
+
     if (items.length === 0) {
         itemsHTML = `
             <p class="empty-category-message">
@@ -4055,6 +4646,12 @@ function openSubjectCategory(
             </p>
         `;
     }
+
+
+
+    /* =====================================================
+       CATEGORY ITEMS
+       ===================================================== */
 
     else {
         items.forEach(
@@ -4092,6 +4689,8 @@ function openSubjectCategory(
                 let links =
                     "";
 
+
+
                 if (item.link) {
                     links += `
                         <a
@@ -4105,6 +4704,8 @@ function openSubjectCategory(
                     `;
                 }
 
+
+
                 if (item.collabLink) {
                     links += `
                         <a
@@ -4117,6 +4718,8 @@ function openSubjectCategory(
                         </a>
                     `;
                 }
+
+
 
                 itemsHTML += `
                     <div
@@ -4158,6 +4761,7 @@ function openSubjectCategory(
 
                         </div>
 
+
                         <div
                             class="subject-menu-info category-item-info"
                         >
@@ -4187,6 +4791,12 @@ function openSubjectCategory(
             }
         );
     }
+
+
+
+    /* =====================================================
+       CATEGORY PAGE HTML
+       ===================================================== */
 
     pageContent.innerHTML = `
         <div
@@ -4229,10 +4839,13 @@ function openSubjectCategory(
 
         </div>
 
+
         <section class="subject-menu-grid">
             ${itemsHTML}
         </section>
     `;
+
+
 
     document.getElementById(
         "breadcrumb-home"
@@ -4240,6 +4853,7 @@ function openSubjectCategory(
         "click",
         showHomePage
     );
+
 
     document.getElementById(
         "breadcrumb-subject"
@@ -4252,7 +4866,9 @@ function openSubjectCategory(
         }
     );
 
+
     addItemEditEvents();
+
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
@@ -4277,6 +4893,7 @@ function showAllCategoryItems(category) {
 
     clearActiveNavigation();
 
+
     if (
         category === "formatives" &&
         formativesLink
@@ -4285,6 +4902,7 @@ function showAllCategoryItems(category) {
             "active"
         );
     }
+
 
     if (
         category === "summatives" &&
@@ -4295,26 +4913,41 @@ function showAllCategoryItems(category) {
         );
     }
 
+
     searchInput.value =
         "";
 
+
     const title =
-        subjectMenuDefaults[category].title;
+        subjectMenuDefaults[
+            category
+        ].title;
+
 
     let html =
         "";
 
-    Object.keys(subjectData).forEach(
+
+
+    Object.keys(
+        subjectData
+    ).forEach(
         function (subjectId) {
             const subject =
-                subjectData[subjectId];
+                subjectData[
+                    subjectId
+                ];
 
             const items =
-                subject?.categories?.[category];
+                subject?.categories?.[
+                    category
+                ];
+
 
             if (!Array.isArray(items)) {
                 return;
             }
+
 
             items.forEach(
                 function (
@@ -4328,9 +4961,11 @@ function showAllCategoryItems(category) {
                             index
                         );
 
+
                     const description =
                         item.description ||
                         "";
+
 
                     const color =
                         getItemColor(
@@ -4338,6 +4973,7 @@ function showAllCategoryItems(category) {
                             category,
                             index
                         );
+
 
                     const image =
                         localStorage.getItem(
@@ -4347,6 +4983,7 @@ function showAllCategoryItems(category) {
                                 index
                             )
                         );
+
 
                     html += `
                         <div
@@ -4388,6 +5025,7 @@ function showAllCategoryItems(category) {
 
                             </div>
 
+
                             <div
                                 class="subject-menu-info global-category-info"
                             >
@@ -4418,6 +5056,8 @@ function showAllCategoryItems(category) {
         }
     );
 
+
+
     if (!html.trim()) {
         html = `
             <p class="empty-category-message">
@@ -4425,6 +5065,8 @@ function showAllCategoryItems(category) {
             </p>
         `;
     }
+
+
 
     pageContent.innerHTML = `
         <h1 class="page-title">
@@ -4435,6 +5077,8 @@ function showAllCategoryItems(category) {
             ${html}
         </section>
     `;
+
+
 
     document.querySelectorAll(
         ".global-category-card"
@@ -4451,8 +5095,8 @@ function showAllCategoryItems(category) {
             );
         }
     );
-
     addItemEditEvents();
+
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
@@ -4469,7 +5113,10 @@ function buildReviewerFilterChips() {
     ).map(
         function (subjectId) {
             const subject =
-                subjectData[subjectId];
+                subjectData[
+                    subjectId
+                ];
+
 
             return `
                 <button
@@ -4485,6 +5132,12 @@ function buildReviewerFilterChips() {
     ).join("");
 }
 
+
+
+/* =========================================================
+   UPDATE REVIEWER FILTER BUTTONS
+   ========================================================= */
+
 function updateReviewerFilterButtons() {
     document.querySelectorAll(
         ".reviewer-filter-button"
@@ -4499,11 +5152,18 @@ function updateReviewerFilterButtons() {
     );
 }
 
+
+
+/* =========================================================
+   FILTER REVIEWER CARDS
+   ========================================================= */
+
 function filterReviewerCards() {
     const search =
         searchInput.value
             .toLowerCase()
             .trim();
+
 
     document.querySelectorAll(
         ".reviewer-card"
@@ -4514,10 +5174,12 @@ function filterReviewerCards() {
                 card.dataset.subject ===
                     activeReviewerFilter;
 
+
             const matchesSearch =
                 card.textContent
                     .toLowerCase()
                     .includes(search);
+
 
             card.style.display =
                 matchesSubject &&
@@ -4527,6 +5189,12 @@ function filterReviewerCards() {
         }
     );
 }
+
+
+
+/* =========================================================
+   REVIEWER FILTER EVENTS
+   ========================================================= */
 
 function addReviewerFilterEvents() {
     document.querySelectorAll(
@@ -4538,6 +5206,7 @@ function addReviewerFilterEvents() {
                 function () {
                     const subjectId =
                         button.dataset.reviewerFilter;
+
 
                     if (
                         activeReviewerFilter ===
@@ -4552,7 +5221,9 @@ function addReviewerFilterEvents() {
                             subjectId;
                     }
 
+
                     updateReviewerFilterButtons();
+
 
                     filterReviewerCards();
                 }
@@ -4561,6 +5232,12 @@ function addReviewerFilterEvents() {
     );
 }
 
+
+
+/* =========================================================
+   REVIEWER CARD EVENTS
+   ========================================================= */
+
 function addReviewerCardEvents() {
     document.querySelectorAll(
         ".reviewer-card"
@@ -4568,9 +5245,20 @@ function addReviewerCardEvents() {
         function (card) {
             card.addEventListener(
                 "click",
-                function () {
+                function (event) {
+
+                    if (
+                        event.target.closest(
+                            ".item-edit-button"
+                        )
+                    ) {
+                        return;
+                    }
+
+
                     const link =
                         card.dataset.link;
+
 
                     if (link) {
                         window.open(
@@ -4585,19 +5273,30 @@ function addReviewerCardEvents() {
     );
 }
 
+
+
+/* =========================================================
+   SHOW REVIEWERS PAGE
+   ========================================================= */
+
 function showReviewersPage() {
     showSearchBar();
+
 
     currentSubjectId =
         null;
 
+
     currentCategory =
         "reviewers";
+
 
     activeReviewerFilter =
         null;
 
+
     clearActiveNavigation();
+
 
     if (reviewersLink) {
         reviewersLink.classList.add(
@@ -4605,23 +5304,34 @@ function showReviewersPage() {
         );
     }
 
+
     searchInput.value =
         "";
+
 
     let cards =
         "";
 
-    Object.keys(subjectData).forEach(
+
+
+    Object.keys(
+        subjectData
+    ).forEach(
         function (subjectId) {
             const subject =
-                subjectData[subjectId];
+                subjectData[
+                    subjectId
+                ];
+
 
             const reviewers =
                 subject?.categories?.reviewers;
 
+
             if (!Array.isArray(reviewers)) {
                 return;
             }
+
 
             reviewers.forEach(
                 function (
@@ -4635,9 +5345,11 @@ function showReviewersPage() {
                             index
                         );
 
+
                     const description =
                         item.description ||
                         "";
+
 
                     const color =
                         getItemColor(
@@ -4645,6 +5357,7 @@ function showReviewersPage() {
                             "reviewers",
                             index
                         );
+
 
                     const image =
                         localStorage.getItem(
@@ -4654,6 +5367,7 @@ function showReviewersPage() {
                                 index
                             )
                         );
+
 
                     cards += `
                         <div
@@ -4696,6 +5410,7 @@ function showReviewersPage() {
 
                             </div>
 
+
                             <div
                                 class="subject-menu-info global-category-info"
                             >
@@ -4727,6 +5442,8 @@ function showReviewersPage() {
         }
     );
 
+
+
     if (!cards.trim()) {
         cards = `
             <p class="empty-category-message">
@@ -4734,6 +5451,8 @@ function showReviewersPage() {
             </p>
         `;
     }
+
+
 
     pageContent.innerHTML = `
         <h1 class="page-title">
@@ -4749,17 +5468,18 @@ function showReviewersPage() {
         </section>
     `;
 
+
     addReviewerFilterEvents();
+
 
     addReviewerCardEvents();
 
+
     addItemEditEvents();
+
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
-
-
-
 /* =========================================================
    SIDEBAR NAVIGATION
    ========================================================= */
@@ -4772,6 +5492,7 @@ homeLink.addEventListener(
         showHomePage();
     }
 );
+
 
 if (formativesLink) {
     formativesLink.addEventListener(
@@ -4786,6 +5507,7 @@ if (formativesLink) {
     );
 }
 
+
 if (summativesLink) {
     summativesLink.addEventListener(
         "click",
@@ -4799,6 +5521,7 @@ if (summativesLink) {
     );
 }
 
+
 if (reviewersLink) {
     reviewersLink.addEventListener(
         "click",
@@ -4809,6 +5532,7 @@ if (reviewersLink) {
         }
     );
 }
+
 
 subjectLinks.forEach(
     function (link) {
@@ -4839,10 +5563,17 @@ searchInput.addEventListener(
                 .toLowerCase()
                 .trim();
 
+
+
+        /* =================================================
+           REVIEWERS SEARCH
+           ================================================= */
+
         const reviewerCards =
             document.querySelectorAll(
                 ".reviewer-card"
             );
+
 
         if (reviewerCards.length) {
             filterReviewerCards();
@@ -4850,10 +5581,17 @@ searchInput.addEventListener(
             return;
         }
 
+
+
+        /* =================================================
+           HOME SEARCH
+           ================================================= */
+
         const homeCards =
             document.querySelectorAll(
                 ".subject-card"
             );
+
 
         if (homeCards.length) {
             homeCards.forEach(
@@ -4863,9 +5601,11 @@ searchInput.addEventListener(
                             card.dataset.subject
                         ];
 
+
                     const text =
                         `${subject.code} ${subject.name}`
                             .toLowerCase();
+
 
                     card.style.display =
                         text.includes(search)
@@ -4877,6 +5617,12 @@ searchInput.addEventListener(
             return;
         }
 
+
+
+        /* =================================================
+           SUBJECT / GLOBAL CATEGORY SEARCH
+           ================================================= */
+
         document.querySelectorAll(
             ".subject-menu-card"
         ).forEach(
@@ -4884,6 +5630,7 @@ searchInput.addEventListener(
                 const text =
                     card.textContent
                         .toLowerCase();
+
 
                 card.style.display =
                     text.includes(search)
@@ -4902,16 +5649,26 @@ searchInput.addEventListener(
 
 loadSavedTheme();
 
+
+loadSavedUIStyle();
+
+
 addSubjectCardEvents();
+
 
 addHomeEditEvents();
 
+
 addThemeSettingsButtonEvents();
+
 
 loadSavedColors();
 
+
 loadSavedImages();
 
+
 startAdaptiveBackgroundTextObserver();
+
 
 scheduleAdaptiveBackgroundTextRefresh();
