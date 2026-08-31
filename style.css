@@ -172,9 +172,7 @@ body {
 
 .subject-grid {
     display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
+    grid-template-columns: repeat(auto-fit, 310px);
     gap: 25px 30px;
 }
 
@@ -182,12 +180,10 @@ body {
 /* CARDS */
 
 .subject-card {
+    width: 310px;
     overflow: hidden;
-
     border-radius: 38px;
-
     cursor: pointer;
-
     transition: transform 0.2s ease;
 }
 
