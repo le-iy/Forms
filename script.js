@@ -2,55 +2,19 @@
    SUBJECT DATA
    ========================================================= */
 
-const subjects = {
-    it0035: {
-        code: "IT0035",
-        name: "APPLIED OPERATING SYSTEM",
-        color: "#d899e8"
-    },
+/*
+    Subject data is now loaded before this file:
 
-    it0035l: {
-        code: "IT0035L",
-        name: "APPLIED OPERATING SYSTEM LAB",
-        color: "#20e99d"
-    },
+    subjects/*.js
+        ↓
+    data.js
+        ↓
+    subjectData
 
-    it0037: {
-        code: "IT0037",
-        name: "SYSTEM ANALYSIS AND DESIGN",
-        color: "#3ca8e8"
-    },
+    This script now handles website behavior only.
+*/
 
-    it0049: {
-        code: "IT0049",
-        name: "IT ELECTIVE – WEB SYSTEM TECHNOLOGIES",
-        color: "#ff5757"
-    },
 
-    it0204: {
-        code: "IT0204",
-        name: "IT SPECIALIZATION 7 – CYBERSECURITY AND PRIVACY: LAWS, POLICIES, AND COMPLIANCE",
-        color: "#d4d4d4"
-    },
-
-    it0015: {
-        code: "IT0015",
-        name: "NETWORKING 2",
-        color: "#ffbc59"
-    },
-
-    ged0083: {
-        code: "GED0083",
-        name: "COLLEGE PHYSICS 2 LECTURE",
-        color: "#8848f5"
-    },
-
-    ged0083l: {
-        code: "GED0083L",
-        name: "COLLEGE PHYSICS 2 LABORATORY",
-        color: "#ffde59"
-    }
-};
 
 
 
@@ -251,7 +215,7 @@ function getSubjectColor(subjectId) {
     }
 
 
-    return subjects[subjectId].color;
+    return subjectData[subjectId].color;
 
 }
 
@@ -365,7 +329,7 @@ function applyMenuColor(
 
 function loadSavedColors() {
 
-    Object.keys(subjects).forEach(
+    Object.keys(subjectData).forEach(
         function (subjectId) {
 
             const color =
@@ -609,7 +573,7 @@ function hideMenuImage(
 
 function loadSavedImages() {
 
-    Object.keys(subjects).forEach(
+    Object.keys(subjectData).forEach(
         function (subjectId) {
 
             const savedImage =
@@ -854,7 +818,7 @@ function getEditorImage() {
 function openHomeCardEditor(subjectId) {
 
     const subject =
-        subjects[subjectId];
+        subjectData[subjectId];
 
 
     if (!subject) {
@@ -889,7 +853,7 @@ function openMenuCardEditor(
 ) {
 
     const subject =
-        subjects[subjectId];
+        subjectData[subjectId];
 
 
     const menu =
@@ -1424,7 +1388,7 @@ editorResetButton.addEventListener(
         ) {
 
             const subject =
-                subjects[
+                subjectData[
                     editorTarget.subjectId
                 ];
 
@@ -1773,7 +1737,7 @@ function showHomePage() {
 function showSubjectPage(subjectId) {
 
     const subject =
-        subjects[subjectId];
+        subjectData[subjectId];
 
 
     if (!subject) {
@@ -2002,7 +1966,7 @@ function openSubjectCategory(
 ) {
 
     const subject =
-        subjects[subjectId];
+        subjectData[subjectId];
 
 
     if (!subject) {
@@ -2113,7 +2077,7 @@ searchInput.addEventListener(
 
 
                 const subject =
-                    subjects[subjectId];
+                    subjectData[subjectId];
 
 
                 if (!subject) {
