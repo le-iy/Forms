@@ -1,20 +1,4 @@
 /* =========================================================
-   SUBJECT DATA
-   ========================================================= */
-
-/*
-    Subject data is loaded before this file.
-
-    subjects/*.js
-        ↓
-    subjectData
-        ↓
-    script.js
-*/
-
-
-
-/* =========================================================
    SUBJECT MENU DEFAULTS
    ========================================================= */
 
@@ -41,14 +25,11 @@ const subjectMenuDefaults = {
 const pageContent =
     document.getElementById("page-content");
 
-
 const homeLink =
     document.getElementById("home-link");
 
-
 const searchInput =
     document.getElementById("search-input");
-
 
 const subjectLinks =
     document.querySelectorAll(".subject-link");
@@ -62,46 +43,35 @@ const subjectLinks =
 const cardEditorOverlay =
     document.getElementById("card-editor-overlay");
 
-
 const cardEditor =
     document.getElementById("card-editor");
-
 
 const cardEditorClose =
     document.getElementById("card-editor-close");
 
-
 const editorSubjectCode =
     document.getElementById("editor-subject-code");
-
 
 const editorImageArea =
     document.getElementById("editor-image-area");
 
-
 const editorImagePreview =
     document.getElementById("editor-image-preview");
-
 
 const editorImagePlaceholder =
     document.getElementById("editor-image-placeholder");
 
-
 const editorAddImage =
     document.getElementById("editor-add-image");
-
 
 const editorImageInput =
     document.getElementById("editor-image-input");
 
-
 const editorRemoveImage =
     document.getElementById("editor-remove-image");
 
-
 const editorResetButton =
     document.getElementById("editor-reset-button");
-
 
 const colorOptions =
     document.querySelectorAll(".color-option");
@@ -109,24 +79,20 @@ const colorOptions =
 
 
 /* =========================================================
-   CURRENT EDITOR TARGET
+   CURRENT PAGE STATE
    ========================================================= */
 
-/*
-    type:
-        home
-        menu
+let currentSubjectId =
+    null;
 
-    subjectId:
-        it0035
-        it0035l
-        etc.
+let currentCategory =
+    null;
 
-    category:
-        null
-        formatives
-        summatives
-*/
+
+
+/* =========================================================
+   CURRENT EDITOR TARGET
+   ========================================================= */
 
 let editorTarget = {
 
@@ -141,16 +107,7 @@ let editorTarget = {
 
 
 /* =========================================================
-   CURRENT SUBJECT
-   ========================================================= */
-
-let currentSubjectId =
-    null;
-
-
-
-/* =========================================================
-   SAVE ORIGINAL HOME HTML
+   SAVE ORIGINAL HOME PAGE
    ========================================================= */
 
 const homePageHTML =
@@ -171,7 +128,6 @@ function getHomeImageStorageKey(
 }
 
 
-
 function getHomeColorStorageKey(
     subjectId
 ) {
@@ -179,7 +135,6 @@ function getHomeColorStorageKey(
     return `subject-color-${subjectId}`;
 
 }
-
 
 
 function getMenuImageStorageKey(
@@ -190,7 +145,6 @@ function getMenuImageStorageKey(
     return `subject-menu-image-${subjectId}-${category}`;
 
 }
-
 
 
 function getMenuColorStorageKey(
@@ -291,7 +245,6 @@ function applySubjectColor(
     }
 
 
-
     const subjectDot =
         document.querySelector(
             `.subject-link[data-subject="${subjectId}"] .subject-dot`
@@ -340,7 +293,7 @@ function applyMenuColor(
 
 
 /* =========================================================
-   LOAD SAVED COLORS
+   LOAD SAVED HOME COLORS
    ========================================================= */
 
 function loadSavedColors() {
@@ -353,15 +306,11 @@ function loadSavedColors() {
             subjectId
         ) {
 
-            const color =
-                getSubjectColor(
-                    subjectId
-                );
-
-
             applySubjectColor(
                 subjectId,
-                color
+                getSubjectColor(
+                    subjectId
+                )
             );
 
         }
@@ -373,131 +322,7 @@ function loadSavedColors() {
 
 
 /* =========================================================
-   SAVE EDITOR IMAGE
-   ========================================================= */
-
-function saveEditorImage(
-    file
-) {
-
-    if (!file) {
-
-        return;
-
-    }
-
-
-    if (
-        !editorTarget.subjectId
-    ) {
-
-        return;
-
-    }
-
-
-
-    const reader =
-        new FileReader();
-
-
-
-    reader.onload =
-        function () {
-
-            const imageData =
-                reader.result;
-
-
-
-            /* =============================================
-               HOME CARD
-               ============================================= */
-
-            if (
-                editorTarget.type ===
-                "home"
-            ) {
-
-                localStorage.setItem(
-
-                    getHomeImageStorageKey(
-                        editorTarget.subjectId
-                    ),
-
-                    imageData
-
-                );
-
-
-                showHomeImage(
-
-                    editorTarget.subjectId,
-
-                    imageData
-
-                );
-
-            }
-
-
-
-            /* =============================================
-               FORMATIVES / SUMMATIVES
-               ============================================= */
-
-            if (
-                editorTarget.type ===
-                "menu"
-            ) {
-
-                localStorage.setItem(
-
-                    getMenuImageStorageKey(
-
-                        editorTarget.subjectId,
-
-                        editorTarget.category
-
-                    ),
-
-                    imageData
-
-                );
-
-
-                showMenuImage(
-
-                    editorTarget.subjectId,
-
-                    editorTarget.category,
-
-                    imageData
-
-                );
-
-            }
-
-
-
-            showEditorImage(
-                imageData
-            );
-
-        };
-
-
-
-    reader.readAsDataURL(
-        file
-    );
-
-}
-
-
-
-/* =========================================================
-   SHOW HOME IMAGE
+   HOME IMAGE
    ========================================================= */
 
 function showHomeImage(
@@ -521,17 +346,11 @@ function showHomeImage(
     image.src =
         imageData;
 
-
     image.style.display =
         "block";
 
 }
 
-
-
-/* =========================================================
-   HIDE HOME IMAGE
-   ========================================================= */
 
 function hideHomeImage(
     subjectId
@@ -553,7 +372,6 @@ function hideHomeImage(
     image.src =
         "";
 
-
     image.style.display =
         "none";
 
@@ -562,7 +380,7 @@ function hideHomeImage(
 
 
 /* =========================================================
-   SHOW MENU IMAGE
+   MENU IMAGE
    ========================================================= */
 
 function showMenuImage(
@@ -587,17 +405,11 @@ function showMenuImage(
     image.src =
         imageData;
 
-
     image.style.display =
         "block";
 
 }
 
-
-
-/* =========================================================
-   HIDE MENU IMAGE
-   ========================================================= */
 
 function hideMenuImage(
     subjectId,
@@ -619,7 +431,6 @@ function hideMenuImage(
 
     image.src =
         "";
-
 
     image.style.display =
         "none";
@@ -676,7 +487,7 @@ function loadSavedImages() {
 
 
 /* =========================================================
-   LOAD SUBJECT MENU CUSTOMIZATION
+   LOAD MENU CUSTOMIZATION
    ========================================================= */
 
 function loadSubjectMenuCustomization(
@@ -684,13 +495,9 @@ function loadSubjectMenuCustomization(
 ) {
 
     const categories = [
-
         "formatives",
-
         "summatives"
-
     ];
-
 
 
     categories.forEach(
@@ -699,19 +506,18 @@ function loadSubjectMenuCustomization(
             category
         ) {
 
-            const color =
+            applyMenuColor(
+
+                subjectId,
+
+                category,
+
                 getMenuColor(
                     subjectId,
                     category
-                );
+                )
 
-
-            applyMenuColor(
-                subjectId,
-                category,
-                color
             );
-
 
 
             const savedImage =
@@ -753,7 +559,7 @@ function loadSubjectMenuCustomization(
 
 
 /* =========================================================
-   SHOW IMAGE INSIDE EDITOR
+   EDITOR IMAGE DISPLAY
    ========================================================= */
 
 function showEditorImage(
@@ -763,14 +569,11 @@ function showEditorImage(
     editorImagePreview.src =
         imageData;
 
-
     editorImagePreview.style.display =
         "block";
 
-
     editorImagePlaceholder.style.display =
         "none";
-
 
     editorRemoveImage.hidden =
         false;
@@ -778,24 +581,16 @@ function showEditorImage(
 }
 
 
-
-/* =========================================================
-   SHOW EDITOR PLACEHOLDER
-   ========================================================= */
-
 function showEditorPlaceholder() {
 
     editorImagePreview.src =
         "";
 
-
     editorImagePreview.style.display =
         "none";
 
-
     editorImagePlaceholder.style.display =
         "";
-
 
     editorRemoveImage.hidden =
         true;
@@ -822,22 +617,17 @@ function getEditorColor() {
     }
 
 
-
     if (
         editorTarget.type ===
         "menu"
     ) {
 
         return getMenuColor(
-
             editorTarget.subjectId,
-
             editorTarget.category
-
         );
 
     }
-
 
 
     return "#d4d4d4";
@@ -868,7 +658,6 @@ function getEditorImage() {
     }
 
 
-
     if (
         editorTarget.type ===
         "menu"
@@ -877,11 +666,8 @@ function getEditorImage() {
         return localStorage.getItem(
 
             getMenuImageStorageKey(
-
                 editorTarget.subjectId,
-
                 editorTarget.category
-
             )
 
         );
@@ -889,104 +675,7 @@ function getEditorImage() {
     }
 
 
-
     return null;
-
-}
-
-
-
-/* =========================================================
-   OPEN HOME CARD EDITOR
-   ========================================================= */
-
-function openHomeCardEditor(
-    subjectId
-) {
-
-    const subject =
-        subjectData[
-            subjectId
-        ];
-
-
-    if (!subject) {
-
-        return;
-
-    }
-
-
-
-    editorTarget = {
-
-        type: "home",
-
-        subjectId: subjectId,
-
-        category: null
-
-    };
-
-
-    editorSubjectCode.textContent =
-        subject.code;
-
-
-    prepareEditor();
-
-}
-
-
-
-/* =========================================================
-   OPEN MENU CARD EDITOR
-   ========================================================= */
-
-function openMenuCardEditor(
-    subjectId,
-    category
-) {
-
-    const subject =
-        subjectData[
-            subjectId
-        ];
-
-
-    const menu =
-        subjectMenuDefaults[
-            category
-        ];
-
-
-    if (
-        !subject ||
-        !menu
-    ) {
-
-        return;
-
-    }
-
-
-
-    editorTarget = {
-
-        type: "menu",
-
-        subjectId: subjectId,
-
-        category: category
-
-    };
-
-
-    editorSubjectCode.textContent =
-        `${subject.code} - ${menu.title}`;
-
-
-    prepareEditor();
 
 }
 
@@ -1017,7 +706,6 @@ function prepareEditor() {
     }
 
 
-
     updateSelectedColor(
         getEditorColor()
     );
@@ -1025,6 +713,100 @@ function prepareEditor() {
 
     cardEditorOverlay.hidden =
         false;
+
+}
+
+
+
+/* =========================================================
+   OPEN HOME EDITOR
+   ========================================================= */
+
+function openHomeCardEditor(
+    subjectId
+) {
+
+    const subject =
+        subjectData[
+            subjectId
+        ];
+
+
+    if (!subject) {
+
+        return;
+
+    }
+
+
+    editorTarget = {
+
+        type: "home",
+
+        subjectId: subjectId,
+
+        category: null
+
+    };
+
+
+    editorSubjectCode.textContent =
+        subject.code;
+
+
+    prepareEditor();
+
+}
+
+
+
+/* =========================================================
+   OPEN MENU EDITOR
+   ========================================================= */
+
+function openMenuCardEditor(
+    subjectId,
+    category
+) {
+
+    const subject =
+        subjectData[
+            subjectId
+        ];
+
+
+    const menu =
+        subjectMenuDefaults[
+            category
+        ];
+
+
+    if (
+        !subject ||
+        !menu
+    ) {
+
+        return;
+
+    }
+
+
+    editorTarget = {
+
+        type: "menu",
+
+        subjectId: subjectId,
+
+        category: category
+
+    };
+
+
+    editorSubjectCode.textContent =
+        `${subject.code} - ${menu.title}`;
+
+
+    prepareEditor();
 
 }
 
@@ -1059,7 +841,103 @@ function closeCardEditor() {
 
 
 /* =========================================================
-   HOME EDIT BUTTON EVENTS
+   SAVE EDITOR IMAGE
+   ========================================================= */
+
+function saveEditorImage(
+    file
+) {
+
+    if (
+        !file ||
+        !editorTarget.subjectId
+    ) {
+
+        return;
+
+    }
+
+
+    const reader =
+        new FileReader();
+
+
+    reader.onload =
+        function () {
+
+            const imageData =
+                reader.result;
+
+
+
+            if (
+                editorTarget.type ===
+                "home"
+            ) {
+
+                localStorage.setItem(
+
+                    getHomeImageStorageKey(
+                        editorTarget.subjectId
+                    ),
+
+                    imageData
+
+                );
+
+
+                showHomeImage(
+                    editorTarget.subjectId,
+                    imageData
+                );
+
+            }
+
+
+
+            if (
+                editorTarget.type ===
+                "menu"
+            ) {
+
+                localStorage.setItem(
+
+                    getMenuImageStorageKey(
+                        editorTarget.subjectId,
+                        editorTarget.category
+                    ),
+
+                    imageData
+
+                );
+
+
+                showMenuImage(
+                    editorTarget.subjectId,
+                    editorTarget.category,
+                    imageData
+                );
+
+            }
+
+
+            showEditorImage(
+                imageData
+            );
+
+        };
+
+
+    reader.readAsDataURL(
+        file
+    );
+
+}
+
+
+
+/* =========================================================
+   EDIT BUTTON EVENTS
    ========================================================= */
 
 function addHomeEditEvents() {
@@ -1089,13 +967,8 @@ function addHomeEditEvents() {
                     event.stopPropagation();
 
 
-
-                    const subjectId =
-                        button.dataset.editSubject;
-
-
                     openHomeCardEditor(
-                        subjectId
+                        button.dataset.editSubject
                     );
 
                 }
@@ -1108,11 +981,6 @@ function addHomeEditEvents() {
 
 }
 
-
-
-/* =========================================================
-   MENU EDIT BUTTON EVENTS
-   ========================================================= */
 
 function addMenuEditEvents() {
 
@@ -1141,18 +1009,12 @@ function addMenuEditEvents() {
                     event.stopPropagation();
 
 
-
-                    const subjectId =
-                        button.dataset.editSubject;
-
-
-                    const category =
-                        button.dataset.editCategory;
-
-
                     openMenuCardEditor(
-                        subjectId,
-                        category
+
+                        button.dataset.editSubject,
+
+                        button.dataset.editCategory
+
                     );
 
                 }
@@ -1168,7 +1030,7 @@ function addMenuEditEvents() {
 
 
 /* =========================================================
-   OPEN IMAGE PICKER
+   EDITOR IMAGE BUTTONS
    ========================================================= */
 
 function openImagePicker() {
@@ -1187,11 +1049,6 @@ function openImagePicker() {
 }
 
 
-
-/* =========================================================
-   EDITOR IMAGE BUTTON
-   ========================================================= */
-
 editorImageArea.addEventListener(
 
     "click",
@@ -1203,7 +1060,6 @@ editorImageArea.addEventListener(
     }
 
 );
-
 
 
 editorAddImage.addEventListener(
@@ -1218,11 +1074,6 @@ editorAddImage.addEventListener(
 
 );
 
-
-
-/* =========================================================
-   IMAGE INPUT
-   ========================================================= */
 
 editorImageInput.addEventListener(
 
@@ -1271,10 +1122,6 @@ editorRemoveImage.addEventListener(
 
 
 
-        /* =============================================
-           HOME
-           ============================================= */
-
         if (
             editorTarget.type ===
             "home"
@@ -1297,10 +1144,6 @@ editorRemoveImage.addEventListener(
 
 
 
-        /* =============================================
-           FORMATIVES / SUMMATIVES
-           ============================================= */
-
         if (
             editorTarget.type ===
             "menu"
@@ -1309,26 +1152,19 @@ editorRemoveImage.addEventListener(
             localStorage.removeItem(
 
                 getMenuImageStorageKey(
-
                     editorTarget.subjectId,
-
                     editorTarget.category
-
                 )
 
             );
 
 
             hideMenuImage(
-
                 editorTarget.subjectId,
-
                 editorTarget.category
-
             );
 
         }
-
 
 
         showEditorPlaceholder();
@@ -1344,7 +1180,7 @@ editorRemoveImage.addEventListener(
 
 
 /* =========================================================
-   COLOR PALETTE
+   COLOR OPTIONS
    ========================================================= */
 
 colorOptions.forEach(
@@ -1401,10 +1237,6 @@ function applyEditorColor(
     color
 ) {
 
-    /* =====================================================
-       HOME
-       ===================================================== */
-
     if (
         editorTarget.type ===
         "home"
@@ -1436,20 +1268,13 @@ function applyEditorColor(
 
 
         applySubjectColor(
-
             editorTarget.subjectId,
-
             color
-
         );
 
     }
 
 
-
-    /* =====================================================
-       MENU
-       ===================================================== */
 
     if (
         editorTarget.type ===
@@ -1459,11 +1284,8 @@ function applyEditorColor(
         localStorage.setItem(
 
             getMenuColorStorageKey(
-
                 editorTarget.subjectId,
-
                 editorTarget.category
-
             ),
 
             color
@@ -1474,37 +1296,26 @@ function applyEditorColor(
         localStorage.removeItem(
 
             getMenuImageStorageKey(
-
                 editorTarget.subjectId,
-
                 editorTarget.category
-
             )
 
         );
 
 
         hideMenuImage(
-
             editorTarget.subjectId,
-
             editorTarget.category
-
         );
 
 
         applyMenuColor(
-
             editorTarget.subjectId,
-
             editorTarget.category,
-
             color
-
         );
 
     }
-
 
 
     showEditorPlaceholder();
@@ -1519,7 +1330,7 @@ function applyEditorColor(
 
 
 /* =========================================================
-   SELECTED COLOR
+   UPDATE SELECTED COLOR
    ========================================================= */
 
 function updateSelectedColor(
@@ -1571,7 +1382,7 @@ function updateSelectedColor(
 
 
 /* =========================================================
-   RESET CARD TO DEFAULT
+   RESET CARD
    ========================================================= */
 
 editorResetButton.addEventListener(
@@ -1589,10 +1400,6 @@ editorResetButton.addEventListener(
         }
 
 
-
-        /* =================================================
-           HOME RESET
-           ================================================= */
 
         if (
             editorTarget.type ===
@@ -1629,11 +1436,8 @@ editorResetButton.addEventListener(
 
 
             applySubjectColor(
-
                 editorTarget.subjectId,
-
                 subject.color
-
             );
 
 
@@ -1644,10 +1448,6 @@ editorResetButton.addEventListener(
         }
 
 
-
-        /* =================================================
-           MENU RESET
-           ================================================= */
 
         if (
             editorTarget.type ===
@@ -1663,11 +1463,8 @@ editorResetButton.addEventListener(
             localStorage.removeItem(
 
                 getMenuImageStorageKey(
-
                     editorTarget.subjectId,
-
                     editorTarget.category
-
                 )
 
             );
@@ -1676,33 +1473,23 @@ editorResetButton.addEventListener(
             localStorage.removeItem(
 
                 getMenuColorStorageKey(
-
                     editorTarget.subjectId,
-
                     editorTarget.category
-
                 )
 
             );
 
 
             hideMenuImage(
-
                 editorTarget.subjectId,
-
                 editorTarget.category
-
             );
 
 
             applyMenuColor(
-
                 editorTarget.subjectId,
-
                 editorTarget.category,
-
                 defaultColor
-
             );
 
 
@@ -1711,7 +1498,6 @@ editorResetButton.addEventListener(
             );
 
         }
-
 
 
         showEditorPlaceholder();
@@ -1727,7 +1513,7 @@ editorResetButton.addEventListener(
 
 
 /* =========================================================
-   CLOSE EDITOR BUTTON
+   EDITOR CLOSE EVENTS
    ========================================================= */
 
 cardEditorClose.addEventListener(
@@ -1742,11 +1528,6 @@ cardEditorClose.addEventListener(
 
 );
 
-
-
-/* =========================================================
-   CLICK OUTSIDE EDITOR
-   ========================================================= */
 
 cardEditorOverlay.addEventListener(
 
@@ -1770,11 +1551,6 @@ cardEditorOverlay.addEventListener(
 );
 
 
-
-/* =========================================================
-   PREVENT EDITOR CLICK FROM CLOSING
-   ========================================================= */
-
 cardEditor.addEventListener(
 
     "click",
@@ -1792,7 +1568,7 @@ cardEditor.addEventListener(
 
 
 /* =========================================================
-   HOME SUBJECT CARDS
+   HOME SUBJECT CARD EVENTS
    ========================================================= */
 
 function addSubjectCardEvents() {
@@ -1815,12 +1591,8 @@ function addSubjectCardEvents() {
 
                 function () {
 
-                    const subjectId =
-                        card.dataset.subject;
-
-
                     showSubjectPage(
-                        subjectId
+                        card.dataset.subject
                     );
 
                 }
@@ -1836,7 +1608,7 @@ function addSubjectCardEvents() {
 
 
 /* =========================================================
-   SUBJECT MENU CARDS
+   SUBJECT MENU CARD EVENTS
    ========================================================= */
 
 function addSubjectMenuEvents() {
@@ -1859,19 +1631,11 @@ function addSubjectMenuEvents() {
 
                 function () {
 
-                    const subjectId =
-                        card.dataset.subject;
-
-
-                    const category =
-                        card.dataset.category;
-
-
                     openSubjectCategory(
 
-                        subjectId,
+                        card.dataset.subject,
 
-                        category
+                        card.dataset.category
 
                     );
 
@@ -1891,7 +1655,7 @@ function addSubjectMenuEvents() {
 
 
 /* =========================================================
-   CLEAR ACTIVE SIDEBAR
+   CLEAR ACTIVE NAVIGATION
    ========================================================= */
 
 function clearActiveNavigation() {
@@ -1948,12 +1712,6 @@ function setActiveSubject(
     }
 
 
-    const subjectColor =
-        getSubjectColor(
-            subjectId
-        );
-
-
     subjectLink.classList.add(
         "active"
     );
@@ -1963,7 +1721,9 @@ function setActiveSubject(
 
         "--subject-color",
 
-        subjectColor
+        getSubjectColor(
+            subjectId
+        )
 
     );
 
@@ -1978,6 +1738,9 @@ function setActiveSubject(
 function showHomePage() {
 
     currentSubjectId =
+        null;
+
+    currentCategory =
         null;
 
 
@@ -1999,12 +1762,9 @@ function showHomePage() {
 
     addSubjectCardEvents();
 
-
     addHomeEditEvents();
 
-
     loadSavedColors();
-
 
     loadSavedImages();
 
@@ -2033,9 +1793,11 @@ function showSubjectPage(
     }
 
 
-
     currentSubjectId =
         subjectId;
+
+    currentCategory =
+        null;
 
 
     setActiveSubject(
@@ -2051,7 +1813,6 @@ function showSubjectPage(
         getSubjectColor(
             subjectId
         );
-
 
 
     pageContent.innerHTML = `
@@ -2092,10 +1853,7 @@ function showSubjectPage(
         <section class="subject-menu-grid">
 
 
-
-            <!-- =============================================
-                 FORMATIVES
-                 ============================================= -->
+            <!-- FORMATIVES -->
 
             <div
                 class="subject-menu-card"
@@ -2140,7 +1898,6 @@ function showSubjectPage(
                         FORMATIVES
                     </h2>
 
-
                     <p>
                         ${subject.name}
                     </p>
@@ -2151,9 +1908,7 @@ function showSubjectPage(
 
 
 
-            <!-- =============================================
-                 SUMMATIVES
-                 ============================================= -->
+            <!-- SUMMATIVES -->
 
             <div
                 class="subject-menu-card"
@@ -2198,7 +1953,6 @@ function showSubjectPage(
                         SUMMATIVES
                     </h2>
 
-
                     <p>
                         ${subject.name}
                     </p>
@@ -2212,11 +1966,6 @@ function showSubjectPage(
 
     `;
 
-
-
-    /* =====================================================
-       HOME BREADCRUMB
-       ===================================================== */
 
     const breadcrumbHome =
         document.getElementById(
@@ -2236,11 +1985,6 @@ function showSubjectPage(
 
     );
 
-
-
-    /* =====================================================
-       LOAD SAVED MENU CUSTOMIZATION
-       ===================================================== */
 
     loadSubjectMenuCustomization(
         subjectId
@@ -2268,14 +2012,8 @@ function openSubjectCategory(
         ];
 
 
-    if (!subject) {
-
-        return;
-
-    }
-
-
     if (
+        !subject ||
         !subject.categories
     ) {
 
@@ -2299,6 +2037,9 @@ function openSubjectCategory(
 
     currentSubjectId =
         subjectId;
+
+    currentCategory =
+        category;
 
 
     setActiveSubject(
@@ -2331,16 +2072,11 @@ function openSubjectCategory(
 
     /* =====================================================
        BUILD CATEGORY ITEMS
-       ===================================================== */
+       ========================================================= */
 
     let itemsHTML =
         "";
 
-
-
-    /* =====================================================
-       EMPTY CATEGORY
-       ===================================================== */
 
     if (
         items.length === 0
@@ -2349,20 +2085,12 @@ function openSubjectCategory(
         itemsHTML = `
 
             <p class="empty-category-message">
-
                 No ${categoryTitle.toLowerCase()} added yet.
-
             </p>
 
         `;
 
     }
-
-
-
-    /* =====================================================
-       CATEGORY HAS ITEMS
-       ===================================================== */
 
     else {
 
@@ -2382,11 +2110,6 @@ function openSubjectCategory(
                     item.description ||
                     "No description yet.";
 
-
-
-                /* =========================================
-                   LINKS
-                   ========================================= */
 
                 let linksHTML =
                     "";
@@ -2435,37 +2158,24 @@ function openSubjectCategory(
 
 
 
-                /* =========================================
-                   ITEM CARD
-
-                   Same structure as Home:
-                   upper area = visual/color
-                   lower area = title/details/links
-                   ========================================= */
-
                 itemsHTML += `
 
                     <div
                         class="subject-menu-card category-item-card"
+                        data-item-index="${index}"
                     >
 
-
-                        <!-- =================================
-                             UPPER VISUAL AREA
-                             ================================= -->
+                        <!-- UPPER VISUAL AREA -->
 
                         <div
                             class="subject-menu-image category-item-image"
                             style="background: ${subjectColor};"
                         >
-
                         </div>
 
 
 
-                        <!-- =================================
-                             LOWER INFORMATION AREA
-                             ================================= -->
+                        <!-- LOWER INFORMATION AREA -->
 
                         <div
                             class="subject-menu-info category-item-info"
@@ -2484,19 +2194,14 @@ function openSubjectCategory(
                             ${
                                 linksHTML
                                     ? `
-                                        <div
-                                            class="category-item-links"
-                                        >
-
+                                        <div class="category-item-links">
                                             ${linksHTML}
-
                                         </div>
                                     `
                                     : ""
                             }
 
                         </div>
-
 
                     </div>
 
@@ -2512,7 +2217,7 @@ function openSubjectCategory(
 
     /* =====================================================
        CATEGORY PAGE
-       ===================================================== */
+       ========================================================= */
 
     pageContent.innerHTML = `
 
@@ -2524,8 +2229,6 @@ function openSubjectCategory(
             <h1>
 
 
-                <!-- HOME -->
-
                 <button
                     type="button"
                     class="breadcrumb-home"
@@ -2535,14 +2238,10 @@ function openSubjectCategory(
                 </button>
 
 
-
                 <span class="breadcrumb-slash">
                     /
                 </span>
 
-
-
-                <!-- SUBJECT -->
 
                 <button
                     type="button"
@@ -2554,14 +2253,10 @@ function openSubjectCategory(
                 </button>
 
 
-
                 <span class="breadcrumb-slash">
                     /
                 </span>
 
-
-
-                <!-- CATEGORY -->
 
                 <span>
                     ${categoryTitle}
@@ -2584,10 +2279,6 @@ function openSubjectCategory(
 
 
 
-    /* =====================================================
-       HOME BREADCRUMB EVENT
-       ===================================================== */
-
     const breadcrumbHome =
         document.getElementById(
             "breadcrumb-home"
@@ -2607,10 +2298,6 @@ function openSubjectCategory(
     );
 
 
-
-    /* =====================================================
-       SUBJECT BREADCRUMB EVENT
-       ===================================================== */
 
     const breadcrumbSubject =
         document.getElementById(
@@ -2657,12 +2344,8 @@ subjectLinks.forEach(
                 event.preventDefault();
 
 
-                const subjectId =
-                    link.dataset.subject;
-
-
                 showSubjectPage(
-                    subjectId
+                    link.dataset.subject
                 );
 
             }
@@ -2715,60 +2398,94 @@ searchInput.addEventListener(
 
 
 
+        /* =================================================
+           HOME
+           ================================================= */
+
         const subjectCards =
             document.querySelectorAll(
                 ".subject-card"
             );
 
 
+        if (
+            subjectCards.length > 0
+        ) {
 
-        subjectCards.forEach(
+            subjectCards.forEach(
+
+                function (
+                    card
+                ) {
+
+                    const subjectId =
+                        card.dataset.subject;
+
+
+                    const subject =
+                        subjectData[
+                            subjectId
+                        ];
+
+
+                    if (!subject) {
+
+                        return;
+
+                    }
+
+
+                    const searchableText =
+                        `${subject.code} ${subject.name}`
+                            .toLowerCase();
+
+
+                    card.style.display =
+                        searchableText.includes(
+                            searchText
+                        )
+                            ? ""
+                            : "none";
+
+                }
+
+            );
+
+
+            return;
+
+        }
+
+
+
+        /* =================================================
+           SUBJECT PAGE + FORMATIVES/SUMMATIVES ITEMS
+           ================================================= */
+
+        const innerCards =
+            document.querySelectorAll(
+                ".subject-menu-card"
+            );
+
+
+        innerCards.forEach(
 
             function (
                 card
             ) {
 
-                const subjectId =
-                    card.dataset.subject;
+                const searchableText =
+                    card.textContent
+                        .toLowerCase()
+                        .trim();
 
 
-                const subject =
-                    subjectData[
-                        subjectId
-                    ];
-
-
-                if (!subject) {
-
-                    return;
-
-                }
-
-
-
-                const subjectText =
-                    `${subject.code} ${subject.name}`
-                        .toLowerCase();
-
-
-
-                if (
-                    subjectText.includes(
+                card.style.display =
+                    searchableText.includes(
                         searchText
                     )
-                ) {
-
-                    card.style.display =
-                        "";
-
-                }
-
-                else {
-
-                    card.style.display =
-                        "none";
-
-                }
+                        ? ""
+                        : "none";
 
             }
 
@@ -2781,16 +2498,13 @@ searchInput.addEventListener(
 
 
 /* =========================================================
-   INITIALIZE HOME PAGE
+   INITIALIZE
    ========================================================= */
 
 addSubjectCardEvents();
 
-
 addHomeEditEvents();
 
-
 loadSavedColors();
-
 
 loadSavedImages();
