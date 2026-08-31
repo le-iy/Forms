@@ -2104,15 +2104,18 @@ body {
    ========================================================= */
 
 .theme-swatch-grid {
+    width: 100%;
+
     display: grid;
 
-    grid-template-columns: repeat(9, 30px);
+    grid-template-columns:
+        repeat(5, 1fr);
 
-    gap: 10px 12px;
+    gap: 14px 12px;
+
+    justify-items: center;
 
     align-items: center;
-
-    justify-content: start;
 }
 
 
@@ -5158,7 +5161,7 @@ body.style-soft-product .ui-style-section {
 
     .theme-swatch-grid {
         grid-template-columns:
-            repeat(5, 30px);
+            repeat(5, 1fr);
     }
 
 
