@@ -11,58 +11,162 @@
 
 <body>
 
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
+        <!-- MAIN NAVIGATION -->
         <nav class="main-nav">
-            <a href="#" class="nav-item active">Home</a>
-            <a href="#" class="nav-item">Formatives</a>
-            <a href="#" class="nav-item">Summatives</a>
-            <a href="#" class="nav-item">Reviewers</a>
-            <a href="#" class="nav-item">Leaks &gt;:D</a>
+
+            <a
+                href="#"
+                class="nav-item active"
+                id="home-link"
+            >
+                Home
+            </a>
+
+            <a
+                href="#"
+                class="nav-item"
+                id="formatives-link"
+            >
+                Formatives
+            </a>
+
+            <a
+                href="#"
+                class="nav-item"
+                id="summatives-link"
+            >
+                Summatives
+            </a>
+
+            <a
+                href="#"
+                class="nav-item"
+                id="reviewers-link"
+            >
+                Reviewers
+            </a>
+
+            <a
+                href="#"
+                class="nav-item"
+                id="leaks-link"
+            >
+                Leaks &gt;:D
+            </a>
+
         </nav>
+
 
         <hr>
 
+
+        <!-- SUBJECT NAVIGATION -->
         <div class="subject-list">
 
-            <a href="#" class="subject-link">
+            <a
+                href="#"
+                class="subject-link"
+                data-subject="it0035"
+            >
                 <span class="subject-dot it0035"></span>
-                IT0035
+
+                <span class="subject-code">
+                    IT0035
+                </span>
             </a>
 
-            <a href="#" class="subject-link">
+
+            <a
+                href="#"
+                class="subject-link"
+                data-subject="it0035l"
+            >
                 <span class="subject-dot it0035l"></span>
-                IT0035L
+
+                <span class="subject-code">
+                    IT0035L
+                </span>
             </a>
 
-            <a href="#" class="subject-link">
+
+            <a
+                href="#"
+                class="subject-link"
+                data-subject="it0037"
+            >
                 <span class="subject-dot it0037"></span>
-                IT0037
+
+                <span class="subject-code">
+                    IT0037
+                </span>
             </a>
 
-            <a href="#" class="subject-link">
+
+            <a
+                href="#"
+                class="subject-link"
+                data-subject="it0049"
+            >
                 <span class="subject-dot it0049"></span>
-                IT0049
+
+                <span class="subject-code">
+                    IT0049
+                </span>
             </a>
 
-            <a href="#" class="subject-link">
+
+            <a
+                href="#"
+                class="subject-link"
+                data-subject="it0204"
+            >
                 <span class="subject-dot it0204"></span>
-                IT0204
+
+                <span class="subject-code">
+                    IT0204
+                </span>
             </a>
 
-            <a href="#" class="subject-link">
+
+            <a
+                href="#"
+                class="subject-link"
+                data-subject="it0015"
+            >
                 <span class="subject-dot it0015"></span>
-                IT0015
+
+                <span class="subject-code">
+                    IT0015
+                </span>
             </a>
 
-            <a href="#" class="subject-link">
+
+            <a
+                href="#"
+                class="subject-link"
+                data-subject="ged0083"
+            >
                 <span class="subject-dot ged0083"></span>
-                GED0083
+
+                <span class="subject-code">
+                    GED0083
+                </span>
             </a>
 
-            <a href="#" class="subject-link">
+
+            <a
+                href="#"
+                class="subject-link"
+                data-subject="ged0083l"
+            >
                 <span class="subject-dot ged0083l"></span>
-                GED0083L
+
+                <span class="subject-code">
+                    GED0083L
+                </span>
             </a>
 
         </div>
@@ -70,423 +174,590 @@
     </aside>
 
 
+
+    <!-- MAIN CONTENT -->
     <main class="main-content">
 
+        <!-- SEARCH -->
         <div class="search-container">
-            <input type="text" placeholder="Search...">
+
+            <input
+                type="text"
+                id="search-input"
+                placeholder="Search..."
+                autocomplete="off"
+            >
+
         </div>
 
-        <h1>HOME</h1>
+
+        <!--
+            Everything inside this container
+            can later be changed by script.js.
+
+            HOME PAGE:
+            Shows all subjects.
+
+            SUBJECT PAGE:
+            Shows Formatives and Summatives.
+        -->
+        <div id="page-content">
 
 
-        <section class="subject-grid">
+            <!-- HOME TITLE -->
+            <h1 class="page-title">
+                HOME
+            </h1>
 
 
-            <!-- IT0035 -->
 
-            <div class="subject-card">
+            <!-- SUBJECT CARDS -->
+            <section class="subject-grid">
 
-                <div class="card-image it0035-bg">
 
-                    <img
-                        id="preview-it0035"
-                        class="subject-image"
-                        src=""
-                        alt="IT0035 image"
-                    >
+                <!-- IT0035 -->
+                <div
+                    class="subject-card"
+                    data-subject="it0035"
+                >
 
-                    <span
-                        id="placeholder-it0035"
-                        class="placeholder-icon"
-                    >
-                        ▣
-                    </span>
+                    <div class="card-image it0035-bg">
 
-                    <button
-                        class="edit-image-button"
-                        type="button"
-                        onclick="document.getElementById('input-it0035').click()"
-                        aria-label="Change IT0035 image"
-                    >
+                        <!-- Custom uploaded image -->
                         <img
-                            src="File_Bank/ASSETS/editImg_icon.png"
-                            alt=""
+                            id="preview-it0035"
+                            class="subject-image"
+                            src=""
+                            alt="IT0035 image"
                         >
-                    </button>
 
-                    <input
-                        type="file"
-                        id="input-it0035"
-                        accept="image/*"
-                        hidden
-                        onchange="saveImage(event, 'it0035')"
-                    >
+
+                        <!-- Default placeholder -->
+                        <span
+                            id="placeholder-it0035"
+                            class="placeholder-icon"
+                        >
+                            ▣
+                        </span>
+
+
+                        <!-- Edit image -->
+                        <button
+                            class="edit-image-button"
+                            type="button"
+                            data-edit-subject="it0035"
+                            aria-label="Change IT0035 image"
+                        >
+
+                            <img
+                                src="File_Bank/ASSETS/editImg_icon.png"
+                                alt=""
+                            >
+
+                        </button>
+
+
+                        <!-- Image uploader -->
+                        <input
+                            type="file"
+                            id="input-it0035"
+                            class="subject-image-input"
+                            accept="image/*"
+                            data-subject="it0035"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <div class="card-info">
+
+                        <h2>
+                            IT0035
+                        </h2>
+
+                        <p>
+                            APPLIED OPERATING SYSTEM
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <div class="card-info">
-                    <h2>IT0035</h2>
-                    <p>APPLIED OPERATING SYSTEM</p>
-                </div>
-
-            </div>
 
 
-            <!-- IT0035L -->
+                <!-- IT0035L -->
+                <div
+                    class="subject-card"
+                    data-subject="it0035l"
+                >
 
-            <div class="subject-card">
+                    <div class="card-image it0035l-bg">
 
-                <div class="card-image it0035l-bg">
-
-                    <img
-                        id="preview-it0035l"
-                        class="subject-image"
-                        src=""
-                        alt="IT0035L image"
-                    >
-
-                    <span
-                        id="placeholder-it0035l"
-                        class="placeholder-icon"
-                    >
-                        ▣
-                    </span>
-
-                    <button
-                        class="edit-image-button"
-                        type="button"
-                        onclick="document.getElementById('input-it0035l').click()"
-                        aria-label="Change IT0035L image"
-                    >
                         <img
-                            src="File_Bank/ASSETS/editImg_icon.png"
-                            alt=""
+                            id="preview-it0035l"
+                            class="subject-image"
+                            src=""
+                            alt="IT0035L image"
                         >
-                    </button>
 
-                    <input
-                        type="file"
-                        id="input-it0035l"
-                        accept="image/*"
-                        hidden
-                        onchange="saveImage(event, 'it0035l')"
-                    >
+
+                        <span
+                            id="placeholder-it0035l"
+                            class="placeholder-icon"
+                        >
+                            ▣
+                        </span>
+
+
+                        <button
+                            class="edit-image-button"
+                            type="button"
+                            data-edit-subject="it0035l"
+                            aria-label="Change IT0035L image"
+                        >
+
+                            <img
+                                src="File_Bank/ASSETS/editImg_icon.png"
+                                alt=""
+                            >
+
+                        </button>
+
+
+                        <input
+                            type="file"
+                            id="input-it0035l"
+                            class="subject-image-input"
+                            accept="image/*"
+                            data-subject="it0035l"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <div class="card-info">
+
+                        <h2>
+                            IT0035L
+                        </h2>
+
+                        <p>
+                            APPLIED OPERATING SYSTEM LAB
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <div class="card-info">
-                    <h2>IT0035L</h2>
-                    <p>APPLIED OPERATING SYSTEM LAB</p>
-                </div>
-
-            </div>
 
 
-            <!-- IT0037 -->
+                <!-- IT0037 -->
+                <div
+                    class="subject-card"
+                    data-subject="it0037"
+                >
 
-            <div class="subject-card">
+                    <div class="card-image it0037-bg">
 
-                <div class="card-image it0037-bg">
-
-                    <img
-                        id="preview-it0037"
-                        class="subject-image"
-                        src=""
-                        alt="IT0037 image"
-                    >
-
-                    <span
-                        id="placeholder-it0037"
-                        class="placeholder-icon"
-                    >
-                        ▣
-                    </span>
-
-                    <button
-                        class="edit-image-button"
-                        type="button"
-                        onclick="document.getElementById('input-it0037').click()"
-                        aria-label="Change IT0037 image"
-                    >
                         <img
-                            src="File_Bank/ASSETS/editImg_icon.png"
-                            alt=""
+                            id="preview-it0037"
+                            class="subject-image"
+                            src=""
+                            alt="IT0037 image"
                         >
-                    </button>
 
-                    <input
-                        type="file"
-                        id="input-it0037"
-                        accept="image/*"
-                        hidden
-                        onchange="saveImage(event, 'it0037')"
-                    >
+
+                        <span
+                            id="placeholder-it0037"
+                            class="placeholder-icon"
+                        >
+                            ▣
+                        </span>
+
+
+                        <button
+                            class="edit-image-button"
+                            type="button"
+                            data-edit-subject="it0037"
+                            aria-label="Change IT0037 image"
+                        >
+
+                            <img
+                                src="File_Bank/ASSETS/editImg_icon.png"
+                                alt=""
+                            >
+
+                        </button>
+
+
+                        <input
+                            type="file"
+                            id="input-it0037"
+                            class="subject-image-input"
+                            accept="image/*"
+                            data-subject="it0037"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <div class="card-info">
+
+                        <h2>
+                            IT0037
+                        </h2>
+
+                        <p>
+                            SYSTEM ANALYSIS AND DESIGN
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <div class="card-info">
-                    <h2>IT0037</h2>
-                    <p>SYSTEM ANALYSIS AND DESIGN</p>
-                </div>
-
-            </div>
 
 
-            <!-- IT0049 -->
+                <!-- IT0049 -->
+                <div
+                    class="subject-card"
+                    data-subject="it0049"
+                >
 
-            <div class="subject-card">
+                    <div class="card-image it0049-bg">
 
-                <div class="card-image it0049-bg">
-
-                    <img
-                        id="preview-it0049"
-                        class="subject-image"
-                        src=""
-                        alt="IT0049 image"
-                    >
-
-                    <span
-                        id="placeholder-it0049"
-                        class="placeholder-icon"
-                    >
-                        ▣
-                    </span>
-
-                    <button
-                        class="edit-image-button"
-                        type="button"
-                        onclick="document.getElementById('input-it0049').click()"
-                        aria-label="Change IT0049 image"
-                    >
                         <img
-                            src="File_Bank/ASSETS/editImg_icon.png"
-                            alt=""
+                            id="preview-it0049"
+                            class="subject-image"
+                            src=""
+                            alt="IT0049 image"
                         >
-                    </button>
 
-                    <input
-                        type="file"
-                        id="input-it0049"
-                        accept="image/*"
-                        hidden
-                        onchange="saveImage(event, 'it0049')"
-                    >
+
+                        <span
+                            id="placeholder-it0049"
+                            class="placeholder-icon"
+                        >
+                            ▣
+                        </span>
+
+
+                        <button
+                            class="edit-image-button"
+                            type="button"
+                            data-edit-subject="it0049"
+                            aria-label="Change IT0049 image"
+                        >
+
+                            <img
+                                src="File_Bank/ASSETS/editImg_icon.png"
+                                alt=""
+                            >
+
+                        </button>
+
+
+                        <input
+                            type="file"
+                            id="input-it0049"
+                            class="subject-image-input"
+                            accept="image/*"
+                            data-subject="it0049"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <div class="card-info">
+
+                        <h2>
+                            IT0049
+                        </h2>
+
+                        <p>
+                            IT ELECTIVE – WEB SYSTEM TECHNOLOGIES
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <div class="card-info">
-                    <h2>IT0049</h2>
-                    <p>IT ELECTIVE – WEB SYSTEM TECHNOLOGIES</p>
-                </div>
-
-            </div>
 
 
-            <!-- IT0204 -->
+                <!-- IT0204 -->
+                <div
+                    class="subject-card"
+                    data-subject="it0204"
+                >
 
-            <div class="subject-card">
+                    <div class="card-image it0204-bg">
 
-                <div class="card-image it0204-bg">
-
-                    <img
-                        id="preview-it0204"
-                        class="subject-image"
-                        src=""
-                        alt="IT0204 image"
-                    >
-
-                    <span
-                        id="placeholder-it0204"
-                        class="placeholder-icon"
-                    >
-                        ▣
-                    </span>
-
-                    <button
-                        class="edit-image-button"
-                        type="button"
-                        onclick="document.getElementById('input-it0204').click()"
-                        aria-label="Change IT0204 image"
-                    >
                         <img
-                            src="File_Bank/ASSETS/editImg_icon.png"
-                            alt=""
+                            id="preview-it0204"
+                            class="subject-image"
+                            src=""
+                            alt="IT0204 image"
                         >
-                    </button>
 
-                    <input
-                        type="file"
-                        id="input-it0204"
-                        accept="image/*"
-                        hidden
-                        onchange="saveImage(event, 'it0204')"
-                    >
+
+                        <span
+                            id="placeholder-it0204"
+                            class="placeholder-icon"
+                        >
+                            ▣
+                        </span>
+
+
+                        <button
+                            class="edit-image-button"
+                            type="button"
+                            data-edit-subject="it0204"
+                            aria-label="Change IT0204 image"
+                        >
+
+                            <img
+                                src="File_Bank/ASSETS/editImg_icon.png"
+                                alt=""
+                            >
+
+                        </button>
+
+
+                        <input
+                            type="file"
+                            id="input-it0204"
+                            class="subject-image-input"
+                            accept="image/*"
+                            data-subject="it0204"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <div class="card-info">
+
+                        <h2>
+                            IT0204
+                        </h2>
+
+                        <p>
+                            IT SPECIALIZATION 7 – CYBERSECURITY AND PRIVACY:
+                            LAWS, POLICIES, AND COMPLIANCE
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <div class="card-info">
-                    <h2>IT0204</h2>
-
-                    <p>
-                        IT SPECIALIZATION 7 – CYBERSECURITY AND PRIVACY:
-                        LAWS, POLICIES, AND COMPLIANCE
-                    </p>
-                </div>
-
-            </div>
 
 
-            <!-- IT0015 -->
+                <!-- IT0015 -->
+                <div
+                    class="subject-card"
+                    data-subject="it0015"
+                >
 
-            <div class="subject-card">
+                    <div class="card-image it0015-bg">
 
-                <div class="card-image it0015-bg">
-
-                    <img
-                        id="preview-it0015"
-                        class="subject-image"
-                        src=""
-                        alt="IT0015 image"
-                    >
-
-                    <span
-                        id="placeholder-it0015"
-                        class="placeholder-icon"
-                    >
-                        ▣
-                    </span>
-
-                    <button
-                        class="edit-image-button"
-                        type="button"
-                        onclick="document.getElementById('input-it0015').click()"
-                        aria-label="Change IT0015 image"
-                    >
                         <img
-                            src="File_Bank/ASSETS/editImg_icon.png"
-                            alt=""
+                            id="preview-it0015"
+                            class="subject-image"
+                            src=""
+                            alt="IT0015 image"
                         >
-                    </button>
 
-                    <input
-                        type="file"
-                        id="input-it0015"
-                        accept="image/*"
-                        hidden
-                        onchange="saveImage(event, 'it0015')"
-                    >
+
+                        <span
+                            id="placeholder-it0015"
+                            class="placeholder-icon"
+                        >
+                            ▣
+                        </span>
+
+
+                        <button
+                            class="edit-image-button"
+                            type="button"
+                            data-edit-subject="it0015"
+                            aria-label="Change IT0015 image"
+                        >
+
+                            <img
+                                src="File_Bank/ASSETS/editImg_icon.png"
+                                alt=""
+                            >
+
+                        </button>
+
+
+                        <input
+                            type="file"
+                            id="input-it0015"
+                            class="subject-image-input"
+                            accept="image/*"
+                            data-subject="it0015"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <div class="card-info">
+
+                        <h2>
+                            IT0015
+                        </h2>
+
+                        <p>
+                            NETWORKING 2
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <div class="card-info">
-                    <h2>IT0015</h2>
-                    <p>NETWORKING 2</p>
-                </div>
-
-            </div>
 
 
-            <!-- GED0083 -->
+                <!-- GED0083 -->
+                <div
+                    class="subject-card"
+                    data-subject="ged0083"
+                >
 
-            <div class="subject-card">
+                    <div class="card-image ged0083-bg">
 
-                <div class="card-image ged0083-bg">
-
-                    <img
-                        id="preview-ged0083"
-                        class="subject-image"
-                        src=""
-                        alt="GED0083 image"
-                    >
-
-                    <span
-                        id="placeholder-ged0083"
-                        class="placeholder-icon"
-                    >
-                        ▣
-                    </span>
-
-                    <button
-                        class="edit-image-button"
-                        type="button"
-                        onclick="document.getElementById('input-ged0083').click()"
-                        aria-label="Change GED0083 image"
-                    >
                         <img
-                            src="File_Bank/ASSETS/editImg_icon.png"
-                            alt=""
+                            id="preview-ged0083"
+                            class="subject-image"
+                            src=""
+                            alt="GED0083 image"
                         >
-                    </button>
 
-                    <input
-                        type="file"
-                        id="input-ged0083"
-                        accept="image/*"
-                        hidden
-                        onchange="saveImage(event, 'ged0083')"
-                    >
+
+                        <span
+                            id="placeholder-ged0083"
+                            class="placeholder-icon"
+                        >
+                            ▣
+                        </span>
+
+
+                        <button
+                            class="edit-image-button"
+                            type="button"
+                            data-edit-subject="ged0083"
+                            aria-label="Change GED0083 image"
+                        >
+
+                            <img
+                                src="File_Bank/ASSETS/editImg_icon.png"
+                                alt=""
+                            >
+
+                        </button>
+
+
+                        <input
+                            type="file"
+                            id="input-ged0083"
+                            class="subject-image-input"
+                            accept="image/*"
+                            data-subject="ged0083"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <div class="card-info">
+
+                        <h2>
+                            GED0083
+                        </h2>
+
+                        <p>
+                            COLLEGE PHYSICS 2 LECTURE
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <div class="card-info">
-                    <h2>GED0083</h2>
-                    <p>COLLEGE PHYSICS 2 LECTURE</p>
-                </div>
-
-            </div>
 
 
-            <!-- GED0083L -->
+                <!-- GED0083L -->
+                <div
+                    class="subject-card"
+                    data-subject="ged0083l"
+                >
 
-            <div class="subject-card">
+                    <div class="card-image ged0083l-bg">
 
-                <div class="card-image ged0083l-bg">
-
-                    <img
-                        id="preview-ged0083l"
-                        class="subject-image"
-                        src=""
-                        alt="GED0083L image"
-                    >
-
-                    <span
-                        id="placeholder-ged0083l"
-                        class="placeholder-icon"
-                    >
-                        ▣
-                    </span>
-
-                    <button
-                        class="edit-image-button"
-                        type="button"
-                        onclick="document.getElementById('input-ged0083l').click()"
-                        aria-label="Change GED0083L image"
-                    >
                         <img
-                            src="File_Bank/ASSETS/editImg_icon.png"
-                            alt=""
+                            id="preview-ged0083l"
+                            class="subject-image"
+                            src=""
+                            alt="GED0083L image"
                         >
-                    </button>
 
-                    <input
-                        type="file"
-                        id="input-ged0083l"
-                        accept="image/*"
-                        hidden
-                        onchange="saveImage(event, 'ged0083l')"
-                    >
+
+                        <span
+                            id="placeholder-ged0083l"
+                            class="placeholder-icon"
+                        >
+                            ▣
+                        </span>
+
+
+                        <button
+                            class="edit-image-button"
+                            type="button"
+                            data-edit-subject="ged0083l"
+                            aria-label="Change GED0083L image"
+                        >
+
+                            <img
+                                src="File_Bank/ASSETS/editImg_icon.png"
+                                alt=""
+                            >
+
+                        </button>
+
+
+                        <input
+                            type="file"
+                            id="input-ged0083l"
+                            class="subject-image-input"
+                            accept="image/*"
+                            data-subject="ged0083l"
+                            hidden
+                        >
+
+                    </div>
+
+
+                    <div class="card-info">
+
+                        <h2>
+                            GED0083L
+                        </h2>
+
+                        <p>
+                            COLLEGE PHYSICS 2 LABORATORY
+                        </p>
+
+                    </div>
 
                 </div>
 
-                <div class="card-info">
-                    <h2>GED0083L</h2>
-                    <p>COLLEGE PHYSICS 2 LABORATORY</p>
-                </div>
 
-            </div>
+            </section>
 
-
-        </section>
+        </div>
 
     </main>
 
