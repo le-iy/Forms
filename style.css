@@ -290,6 +290,103 @@ body {
 }
 
 
+/* =========================================================
+   HOME BANNER
+   ========================================================= */
+
+.home-banner {
+    width: 100%;
+
+    min-height: 200px;
+
+    margin-bottom: 60px;
+
+    padding: 22px 28px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: stretch;
+
+    background-color: #343840;
+
+    border-radius: 18px;
+
+    color: white;
+}
+
+
+
+/* =========================================================
+   HOME BANNER LEFT
+   ========================================================= */
+
+.home-banner-left {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    align-items: flex-start;
+}
+
+
+.home-banner-left h1 {
+    font-size: 46px;
+
+    line-height: 1;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+
+.home-banner-left h3 {
+    font-size: 22px;
+
+    line-height: 1;
+
+    font-weight: bold;
+}
+
+
+
+/* =========================================================
+   HOME BANNER RIGHT
+   ========================================================= */
+
+.home-banner-right {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    align-items: flex-end;
+
+    text-align: right;
+}
+
+
+.home-banner-right p {
+    font-size: 13px;
+
+    margin-bottom: 2px;
+}
+
+
+.home-banner-right h2 {
+    font-size: 24px;
+
+    line-height: 1;
+
+    font-weight: bold;
+}
+
+
 
 /* =========================================================
    PAGE TITLE
