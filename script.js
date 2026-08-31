@@ -58,13 +58,67 @@ const subjects = {
    MAIN ELEMENTS
    ========================================================= */
 
-const pageContent = document.getElementById("page-content");
+const pageContent =
+    document.getElementById("page-content");
 
-const homeLink = document.getElementById("home-link");
+const homeLink =
+    document.getElementById("home-link");
 
-const searchInput = document.getElementById("search-input");
+const searchInput =
+    document.getElementById("search-input");
 
-const subjectLinks = document.querySelectorAll(".subject-link");
+const subjectLinks =
+    document.querySelectorAll(".subject-link");
+
+
+
+/* =========================================================
+   CARD EDITOR ELEMENTS
+   ========================================================= */
+
+const cardEditorOverlay =
+    document.getElementById("card-editor-overlay");
+
+const cardEditor =
+    document.getElementById("card-editor");
+
+const cardEditorClose =
+    document.getElementById("card-editor-close");
+
+const editorSubjectCode =
+    document.getElementById("editor-subject-code");
+
+const editorImageArea =
+    document.getElementById("editor-image-area");
+
+const editorImagePreview =
+    document.getElementById("editor-image-preview");
+
+const editorImagePlaceholder =
+    document.getElementById("editor-image-placeholder");
+
+const editorAddImage =
+    document.getElementById("editor-add-image");
+
+const editorImageInput =
+    document.getElementById("editor-image-input");
+
+const editorRemoveImage =
+    document.getElementById("editor-remove-image");
+
+const editorResetButton =
+    document.getElementById("editor-reset-button");
+
+const colorOptions =
+    document.querySelectorAll(".color-option");
+
+
+
+/* =========================================================
+   CURRENT EDITED SUBJECT
+   ========================================================= */
+
+let activeEditorSubject = null;
 
 
 
@@ -73,62 +127,183 @@ const subjectLinks = document.querySelectorAll(".subject-link");
    ========================================================= */
 
 /*
-    We save the original HTML inside #page-content.
+    We save the original Home HTML.
 
-    This allows us to replace the content with a subject page,
-    then restore the exact original Home page later.
+    When a subject page is opened,
+    #page-content gets replaced.
+
+    This allows us to restore the exact Home page later.
 */
 
-const homePageHTML = pageContent.innerHTML;
+const homePageHTML =
+    pageContent.innerHTML;
 
 
 
 /* =========================================================
-   IMAGE FUNCTIONS
+   STORAGE KEYS
    ========================================================= */
 
-function saveImage(event, subjectId) {
+function getImageStorageKey(subjectId) {
 
-    const file = event.target.files[0];
+    return `subject-image-${subjectId}`;
 
+}
+
+
+function getColorStorageKey(subjectId) {
+
+    return `subject-color-${subjectId}`;
+
+}
+
+
+
+/* =========================================================
+   GET SUBJECT COLOR
+   ========================================================= */
+
+function getSubjectColor(subjectId) {
+
+    const savedColor =
+        localStorage.getItem(
+            getColorStorageKey(subjectId)
+        );
+
+
+    if (savedColor) {
+        return savedColor;
+    }
+
+
+    return subjects[subjectId].color;
+}
+
+
+
+/* =========================================================
+   APPLY SUBJECT COLOR
+   ========================================================= */
+
+function applySubjectColor(
+    subjectId,
+    color
+) {
+
+    const cardImage =
+        document.getElementById(
+            `card-image-${subjectId}`
+        );
+
+
+    if (cardImage) {
+
+        cardImage.style.background =
+            color;
+
+    }
+
+
+    const subjectDot =
+        document.querySelector(
+            `.subject-link[data-subject="${subjectId}"] .subject-dot`
+        );
+
+
+    if (subjectDot) {
+
+        subjectDot.style.backgroundColor =
+            color;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   APPLY SAVED COLOR
+   ========================================================= */
+
+function loadSavedColors() {
+
+    Object.keys(subjects).forEach(
+        function (subjectId) {
+
+            const color =
+                getSubjectColor(subjectId);
+
+
+            applySubjectColor(
+                subjectId,
+                color
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   SAVE IMAGE
+   ========================================================= */
+
+function saveImage(
+    file,
+    subjectId
+) {
 
     if (!file) {
         return;
     }
 
 
-    const reader = new FileReader();
+    const reader =
+        new FileReader();
 
 
-    reader.onload = function () {
+    reader.onload =
+        function () {
 
-        const imageData = reader.result;
-
-
-        localStorage.setItem(
-            `subject-image-${subjectId}`,
-            imageData
-        );
+            const imageData =
+                reader.result;
 
 
-        showSavedImage(
-            subjectId,
-            imageData
-        );
+            localStorage.setItem(
+                getImageStorageKey(subjectId),
+                imageData
+            );
 
-    };
+
+            showSavedImage(
+                subjectId,
+                imageData
+            );
+
+
+            showEditorImage(
+                imageData
+            );
+
+        };
 
 
     reader.readAsDataURL(file);
+
 }
 
 
 
 /* =========================================================
-   SHOW SAVED IMAGE
+   SHOW SAVED IMAGE ON CARD
    ========================================================= */
 
-function showSavedImage(subjectId, imageData) {
+function showSavedImage(
+    subjectId,
+    imageData
+) {
 
     const image =
         document.getElementById(
@@ -136,29 +311,46 @@ function showSavedImage(subjectId, imageData) {
         );
 
 
-    const placeholder =
-        document.getElementById(
-            `placeholder-${subjectId}`
-        );
-
-
-    /*
-        When we are inside a subject page,
-        the Home card does not exist.
-
-        So we check first before changing it.
-    */
-
-    if (!image || !placeholder) {
+    if (!image) {
         return;
     }
 
 
-    image.src = imageData;
+    image.src =
+        imageData;
 
-    image.style.display = "block";
 
-    placeholder.style.display = "none";
+    image.style.display =
+        "block";
+
+}
+
+
+
+/* =========================================================
+   HIDE CARD IMAGE
+   ========================================================= */
+
+function hideSavedImage(subjectId) {
+
+    const image =
+        document.getElementById(
+            `preview-${subjectId}`
+        );
+
+
+    if (!image) {
+        return;
+    }
+
+
+    image.src =
+        "";
+
+
+    image.style.display =
+        "none";
+
 }
 
 
@@ -174,7 +366,7 @@ function loadSavedImages() {
 
             const savedImage =
                 localStorage.getItem(
-                    `subject-image-${subjectId}`
+                    getImageStorageKey(subjectId)
                 );
 
 
@@ -187,6 +379,14 @@ function loadSavedImages() {
 
             }
 
+            else {
+
+                hideSavedImage(
+                    subjectId
+                );
+
+            }
+
         }
     );
 
@@ -195,7 +395,134 @@ function loadSavedImages() {
 
 
 /* =========================================================
-   EDIT IMAGE BUTTONS
+   SHOW IMAGE INSIDE EDITOR
+   ========================================================= */
+
+function showEditorImage(imageData) {
+
+    editorImagePreview.src =
+        imageData;
+
+
+    editorImagePreview.style.display =
+        "block";
+
+
+    editorImagePlaceholder.style.display =
+        "none";
+
+
+    editorRemoveImage.hidden =
+        false;
+
+}
+
+
+
+/* =========================================================
+   SHOW EDITOR PLACEHOLDER
+   ========================================================= */
+
+function showEditorPlaceholder() {
+
+    editorImagePreview.src =
+        "";
+
+
+    editorImagePreview.style.display =
+        "none";
+
+
+    editorImagePlaceholder.style.display =
+        "";
+
+
+    editorRemoveImage.hidden =
+        true;
+
+}
+
+
+
+/* =========================================================
+   OPEN CARD EDITOR
+   ========================================================= */
+
+function openCardEditor(subjectId) {
+
+    const subject =
+        subjects[subjectId];
+
+
+    if (!subject) {
+        return;
+    }
+
+
+    activeEditorSubject =
+        subjectId;
+
+
+    editorSubjectCode.textContent =
+        subject.code;
+
+
+    const savedImage =
+        localStorage.getItem(
+            getImageStorageKey(subjectId)
+        );
+
+
+    if (savedImage) {
+
+        showEditorImage(
+            savedImage
+        );
+
+    }
+
+    else {
+
+        showEditorPlaceholder();
+
+    }
+
+
+    updateSelectedColor(
+        getSubjectColor(subjectId)
+    );
+
+
+    cardEditorOverlay.hidden =
+        false;
+
+}
+
+
+
+/* =========================================================
+   CLOSE CARD EDITOR
+   ========================================================= */
+
+function closeCardEditor() {
+
+    cardEditorOverlay.hidden =
+        true;
+
+
+    activeEditorSubject =
+        null;
+
+
+    editorImageInput.value =
+        "";
+
+}
+
+
+
+/* =========================================================
+   EDIT BUTTON EVENTS
    ========================================================= */
 
 function addImageEditEvents() {
@@ -214,9 +541,10 @@ function addImageEditEvents() {
                 function (event) {
 
                     /*
-                        Prevents the subject card itself
-                        from opening.
+                        Prevent subject card navigation.
                     */
+
+                    event.preventDefault();
 
                     event.stopPropagation();
 
@@ -225,53 +553,7 @@ function addImageEditEvents() {
                         button.dataset.editSubject;
 
 
-                    const input =
-                        document.getElementById(
-                            `input-${subjectId}`
-                        );
-
-
-                    if (input) {
-                        input.click();
-                    }
-
-                }
-            );
-
-        }
-    );
-
-
-
-    const imageInputs =
-        document.querySelectorAll(
-            ".subject-image-input"
-        );
-
-
-    imageInputs.forEach(
-        function (input) {
-
-            input.addEventListener(
-                "click",
-                function (event) {
-
-                    event.stopPropagation();
-
-                }
-            );
-
-
-            input.addEventListener(
-                "change",
-                function (event) {
-
-                    const subjectId =
-                        input.dataset.subject;
-
-
-                    saveImage(
-                        event,
+                    openCardEditor(
                         subjectId
                     );
 
@@ -282,6 +564,347 @@ function addImageEditEvents() {
     );
 
 }
+
+
+
+/* =========================================================
+   OPEN IMAGE FILE PICKER
+   ========================================================= */
+
+function openImagePicker() {
+
+    if (!activeEditorSubject) {
+        return;
+    }
+
+
+    editorImageInput.click();
+
+}
+
+
+
+/* =========================================================
+   EDITOR IMAGE BUTTONS
+   ========================================================= */
+
+editorImageArea.addEventListener(
+    "click",
+    function () {
+
+        openImagePicker();
+
+    }
+);
+
+
+editorAddImage.addEventListener(
+    "click",
+    function () {
+
+        openImagePicker();
+
+    }
+);
+
+
+
+/* =========================================================
+   IMAGE INPUT
+   ========================================================= */
+
+editorImageInput.addEventListener(
+    "change",
+    function () {
+
+        if (!activeEditorSubject) {
+            return;
+        }
+
+
+        const file =
+            editorImageInput.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        saveImage(
+            file,
+            activeEditorSubject
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   REMOVE IMAGE
+   ========================================================= */
+
+editorRemoveImage.addEventListener(
+    "click",
+    function () {
+
+        if (!activeEditorSubject) {
+            return;
+        }
+
+
+        localStorage.removeItem(
+            getImageStorageKey(
+                activeEditorSubject
+            )
+        );
+
+
+        hideSavedImage(
+            activeEditorSubject
+        );
+
+
+        showEditorPlaceholder();
+
+
+        editorImageInput.value =
+            "";
+
+    }
+);
+
+
+
+/* =========================================================
+   COLOR PALETTE
+   ========================================================= */
+
+colorOptions.forEach(
+    function (button) {
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                if (!activeEditorSubject) {
+                    return;
+                }
+
+
+                const color =
+                    button.dataset.color;
+
+
+                /*
+                    Save selected color.
+                */
+
+                localStorage.setItem(
+                    getColorStorageKey(
+                        activeEditorSubject
+                    ),
+                    color
+                );
+
+
+                /*
+                    Remove the saved image so
+                    solid color becomes visible.
+                */
+
+                localStorage.removeItem(
+                    getImageStorageKey(
+                        activeEditorSubject
+                    )
+                );
+
+
+                hideSavedImage(
+                    activeEditorSubject
+                );
+
+
+                showEditorPlaceholder();
+
+
+                applySubjectColor(
+                    activeEditorSubject,
+                    color
+                );
+
+
+                updateSelectedColor(
+                    color
+                );
+
+            }
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   SHOW SELECTED COLOR IN PALETTE
+   ========================================================= */
+
+function updateSelectedColor(color) {
+
+    colorOptions.forEach(
+        function (button) {
+
+            button.classList.remove(
+                "selected"
+            );
+
+
+            if (
+                button.dataset.color
+                .toLowerCase() ===
+                color.toLowerCase()
+            ) {
+
+                button.classList.add(
+                    "selected"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   RESET CARD TO DEFAULT
+   ========================================================= */
+
+editorResetButton.addEventListener(
+    "click",
+    function () {
+
+        if (!activeEditorSubject) {
+            return;
+        }
+
+
+        const subject =
+            subjects[
+                activeEditorSubject
+            ];
+
+
+        /*
+            Remove saved image and color.
+        */
+
+        localStorage.removeItem(
+            getImageStorageKey(
+                activeEditorSubject
+            )
+        );
+
+
+        localStorage.removeItem(
+            getColorStorageKey(
+                activeEditorSubject
+            )
+        );
+
+
+        /*
+            Restore default color.
+        */
+
+        applySubjectColor(
+            activeEditorSubject,
+            subject.color
+        );
+
+
+        /*
+            Remove card image.
+        */
+
+        hideSavedImage(
+            activeEditorSubject
+        );
+
+
+        /*
+            Restore editor placeholder.
+        */
+
+        showEditorPlaceholder();
+
+
+        updateSelectedColor(
+            subject.color
+        );
+
+
+        editorImageInput.value =
+            "";
+
+    }
+);
+
+
+
+/* =========================================================
+   CLOSE EDITOR BUTTON
+   ========================================================= */
+
+cardEditorClose.addEventListener(
+    "click",
+    function () {
+
+        closeCardEditor();
+
+    }
+);
+
+
+
+/* =========================================================
+   CLICK OUTSIDE POPUP TO CLOSE
+   ========================================================= */
+
+cardEditorOverlay.addEventListener(
+    "click",
+    function (event) {
+
+        if (
+            event.target ===
+            cardEditorOverlay
+        ) {
+
+            closeCardEditor();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   PREVENT POPUP CLICK FROM CLOSING
+   ========================================================= */
+
+cardEditor.addEventListener(
+    "click",
+    function (event) {
+
+        event.stopPropagation();
+
+    }
+);
 
 
 
@@ -328,7 +951,9 @@ function addSubjectCardEvents() {
 
 function clearActiveNavigation() {
 
-    homeLink.classList.remove("active");
+    homeLink.classList.remove(
+        "active"
+    );
 
 
     subjectLinks.forEach(
@@ -370,6 +995,12 @@ function setActiveSubject(subjectId) {
     }
 
 
+    const subjectColor =
+        getSubjectColor(
+            subjectId
+        );
+
+
     subjectLink.classList.add(
         "active"
     );
@@ -377,7 +1008,7 @@ function setActiveSubject(subjectId) {
 
     subjectLink.style.setProperty(
         "--subject-color",
-        subjects[subjectId].color
+        subjectColor
     );
 
 }
@@ -390,40 +1021,32 @@ function setActiveSubject(subjectId) {
 
 function showHomePage() {
 
-    /*
-        Restore original Home HTML.
-    */
-
     pageContent.innerHTML =
         homePageHTML;
 
 
-    /*
-        Reset sidebar.
-    */
-
     clearActiveNavigation();
+
 
     homeLink.classList.add(
         "active"
     );
 
 
-    /*
-        Search bar should show again normally.
-    */
-
-    searchInput.value = "";
+    searchInput.value =
+        "";
 
 
     /*
-        Because innerHTML was restored,
-        event listeners need to be attached again.
+        HTML was restored,
+        so listeners must be attached again.
     */
 
     addSubjectCardEvents();
 
     addImageEditEvents();
+
+    loadSavedColors();
 
     loadSavedImages();
 
@@ -451,14 +1074,21 @@ function showSubjectPage(subjectId) {
     );
 
 
-    searchInput.value = "";
+    searchInput.value =
+        "";
+
+
+    const subjectColor =
+        getSubjectColor(
+            subjectId
+        );
 
 
     pageContent.innerHTML = `
 
         <div
             class="subject-heading"
-            style="--subject-color: ${subject.color};"
+            style="--subject-color: ${subjectColor};"
         >
 
             <h1>
@@ -496,9 +1126,13 @@ function showSubjectPage(subjectId) {
                 data-category="formatives"
             >
 
-                <div class="subject-menu-image formatives-bg">
+                <div
+                    class="subject-menu-image formatives-bg"
+                >
 
-                    <span class="subject-menu-placeholder">
+                    <span
+                        class="subject-menu-placeholder"
+                    >
                         ▣
                     </span>
 
@@ -529,9 +1163,13 @@ function showSubjectPage(subjectId) {
                 data-category="summatives"
             >
 
-                <div class="subject-menu-image summatives-bg">
+                <div
+                    class="subject-menu-image summatives-bg"
+                >
 
-                    <span class="subject-menu-placeholder">
+                    <span
+                        class="subject-menu-placeholder"
+                    >
                         ▣
                     </span>
 
@@ -578,7 +1216,7 @@ function showSubjectPage(subjectId) {
 
 
 
-    /* FORMATIVES AND SUMMATIVES CARDS */
+    /* FORMATIVES / SUMMATIVES */
 
     const menuCards =
         document.querySelectorAll(
@@ -619,14 +1257,6 @@ function showSubjectPage(subjectId) {
 /* =========================================================
    SUBJECT CATEGORY
    ========================================================= */
-
-/*
-    For now, this function only detects which card
-    was selected.
-
-    Later we will replace this with the actual page
-    containing the subject's formative/summative files.
-*/
 
 function openSubjectCategory(
     subjectId,
@@ -692,6 +1322,7 @@ homeLink.addEventListener(
 
         event.preventDefault();
 
+
         showHomePage();
 
     }
@@ -712,13 +1343,6 @@ searchInput.addEventListener(
                 .toLowerCase()
                 .trim();
 
-
-        /*
-            Search only filters the Home subject cards.
-
-            If no subject cards currently exist,
-            nothing happens.
-        */
 
         const subjectCards =
             document.querySelectorAll(
@@ -753,13 +1377,15 @@ searchInput.addEventListener(
                     )
                 ) {
 
-                    card.style.display = "";
+                    card.style.display =
+                        "";
 
                 }
 
                 else {
 
-                    card.style.display = "none";
+                    card.style.display =
+                        "none";
 
                 }
 
@@ -778,5 +1404,7 @@ searchInput.addEventListener(
 addSubjectCardEvents();
 
 addImageEditEvents();
+
+loadSavedColors();
 
 loadSavedImages();

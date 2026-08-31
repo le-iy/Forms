@@ -14,7 +14,9 @@ body {
 
 
 
-/* SIDEBAR */
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
 
 .sidebar {
     position: fixed;
@@ -80,7 +82,9 @@ body {
 
 
 
-/* SUBJECT LINKS */
+/* =========================================================
+   SUBJECT LINKS
+   ========================================================= */
 
 .subject-list {
     display: grid;
@@ -150,7 +154,9 @@ body {
 
 
 
-/* SIDEBAR COLORS */
+/* =========================================================
+   SIDEBAR COLORS
+   ========================================================= */
 
 .it0035 {
     background-color: #d899e8;
@@ -193,7 +199,9 @@ body {
 
 
 
-/* MAIN CONTENT */
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
 
 .main-content {
     margin-left: 190px;
@@ -205,7 +213,9 @@ body {
 
 
 
-/* SEARCH BAR */
+/* =========================================================
+   SEARCH BAR
+   ========================================================= */
 
 .search-container {
     margin-bottom: 25px;
@@ -237,7 +247,9 @@ body {
 
 
 
-/* PAGE TITLE */
+/* =========================================================
+   PAGE TITLE
+   ========================================================= */
 
 .page-title {
     font-size: 42px;
@@ -247,7 +259,9 @@ body {
 
 
 
-/* SUBJECT GRID */
+/* =========================================================
+   SUBJECT GRID
+   ========================================================= */
 
 .subject-grid {
     display: grid;
@@ -259,7 +273,9 @@ body {
 
 
 
-/* SUBJECT CARD */
+/* =========================================================
+   SUBJECT CARD
+   ========================================================= */
 
 .subject-card {
     width: 310px;
@@ -280,7 +296,9 @@ body {
 
 
 
-/* CARD IMAGE AREA */
+/* =========================================================
+   CARD IMAGE AREA
+   ========================================================= */
 
 .card-image {
     position: relative;
@@ -297,7 +315,9 @@ body {
 
 
 
-/* UPLOADED SUBJECT IMAGE */
+/* =========================================================
+   UPLOADED SUBJECT IMAGE
+   ========================================================= */
 
 .subject-image {
     position: absolute;
@@ -317,23 +337,9 @@ body {
 
 
 
-/* PLACEHOLDER ICON */
-
-.placeholder-icon {
-    position: relative;
-
-    font-size: 46px;
-
-    color: black;
-
-    pointer-events: none;
-
-    z-index: 2;
-}
-
-
-
-/* EDIT IMAGE BUTTON */
+/* =========================================================
+   EDIT IMAGE BUTTON
+   ========================================================= */
 
 .edit-image-button {
     position: absolute;
@@ -382,7 +388,9 @@ body {
 
 
 
-/* CARD INFORMATION */
+/* =========================================================
+   CARD INFORMATION
+   ========================================================= */
 
 .card-info {
     min-height: 118px;
@@ -412,7 +420,9 @@ body {
 
 
 
-/* CARD COLORS */
+/* =========================================================
+   DEFAULT CARD COLORS
+   ========================================================= */
 
 .it0035-bg {
     background-color: #d899e8;
@@ -483,7 +493,9 @@ body {
 
 
 
-/* HOME BREADCRUMB */
+/* =========================================================
+   HOME BREADCRUMB
+   ========================================================= */
 
 .breadcrumb-home {
     border: none;
@@ -513,7 +525,9 @@ body {
 
 
 
-/* SUBJECT TITLE HIGHLIGHT */
+/* =========================================================
+   SUBJECT TITLE HIGHLIGHT
+   ========================================================= */
 
 .subject-heading-highlight {
     background-color: var(--subject-color);
@@ -527,7 +541,9 @@ body {
 
 
 
-/* SUBJECT MENU GRID */
+/* =========================================================
+   SUBJECT MENU GRID
+   ========================================================= */
 
 .subject-menu-grid {
     display: grid;
@@ -539,7 +555,9 @@ body {
 
 
 
-/* FORMATIVES / SUMMATIVES CARD */
+/* =========================================================
+   FORMATIVES / SUMMATIVES CARD
+   ========================================================= */
 
 .subject-menu-card {
     width: 310px;
@@ -560,7 +578,9 @@ body {
 
 
 
-/* SUBJECT MENU IMAGE */
+/* =========================================================
+   SUBJECT MENU IMAGE
+   ========================================================= */
 
 .subject-menu-image {
     position: relative;
@@ -589,7 +609,9 @@ body {
 
 
 
-/* SUBJECT MENU INFORMATION */
+/* =========================================================
+   SUBJECT MENU INFORMATION
+   ========================================================= */
 
 .subject-menu-info {
     min-height: 118px;
@@ -619,7 +641,9 @@ body {
 
 
 
-/* FORMATIVES BACKGROUND */
+/* =========================================================
+   FORMATIVES BACKGROUND
+   ========================================================= */
 
 .formatives-bg {
     background:
@@ -632,7 +656,9 @@ body {
 
 
 
-/* SUMMATIVES BACKGROUND */
+/* =========================================================
+   SUMMATIVES BACKGROUND
+   ========================================================= */
 
 .summatives-bg {
     background:
@@ -641,4 +667,354 @@ body {
             #020202 0%,
             #3931c9 100%
         );
+}
+
+
+
+/* =========================================================
+   CARD CUSTOMIZATION POPUP
+   ========================================================= */
+
+
+/* POPUP BACKGROUND */
+
+.card-editor-overlay {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 1000;
+
+    pointer-events: none;
+}
+
+
+.card-editor-overlay:not([hidden]) {
+    display: block;
+
+    pointer-events: auto;
+}
+
+
+.card-editor-overlay[hidden] {
+    display: none;
+}
+
+
+
+/* =========================================================
+   CARD EDITOR
+   ========================================================= */
+
+.card-editor {
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 360px;
+
+    background-color: rgba(255, 255, 255, 0.96);
+
+    border-radius: 40px;
+
+    padding: 24px 18px 22px;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.28);
+
+    z-index: 1001;
+}
+
+
+
+/* =========================================================
+   EDITOR HEADER
+   ========================================================= */
+
+.card-editor-header {
+    position: relative;
+
+    display: grid;
+
+    place-items: center;
+
+    margin-bottom: 10px;
+}
+
+
+.card-editor-header h2 {
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: #111;
+}
+
+
+.card-editor-close {
+    position: absolute;
+
+    top: -12px;
+    right: -2px;
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background-color: transparent;
+
+    font-size: 26px;
+
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+
+.card-editor-close:hover {
+    background-color: #e5e5e5;
+}
+
+
+
+/* =========================================================
+   EDITOR IMAGE SECTION
+   ========================================================= */
+
+.editor-image-section {
+    display: grid;
+
+    justify-items: center;
+}
+
+
+
+/* IMAGE PREVIEW BOX */
+
+.editor-image-area {
+    position: relative;
+
+    width: 100%;
+    height: 105px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background-color: #d7d7d7;
+
+    overflow: hidden;
+
+    display: grid;
+
+    place-items: center;
+
+    cursor: pointer;
+}
+
+
+.editor-image-area:hover {
+    background-color: #cccccc;
+}
+
+
+
+/* IMAGE PREVIEW */
+
+.editor-image-preview {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+}
+
+
+
+/* IMAGE PLACEHOLDER */
+
+.editor-image-placeholder {
+    position: relative;
+
+    font-size: 46px;
+
+    color: #111;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+
+
+/* ADD IMAGE */
+
+.editor-add-image {
+    margin-top: 10px;
+
+    border: none;
+
+    background-color: transparent;
+
+    color: #111;
+
+    font-size: 17px;
+
+    cursor: pointer;
+}
+
+
+.editor-add-image:hover {
+    text-decoration: underline;
+}
+
+
+
+/* REMOVE IMAGE */
+
+.editor-remove-image {
+    margin-top: 5px;
+
+    border: none;
+
+    background-color: transparent;
+
+    color: #777;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+.editor-remove-image:hover {
+    color: #111;
+
+    text-decoration: underline;
+}
+
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.editor-divider {
+    width: 100%;
+
+    border-top: 2px dashed #8f8f8f;
+
+    margin: 11px 0 14px;
+}
+
+
+
+/* =========================================================
+   EDITOR COLOR SECTION
+   ========================================================= */
+
+.editor-color-section {
+    width: 100%;
+}
+
+
+.editor-section-label {
+    font-size: 14px;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    color: #555;
+}
+
+
+
+/* =========================================================
+   COLOR PALETTE
+   ========================================================= */
+
+.color-palette {
+    display: grid;
+
+    grid-template-columns: repeat(6, 1fr);
+
+    gap: 10px;
+
+    justify-items: center;
+}
+
+
+.color-option {
+    width: 34px;
+    height: 34px;
+
+    border: 3px solid transparent;
+
+    border-radius: 50%;
+
+    background-color: var(--swatch-color);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease;
+}
+
+
+.color-option:hover {
+    transform: scale(1.12);
+}
+
+
+.color-option.selected {
+    border-color: #111;
+
+    transform: scale(1.08);
+}
+
+
+
+/* =========================================================
+   RESET BUTTON
+   ========================================================= */
+
+.editor-reset-button {
+    display: block;
+
+    margin: 18px auto 0;
+
+    border: none;
+
+    background-color: transparent;
+
+    color: #777;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+
+.editor-reset-button:hover {
+    color: #111;
+
+    text-decoration: underline;
 }
