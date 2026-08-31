@@ -4,11 +4,14 @@
     padding: 0;
 }
 
+
 body {
     font-family: Arial, sans-serif;
+
     background-color: #f6f6f6;
     color: #111;
 }
+
 
 
 /* SIDEBAR */
@@ -22,6 +25,7 @@ body {
     height: 100vh;
 
     background-color: #343840;
+
     padding: 30px 22px;
 
     color: white;
@@ -30,17 +34,20 @@ body {
 
 .main-nav {
     display: grid;
+
     gap: 12px;
 }
 
 
 .nav-item {
     color: white;
+
     text-decoration: none;
 
     font-size: 18px;
 
     padding: 10px 12px;
+
     border-radius: 12px;
 }
 
@@ -52,35 +59,43 @@ body {
 
 .nav-item.active {
     background-color: #e0e0e0;
+
     color: black;
 
     font-weight: bold;
+
     text-align: center;
 }
 
 
 .sidebar hr {
     border: none;
+
     border-top: 1px solid #d0d0d0;
 
     margin: 20px 0;
 }
 
 
+
 /* SUBJECT LINKS */
 
 .subject-list {
     display: grid;
+
     gap: 17px;
 }
 
 
 .subject-link {
     display: grid;
+
     grid-template-columns: 18px 1fr;
+
     align-items: center;
 
     text-decoration: none;
+
     color: white;
 
     font-size: 18px;
@@ -95,39 +110,48 @@ body {
 }
 
 
+
 /* SIDEBAR COLORS */
 
 .it0035 {
     background-color: #d899e8;
 }
 
+
 .it0035l {
     background-color: #20e99d;
 }
+
 
 .it0037 {
     background-color: #3ca8e8;
 }
 
+
 .it0049 {
     background-color: #ff5757;
 }
+
 
 .it0204 {
     background-color: #d4d4d4;
 }
 
+
 .it0015 {
     background-color: #ffbc59;
 }
+
 
 .ged0083 {
     background-color: #8848f5;
 }
 
+
 .ged0083l {
     background-color: #ffde59;
 }
+
 
 
 /* MAIN CONTENT */
@@ -139,6 +163,9 @@ body {
 }
 
 
+
+/* SEARCH BAR */
+
 .search-container {
     margin-bottom: 25px;
 }
@@ -146,6 +173,7 @@ body {
 
 .search-container input {
     width: 45%;
+
     min-width: 350px;
 
     border: none;
@@ -167,10 +195,15 @@ body {
 }
 
 
+
+/* HOME TITLE */
+
 .main-content h1 {
     font-size: 42px;
+
     margin-bottom: 18px;
 }
+
 
 
 /* SUBJECT GRID */
@@ -184,7 +217,8 @@ body {
 }
 
 
-/* CARDS */
+
+/* SUBJECT CARD */
 
 .subject-card {
     width: 310px;
@@ -204,6 +238,7 @@ body {
 }
 
 
+
 /* CARD IMAGE AREA */
 
 .card-image {
@@ -213,12 +248,12 @@ body {
     height: 160px;
 
     display: grid;
+
     place-items: center;
 
     overflow: hidden;
-
-    cursor: pointer;
 }
+
 
 
 /* UPLOADED SUBJECT IMAGE */
@@ -235,7 +270,10 @@ body {
     object-fit: cover;
 
     display: none;
+
+    z-index: 1;
 }
+
 
 
 /* PLACEHOLDER ICON */
@@ -247,10 +285,62 @@ body {
 
     color: black;
 
-    z-index: 1;
+    pointer-events: none;
+
+    z-index: 2;
+}
+
+
+
+/* EDIT IMAGE BUTTON */
+
+.edit-image-button {
+    position: absolute;
+
+    top: 14px;
+    right: 16px;
+
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background-color: transparent;
+
+    cursor: pointer;
+
+    z-index: 3;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.edit-image-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+
+    transform: scale(1.05);
+}
+
+
+/* SVG ICON INSIDE EDIT BUTTON */
+
+.edit-image-button img {
+    width: 29px;
+    height: 29px;
+
+    object-fit: contain;
 
     pointer-events: none;
 }
+
 
 
 /* CARD INFORMATION */
@@ -268,6 +358,7 @@ body {
 
 .card-info h2 {
     font-size: 21px;
+
     font-weight: normal;
 
     margin-bottom: 4px;
@@ -281,35 +372,43 @@ body {
 }
 
 
+
 /* CARD COLORS */
 
 .it0035-bg {
     background-color: #d899e8;
 }
 
+
 .it0035l-bg {
     background-color: #20e99d;
 }
+
 
 .it0037-bg {
     background-color: #3ca8e8;
 }
 
+
 .it0049-bg {
     background-color: #ff5757;
 }
+
 
 .it0204-bg {
     background-color: #d4d4d4;
 }
 
+
 .it0015-bg {
     background-color: #ffbc59;
 }
 
+
 .ged0083-bg {
     background-color: #8848f5;
 }
+
 
 .ged0083l-bg {
     background-color: #ffde59;
