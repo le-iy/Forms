@@ -1,4 +1,62 @@
 /* =========================================================
+   GLOBAL THEME VARIABLES
+
+   These control the WEBSITE theme only.
+
+   They DO NOT control:
+   - subject card custom colors
+   - formative card custom colors
+   - summative card custom colors
+   - reviewer card custom colors
+   - uploaded card images
+   ========================================================= */
+
+:root {
+    /* Main page background */
+    --theme-background: #f6f6f6;
+
+    /* OUTLINE / main structural surface:
+       sidebar
+       banner
+       lower card area
+       active surface elements
+    */
+    --theme-outline: #343840;
+
+    /* Text placed ON Outline */
+    --theme-text: #ffffff;
+
+    /* Text placed directly on Background */
+    --theme-non-outline-text: #111111;
+
+    /* Secondary / muted text */
+    --theme-muted-text: #666666;
+
+    /* Neutral search / preview field */
+    --theme-input-background: #e8e8e8;
+
+    /* Neutral search / preview focus */
+    --theme-input-focus: #dddddd;
+
+    /* Divider */
+    --theme-divider: #d0d0d0;
+
+    /* Home active navigation */
+    --theme-home-active: #e0e0e0;
+
+    /* Editor light surface */
+    --theme-editor-background: rgba(255, 255, 255, 0.96);
+
+    /* Editor preview gray */
+    --theme-editor-preview: #d7d7d7;
+
+    /* Editor preview hover */
+    --theme-editor-preview-hover: #cccccc;
+}
+
+
+
+/* =========================================================
    GLOBAL RESET
    ========================================================= */
 
@@ -12,8 +70,9 @@
 body {
     font-family: Arial, sans-serif;
 
-    background-color: #f6f6f6;
-    color: #111;
+    background: var(--theme-background);
+
+    color: var(--theme-non-outline-text);
 }
 
 
@@ -24,21 +83,27 @@ body {
 
 .sidebar {
     position: fixed;
+
     top: 0;
     left: 0;
 
     width: 127px;
     height: 100vh;
 
-    background-color: #343840;
+    background: var(--theme-outline);
 
     padding: 20px 15px;
 
-    color: white;
+    color: var(--theme-text);
 
     overflow-y: auto;
 }
 
+
+
+/* =========================================================
+   MAIN NAVIGATION
+   ========================================================= */
 
 .main-nav {
     display: grid;
@@ -48,7 +113,7 @@ body {
 
 
 .nav-item {
-    color: white;
+    color: var(--theme-text);
 
     text-decoration: none;
 
@@ -65,7 +130,7 @@ body {
 
 
 .nav-item:hover {
-    background-color: #464b54;
+    background: var(--theme-outline);
 }
 
 
@@ -75,9 +140,9 @@ body {
    ========================================================= */
 
 #home-link.active {
-    background-color: #e0e0e0;
+    background-color: var(--theme-home-active);
 
-    color: black;
+    color: var(--theme-non-outline-text);
 
     font-weight: bold;
 
@@ -86,7 +151,7 @@ body {
 
 
 #home-link.active:hover {
-    background-color: #e0e0e0;
+    background-color: var(--theme-home-active);
 }
 
 
@@ -101,9 +166,9 @@ body {
    ========================================================= */
 
 .main-nav .nav-item.active:not(#home-link) {
-    background-color: #000000;
+    background: var(--theme-outline);
 
-    color: white;
+    color: var(--theme-text);
 
     font-weight: bold;
 
@@ -112,14 +177,19 @@ body {
 
 
 .main-nav .nav-item.active:not(#home-link):hover {
-    background-color: #000000;
+    background: var(--theme-outline);
 }
 
+
+
+/* =========================================================
+   SIDEBAR DIVIDER
+   ========================================================= */
 
 .sidebar hr {
     border: none;
 
-    border-top: 1px solid #d0d0d0;
+    border-top: 1px solid var(--theme-divider);
 
     margin: 13px 0;
 }
@@ -146,7 +216,7 @@ body {
 
     text-decoration: none;
 
-    color: white;
+    color: var(--theme-text);
 
     font-size: 12px;
 
@@ -157,19 +227,31 @@ body {
 
 
 .subject-link:hover {
-    background-color: #464b54;
+    background: var(--theme-outline);
 
     padding-left: 5px;
+
     padding-right: 5px;
 }
 
+
+
+/* =========================================================
+   ACTIVE SUBJECT
+
+   IMPORTANT:
+   This still uses --subject-color.
+
+   That keeps subject customization independent
+   from the website theme.
+   ========================================================= */
 
 .subject-link.active {
     grid-template-columns: 1fr;
 
     background-color: var(--subject-color);
 
-    color: #111;
+    color: #111111;
 
     font-weight: bold;
 
@@ -199,7 +281,11 @@ body {
 
 
 /* =========================================================
-   SIDEBAR COLORS
+   DEFAULT SUBJECT COLORS
+
+   DO NOT convert these into global theme variables.
+
+   These belong to individual subjects.
    ========================================================= */
 
 .it0035 {
@@ -253,6 +339,10 @@ body {
     padding: 20px 23px 34px;
 
     min-height: 100vh;
+
+    background: var(--theme-background);
+
+    color: var(--theme-non-outline-text);
 }
 
 
@@ -273,7 +363,9 @@ body {
 
     border: none;
 
-    background-color: #e8e8e8;
+    background-color: var(--theme-input-background);
+
+    color: var(--theme-non-outline-text);
 
     padding: 8px 13px;
 
@@ -285,8 +377,13 @@ body {
 }
 
 
+.search-container input::placeholder {
+    color: var(--theme-muted-text);
+}
+
+
 .search-container input:focus {
-    background-color: #dddddd;
+    background-color: var(--theme-input-focus);
 }
 
 
@@ -296,6 +393,8 @@ body {
    ========================================================= */
 
 .home-banner {
+    position: relative;
+
     width: 100%;
 
     min-height: 134px;
@@ -310,11 +409,11 @@ body {
 
     align-items: stretch;
 
-    background-color: #343840;
+    background: var(--theme-outline);
 
     border-radius: 12px;
 
-    color: white;
+    color: var(--theme-text);
 }
 
 
@@ -342,6 +441,8 @@ body {
     font-weight: bold;
 
     margin-bottom: 5px;
+
+    color: var(--theme-text);
 }
 
 
@@ -351,6 +452,8 @@ body {
     line-height: 1;
 
     font-weight: bold;
+
+    color: var(--theme-text);
 }
 
 
@@ -376,6 +479,8 @@ body {
     font-size: 9px;
 
     margin-bottom: 2px;
+
+    color: var(--theme-text);
 }
 
 
@@ -385,6 +490,61 @@ body {
     line-height: 1;
 
     font-weight: bold;
+
+    color: var(--theme-text);
+}
+
+
+
+/* =========================================================
+   THEME SETTINGS BUTTON
+   ========================================================= */
+
+.theme-settings-button {
+    position: absolute;
+
+    top: 12px;
+    right: 14px;
+
+    width: 30px;
+    height: 30px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background-color: transparent;
+
+    color: var(--theme-text);
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.theme-settings-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+
+    transform: scale(1.06);
+}
+
+
+.theme-settings-button img {
+    width: 21px;
+    height: 21px;
+
+    object-fit: contain;
+
+    pointer-events: none;
 }
 
 
@@ -397,6 +557,8 @@ body {
     font-size: 28px;
 
     margin-bottom: 12px;
+
+    color: var(--theme-non-outline-text);
 }
 
 
@@ -440,6 +602,9 @@ body {
 
 /* =========================================================
    HOME CARD IMAGE AREA
+
+   IMPORTANT:
+   Background colors here remain card-specific.
    ========================================================= */
 
 .card-image {
@@ -532,16 +697,18 @@ body {
 
 /* =========================================================
    HOME CARD INFORMATION
+
+   Outline controls this area.
    ========================================================= */
 
 .card-info {
     min-height: 79px;
 
-    background-color: #343840;
+    background: var(--theme-outline);
 
     padding: 11px 13px 13px;
 
-    color: white;
+    color: var(--theme-text);
 }
 
 
@@ -551,6 +718,8 @@ body {
     font-weight: normal;
 
     margin-bottom: 3px;
+
+    color: var(--theme-text);
 }
 
 
@@ -558,12 +727,16 @@ body {
     font-size: 9px;
 
     line-height: 1.35;
+
+    color: var(--theme-text);
 }
 
 
 
 /* =========================================================
    DEFAULT HOME CARD COLORS
+
+   CARD-SPECIFIC.
    ========================================================= */
 
 .it0035-bg {
@@ -628,6 +801,8 @@ body {
     font-size: 28px;
 
     line-height: 1.15;
+
+    color: var(--theme-non-outline-text);
 }
 
 
@@ -641,7 +816,7 @@ body {
 
     background-color: transparent;
 
-    color: #111;
+    color: var(--theme-non-outline-text);
 
     font: inherit;
 
@@ -659,6 +834,8 @@ body {
 
 
 .breadcrumb-slash {
+    color: var(--theme-non-outline-text);
+
     font-weight: bold;
 }
 
@@ -666,6 +843,8 @@ body {
 
 /* =========================================================
    SUBJECT TITLE HIGHLIGHT
+
+   Subject color stays independent.
    ========================================================= */
 
 .subject-heading-highlight {
@@ -820,11 +999,11 @@ body {
 .subject-menu-info {
     min-height: 79px;
 
-    background-color: #343840;
+    background: var(--theme-outline);
 
     padding: 11px 13px 13px;
 
-    color: white;
+    color: var(--theme-text);
 }
 
 
@@ -834,6 +1013,8 @@ body {
     font-weight: normal;
 
     margin-bottom: 3px;
+
+    color: var(--theme-text);
 }
 
 
@@ -841,6 +1022,8 @@ body {
     font-size: 9px;
 
     line-height: 1.35;
+
+    color: var(--theme-text);
 }
 
 
@@ -882,6 +1065,8 @@ body {
    - Formatives
    - Summatives
    - Reviewers
+
+   Background is intentionally NOT theme-controlled.
    ========================================================= */
 
 .item-visual {
@@ -975,11 +1160,11 @@ body {
 .category-item-info {
     min-height: 79px;
 
-    background-color: #343840;
+    background: var(--theme-outline);
 
     padding: 11px 13px 13px;
 
-    color: white;
+    color: var(--theme-text);
 }
 
 
@@ -989,6 +1174,8 @@ body {
     font-weight: normal;
 
     margin-bottom: 3px;
+
+    color: var(--theme-text);
 }
 
 
@@ -996,6 +1183,8 @@ body {
     font-size: 9px;
 
     line-height: 1.35;
+
+    color: var(--theme-text);
 }
 
 
@@ -1014,7 +1203,7 @@ body {
 
 
 .category-item-link {
-    color: white;
+    color: var(--theme-text);
 
     font-size: 9px;
 
@@ -1035,7 +1224,7 @@ body {
 .empty-category-message {
     font-size: 12px;
 
-    color: #666;
+    color: var(--theme-muted-text);
 
     margin-top: 7px;
 }
@@ -1072,6 +1261,8 @@ body {
 
 /* =========================================================
    GLOBAL CATEGORY IMAGE AREA
+
+   Remains individually customizable.
    ========================================================= */
 
 .global-category-image {
@@ -1092,11 +1283,11 @@ body {
 .global-category-info {
     min-height: 79px;
 
-    background-color: #343840;
+    background: var(--theme-outline);
 
     padding: 11px 13px 13px;
 
-    color: white;
+    color: var(--theme-text);
 }
 
 
@@ -1106,6 +1297,8 @@ body {
     font-weight: normal;
 
     margin-bottom: 3px;
+
+    color: var(--theme-text);
 }
 
 
@@ -1113,6 +1306,8 @@ body {
     font-size: 9px;
 
     line-height: 1.35;
+
+    color: var(--theme-text);
 }
 
 
@@ -1158,7 +1353,7 @@ body {
 
     padding: 8px 12px;
 
-    color: white;
+    color: #ffffff;
 
     font-size: 11px;
 
@@ -1195,7 +1390,7 @@ body {
    ========================================================= */
 
 .reviewer-filter-button.active {
-    outline: 2px solid #111;
+    outline: 2px solid #111111;
 
     outline-offset: 2px;
 
@@ -1246,6 +1441,9 @@ body {
 
 /* =========================================================
    CARD CUSTOMIZATION POPUP
+
+   CARD EDITOR remains visually neutral.
+   It is independent from global theme settings.
    ========================================================= */
 
 .card-editor-overlay {
@@ -1290,7 +1488,7 @@ body {
 
     width: 241px;
 
-    background-color: rgba(255, 255, 255, 0.96);
+    background-color: var(--theme-editor-background);
 
     border-radius: 27px;
 
@@ -1324,7 +1522,7 @@ body {
 
     font-weight: bold;
 
-    color: #111;
+    color: #111111;
 }
 
 
@@ -1342,6 +1540,8 @@ body {
     border-radius: 50%;
 
     background-color: transparent;
+
+    color: #111111;
 
     font-size: 17px;
 
@@ -1383,7 +1583,7 @@ body {
 
     border-radius: 13px;
 
-    background-color: #d7d7d7;
+    background-color: var(--theme-editor-preview);
 
     overflow: hidden;
 
@@ -1396,7 +1596,7 @@ body {
 
 
 .editor-image-area:hover {
-    background-color: #cccccc;
+    background-color: var(--theme-editor-preview-hover);
 }
 
 
@@ -1430,7 +1630,7 @@ body {
 
     font-size: 31px;
 
-    color: #111;
+    color: #111111;
 
     z-index: 1;
 
@@ -1450,7 +1650,7 @@ body {
 
     background-color: transparent;
 
-    color: #111;
+    color: #111111;
 
     font-size: 11px;
 
@@ -1475,7 +1675,7 @@ body {
 
     background-color: transparent;
 
-    color: #777;
+    color: #777777;
 
     font-size: 9px;
 
@@ -1484,7 +1684,7 @@ body {
 
 
 .editor-remove-image:hover {
-    color: #111;
+    color: #111111;
 
     text-decoration: underline;
 }
@@ -1492,7 +1692,7 @@ body {
 
 
 /* =========================================================
-   DIVIDER
+   CARD EDITOR DIVIDER
    ========================================================= */
 
 .editor-divider {
@@ -1521,13 +1721,13 @@ body {
 
     text-align: center;
 
-    color: #555;
+    color: #555555;
 }
 
 
 
 /* =========================================================
-   COLOR PALETTE
+   CARD COLOR PALETTE
    ========================================================= */
 
 .color-palette {
@@ -1565,7 +1765,7 @@ body {
 
 
 .color-option.selected {
-    border-color: #111;
+    border-color: #111111;
 
     transform: scale(1.08);
 }
@@ -1573,7 +1773,7 @@ body {
 
 
 /* =========================================================
-   RESET BUTTON
+   CARD RESET BUTTON
    ========================================================= */
 
 .editor-reset-button {
@@ -1585,7 +1785,7 @@ body {
 
     background-color: transparent;
 
-    color: #777;
+    color: #777777;
 
     font-size: 9px;
 
@@ -1594,7 +1794,857 @@ body {
 
 
 .editor-reset-button:hover {
-    color: #111;
+    color: #111111;
 
     text-decoration: underline;
+}
+
+
+
+/* =========================================================
+   =========================================================
+   GLOBAL THEME SETTINGS PAGE
+   =========================================================
+   ========================================================= */
+
+
+
+/* =========================================================
+   THEME PAGE WRAPPER
+   ========================================================= */
+
+.theme-page {
+    width: 100%;
+
+    color: var(--theme-non-outline-text);
+}
+
+
+
+/* =========================================================
+   THEME PAGE HEADER
+   ========================================================= */
+
+.theme-page-header {
+    margin-bottom: 22px;
+}
+
+
+.theme-page-header h1 {
+    display: inline-block;
+
+    font-size: 28px;
+
+    line-height: 1;
+
+    font-weight: bold;
+
+    color: var(--theme-non-outline-text);
+
+    padding-bottom: 7px;
+
+    border-bottom: 2px dashed var(--theme-non-outline-text);
+}
+
+
+
+/* =========================================================
+   THEME SETTINGS COLUMNS
+
+   LEFT:
+   Background
+   Text
+
+   RIGHT:
+   Outline
+   Non-Outline Text
+
+   Independent columns = no giant row gap.
+   ========================================================= */
+
+.theme-settings-columns {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 45px;
+
+    width: 100%;
+
+    align-items: start;
+}
+
+
+.theme-settings-column {
+    display: grid;
+
+    gap: 24px;
+
+    align-content: start;
+
+    min-width: 0;
+}
+
+
+
+/* =========================================================
+   THEME CONTROL GROUP
+   ========================================================= */
+
+.theme-control-group {
+    min-width: 0;
+}
+
+
+.theme-control-title {
+    font-size: 16px;
+
+    font-weight: normal;
+
+    margin-bottom: 9px;
+
+    color: var(--theme-non-outline-text);
+}
+
+
+
+/* =========================================================
+   GENERAL THEME PREVIEW
+   ========================================================= */
+
+.theme-preview {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 118px;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    margin-bottom: 17px;
+}
+
+
+
+/* =========================================================
+   BACKGROUND PREVIEW
+
+   The page itself shows the selected Background.
+
+   This preview stays neutral because it is also
+   the upload/background image area.
+   ========================================================= */
+
+.theme-background-preview {
+    display: grid;
+
+    place-items: center;
+
+    background: var(--theme-input-background);
+}
+
+
+.theme-background-preview-icon {
+    position: relative;
+
+    font-size: 47px;
+
+    line-height: 1;
+
+    color: var(--theme-non-outline-text);
+
+    z-index: 2;
+}
+
+
+
+/* =========================================================
+   OPTIONAL BACKGROUND IMAGE PREVIEW
+   ========================================================= */
+
+.theme-background-preview-image {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+
+    z-index: 1;
+}
+
+
+
+/* =========================================================
+   OUTLINE PREVIEW
+
+   Only the LEFT STRIP displays the chosen Outline.
+   Rest stays neutral gray, matching the mockup.
+   ========================================================= */
+
+.theme-outline-preview {
+    display: grid;
+
+    grid-template-columns: 25px 1fr;
+
+    background-color: var(--theme-input-background);
+}
+
+
+.theme-outline-preview-accent {
+    width: 100%;
+    height: 100%;
+
+    background: var(--theme-outline);
+}
+
+
+.theme-outline-preview-body {
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--theme-input-background);
+}
+
+
+
+/* =========================================================
+   TEXT PREVIEW
+
+   Background = Outline
+   Words = Text
+   ========================================================= */
+
+.theme-text-preview {
+    min-height: 58px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    align-items: center;
+
+    justify-items: center;
+
+    padding: 10px;
+
+    background: var(--theme-outline);
+}
+
+
+.theme-text-preview strong {
+    font-size: 22px;
+
+    color: var(--theme-text);
+}
+
+
+.theme-text-preview span {
+    font-size: 22px;
+
+    color: var(--theme-text);
+}
+
+
+
+/* =========================================================
+   NON-OUTLINE TEXT PREVIEW
+
+   Background stays neutral.
+   Words use Non-Outline Text.
+   ========================================================= */
+
+.theme-non-outline-preview {
+    min-height: 58px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    align-items: center;
+
+    justify-items: center;
+
+    padding: 10px;
+
+    background-color: var(--theme-input-background);
+}
+
+
+.theme-non-outline-preview strong {
+    font-size: 22px;
+
+    color: var(--theme-non-outline-text);
+}
+
+
+.theme-non-outline-preview span {
+    font-size: 22px;
+
+    color: var(--theme-non-outline-text);
+}
+
+
+
+/* =========================================================
+   THEME SWATCH GRID
+   ========================================================= */
+
+.theme-swatch-grid {
+    display: grid;
+
+    grid-template-columns: repeat(9, 30px);
+
+    gap: 10px 12px;
+
+    align-items: center;
+
+    justify-content: start;
+}
+
+
+
+/* =========================================================
+   THEME SWATCH
+   ========================================================= */
+
+.theme-swatch {
+    position: relative;
+
+    width: 30px;
+    height: 30px;
+
+    border: 3px solid transparent;
+
+    border-radius: 50%;
+
+    background: var(--theme-swatch);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        border-color 0.15s ease;
+}
+
+
+.theme-swatch:hover {
+    transform: scale(1.1);
+}
+
+
+
+/* =========================================================
+   SELECTED THEME SWATCH
+   ========================================================= */
+
+.theme-swatch.selected {
+    border-color: var(--theme-non-outline-text);
+
+    box-shadow:
+        0 0 0 2px var(--theme-input-background);
+
+    transform: scale(1.07);
+}
+
+
+
+/* =========================================================
+   THEME SOLID SWATCH COLORS
+   ========================================================= */
+
+.theme-swatch-black {
+    --theme-swatch: #000000;
+}
+
+
+.theme-swatch-gray {
+    --theme-swatch: #5c5c5c;
+}
+
+
+.theme-swatch-dark-red {
+    --theme-swatch: #970000;
+}
+
+
+.theme-swatch-red {
+    --theme-swatch: #ff3434;
+}
+
+
+.theme-swatch-purple {
+    --theme-swatch: #8848f5;
+}
+
+
+.theme-swatch-teal {
+    --theme-swatch: #0b9db5;
+}
+
+
+.theme-swatch-blue {
+    --theme-swatch: #38a9ef;
+}
+
+
+.theme-swatch-dark-gray {
+    --theme-swatch: #343840;
+}
+
+
+.theme-swatch-yellow-green {
+    --theme-swatch: #dedb29;
+}
+
+
+.theme-swatch-periwinkle {
+    --theme-swatch: #5273f6;
+}
+
+
+.theme-swatch-dark-blue {
+    --theme-swatch: #0c56ba;
+}
+
+
+.theme-swatch-brown {
+    --theme-swatch: #3c241b;
+}
+
+
+.theme-swatch-green {
+    --theme-swatch: #08bf67;
+}
+
+
+.theme-swatch-light-green {
+    --theme-swatch: #adf663;
+}
+
+
+.theme-swatch-yellow {
+    --theme-swatch: #ffda59;
+}
+
+
+.theme-swatch-orange {
+    --theme-swatch: #ff914d;
+}
+
+
+.theme-swatch-dark-teal {
+    --theme-swatch: #0f9bad;
+}
+
+
+.theme-swatch-gold {
+    --theme-swatch: #8f6200;
+}
+
+
+
+/* =========================================================
+   THEME GRADIENT SWATCHES
+   ========================================================= */
+
+.theme-gradient-night {
+    --theme-swatch:
+        linear-gradient(
+            135deg,
+            #000000,
+            #13105e,
+            #3744ff
+        );
+}
+
+
+.theme-gradient-green {
+    --theme-swatch:
+        linear-gradient(
+            135deg,
+            #079cad,
+            #30b7a3,
+            #72e042
+        );
+}
+
+
+.theme-gradient-purple-orange {
+    --theme-swatch:
+        linear-gradient(
+            135deg,
+            #6b45ff,
+            #bd5de0,
+            #ff8f4e
+        );
+}
+
+
+.theme-gradient-purple-gold {
+    --theme-swatch:
+        linear-gradient(
+            180deg,
+            #7649e9,
+            #b96fa5,
+            #ffda3d
+        );
+}
+
+
+.theme-gradient-mint-blue {
+    --theme-swatch:
+        linear-gradient(
+            135deg,
+            #c9f6dc,
+            #c4f4df,
+            #8cc4ff
+        );
+}
+
+
+.theme-gradient-cyan-blue {
+    --theme-swatch:
+        linear-gradient(
+            135deg,
+            #5ee4cd,
+            #18aab5,
+            #1671e5
+        );
+}
+
+
+.theme-gradient-rainbow {
+    --theme-swatch:
+        linear-gradient(
+            135deg,
+            #7d4dff,
+            #d65bce,
+            #ff8458
+        );
+}
+
+
+.theme-gradient-violet {
+    --theme-swatch:
+        linear-gradient(
+            135deg,
+            #2262ff,
+            #7545ee,
+            #e161dc
+        );
+}
+
+
+.theme-gradient-red-orange {
+    --theme-swatch:
+        linear-gradient(
+            135deg,
+            #ff2733,
+            #ff553e,
+            #ff8744
+        );
+}
+
+
+
+/* =========================================================
+   THEME BACKGROUND IMAGE BUTTON
+
+   This is the ONE big Background preview/upload box.
+   ========================================================= */
+
+.theme-background-image-button {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 118px;
+
+    margin-bottom: 17px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background-color: var(--theme-input-background);
+
+    display: grid;
+
+    place-items: center;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    color: var(--theme-non-outline-text);
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.theme-background-image-button:hover {
+    background-color: var(--theme-input-focus);
+
+    transform: translateY(-2px);
+}
+
+
+.theme-background-image-button span {
+    font-size: 45px;
+
+    line-height: 1;
+}
+
+
+
+/* =========================================================
+   THEME ACTIONS
+   ========================================================= */
+
+.theme-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 30px;
+
+    padding-top: 15px;
+
+    border-top: 1px solid var(--theme-divider);
+}
+
+
+
+/* =========================================================
+   THEME RESET BUTTON
+   ========================================================= */
+
+.theme-reset-button {
+    border: none;
+
+    border-radius: 9px;
+
+    background-color: var(--theme-input-background);
+
+    color: var(--theme-non-outline-text);
+
+    padding: 8px 14px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+.theme-reset-button:hover {
+    background-color: var(--theme-input-focus);
+
+    transform: translateY(-1px);
+}
+
+
+
+/* =========================================================
+   THEME BACK BUTTON
+
+   Outline controls the button.
+   Text controls its text.
+   ========================================================= */
+
+.theme-back-button {
+    border: none;
+
+    border-radius: 9px;
+
+    background: var(--theme-outline);
+
+    color: var(--theme-text);
+
+    padding: 8px 14px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.theme-back-button:hover {
+    opacity: 0.85;
+
+    transform: translateY(-1px);
+}
+
+
+
+/* =========================================================
+   THEME IMAGE REMOVE BUTTON
+   ========================================================= */
+
+.theme-remove-background-button {
+    margin-top: -9px;
+    margin-bottom: 12px;
+
+    border: none;
+
+    background-color: transparent;
+
+    color: var(--theme-muted-text);
+
+    font-size: 10px;
+
+    cursor: pointer;
+}
+
+
+.theme-remove-background-button:hover {
+    color: var(--theme-non-outline-text);
+
+    text-decoration: underline;
+}
+
+
+
+/* =========================================================
+   GLOBAL CUSTOM BACKGROUND IMAGE
+   ========================================================= */
+
+body.theme-has-background-image {
+    background-position: center;
+
+    background-size: cover;
+
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+}
+
+
+body.theme-has-background-image .main-content {
+    background: transparent;
+}
+
+
+
+/* =========================================================
+   OPTIONAL THEME BACKGROUND OVERLAY
+   ========================================================= */
+
+.theme-background-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background-color: transparent;
+
+    pointer-events: none;
+
+    z-index: -1;
+}
+
+
+
+/* =========================================================
+   THEME PAGE EMPTY SPACE / BOTTOM
+   ========================================================= */
+
+.theme-page-spacer {
+    height: 40px;
+}
+
+
+
+/* =========================================================
+   ADAPTIVE BACKGROUND TEXT
+
+   JS adds .adaptive-background-text only to text that sits
+   directly on the page background / wallpaper.
+
+   The user's Non-Outline Text color remains the preferred
+   color. JS only overrides it with a readable black/white
+   fallback when contrast is too low.
+   ========================================================= */
+
+.page-title.adaptive-background-text,
+.subject-heading h1.adaptive-background-text,
+.breadcrumb-home.adaptive-background-text,
+.breadcrumb-slash.adaptive-background-text,
+.empty-category-message.adaptive-background-text,
+.theme-page-header h1.adaptive-background-text,
+.theme-control-title.adaptive-background-text,
+.theme-remove-background-button.adaptive-background-text {
+    color: var(
+        --adaptive-background-text,
+        var(--theme-non-outline-text)
+    );
+}
+
+
+
+/* =========================================================
+   ADAPTIVE THEME HEADER UNDERLINE
+
+   ISTETIK ;P dashed underline follows the same adaptive
+   black/white fallback as the heading itself.
+   ========================================================= */
+
+.theme-page-header h1.adaptive-background-text {
+    border-bottom-color: var(
+        --adaptive-background-text,
+        var(--theme-non-outline-text)
+    );
+}
+
+
+
+/* =========================================================
+   SUBJECT BREADCRUMB EXCEPTION
+
+   The subject code must stay subject-colored even though
+   it is also a breadcrumb-home element.
+   ========================================================= */
+
+.breadcrumb-home.subject-heading-highlight.adaptive-background-text {
+    color: var(--subject-color);
+}
+
+
+
+/* =========================================================
+   REMOVE BACKGROUND HOVER
+
+   Prevent the hover state from replacing the adaptive
+   readable text color.
+   ========================================================= */
+
+.theme-remove-background-button.adaptive-background-text:hover {
+    color: var(
+        --adaptive-background-text,
+        var(--theme-non-outline-text)
+    );
 }
