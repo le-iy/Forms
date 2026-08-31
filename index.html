@@ -268,9 +268,6 @@
 
         <!-- =================================================
              PAGE CONTENT
-
-             This section can be replaced by script.js when
-             a subject is selected.
              ================================================= -->
 
         <div id="page-content">
@@ -308,8 +305,6 @@
                     >
 
 
-                        <!-- CUSTOM IMAGE -->
-
                         <img
                             id="preview-it0035"
                             class="subject-image"
@@ -317,8 +312,6 @@
                             alt="IT0035 card image"
                         >
 
-
-                        <!-- EDIT BUTTON -->
 
                         <button
                             class="edit-image-button"
@@ -817,7 +810,9 @@
         >
 
 
-            <!-- EDITOR HEADER -->
+            <!-- =================================================
+                 EDITOR HEADER
+                 ================================================= -->
 
             <div class="card-editor-header">
 
@@ -846,16 +841,13 @@
             <div class="editor-image-section">
 
 
-                <!-- IMAGE PREVIEW / ADD IMAGE BUTTON -->
-
                 <button
                     class="editor-image-area"
                     id="editor-image-area"
                     type="button"
+                    aria-label="Add or change card image"
                 >
 
-
-                    <!-- IMAGE PREVIEW -->
 
                     <img
                         class="editor-image-preview"
@@ -864,8 +856,6 @@
                         alt="Selected card image"
                     >
 
-
-                    <!-- PLACEHOLDER -->
 
                     <span
                         class="editor-image-placeholder"
@@ -889,8 +879,6 @@
 
 
 
-                <!-- SHARED FILE INPUT -->
-
                 <input
                     type="file"
                     id="editor-image-input"
@@ -899,7 +887,6 @@
                 >
 
 
-                <!-- REMOVE IMAGE -->
 
                 <button
                     class="editor-remove-image"
@@ -936,6 +923,37 @@
                     class="color-palette"
                     id="color-palette"
                 >
+
+
+                    <!-- =========================================
+                         CUSTOM COLOR PICKER
+                         FIRST CIRCLE
+                         ========================================= -->
+
+                    <button
+                        type="button"
+                        class="color-option custom-color-option"
+                        id="custom-color-button"
+                        aria-label="Choose custom color"
+                    >
+
+                        <span
+                            class="custom-color-symbol"
+                            aria-hidden="true"
+                        >
+                            ✎
+                        </span>
+
+                    </button>
+
+
+                    <input
+                        type="color"
+                        id="custom-color-input"
+                        value="#000000"
+                        hidden
+                    >
+
 
 
                     <!-- GRAY -->
@@ -1142,7 +1160,7 @@
 
 
 
-                    <!-- YELLOW DEFAULT -->
+                    <!-- BRIGHT YELLOW -->
 
                     <button
                         type="button"

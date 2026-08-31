@@ -115,6 +115,18 @@ const colorOptions =
 
 
 /* =========================================================
+   CUSTOM COLOR PICKER ELEMENTS
+   ========================================================= */
+
+const customColorButton =
+    document.getElementById("custom-color-button");
+
+const customColorInput =
+    document.getElementById("custom-color-input");
+
+
+
+/* =========================================================
    CURRENT EDITED SUBJECT
    ========================================================= */
 
@@ -125,15 +137,6 @@ let activeEditorSubject = null;
 /* =========================================================
    SAVE ORIGINAL HOME PAGE
    ========================================================= */
-
-/*
-    We save the original Home HTML.
-
-    When a subject page is opened,
-    #page-content gets replaced.
-
-    This allows us to restore the exact Home page later.
-*/
 
 const homePageHTML =
     pageContent.innerHTML;
@@ -177,6 +180,7 @@ function getSubjectColor(subjectId) {
 
 
     return subjects[subjectId].color;
+
 }
 
 
@@ -222,7 +226,7 @@ function applySubjectColor(
 
 
 /* =========================================================
-   APPLY SAVED COLOR
+   LOAD SAVED COLORS
    ========================================================= */
 
 function loadSavedColors() {
@@ -328,7 +332,7 @@ function showSavedImage(
 
 
 /* =========================================================
-   HIDE CARD IMAGE
+   HIDE SAVED IMAGE
    ========================================================= */
 
 function hideSavedImage(subjectId) {
@@ -356,7 +360,7 @@ function hideSavedImage(subjectId) {
 
 
 /* =========================================================
-   LOAD SAVED SUBJECT IMAGES
+   LOAD SAVED IMAGES
    ========================================================= */
 
 function loadSavedImages() {
@@ -467,6 +471,19 @@ function openCardEditor(subjectId) {
         subject.code;
 
 
+    const currentColor =
+        getSubjectColor(subjectId);
+
+
+    customColorInput.value =
+        currentColor;
+
+
+    updateCustomColorButton(
+        currentColor
+    );
+
+
     const savedImage =
         localStorage.getItem(
             getImageStorageKey(subjectId)
@@ -489,7 +506,7 @@ function openCardEditor(subjectId) {
 
 
     updateSelectedColor(
-        getSubjectColor(subjectId)
+        currentColor
     );
 
 
@@ -539,10 +556,6 @@ function addImageEditEvents() {
             button.addEventListener(
                 "click",
                 function (event) {
-
-                    /*
-                        Prevent subject card navigation.
-                    */
 
                     event.preventDefault();
 
@@ -678,11 +691,21 @@ editorRemoveImage.addEventListener(
 
 
 /* =========================================================
-   COLOR PALETTE
+   PRESET COLOR PALETTE
    ========================================================= */
 
 colorOptions.forEach(
     function (button) {
+
+        /*
+            Custom color picker is also a .color-option,
+            but it does not have data-color.
+        */
+
+        if (!button.dataset.color) {
+            return;
+        }
+
 
         button.addEventListener(
             "click",
@@ -697,45 +720,8 @@ colorOptions.forEach(
                     button.dataset.color;
 
 
-                /*
-                    Save selected color.
-                */
-
-                localStorage.setItem(
-                    getColorStorageKey(
-                        activeEditorSubject
-                    ),
-                    color
-                );
-
-
-                /*
-                    Remove the saved image so
-                    solid color becomes visible.
-                */
-
-                localStorage.removeItem(
-                    getImageStorageKey(
-                        activeEditorSubject
-                    )
-                );
-
-
-                hideSavedImage(
-                    activeEditorSubject
-                );
-
-
-                showEditorPlaceholder();
-
-
-                applySubjectColor(
+                applySelectedColor(
                     activeEditorSubject,
-                    color
-                );
-
-
-                updateSelectedColor(
                     color
                 );
 
@@ -748,10 +734,130 @@ colorOptions.forEach(
 
 
 /* =========================================================
-   SHOW SELECTED COLOR IN PALETTE
+   CUSTOM COLOR PICKER
+   ========================================================= */
+
+customColorButton.addEventListener(
+    "click",
+    function () {
+
+        if (!activeEditorSubject) {
+            return;
+        }
+
+
+        customColorInput.click();
+
+    }
+);
+
+
+
+customColorInput.addEventListener(
+    "input",
+    function () {
+
+        if (!activeEditorSubject) {
+            return;
+        }
+
+
+        const color =
+            customColorInput.value;
+
+
+        applySelectedColor(
+            activeEditorSubject,
+            color
+        );
+
+
+        updateCustomColorButton(
+            color
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   APPLY SELECTED COLOR
+   ========================================================= */
+
+function applySelectedColor(
+    subjectId,
+    color
+) {
+
+    /*
+        Save selected solid color.
+    */
+
+    localStorage.setItem(
+        getColorStorageKey(subjectId),
+        color
+    );
+
+
+    /*
+        Choosing a color switches the card
+        back to solid-color mode.
+    */
+
+    localStorage.removeItem(
+        getImageStorageKey(subjectId)
+    );
+
+
+    hideSavedImage(
+        subjectId
+    );
+
+
+    showEditorPlaceholder();
+
+
+    applySubjectColor(
+        subjectId,
+        color
+    );
+
+
+    updateSelectedColor(
+        color
+    );
+
+
+    customColorInput.value =
+        color;
+
+}
+
+
+
+/* =========================================================
+   CUSTOM COLOR BUTTON PREVIEW
+   ========================================================= */
+
+function updateCustomColorButton(color) {
+
+    customColorButton.style.backgroundColor =
+        color;
+
+}
+
+
+
+/* =========================================================
+   SHOW SELECTED COLOR
    ========================================================= */
 
 function updateSelectedColor(color) {
+
+    let presetMatched =
+        false;
+
 
     colorOptions.forEach(
         function (button) {
@@ -761,9 +867,21 @@ function updateSelectedColor(color) {
             );
 
 
+            const buttonColor =
+                button.dataset.color;
+
+
+            /*
+                Custom picker has no data-color.
+            */
+
+            if (!buttonColor) {
+                return;
+            }
+
+
             if (
-                button.dataset.color
-                .toLowerCase() ===
+                buttonColor.toLowerCase() ===
                 color.toLowerCase()
             ) {
 
@@ -771,9 +889,38 @@ function updateSelectedColor(color) {
                     "selected"
                 );
 
+
+                presetMatched =
+                    true;
+
             }
 
         }
+    );
+
+
+    /*
+        If the selected color is not one
+        of the preset swatches, highlight
+        the custom color button instead.
+    */
+
+    customColorButton.classList.remove(
+        "selected"
+    );
+
+
+    if (!presetMatched) {
+
+        customColorButton.classList.add(
+            "selected"
+        );
+
+    }
+
+
+    updateCustomColorButton(
+        color
     );
 
 }
@@ -799,10 +946,6 @@ editorResetButton.addEventListener(
             ];
 
 
-        /*
-            Remove saved image and color.
-        */
-
         localStorage.removeItem(
             getImageStorageKey(
                 activeEditorSubject
@@ -817,30 +960,22 @@ editorResetButton.addEventListener(
         );
 
 
-        /*
-            Restore default color.
-        */
-
         applySubjectColor(
             activeEditorSubject,
             subject.color
         );
 
 
-        /*
-            Remove card image.
-        */
-
         hideSavedImage(
             activeEditorSubject
         );
 
 
-        /*
-            Restore editor placeholder.
-        */
-
         showEditorPlaceholder();
+
+
+        customColorInput.value =
+            subject.color;
 
 
         updateSelectedColor(
@@ -1036,11 +1171,6 @@ function showHomePage() {
     searchInput.value =
         "";
 
-
-    /*
-        HTML was restored,
-        so listeners must be attached again.
-    */
 
     addSubjectCardEvents();
 
