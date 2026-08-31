@@ -11,7 +11,7 @@ const IT0035 = {
         formatives: [
             {
                 title: "Formative 1",
-                description: "Introduction to Operating Systems",
+                description: "",
                 link: "",
                 collabLink: ""
             }
@@ -20,14 +20,7 @@ const IT0035 = {
         summatives: [
             {
                 title: "Summative 1",
-                description: "Processes and Threads",
-                link: "",
-                collabLink: ""
-            },
-
-            {
-                title: "Summative 2",
-                description: "Memory Management",
+                description: "",
                 link: "",
                 collabLink: ""
             }

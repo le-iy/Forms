@@ -8,7 +8,22 @@ const GED0083 = {
     color: "#8848f5",
 
     categories: {
-        formatives: [],
-        summatives: []
+        formatives: [
+            {
+                title: "Formative 1",
+                description: "",
+                link: "",
+                collabLink: ""
+            }
+        ],
+
+        summatives: [
+            {
+                title: "Summative 1",
+                description: "",
+                link: "",
+                collabLink: ""
+            }
+        ]
     }
 };

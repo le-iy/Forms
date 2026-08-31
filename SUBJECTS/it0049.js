@@ -8,7 +8,22 @@ const IT0049 = {
     color: "#ff5757",
 
     categories: {
-        formatives: [],
-        summatives: []
+        formatives: [
+            {
+                title: "Formative 1",
+                description: "",
+                link: "",
+                collabLink: ""
+            }
+        ],
+
+        summatives: [
+            {
+                title: "Summative 1",
+                description: "",
+                link: "",
+                collabLink: ""
+            }
+        ]
     }
 };
