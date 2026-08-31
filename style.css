@@ -781,10 +781,9 @@ body {
    INDIVIDUAL ITEM VISUAL
 
    Used by:
-   - Formative items
-   - Summative items
-   - inner subject category pages
-   - global Formatives/Summatives pages
+   - Formatives
+   - Summatives
+   - Reviewers
    ========================================================= */
 
 .item-visual {
@@ -951,6 +950,7 @@ body {
    Used by:
    - FORMATIVES
    - SUMMATIVES
+   - REVIEWERS
    ========================================================= */
 
 .global-category-card {
@@ -1025,6 +1025,108 @@ body {
 
 .global-search-text {
     display: none;
+}
+
+
+
+/* =========================================================
+   REVIEWERS FILTER BAR
+   ========================================================= */
+
+.reviewer-filter-bar {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-bottom: 24px;
+}
+
+
+
+/* =========================================================
+   REVIEWER SUBJECT FILTER BUTTON
+   ========================================================= */
+
+.reviewer-filter-button {
+    min-width: 125px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background-color: var(--filter-color);
+
+    padding: 12px 18px;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    cursor: pointer;
+
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.55);
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+
+.reviewer-filter-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.14);
+}
+
+
+
+/* =========================================================
+   ACTIVE REVIEWER FILTER
+   ========================================================= */
+
+.reviewer-filter-button.active {
+    outline: 3px solid #111;
+
+    outline-offset: 2px;
+
+    transform: translateY(-2px);
+}
+
+
+
+/* =========================================================
+   REVIEWER GRID
+   ========================================================= */
+
+.reviewer-grid {
+    margin-top: 0;
+}
+
+
+
+/* =========================================================
+   REVIEWER CARD
+   ========================================================= */
+
+.reviewer-card {
+    cursor: pointer;
+}
+
+
+.reviewer-card:hover {
+    transform: translateY(-5px);
 }
 
 

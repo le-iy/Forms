@@ -24,6 +24,15 @@ const IT0204 = {
                 link: "",
                 collabLink: ""
             }
+        ],
+
+        reviewers: [
+            {
+                title: "Reviewer 1 Title",
+                description: "",
+                link: "",
+                collabLink: ""
+            }
         ]
     }
 };

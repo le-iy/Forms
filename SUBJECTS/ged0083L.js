@@ -24,6 +24,15 @@ const GED0083L = {
                 link: "",
                 collabLink: ""
             }
+        ],
+
+        reviewers: [
+            {
+                title: "Reviewer 1 Title",
+                description: "",
+                link: "",
+                collabLink: ""
+            }
         ]
     }
 };
