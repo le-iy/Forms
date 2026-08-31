@@ -4850,3 +4850,331 @@ body.style-soft-product .ui-style-section {
 
     outline-offset: 3px;
 }
+
+/* =========================================================
+   MOBILE / RESPONSIVE LAYOUT
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* -------------------------
+       BODY / MAIN LAYOUT
+       ------------------------- */
+
+    body {
+        overflow-x: hidden;
+    }
+
+
+    .sidebar {
+        position: static;
+
+        width: 100%;
+        height: auto;
+
+        padding: 14px 16px;
+
+        overflow: visible;
+    }
+
+
+    .main-content {
+        margin-left: 0;
+
+        padding: 16px;
+
+        width: 100%;
+
+        min-height: auto;
+    }
+
+
+
+    /* -------------------------
+       MAIN NAV
+       ------------------------- */
+
+    .main-nav {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+    }
+
+
+    .nav-item {
+        text-align: center;
+
+        padding: 9px 8px;
+    }
+
+
+
+    /* -------------------------
+       SUBJECT LINKS
+       ------------------------- */
+
+    .subject-list {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+    }
+
+
+    .subject-link {
+        padding: 8px;
+
+        min-width: 0;
+    }
+
+
+
+    /* -------------------------
+       SEARCH
+       ------------------------- */
+
+    .search-container input {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+
+    /* -------------------------
+       HOME BANNER
+       ------------------------- */
+
+    .home-banner {
+        min-height: 150px;
+
+        margin-bottom: 25px;
+
+        padding: 16px;
+
+        flex-direction: column;
+
+        gap: 20px;
+    }
+
+
+    .home-banner-left h1 {
+        font-size: 26px;
+    }
+
+
+    .home-banner-left h3 {
+        font-size: 13px;
+    }
+
+
+    .home-banner-right {
+        align-items: flex-start;
+
+        text-align: left;
+    }
+
+
+
+    /* -------------------------
+       PAGE TITLES
+       ------------------------- */
+
+    .page-title,
+    .subject-heading h1,
+    .theme-page-header h1 {
+        font-size: 24px;
+    }
+
+
+
+    /* -------------------------
+       ALL CARD GRIDS
+       ------------------------- */
+
+    .subject-grid,
+    .subject-menu-grid,
+    .premade-themes-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 14px;
+    }
+
+
+
+    /* -------------------------
+       CARDS
+       ------------------------- */
+
+    .subject-card,
+    .subject-menu-card,
+    .global-category-card {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    .card-image,
+    .subject-menu-image,
+    .category-item-image,
+    .global-category-image,
+    .item-visual {
+        height: 100px;
+    }
+
+
+
+    /* -------------------------
+       REVIEWER FILTERS
+       ------------------------- */
+
+    .reviewer-filter-bar {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    .reviewer-filter-button {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+
+    /* -------------------------
+       THEME SETTINGS
+       ------------------------- */
+
+    .theme-settings-columns {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+
+    .theme-choice-grid {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+
+        margin-top: 45px;
+    }
+
+
+    .premade-themes-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .theme-swatch-grid {
+        grid-template-columns:
+            repeat(6, 30px);
+
+        gap: 10px;
+    }
+
+
+
+    /* -------------------------
+       UI STYLE OPTIONS
+       ------------------------- */
+
+    .ui-style-options {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+
+    /* -------------------------
+       THEME ACTION BUTTONS
+       ------------------------- */
+
+    .theme-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+
+    .theme-reset-button,
+    .theme-back-button {
+        width: 100%;
+    }
+
+
+
+    /* -------------------------
+       CARD EDITOR
+       ------------------------- */
+
+    .card-editor {
+        width:
+            min(
+                90vw,
+                320px
+            );
+
+        max-height: 90vh;
+
+        overflow-y: auto;
+    }
+}
+
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .main-nav {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .subject-list {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .subject-grid,
+    .subject-menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .reviewer-filter-bar {
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .theme-swatch-grid {
+        grid-template-columns:
+            repeat(5, 30px);
+    }
+
+
+    .ui-style-options {
+        grid-template-columns: 1fr;
+    }
+
+
+    .home-banner-left h1 {
+        font-size: 23px;
+    }
+
+
+    .page-title,
+    .subject-heading h1,
+    .theme-page-header h1 {
+        font-size: 22px;
+    }
+}
