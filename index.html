@@ -2,26 +2,15 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>GForms</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
-
 <body>
-
 
     <!-- =====================================================
          SIDEBAR
@@ -29,218 +18,79 @@
 
     <aside class="sidebar">
 
-
-        <!-- MAIN NAVIGATION -->
-
         <nav class="main-nav">
-
-            <a
-                href="#"
-                class="nav-item active"
-                id="home-link"
-            >
+            <a href="#" class="nav-item active" id="home-link">
                 Home
             </a>
 
-
-            <a
-                href="#"
-                class="nav-item"
-                id="formatives-link"
-            >
+            <a href="#" class="nav-item" id="formatives-link">
                 Formatives
             </a>
 
-
-            <a
-                href="#"
-                class="nav-item"
-                id="summatives-link"
-            >
+            <a href="#" class="nav-item" id="summatives-link">
                 Summatives
             </a>
 
-
-            <a
-                href="#"
-                class="nav-item"
-                id="reviewers-link"
-            >
+            <a href="#" class="nav-item" id="reviewers-link">
                 Reviewers
             </a>
 
-
-            <a
-                href="#"
-                class="nav-item"
-                id="leaks-link"
-            >
+            <a href="#" class="nav-item" id="leaks-link">
                 Leaks &gt;:D
             </a>
-
         </nav>
-
 
 
         <hr>
 
 
-
-        <!-- =================================================
-             SUBJECT NAVIGATION
-             ================================================= -->
+        <!-- SUBJECT NAVIGATION -->
 
         <div class="subject-list">
 
-
-            <!-- IT0035 -->
-
-            <a
-                href="#"
-                class="subject-link"
-                data-subject="it0035"
-            >
-
+            <a href="#" class="subject-link" data-subject="it0035">
                 <span class="subject-dot it0035"></span>
-
-                <span class="subject-code">
-                    IT0035
-                </span>
-
+                <span class="subject-code">IT0035</span>
             </a>
 
-
-
-            <!-- IT0035L -->
-
-            <a
-                href="#"
-                class="subject-link"
-                data-subject="it0035l"
-            >
-
+            <a href="#" class="subject-link" data-subject="it0035l">
                 <span class="subject-dot it0035l"></span>
-
-                <span class="subject-code">
-                    IT0035L
-                </span>
-
+                <span class="subject-code">IT0035L</span>
             </a>
 
-
-
-            <!-- IT0037 -->
-
-            <a
-                href="#"
-                class="subject-link"
-                data-subject="it0037"
-            >
-
+            <a href="#" class="subject-link" data-subject="it0037">
                 <span class="subject-dot it0037"></span>
-
-                <span class="subject-code">
-                    IT0037
-                </span>
-
+                <span class="subject-code">IT0037</span>
             </a>
 
-
-
-            <!-- IT0049 -->
-
-            <a
-                href="#"
-                class="subject-link"
-                data-subject="it0049"
-            >
-
+            <a href="#" class="subject-link" data-subject="it0049">
                 <span class="subject-dot it0049"></span>
-
-                <span class="subject-code">
-                    IT0049
-                </span>
-
+                <span class="subject-code">IT0049</span>
             </a>
 
-
-
-            <!-- IT0204 -->
-
-            <a
-                href="#"
-                class="subject-link"
-                data-subject="it0204"
-            >
-
+            <a href="#" class="subject-link" data-subject="it0204">
                 <span class="subject-dot it0204"></span>
-
-                <span class="subject-code">
-                    IT0204
-                </span>
-
+                <span class="subject-code">IT0204</span>
             </a>
 
-
-
-            <!-- IT0015 -->
-
-            <a
-                href="#"
-                class="subject-link"
-                data-subject="it0015"
-            >
-
+            <a href="#" class="subject-link" data-subject="it0015">
                 <span class="subject-dot it0015"></span>
-
-                <span class="subject-code">
-                    IT0015
-                </span>
-
+                <span class="subject-code">IT0015</span>
             </a>
 
-
-
-            <!-- GED0083 -->
-
-            <a
-                href="#"
-                class="subject-link"
-                data-subject="ged0083"
-            >
-
+            <a href="#" class="subject-link" data-subject="ged0083">
                 <span class="subject-dot ged0083"></span>
-
-                <span class="subject-code">
-                    GED0083
-                </span>
-
+                <span class="subject-code">GED0083</span>
             </a>
 
-
-
-            <!-- GED0083L -->
-
-            <a
-                href="#"
-                class="subject-link"
-                data-subject="ged0083l"
-            >
-
+            <a href="#" class="subject-link" data-subject="ged0083l">
                 <span class="subject-dot ged0083l"></span>
-
-                <span class="subject-code">
-                    GED0083L
-                </span>
-
+                <span class="subject-code">GED0083L</span>
             </a>
-
 
         </div>
 
     </aside>
-
-
 
 
 
@@ -250,65 +100,48 @@
 
     <main class="main-content">
 
-
         <!-- SEARCH BAR -->
 
         <div class="search-container">
-
             <input
                 type="text"
                 id="search-input"
                 placeholder="Search..."
                 autocomplete="off"
             >
-
         </div>
 
 
+        <!--
+            HOME content lives here initially.
 
-        <!-- =================================================
-             PAGE CONTENT
-
-             This section can be replaced by script.js when
-             a subject is selected.
-             ================================================= -->
+            script.js replaces this when:
+            - a subject is opened
+            - Formatives / Summatives pages are opened
+        -->
 
         <div id="page-content">
-
-
-            <!-- HOME TITLE -->
 
             <h1 class="page-title">
                 HOME
             </h1>
 
 
-
             <!-- =================================================
-                 SUBJECT CARDS
+                 HOME SUBJECT CARDS
                  ================================================= -->
 
             <section class="subject-grid">
 
 
+                <!-- IT0035 -->
 
-                <!-- =============================================
-                     IT0035
-                     ============================================= -->
-
-                <div
-                    class="subject-card"
-                    data-subject="it0035"
-                >
-
+                <div class="subject-card" data-subject="it0035">
 
                     <div
                         class="card-image it0035-bg"
                         id="card-image-it0035"
                     >
-
-
-                        <!-- CUSTOM IMAGE -->
 
                         <img
                             id="preview-it0035"
@@ -317,62 +150,38 @@
                             alt="IT0035 card image"
                         >
 
-
-                        <!-- EDIT BUTTON -->
-
                         <button
                             class="edit-image-button"
                             type="button"
                             data-edit-subject="it0035"
                             aria-label="Customize IT0035 card"
                         >
-
                             <img
                                 src="File_Bank/ASSETS/editImg_icon.png"
                                 alt=""
                             >
-
                         </button>
 
-
                     </div>
-
 
 
                     <div class="card-info">
-
-                        <h2>
-                            IT0035
-                        </h2>
-
-                        <p>
-                            APPLIED OPERATING SYSTEM
-                        </p>
-
+                        <h2>IT0035</h2>
+                        <p>APPLIED OPERATING SYSTEM</p>
                     </div>
-
 
                 </div>
 
 
 
+                <!-- IT0035L -->
 
-
-                <!-- =============================================
-                     IT0035L
-                     ============================================= -->
-
-                <div
-                    class="subject-card"
-                    data-subject="it0035l"
-                >
-
+                <div class="subject-card" data-subject="it0035l">
 
                     <div
                         class="card-image it0035l-bg"
                         id="card-image-it0035l"
                     >
-
 
                         <img
                             id="preview-it0035l"
@@ -381,60 +190,38 @@
                             alt="IT0035L card image"
                         >
 
-
                         <button
                             class="edit-image-button"
                             type="button"
                             data-edit-subject="it0035l"
                             aria-label="Customize IT0035L card"
                         >
-
                             <img
                                 src="File_Bank/ASSETS/editImg_icon.png"
                                 alt=""
                             >
-
                         </button>
 
-
                     </div>
-
 
 
                     <div class="card-info">
-
-                        <h2>
-                            IT0035L
-                        </h2>
-
-                        <p>
-                            APPLIED OPERATING SYSTEM LAB
-                        </p>
-
+                        <h2>IT0035L</h2>
+                        <p>APPLIED OPERATING SYSTEM LAB</p>
                     </div>
-
 
                 </div>
 
 
 
+                <!-- IT0037 -->
 
-
-                <!-- =============================================
-                     IT0037
-                     ============================================= -->
-
-                <div
-                    class="subject-card"
-                    data-subject="it0037"
-                >
-
+                <div class="subject-card" data-subject="it0037">
 
                     <div
                         class="card-image it0037-bg"
                         id="card-image-it0037"
                     >
-
 
                         <img
                             id="preview-it0037"
@@ -443,60 +230,38 @@
                             alt="IT0037 card image"
                         >
 
-
                         <button
                             class="edit-image-button"
                             type="button"
                             data-edit-subject="it0037"
                             aria-label="Customize IT0037 card"
                         >
-
                             <img
                                 src="File_Bank/ASSETS/editImg_icon.png"
                                 alt=""
                             >
-
                         </button>
 
-
                     </div>
-
 
 
                     <div class="card-info">
-
-                        <h2>
-                            IT0037
-                        </h2>
-
-                        <p>
-                            SYSTEM ANALYSIS AND DESIGN
-                        </p>
-
+                        <h2>IT0037</h2>
+                        <p>SYSTEM ANALYSIS AND DESIGN</p>
                     </div>
-
 
                 </div>
 
 
 
+                <!-- IT0049 -->
 
-
-                <!-- =============================================
-                     IT0049
-                     ============================================= -->
-
-                <div
-                    class="subject-card"
-                    data-subject="it0049"
-                >
-
+                <div class="subject-card" data-subject="it0049">
 
                     <div
                         class="card-image it0049-bg"
                         id="card-image-it0049"
                     >
-
 
                         <img
                             id="preview-it0049"
@@ -505,60 +270,38 @@
                             alt="IT0049 card image"
                         >
 
-
                         <button
                             class="edit-image-button"
                             type="button"
                             data-edit-subject="it0049"
                             aria-label="Customize IT0049 card"
                         >
-
                             <img
                                 src="File_Bank/ASSETS/editImg_icon.png"
                                 alt=""
                             >
-
                         </button>
 
-
                     </div>
-
 
 
                     <div class="card-info">
-
-                        <h2>
-                            IT0049
-                        </h2>
-
-                        <p>
-                            IT ELECTIVE – WEB SYSTEM TECHNOLOGIES
-                        </p>
-
+                        <h2>IT0049</h2>
+                        <p>IT ELECTIVE – WEB SYSTEM TECHNOLOGIES</p>
                     </div>
-
 
                 </div>
 
 
 
+                <!-- IT0204 -->
 
-
-                <!-- =============================================
-                     IT0204
-                     ============================================= -->
-
-                <div
-                    class="subject-card"
-                    data-subject="it0204"
-                >
-
+                <div class="subject-card" data-subject="it0204">
 
                     <div
                         class="card-image it0204-bg"
                         id="card-image-it0204"
                     >
-
 
                         <img
                             id="preview-it0204"
@@ -567,61 +310,42 @@
                             alt="IT0204 card image"
                         >
 
-
                         <button
                             class="edit-image-button"
                             type="button"
                             data-edit-subject="it0204"
                             aria-label="Customize IT0204 card"
                         >
-
                             <img
                                 src="File_Bank/ASSETS/editImg_icon.png"
                                 alt=""
                             >
-
                         </button>
-
 
                     </div>
 
 
-
                     <div class="card-info">
-
-                        <h2>
-                            IT0204
-                        </h2>
+                        <h2>IT0204</h2>
 
                         <p>
                             IT SPECIALIZATION 7 – CYBERSECURITY AND PRIVACY:
                             LAWS, POLICIES, AND COMPLIANCE
                         </p>
-
                     </div>
-
 
                 </div>
 
 
 
+                <!-- IT0015 -->
 
-
-                <!-- =============================================
-                     IT0015
-                     ============================================= -->
-
-                <div
-                    class="subject-card"
-                    data-subject="it0015"
-                >
-
+                <div class="subject-card" data-subject="it0015">
 
                     <div
                         class="card-image it0015-bg"
                         id="card-image-it0015"
                     >
-
 
                         <img
                             id="preview-it0015"
@@ -630,60 +354,38 @@
                             alt="IT0015 card image"
                         >
 
-
                         <button
                             class="edit-image-button"
                             type="button"
                             data-edit-subject="it0015"
                             aria-label="Customize IT0015 card"
                         >
-
                             <img
                                 src="File_Bank/ASSETS/editImg_icon.png"
                                 alt=""
                             >
-
                         </button>
 
-
                     </div>
-
 
 
                     <div class="card-info">
-
-                        <h2>
-                            IT0015
-                        </h2>
-
-                        <p>
-                            NETWORKING 2
-                        </p>
-
+                        <h2>IT0015</h2>
+                        <p>NETWORKING 2</p>
                     </div>
-
 
                 </div>
 
 
 
+                <!-- GED0083 -->
 
-
-                <!-- =============================================
-                     GED0083
-                     ============================================= -->
-
-                <div
-                    class="subject-card"
-                    data-subject="ged0083"
-                >
-
+                <div class="subject-card" data-subject="ged0083">
 
                     <div
                         class="card-image ged0083-bg"
                         id="card-image-ged0083"
                     >
-
 
                         <img
                             id="preview-ged0083"
@@ -692,60 +394,38 @@
                             alt="GED0083 card image"
                         >
 
-
                         <button
                             class="edit-image-button"
                             type="button"
                             data-edit-subject="ged0083"
                             aria-label="Customize GED0083 card"
                         >
-
                             <img
                                 src="File_Bank/ASSETS/editImg_icon.png"
                                 alt=""
                             >
-
                         </button>
 
-
                     </div>
-
 
 
                     <div class="card-info">
-
-                        <h2>
-                            GED0083
-                        </h2>
-
-                        <p>
-                            COLLEGE PHYSICS 2 LECTURE
-                        </p>
-
+                        <h2>GED0083</h2>
+                        <p>COLLEGE PHYSICS 2 LECTURE</p>
                     </div>
-
 
                 </div>
 
 
 
+                <!-- GED0083L -->
 
-
-                <!-- =============================================
-                     GED0083L
-                     ============================================= -->
-
-                <div
-                    class="subject-card"
-                    data-subject="ged0083l"
-                >
-
+                <div class="subject-card" data-subject="ged0083l">
 
                     <div
                         class="card-image ged0083l-bg"
                         id="card-image-ged0083l"
                     >
-
 
                         <img
                             id="preview-ged0083l"
@@ -754,38 +434,25 @@
                             alt="GED0083L card image"
                         >
 
-
                         <button
                             class="edit-image-button"
                             type="button"
                             data-edit-subject="ged0083l"
                             aria-label="Customize GED0083L card"
                         >
-
                             <img
                                 src="File_Bank/ASSETS/editImg_icon.png"
                                 alt=""
                             >
-
                         </button>
 
-
                     </div>
-
 
 
                     <div class="card-info">
-
-                        <h2>
-                            GED0083L
-                        </h2>
-
-                        <p>
-                            COLLEGE PHYSICS 2 LABORATORY
-                        </p>
-
+                        <h2>GED0083L</h2>
+                        <p>COLLEGE PHYSICS 2 LABORATORY</p>
                     </div>
-
 
                 </div>
 
@@ -798,10 +465,13 @@
 
 
 
-
-
     <!-- =====================================================
-         CARD CUSTOMIZATION POPUP
+         SHARED CARD CUSTOMIZATION POPUP
+
+         This SAME popup will be used for:
+         - Home subject cards
+         - Subject Formatives card
+         - Subject Summatives card
          ===================================================== -->
 
     <div
@@ -809,7 +479,6 @@
         id="card-editor-overlay"
         hidden
     >
-
 
         <div
             class="card-editor"
@@ -825,7 +494,6 @@
                     IT0035
                 </h2>
 
-
                 <button
                     class="card-editor-close"
                     id="card-editor-close"
@@ -839,23 +507,16 @@
 
 
 
-            <!-- =================================================
-                 IMAGE OPTION
-                 ================================================= -->
+            <!-- IMAGE OPTION -->
 
             <div class="editor-image-section">
-
-
-                <!-- IMAGE PREVIEW / ADD IMAGE BUTTON -->
 
                 <button
                     class="editor-image-area"
                     id="editor-image-area"
                     type="button"
+                    aria-label="Add or change card image"
                 >
-
-
-                    <!-- IMAGE PREVIEW -->
 
                     <img
                         class="editor-image-preview"
@@ -864,9 +525,6 @@
                         alt="Selected card image"
                     >
 
-
-                    <!-- PLACEHOLDER -->
-
                     <span
                         class="editor-image-placeholder"
                         id="editor-image-placeholder"
@@ -874,9 +532,7 @@
                         ▣
                     </span>
 
-
                 </button>
-
 
 
                 <button
@@ -888,9 +544,6 @@
                 </button>
 
 
-
-                <!-- SHARED FILE INPUT -->
-
                 <input
                     type="file"
                     id="editor-image-input"
@@ -898,8 +551,6 @@
                     hidden
                 >
 
-
-                <!-- REMOVE IMAGE -->
 
                 <button
                     class="editor-remove-image"
@@ -910,7 +561,6 @@
                     Remove Image
                 </button>
 
-
             </div>
 
 
@@ -919,17 +569,13 @@
 
 
 
-            <!-- =================================================
-                 COLOR OPTION
-                 ================================================= -->
+            <!-- COLOR OPTION -->
 
             <div class="editor-color-section">
-
 
                 <p class="editor-section-label">
                     Choose Color
                 </p>
-
 
 
                 <div
@@ -949,7 +595,6 @@
                     ></button>
 
 
-
                     <!-- DARK RED -->
 
                     <button
@@ -959,7 +604,6 @@
                         style="--swatch-color: #8b0000;"
                         aria-label="Dark red"
                     ></button>
-
 
 
                     <!-- RED -->
@@ -973,7 +617,6 @@
                     ></button>
 
 
-
                     <!-- PURPLE -->
 
                     <button
@@ -983,7 +626,6 @@
                         style="--swatch-color: #8848f5;"
                         aria-label="Purple"
                     ></button>
-
 
 
                     <!-- TEAL -->
@@ -997,7 +639,6 @@
                     ></button>
 
 
-
                     <!-- BLUE -->
 
                     <button
@@ -1007,7 +648,6 @@
                         style="--swatch-color: #3ca8e8;"
                         aria-label="Blue"
                     ></button>
-
 
 
                     <!-- ROYAL BLUE -->
@@ -1021,7 +661,6 @@
                     ></button>
 
 
-
                     <!-- DARK BLUE -->
 
                     <button
@@ -1031,7 +670,6 @@
                         style="--swatch-color: #0752b6;"
                         aria-label="Dark blue"
                     ></button>
-
 
 
                     <!-- INDIGO -->
@@ -1045,7 +683,6 @@
                     ></button>
 
 
-
                     <!-- GREEN -->
 
                     <button
@@ -1055,7 +692,6 @@
                         style="--swatch-color: #08ba68;"
                         aria-label="Green"
                     ></button>
-
 
 
                     <!-- LIGHT GREEN -->
@@ -1069,7 +705,6 @@
                     ></button>
 
 
-
                     <!-- YELLOW -->
 
                     <button
@@ -1079,7 +714,6 @@
                         style="--swatch-color: #ffda59;"
                         aria-label="Yellow"
                     ></button>
-
 
 
                     <!-- ORANGE -->
@@ -1093,7 +727,6 @@
                     ></button>
 
 
-
                     <!-- PINK -->
 
                     <button
@@ -1103,7 +736,6 @@
                         style="--swatch-color: #d899e8;"
                         aria-label="Pink"
                     ></button>
-
 
 
                     <!-- MINT -->
@@ -1117,7 +749,6 @@
                     ></button>
 
 
-
                     <!-- LIGHT GRAY -->
 
                     <button
@@ -1127,7 +758,6 @@
                         style="--swatch-color: #d4d4d4;"
                         aria-label="Light gray"
                     ></button>
-
 
 
                     <!-- GOLD -->
@@ -1141,8 +771,7 @@
                     ></button>
 
 
-
-                    <!-- YELLOW DEFAULT -->
+                    <!-- BRIGHT YELLOW -->
 
                     <button
                         type="button"
@@ -1152,17 +781,13 @@
                         aria-label="Bright yellow"
                     ></button>
 
-
                 </div>
-
 
             </div>
 
 
 
-            <!-- =================================================
-                 RESET
-                 ================================================= -->
+            <!-- RESET -->
 
             <button
                 type="button"
@@ -1179,14 +804,7 @@
 
 
 
-
-
-    <!-- =====================================================
-         JAVASCRIPT
-         ===================================================== -->
-
     <script src="script.js"></script>
-
 
 </body>
 

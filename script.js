@@ -55,6 +55,24 @@ const subjects = {
 
 
 /* =========================================================
+   SUBJECT MENU DEFAULTS
+   ========================================================= */
+
+const subjectMenuDefaults = {
+    formatives: {
+        title: "FORMATIVES",
+        color: "#8b2ca3"
+    },
+
+    summatives: {
+        title: "SUMMATIVES",
+        color: "#2110b8"
+    }
+};
+
+
+
+/* =========================================================
    MAIN ELEMENTS
    ========================================================= */
 
@@ -115,25 +133,44 @@ const colorOptions =
 
 
 /* =========================================================
-   CURRENT EDITED SUBJECT
+   CURRENT EDITOR TARGET
    ========================================================= */
 
-let activeEditorSubject = null;
+/*
+    type:
+        "home"
+        "menu"
+
+    subjectId:
+        it0035
+        it0035l
+        etc.
+
+    category:
+        null
+        "formatives"
+        "summatives"
+*/
+
+let editorTarget = {
+    type: null,
+    subjectId: null,
+    category: null
+};
+
+
+
+/* =========================================================
+   CURRENT SUBJECT PAGE
+   ========================================================= */
+
+let currentSubjectId = null;
 
 
 
 /* =========================================================
    SAVE ORIGINAL HOME PAGE
    ========================================================= */
-
-/*
-    We save the original Home HTML.
-
-    When a subject page is opened,
-    #page-content gets replaced.
-
-    This allows us to restore the exact Home page later.
-*/
 
 const homePageHTML =
     pageContent.innerHTML;
@@ -144,14 +181,21 @@ const homePageHTML =
    STORAGE KEYS
    ========================================================= */
 
-function getImageStorageKey(subjectId) {
+/*
+    HOME CARDS
+
+    subject-image-it0035
+    subject-color-it0035
+*/
+
+function getHomeImageStorageKey(subjectId) {
 
     return `subject-image-${subjectId}`;
 
 }
 
 
-function getColorStorageKey(subjectId) {
+function getHomeColorStorageKey(subjectId) {
 
     return `subject-color-${subjectId}`;
 
@@ -159,15 +203,46 @@ function getColorStorageKey(subjectId) {
 
 
 
+/*
+    SUBJECT MENU CARDS
+
+    subject-menu-image-it0035-formatives
+    subject-menu-color-it0035-formatives
+
+    subject-menu-image-it0035-summatives
+    subject-menu-color-it0035-summatives
+*/
+
+function getMenuImageStorageKey(
+    subjectId,
+    category
+) {
+
+    return `subject-menu-image-${subjectId}-${category}`;
+
+}
+
+
+function getMenuColorStorageKey(
+    subjectId,
+    category
+) {
+
+    return `subject-menu-color-${subjectId}-${category}`;
+
+}
+
+
+
 /* =========================================================
-   GET SUBJECT COLOR
+   GET HOME SUBJECT COLOR
    ========================================================= */
 
 function getSubjectColor(subjectId) {
 
     const savedColor =
         localStorage.getItem(
-            getColorStorageKey(subjectId)
+            getHomeColorStorageKey(subjectId)
         );
 
 
@@ -177,12 +252,42 @@ function getSubjectColor(subjectId) {
 
 
     return subjects[subjectId].color;
+
 }
 
 
 
 /* =========================================================
-   APPLY SUBJECT COLOR
+   GET SUBJECT MENU COLOR
+   ========================================================= */
+
+function getMenuColor(
+    subjectId,
+    category
+) {
+
+    const savedColor =
+        localStorage.getItem(
+            getMenuColorStorageKey(
+                subjectId,
+                category
+            )
+        );
+
+
+    if (savedColor) {
+        return savedColor;
+    }
+
+
+    return subjectMenuDefaults[category].color;
+
+}
+
+
+
+/* =========================================================
+   APPLY HOME SUBJECT COLOR
    ========================================================= */
 
 function applySubjectColor(
@@ -204,6 +309,11 @@ function applySubjectColor(
     }
 
 
+
+    /*
+        Sidebar dot follows subject color.
+    */
+
     const subjectDot =
         document.querySelector(
             `.subject-link[data-subject="${subjectId}"] .subject-dot`
@@ -222,7 +332,35 @@ function applySubjectColor(
 
 
 /* =========================================================
-   APPLY SAVED COLOR
+   APPLY SUBJECT MENU COLOR
+   ========================================================= */
+
+function applyMenuColor(
+    subjectId,
+    category,
+    color
+) {
+
+    const cardImage =
+        document.getElementById(
+            `menu-image-${subjectId}-${category}`
+        );
+
+
+    if (!cardImage) {
+        return;
+    }
+
+
+    cardImage.style.background =
+        color;
+
+}
+
+
+
+/* =========================================================
+   LOAD HOME COLORS
    ========================================================= */
 
 function loadSavedColors() {
@@ -231,7 +369,9 @@ function loadSavedColors() {
         function (subjectId) {
 
             const color =
-                getSubjectColor(subjectId);
+                getSubjectColor(
+                    subjectId
+                );
 
 
             applySubjectColor(
@@ -250,12 +390,14 @@ function loadSavedColors() {
    SAVE IMAGE
    ========================================================= */
 
-function saveImage(
-    file,
-    subjectId
-) {
+function saveEditorImage(file) {
 
     if (!file) {
+        return;
+    }
+
+
+    if (!editorTarget.subjectId) {
         return;
     }
 
@@ -271,16 +413,57 @@ function saveImage(
                 reader.result;
 
 
-            localStorage.setItem(
-                getImageStorageKey(subjectId),
-                imageData
-            );
+            /*
+                HOME CARD
+            */
+
+            if (
+                editorTarget.type ===
+                "home"
+            ) {
+
+                localStorage.setItem(
+                    getHomeImageStorageKey(
+                        editorTarget.subjectId
+                    ),
+                    imageData
+                );
 
 
-            showSavedImage(
-                subjectId,
-                imageData
-            );
+                showHomeImage(
+                    editorTarget.subjectId,
+                    imageData
+                );
+
+            }
+
+
+
+            /*
+                FORMATIVES / SUMMATIVES CARD
+            */
+
+            if (
+                editorTarget.type ===
+                "menu"
+            ) {
+
+                localStorage.setItem(
+                    getMenuImageStorageKey(
+                        editorTarget.subjectId,
+                        editorTarget.category
+                    ),
+                    imageData
+                );
+
+
+                showMenuImage(
+                    editorTarget.subjectId,
+                    editorTarget.category,
+                    imageData
+                );
+
+            }
 
 
             showEditorImage(
@@ -290,17 +473,19 @@ function saveImage(
         };
 
 
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(
+        file
+    );
 
 }
 
 
 
 /* =========================================================
-   SHOW SAVED IMAGE ON CARD
+   SHOW HOME CARD IMAGE
    ========================================================= */
 
-function showSavedImage(
+function showHomeImage(
     subjectId,
     imageData
 ) {
@@ -328,10 +513,10 @@ function showSavedImage(
 
 
 /* =========================================================
-   HIDE CARD IMAGE
+   HIDE HOME CARD IMAGE
    ========================================================= */
 
-function hideSavedImage(subjectId) {
+function hideHomeImage(subjectId) {
 
     const image =
         document.getElementById(
@@ -356,7 +541,70 @@ function hideSavedImage(subjectId) {
 
 
 /* =========================================================
-   LOAD SAVED SUBJECT IMAGES
+   SHOW MENU CARD IMAGE
+   ========================================================= */
+
+function showMenuImage(
+    subjectId,
+    category,
+    imageData
+) {
+
+    const image =
+        document.getElementById(
+            `menu-preview-${subjectId}-${category}`
+        );
+
+
+    if (!image) {
+        return;
+    }
+
+
+    image.src =
+        imageData;
+
+
+    image.style.display =
+        "block";
+
+}
+
+
+
+/* =========================================================
+   HIDE MENU CARD IMAGE
+   ========================================================= */
+
+function hideMenuImage(
+    subjectId,
+    category
+) {
+
+    const image =
+        document.getElementById(
+            `menu-preview-${subjectId}-${category}`
+        );
+
+
+    if (!image) {
+        return;
+    }
+
+
+    image.src =
+        "";
+
+
+    image.style.display =
+        "none";
+
+}
+
+
+
+/* =========================================================
+   LOAD HOME IMAGES
    ========================================================= */
 
 function loadSavedImages() {
@@ -366,13 +614,15 @@ function loadSavedImages() {
 
             const savedImage =
                 localStorage.getItem(
-                    getImageStorageKey(subjectId)
+                    getHomeImageStorageKey(
+                        subjectId
+                    )
                 );
 
 
             if (savedImage) {
 
-                showSavedImage(
+                showHomeImage(
                     subjectId,
                     savedImage
                 );
@@ -381,8 +631,74 @@ function loadSavedImages() {
 
             else {
 
-                hideSavedImage(
+                hideHomeImage(
                     subjectId
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   LOAD SUBJECT MENU CUSTOMIZATION
+   ========================================================= */
+
+function loadSubjectMenuCustomization(
+    subjectId
+) {
+
+    const categories = [
+        "formatives",
+        "summatives"
+    ];
+
+
+    categories.forEach(
+        function (category) {
+
+            const color =
+                getMenuColor(
+                    subjectId,
+                    category
+                );
+
+
+            applyMenuColor(
+                subjectId,
+                category,
+                color
+            );
+
+
+            const savedImage =
+                localStorage.getItem(
+                    getMenuImageStorageKey(
+                        subjectId,
+                        category
+                    )
+                );
+
+
+            if (savedImage) {
+
+                showMenuImage(
+                    subjectId,
+                    category,
+                    savedImage
+                );
+
+            }
+
+            else {
+
+                hideMenuImage(
+                    subjectId,
+                    category
                 );
 
             }
@@ -445,10 +761,97 @@ function showEditorPlaceholder() {
 
 
 /* =========================================================
-   OPEN CARD EDITOR
+   GET CURRENT EDITOR COLOR
    ========================================================= */
 
-function openCardEditor(subjectId) {
+function getEditorColor() {
+
+    /*
+        HOME CARD
+    */
+
+    if (
+        editorTarget.type ===
+        "home"
+    ) {
+
+        return getSubjectColor(
+            editorTarget.subjectId
+        );
+
+    }
+
+
+
+    /*
+        FORMATIVES / SUMMATIVES
+    */
+
+    if (
+        editorTarget.type ===
+        "menu"
+    ) {
+
+        return getMenuColor(
+            editorTarget.subjectId,
+            editorTarget.category
+        );
+
+    }
+
+
+    return "#d4d4d4";
+
+}
+
+
+
+/* =========================================================
+   GET CURRENT EDITOR IMAGE
+   ========================================================= */
+
+function getEditorImage() {
+
+    if (
+        editorTarget.type ===
+        "home"
+    ) {
+
+        return localStorage.getItem(
+            getHomeImageStorageKey(
+                editorTarget.subjectId
+            )
+        );
+
+    }
+
+
+    if (
+        editorTarget.type ===
+        "menu"
+    ) {
+
+        return localStorage.getItem(
+            getMenuImageStorageKey(
+                editorTarget.subjectId,
+                editorTarget.category
+            )
+        );
+
+    }
+
+
+    return null;
+
+}
+
+
+
+/* =========================================================
+   OPEN HOME CARD EDITOR
+   ========================================================= */
+
+function openHomeCardEditor(subjectId) {
 
     const subject =
         subjects[subjectId];
@@ -459,18 +862,78 @@ function openCardEditor(subjectId) {
     }
 
 
-    activeEditorSubject =
-        subjectId;
+    editorTarget = {
+        type: "home",
+        subjectId: subjectId,
+        category: null
+    };
 
 
     editorSubjectCode.textContent =
         subject.code;
 
 
+    prepareEditor();
+
+}
+
+
+
+/* =========================================================
+   OPEN SUBJECT MENU EDITOR
+   ========================================================= */
+
+function openMenuCardEditor(
+    subjectId,
+    category
+) {
+
+    const subject =
+        subjects[subjectId];
+
+
+    const menu =
+        subjectMenuDefaults[category];
+
+
+    if (
+        !subject ||
+        !menu
+    ) {
+        return;
+    }
+
+
+    editorTarget = {
+        type: "menu",
+        subjectId: subjectId,
+        category: category
+    };
+
+
+    /*
+        Example:
+        IT0035 - FORMATIVES
+    */
+
+    editorSubjectCode.textContent =
+        `${subject.code} - ${menu.title}`;
+
+
+    prepareEditor();
+
+}
+
+
+
+/* =========================================================
+   PREPARE EDITOR
+   ========================================================= */
+
+function prepareEditor() {
+
     const savedImage =
-        localStorage.getItem(
-            getImageStorageKey(subjectId)
-        );
+        getEditorImage();
 
 
     if (savedImage) {
@@ -489,7 +952,7 @@ function openCardEditor(subjectId) {
 
 
     updateSelectedColor(
-        getSubjectColor(subjectId)
+        getEditorColor()
     );
 
 
@@ -510,8 +973,11 @@ function closeCardEditor() {
         true;
 
 
-    activeEditorSubject =
-        null;
+    editorTarget = {
+        type: null,
+        subjectId: null,
+        category: null
+    };
 
 
     editorImageInput.value =
@@ -522,14 +988,14 @@ function closeCardEditor() {
 
 
 /* =========================================================
-   EDIT BUTTON EVENTS
+   HOME EDIT BUTTON EVENTS
    ========================================================= */
 
-function addImageEditEvents() {
+function addHomeEditEvents() {
 
     const editButtons =
         document.querySelectorAll(
-            ".edit-image-button"
+            ".edit-image-button[data-edit-type='home'], .edit-image-button:not([data-edit-type])"
         );
 
 
@@ -540,9 +1006,47 @@ function addImageEditEvents() {
                 "click",
                 function (event) {
 
-                    /*
-                        Prevent subject card navigation.
-                    */
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    const subjectId =
+                        button.dataset.editSubject;
+
+
+                    openHomeCardEditor(
+                        subjectId
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   SUBJECT MENU EDIT BUTTON EVENTS
+   ========================================================= */
+
+function addMenuEditEvents() {
+
+    const buttons =
+        document.querySelectorAll(
+            ".menu-edit-button"
+        );
+
+
+    buttons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                function (event) {
 
                     event.preventDefault();
 
@@ -553,8 +1057,13 @@ function addImageEditEvents() {
                         button.dataset.editSubject;
 
 
-                    openCardEditor(
-                        subjectId
+                    const category =
+                        button.dataset.editCategory;
+
+
+                    openMenuCardEditor(
+                        subjectId,
+                        category
                     );
 
                 }
@@ -573,7 +1082,9 @@ function addImageEditEvents() {
 
 function openImagePicker() {
 
-    if (!activeEditorSubject) {
+    if (
+        !editorTarget.subjectId
+    ) {
         return;
     }
 
@@ -617,11 +1128,6 @@ editorImageInput.addEventListener(
     "change",
     function () {
 
-        if (!activeEditorSubject) {
-            return;
-        }
-
-
         const file =
             editorImageInput.files[0];
 
@@ -631,9 +1137,8 @@ editorImageInput.addEventListener(
         }
 
 
-        saveImage(
-            file,
-            activeEditorSubject
+        saveEditorImage(
+            file
         );
 
     }
@@ -649,21 +1154,61 @@ editorRemoveImage.addEventListener(
     "click",
     function () {
 
-        if (!activeEditorSubject) {
+        if (
+            !editorTarget.subjectId
+        ) {
             return;
         }
 
 
-        localStorage.removeItem(
-            getImageStorageKey(
-                activeEditorSubject
-            )
-        );
+
+        /*
+            HOME
+        */
+
+        if (
+            editorTarget.type ===
+            "home"
+        ) {
+
+            localStorage.removeItem(
+                getHomeImageStorageKey(
+                    editorTarget.subjectId
+                )
+            );
 
 
-        hideSavedImage(
-            activeEditorSubject
-        );
+            hideHomeImage(
+                editorTarget.subjectId
+            );
+
+        }
+
+
+
+        /*
+            FORMATIVES / SUMMATIVES
+        */
+
+        if (
+            editorTarget.type ===
+            "menu"
+        ) {
+
+            localStorage.removeItem(
+                getMenuImageStorageKey(
+                    editorTarget.subjectId,
+                    editorTarget.category
+                )
+            );
+
+
+            hideMenuImage(
+                editorTarget.subjectId,
+                editorTarget.category
+            );
+
+        }
 
 
         showEditorPlaceholder();
@@ -688,7 +1233,9 @@ colorOptions.forEach(
             "click",
             function () {
 
-                if (!activeEditorSubject) {
+                if (
+                    !editorTarget.subjectId
+                ) {
                     return;
                 }
 
@@ -697,45 +1244,12 @@ colorOptions.forEach(
                     button.dataset.color;
 
 
-                /*
-                    Save selected color.
-                */
-
-                localStorage.setItem(
-                    getColorStorageKey(
-                        activeEditorSubject
-                    ),
-                    color
-                );
+                if (!color) {
+                    return;
+                }
 
 
-                /*
-                    Remove the saved image so
-                    solid color becomes visible.
-                */
-
-                localStorage.removeItem(
-                    getImageStorageKey(
-                        activeEditorSubject
-                    )
-                );
-
-
-                hideSavedImage(
-                    activeEditorSubject
-                );
-
-
-                showEditorPlaceholder();
-
-
-                applySubjectColor(
-                    activeEditorSubject,
-                    color
-                );
-
-
-                updateSelectedColor(
+                applyEditorColor(
                     color
                 );
 
@@ -748,7 +1262,103 @@ colorOptions.forEach(
 
 
 /* =========================================================
-   SHOW SELECTED COLOR IN PALETTE
+   APPLY EDITOR COLOR
+   ========================================================= */
+
+function applyEditorColor(color) {
+
+    /*
+        HOME CARD
+    */
+
+    if (
+        editorTarget.type ===
+        "home"
+    ) {
+
+        localStorage.setItem(
+            getHomeColorStorageKey(
+                editorTarget.subjectId
+            ),
+            color
+        );
+
+
+        localStorage.removeItem(
+            getHomeImageStorageKey(
+                editorTarget.subjectId
+            )
+        );
+
+
+        hideHomeImage(
+            editorTarget.subjectId
+        );
+
+
+        applySubjectColor(
+            editorTarget.subjectId,
+            color
+        );
+
+    }
+
+
+
+    /*
+        FORMATIVES / SUMMATIVES
+    */
+
+    if (
+        editorTarget.type ===
+        "menu"
+    ) {
+
+        localStorage.setItem(
+            getMenuColorStorageKey(
+                editorTarget.subjectId,
+                editorTarget.category
+            ),
+            color
+        );
+
+
+        localStorage.removeItem(
+            getMenuImageStorageKey(
+                editorTarget.subjectId,
+                editorTarget.category
+            )
+        );
+
+
+        hideMenuImage(
+            editorTarget.subjectId,
+            editorTarget.category
+        );
+
+
+        applyMenuColor(
+            editorTarget.subjectId,
+            editorTarget.category,
+            color
+        );
+
+    }
+
+
+    showEditorPlaceholder();
+
+
+    updateSelectedColor(
+        color
+    );
+
+}
+
+
+
+/* =========================================================
+   SHOW SELECTED COLOR
    ========================================================= */
 
 function updateSelectedColor(color) {
@@ -761,9 +1371,17 @@ function updateSelectedColor(color) {
             );
 
 
+            const buttonColor =
+                button.dataset.color;
+
+
+            if (!buttonColor) {
+                return;
+            }
+
+
             if (
-                button.dataset.color
-                .toLowerCase() ===
+                buttonColor.toLowerCase() ===
                 color.toLowerCase()
             ) {
 
@@ -788,64 +1406,114 @@ editorResetButton.addEventListener(
     "click",
     function () {
 
-        if (!activeEditorSubject) {
+        if (
+            !editorTarget.subjectId
+        ) {
             return;
         }
 
 
-        const subject =
-            subjects[
-                activeEditorSubject
-            ];
+
+        /* =================================================
+           HOME RESET
+           ================================================= */
+
+        if (
+            editorTarget.type ===
+            "home"
+        ) {
+
+            const subject =
+                subjects[
+                    editorTarget.subjectId
+                ];
 
 
-        /*
-            Remove saved image and color.
-        */
-
-        localStorage.removeItem(
-            getImageStorageKey(
-                activeEditorSubject
-            )
-        );
+            localStorage.removeItem(
+                getHomeImageStorageKey(
+                    editorTarget.subjectId
+                )
+            );
 
 
-        localStorage.removeItem(
-            getColorStorageKey(
-                activeEditorSubject
-            )
-        );
+            localStorage.removeItem(
+                getHomeColorStorageKey(
+                    editorTarget.subjectId
+                )
+            );
 
 
-        /*
-            Restore default color.
-        */
-
-        applySubjectColor(
-            activeEditorSubject,
-            subject.color
-        );
+            hideHomeImage(
+                editorTarget.subjectId
+            );
 
 
-        /*
-            Remove card image.
-        */
-
-        hideSavedImage(
-            activeEditorSubject
-        );
+            applySubjectColor(
+                editorTarget.subjectId,
+                subject.color
+            );
 
 
-        /*
-            Restore editor placeholder.
-        */
+            updateSelectedColor(
+                subject.color
+            );
+
+        }
+
+
+
+        /* =================================================
+           MENU RESET
+           ================================================= */
+
+        if (
+            editorTarget.type ===
+            "menu"
+        ) {
+
+            const defaultColor =
+                subjectMenuDefaults[
+                    editorTarget.category
+                ].color;
+
+
+            localStorage.removeItem(
+                getMenuImageStorageKey(
+                    editorTarget.subjectId,
+                    editorTarget.category
+                )
+            );
+
+
+            localStorage.removeItem(
+                getMenuColorStorageKey(
+                    editorTarget.subjectId,
+                    editorTarget.category
+                )
+            );
+
+
+            hideMenuImage(
+                editorTarget.subjectId,
+                editorTarget.category
+            );
+
+
+            applyMenuColor(
+                editorTarget.subjectId,
+                editorTarget.category,
+                defaultColor
+            );
+
+
+            updateSelectedColor(
+                defaultColor
+            );
+
+        }
+
 
         showEditorPlaceholder();
-
-
-        updateSelectedColor(
-            subject.color
-        );
 
 
         editorImageInput.value =
@@ -857,7 +1525,7 @@ editorResetButton.addEventListener(
 
 
 /* =========================================================
-   CLOSE EDITOR BUTTON
+   CLOSE EDITOR
    ========================================================= */
 
 cardEditorClose.addEventListener(
@@ -872,7 +1540,7 @@ cardEditorClose.addEventListener(
 
 
 /* =========================================================
-   CLICK OUTSIDE POPUP TO CLOSE
+   CLICK OUTSIDE POPUP
    ========================================================= */
 
 cardEditorOverlay.addEventListener(
@@ -909,7 +1577,7 @@ cardEditor.addEventListener(
 
 
 /* =========================================================
-   HOME SUBJECT CARDS
+   HOME SUBJECT CARD EVENTS
    ========================================================= */
 
 function addSubjectCardEvents() {
@@ -940,6 +1608,51 @@ function addSubjectCardEvents() {
 
         }
     );
+
+}
+
+
+
+/* =========================================================
+   SUBJECT MENU CARD EVENTS
+   ========================================================= */
+
+function addSubjectMenuEvents() {
+
+    const menuCards =
+        document.querySelectorAll(
+            ".subject-menu-card"
+        );
+
+
+    menuCards.forEach(
+        function (card) {
+
+            card.addEventListener(
+                "click",
+                function () {
+
+                    const subjectId =
+                        card.dataset.subject;
+
+
+                    const category =
+                        card.dataset.category;
+
+
+                    openSubjectCategory(
+                        subjectId,
+                        category
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    addMenuEditEvents();
 
 }
 
@@ -1021,6 +1734,10 @@ function setActiveSubject(subjectId) {
 
 function showHomePage() {
 
+    currentSubjectId =
+        null;
+
+
     pageContent.innerHTML =
         homePageHTML;
 
@@ -1037,14 +1754,9 @@ function showHomePage() {
         "";
 
 
-    /*
-        HTML was restored,
-        so listeners must be attached again.
-    */
-
     addSubjectCardEvents();
 
-    addImageEditEvents();
+    addHomeEditEvents();
 
     loadSavedColors();
 
@@ -1067,6 +1779,10 @@ function showSubjectPage(subjectId) {
     if (!subject) {
         return;
     }
+
+
+    currentSubjectId =
+        subjectId;
 
 
     setActiveSubject(
@@ -1105,7 +1821,9 @@ function showSubjectPage(subjectId) {
                     /
                 </span>
 
-                <span class="subject-heading-highlight">
+                <span
+                    class="subject-heading-highlight"
+                >
                     ${subject.code} - ${subject.name}
                 </span>
 
@@ -1118,7 +1836,9 @@ function showSubjectPage(subjectId) {
         <section class="subject-menu-grid">
 
 
-            <!-- FORMATIVES -->
+            <!-- =============================================
+                 FORMATIVES
+                 ============================================= -->
 
             <div
                 class="subject-menu-card"
@@ -1127,14 +1847,32 @@ function showSubjectPage(subjectId) {
             >
 
                 <div
-                    class="subject-menu-image formatives-bg"
+                    class="subject-menu-image"
+                    id="menu-image-${subjectId}-formatives"
                 >
 
-                    <span
-                        class="subject-menu-placeholder"
+                    <img
+                        id="menu-preview-${subjectId}-formatives"
+                        class="subject-menu-custom-image"
+                        src=""
+                        alt="${subject.code} Formatives image"
                     >
-                        ▣
-                    </span>
+
+
+                    <button
+                        class="menu-edit-button"
+                        type="button"
+                        data-edit-subject="${subjectId}"
+                        data-edit-category="formatives"
+                        aria-label="Customize ${subject.code} Formatives"
+                    >
+
+                        <img
+                            src="File_Bank/ASSETS/editImg_icon.png"
+                            alt=""
+                        >
+
+                    </button>
 
                 </div>
 
@@ -1155,7 +1893,9 @@ function showSubjectPage(subjectId) {
 
 
 
-            <!-- SUMMATIVES -->
+            <!-- =============================================
+                 SUMMATIVES
+                 ============================================= -->
 
             <div
                 class="subject-menu-card"
@@ -1164,14 +1904,32 @@ function showSubjectPage(subjectId) {
             >
 
                 <div
-                    class="subject-menu-image summatives-bg"
+                    class="subject-menu-image"
+                    id="menu-image-${subjectId}-summatives"
                 >
 
-                    <span
-                        class="subject-menu-placeholder"
+                    <img
+                        id="menu-preview-${subjectId}-summatives"
+                        class="subject-menu-custom-image"
+                        src=""
+                        alt="${subject.code} Summatives image"
                     >
-                        ▣
-                    </span>
+
+
+                    <button
+                        class="menu-edit-button"
+                        type="button"
+                        data-edit-subject="${subjectId}"
+                        data-edit-category="summatives"
+                        aria-label="Customize ${subject.code} Summatives"
+                    >
+
+                        <img
+                            src="File_Bank/ASSETS/editImg_icon.png"
+                            alt=""
+                        >
+
+                    </button>
 
                 </div>
 
@@ -1197,7 +1955,9 @@ function showSubjectPage(subjectId) {
 
 
 
-    /* HOME BREADCRUMB */
+    /* =====================================================
+       HOME BREADCRUMB
+       ===================================================== */
 
     const breadcrumbHome =
         document.getElementById(
@@ -1216,39 +1976,17 @@ function showSubjectPage(subjectId) {
 
 
 
-    /* FORMATIVES / SUMMATIVES */
+    /*
+        Apply saved colors/images
+        before attaching card events.
+    */
 
-    const menuCards =
-        document.querySelectorAll(
-            ".subject-menu-card"
-        );
-
-
-    menuCards.forEach(
-        function (card) {
-
-            card.addEventListener(
-                "click",
-                function () {
-
-                    const selectedSubject =
-                        card.dataset.subject;
-
-
-                    const category =
-                        card.dataset.category;
-
-
-                    openSubjectCategory(
-                        selectedSubject,
-                        category
-                    );
-
-                }
-            );
-
-        }
+    loadSubjectMenuCustomization(
+        subjectId
     );
+
+
+    addSubjectMenuEvents();
 
 }
 
@@ -1267,6 +2005,11 @@ function openSubjectCategory(
         subjects[subjectId];
 
 
+    if (!subject) {
+        return;
+    }
+
+
     console.log(
         "Subject:",
         subject.code
@@ -1277,6 +2020,14 @@ function openSubjectCategory(
         "Category:",
         category
     );
+
+
+    /*
+        NEXT:
+
+        dito natin ilalagay yung actual
+        Formatives / Summatives page.
+    */
 
 }
 
@@ -1344,6 +2095,10 @@ searchInput.addEventListener(
                 .trim();
 
 
+        /*
+            HOME SEARCH
+        */
+
         const subjectCards =
             document.querySelectorAll(
                 ".subject-card"
@@ -1403,7 +2158,7 @@ searchInput.addEventListener(
 
 addSubjectCardEvents();
 
-addImageEditEvents();
+addHomeEditEvents();
 
 loadSavedColors();
 

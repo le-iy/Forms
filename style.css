@@ -260,7 +260,7 @@ body {
 
 
 /* =========================================================
-   SUBJECT GRID
+   HOME SUBJECT GRID
    ========================================================= */
 
 .subject-grid {
@@ -274,7 +274,7 @@ body {
 
 
 /* =========================================================
-   SUBJECT CARD
+   HOME SUBJECT CARD
    ========================================================= */
 
 .subject-card {
@@ -297,7 +297,7 @@ body {
 
 
 /* =========================================================
-   CARD IMAGE AREA
+   HOME CARD IMAGE AREA
    ========================================================= */
 
 .card-image {
@@ -316,7 +316,7 @@ body {
 
 
 /* =========================================================
-   UPLOADED SUBJECT IMAGE
+   HOME UPLOADED SUBJECT IMAGE
    ========================================================= */
 
 .subject-image {
@@ -338,7 +338,7 @@ body {
 
 
 /* =========================================================
-   EDIT IMAGE BUTTON
+   HOME EDIT IMAGE BUTTON
    ========================================================= */
 
 .edit-image-button {
@@ -389,7 +389,7 @@ body {
 
 
 /* =========================================================
-   CARD INFORMATION
+   HOME CARD INFORMATION
    ========================================================= */
 
 .card-info {
@@ -421,7 +421,7 @@ body {
 
 
 /* =========================================================
-   DEFAULT CARD COLORS
+   DEFAULT HOME CARD COLORS
    ========================================================= */
 
 .it0035-bg {
@@ -468,9 +468,6 @@ body {
 /* =========================================================
    SUBJECT PAGE
    ========================================================= */
-
-
-/* SUBJECT PAGE HEADING */
 
 .subject-heading {
     margin-bottom: 18px;
@@ -557,6 +554,8 @@ body {
 
 /* =========================================================
    FORMATIVES / SUMMATIVES CARD
+
+   Same proportions and behavior as Home cards
    ========================================================= */
 
 .subject-menu-card {
@@ -579,7 +578,9 @@ body {
 
 
 /* =========================================================
-   SUBJECT MENU IMAGE
+   SUBJECT MENU IMAGE AREA
+
+   Same size as .card-image
    ========================================================= */
 
 .subject-menu-image {
@@ -593,16 +594,81 @@ body {
     place-items: center;
 
     overflow: hidden;
+
+    background-color: #d4d4d4;
 }
 
 
 
-/* PLACEHOLDER INSIDE SUBJECT MENU */
+/* =========================================================
+   SUBJECT MENU CUSTOM IMAGE
+   ========================================================= */
 
-.subject-menu-placeholder {
-    font-size: 46px;
+.subject-menu-custom-image {
+    position: absolute;
 
-    color: white;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: none;
+
+    z-index: 1;
+}
+
+
+
+/* =========================================================
+   SUBJECT MENU EDIT BUTTON
+
+   Same look and placement as Home edit button
+   ========================================================= */
+
+.menu-edit-button {
+    position: absolute;
+
+    top: 14px;
+    right: 16px;
+
+    width: 42px;
+    height: 42px;
+
+    display: grid;
+
+    place-items: center;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background-color: transparent;
+
+    cursor: pointer;
+
+    z-index: 3;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.menu-edit-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+
+    transform: scale(1.05);
+}
+
+
+.menu-edit-button img {
+    width: 29px;
+    height: 29px;
+
+    object-fit: contain;
 
     pointer-events: none;
 }
@@ -611,6 +677,8 @@ body {
 
 /* =========================================================
    SUBJECT MENU INFORMATION
+
+   Same look and dimensions as Home .card-info
    ========================================================= */
 
 .subject-menu-info {
@@ -642,31 +710,19 @@ body {
 
 
 /* =========================================================
-   FORMATIVES BACKGROUND
+   OLD FORMATIVES / SUMMATIVES BACKGROUNDS
+
+   Kept only in case old cached HTML still uses them.
+   New script overrides backgrounds dynamically.
    ========================================================= */
 
 .formatives-bg {
-    background:
-        linear-gradient(
-            90deg,
-            #8b2ca3 0%,
-            #ffd92f 100%
-        );
+    background-color: #8b2ca3;
 }
 
 
-
-/* =========================================================
-   SUMMATIVES BACKGROUND
-   ========================================================= */
-
 .summatives-bg {
-    background:
-        linear-gradient(
-            90deg,
-            #020202 0%,
-            #3931c9 100%
-        );
+    background-color: #2110b8;
 }
 
 
@@ -674,9 +730,6 @@ body {
 /* =========================================================
    CARD CUSTOMIZATION POPUP
    ========================================================= */
-
-
-/* POPUP BACKGROUND */
 
 .card-editor-overlay {
     position: fixed;
@@ -799,7 +852,9 @@ body {
 
 
 
-/* IMAGE PREVIEW BOX */
+/* =========================================================
+   IMAGE PREVIEW BOX
+   ========================================================= */
 
 .editor-image-area {
     position: relative;
@@ -829,7 +884,9 @@ body {
 
 
 
-/* IMAGE PREVIEW */
+/* =========================================================
+   EDITOR IMAGE PREVIEW
+   ========================================================= */
 
 .editor-image-preview {
     position: absolute;
@@ -847,7 +904,9 @@ body {
 
 
 
-/* IMAGE PLACEHOLDER */
+/* =========================================================
+   EDITOR IMAGE PLACEHOLDER
+   ========================================================= */
 
 .editor-image-placeholder {
     position: relative;
@@ -863,7 +922,9 @@ body {
 
 
 
-/* ADD IMAGE */
+/* =========================================================
+   ADD IMAGE
+   ========================================================= */
 
 .editor-add-image {
     margin-top: 10px;
@@ -886,7 +947,9 @@ body {
 
 
 
-/* REMOVE IMAGE */
+/* =========================================================
+   REMOVE IMAGE
+   ========================================================= */
 
 .editor-remove-image {
     margin-top: 5px;
