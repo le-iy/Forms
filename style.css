@@ -4151,6 +4151,8 @@ body.style-pop-outline .home-banner-left h1 {
 
 /* Pop Cards */
 
+/* Pop Cards */
+
 body.style-pop-outline .subject-card,
 body.style-pop-outline .subject-menu-card,
 body.style-pop-outline .global-category-card {
@@ -4160,9 +4162,30 @@ body.style-pop-outline .global-category-card {
 
     border-radius: 17px;
 
+    background:
+        var(--theme-outline);
+
+    overflow: hidden;
+
     box-shadow:
         5px 5px 0
         #111111;
+}
+
+body.style-pop-outline .card-info,
+body.style-pop-outline .subject-menu-info,
+body.style-pop-outline .category-item-info,
+body.style-pop-outline .global-category-info {
+    width: 100%;
+
+    margin-top: -1px;
+
+    border-top:
+        2px solid
+        #111111;
+
+    background:
+        var(--theme-outline);
 }
 
 
