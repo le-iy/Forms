@@ -4208,14 +4208,17 @@ body.style-pop-outline .theme-settings-button {
         2px solid
         #111111;
 
-    border-radius: 9px;
+    border-radius: 7px;
 
     background:
-        #ffffff;
+        rgba(255, 255, 255, 0.75);
 
     box-shadow:
         2px 2px 0
         #111111;
+
+    width: 26px;
+    height: 26px;
 }
 
 
