@@ -3427,9 +3427,30 @@ body.style-retro-os .global-category-card {
 
     border-radius: 0;
 
+    background:
+        var(--theme-outline);
+
+    overflow: hidden;
+
     box-shadow:
         3px 3px 0
         rgba(0, 0, 0, 0.38);
+}
+
+body.style-retro-os .card-info,
+body.style-retro-os .subject-menu-info,
+body.style-retro-os .category-item-info,
+body.style-retro-os .global-category-info {
+    width: 100%;
+
+    margin-top: -1px;
+
+    background:
+        var(--theme-outline);
+
+    border-top:
+        1px solid
+        #111111;
 }
 
 
