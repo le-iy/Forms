@@ -8,31 +8,10 @@ const IT0035 = {
     color: "#d899e8",
 
     categories: {
-        formatives: [
-            {
-                title: "Formative 1",
-                description: "",
-                link: "",
-                collabLink: ""
-            }
-        ],
+        formatives: [],
 
-        summatives: [
-            {
-                title: "Summative 1",
-                description: "",
-                link: "",
-                collabLink: ""
-            }
-        ],
+        summatives: [],
 
-        reviewers: [
-            {
-                title: "Network Map Module 1",
-                description: "",
-                link: "",
-                collabLink: ""
-            }
-        ]
+        reviewers: []
     }
 };

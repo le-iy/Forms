@@ -1,0 +1,28 @@
+    categories: {
+        formatives: [
+            {
+                title: "Formative 1",
+                description: "",
+                link: "",
+                collabLink: ""
+            }
+        ],
+
+        summatives: [
+            {
+                title: "Summative 1",
+                description: "",
+                link: "",
+                collabLink: ""
+            }
+        ],
+
+        reviewers: [
+            {
+                title: "Reviewer 1 Title",
+                description: "",
+                link: "",
+                collabLink: ""
+            }
+        ]
+    }

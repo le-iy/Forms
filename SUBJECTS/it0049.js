@@ -8,31 +8,10 @@ const IT0049 = {
     color: "#ff5757",
 
     categories: {
-        formatives: [
-            {
-                title: "Formative 1",
-                description: "",
-                link: "",
-                collabLink: ""
-            }
-        ],
+        formatives: [],
 
-        summatives: [
-            {
-                title: "Summative 1",
-                description: "",
-                link: "",
-                collabLink: ""
-            }
-        ],
+        summatives: [],
 
-        reviewers: [
-            {
-                title: "Reviewer 1 Title",
-                description: "",
-                link: "",
-                collabLink: ""
-            }
-        ]
+        reviewers: []
     }
 };
