@@ -28,7 +28,7 @@ const IT0035 = {
 
         reviewers: [
             {
-                title: "Reviewer 1 Title",
+                title: "Network Map Module 1",
                 description: "",
                 link: "",
                 collabLink: ""
