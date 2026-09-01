@@ -9,12 +9,14 @@ const subjectMenuDefaults = {
     }
 };
 
+
 const themeDefaults = {
     background: "#f6f6f6",
     outline: "#343840",
     text: "#ffffff",
     nonOutlineText: "#111111"
 };
+
 
 const themeStorageKeys = {
     background: "theme-background",
@@ -23,6 +25,7 @@ const themeStorageKeys = {
     nonOutlineText: "theme-non-outline-text",
     backgroundImage: "theme-background-image"
 };
+
 
 
 /* =========================================================
@@ -39,8 +42,10 @@ const themeStorageKeys = {
 const uiStyleStorageKey =
     "ui-style";
 
+
 const uiStyleDefault =
     "default";
+
 
 const uiStyles = [
     {
@@ -65,6 +70,7 @@ const uiStyles = [
     }
 ];
 
+
 const uiStyleBodyClasses =
     uiStyles.map(
         function (style) {
@@ -72,8 +78,11 @@ const uiStyleBodyClasses =
         }
     );
 
+
 const themeSolidSwatches = [
+
     /* Matte */
+
     "#b83aa3",
     "#c00000",
     "#1117a0",
@@ -84,7 +93,9 @@ const themeSolidSwatches = [
     "#8c4a0a",
     "#000000",
 
+
     /* Soft / pastel-ish */
+
     "#dc8ed2",
     "#c94f4b",
     "#4854b8",
@@ -95,7 +106,9 @@ const themeSolidSwatches = [
     "#b98754",
     "#7a7a7a",
 
+
     /* Neon */
+
     "#f000c4",
     "#ff1111",
     "#1528ff",
@@ -108,6 +121,7 @@ const themeSolidSwatches = [
 ];
 
 
+
 /* =========================================================
    PREMADE THEMES
 
@@ -117,6 +131,7 @@ const themeSolidSwatches = [
    ========================================================= */
 
 const premadeThemes = [
+
     {
         id: "theme-1",
         name: "Theme 1",
@@ -136,6 +151,7 @@ const premadeThemes = [
             nonOutlineText: "#0E0000"
         }
     },
+
 
     {
         id: "theme-2",
@@ -157,6 +173,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-3",
         name: "Theme 3",
@@ -176,6 +193,7 @@ const premadeThemes = [
             nonOutlineText: "#4E0714"
         }
     },
+
 
     {
         id: "theme-4",
@@ -197,6 +215,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-5",
         name: "Theme 5",
@@ -216,6 +235,7 @@ const premadeThemes = [
             nonOutlineText: "#15191E"
         }
     },
+
 
     {
         id: "theme-6",
@@ -237,6 +257,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-7",
         name: "Theme 7",
@@ -256,6 +277,7 @@ const premadeThemes = [
             nonOutlineText: "#354024"
         }
     },
+
 
     {
         id: "theme-8",
@@ -277,6 +299,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-9",
         name: "Theme 9",
@@ -296,6 +319,7 @@ const premadeThemes = [
             nonOutlineText: "#22303F"
         }
     },
+
 
     {
         id: "theme-10",
@@ -317,6 +341,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-11",
         name: "Theme 11",
@@ -336,6 +361,7 @@ const premadeThemes = [
             nonOutlineText: "#191939"
         }
     },
+
 
     {
         id: "theme-12",
@@ -357,6 +383,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-13",
         name: "Theme 13",
@@ -377,6 +404,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-14",
         name: "Theme 14",
@@ -394,6 +422,7 @@ const premadeThemes = [
             nonOutlineText: "#24221B"
         }
     },
+
 
     {
         id: "theme-15",
@@ -415,6 +444,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-16",
         name: "Theme 16",
@@ -434,6 +464,7 @@ const premadeThemes = [
             nonOutlineText: "#3D230A"
         }
     },
+
 
     {
         id: "theme-17",
@@ -455,6 +486,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-18",
         name: "Theme 18",
@@ -474,6 +506,7 @@ const premadeThemes = [
             nonOutlineText: "#2B3349"
         }
     },
+
 
     {
         id: "theme-19",
@@ -495,6 +528,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-20",
         name: "Theme 20",
@@ -514,6 +548,7 @@ const premadeThemes = [
             nonOutlineText: "#6A2B09"
         }
     },
+
 
     {
         id: "theme-21",
@@ -535,6 +570,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-22",
         name: "Theme 22",
@@ -554,6 +590,7 @@ const premadeThemes = [
             nonOutlineText: "#372D35"
         }
     },
+
 
     {
         id: "theme-23",
@@ -575,6 +612,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-24",
         name: "Theme 24",
@@ -594,6 +632,7 @@ const premadeThemes = [
             nonOutlineText: "#11100D"
         }
     },
+
 
     {
         id: "theme-25",
@@ -615,6 +654,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-26",
         name: "Theme 26",
@@ -634,6 +674,7 @@ const premadeThemes = [
             nonOutlineText: "#372D35"
         }
     },
+
 
     {
         id: "theme-27",
@@ -655,6 +696,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-28",
         name: "Theme 28",
@@ -674,6 +716,7 @@ const premadeThemes = [
             nonOutlineText: "#24201D"
         }
     },
+
 
     {
         id: "theme-29",
@@ -695,6 +738,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-30",
         name: "Theme 30",
@@ -714,6 +758,7 @@ const premadeThemes = [
             nonOutlineText: "#33261F"
         }
     },
+
 
     {
         id: "theme-31",
@@ -735,6 +780,7 @@ const premadeThemes = [
         }
     },
 
+
     {
         id: "theme-32",
         name: "Theme 32",
@@ -754,6 +800,7 @@ const premadeThemes = [
             nonOutlineText: "#2B2202"
         }
     },
+
 
     {
         id: "theme-33",
@@ -776,33 +823,41 @@ const premadeThemes = [
     }
 ];
 
-
 const pageContent =
     document.getElementById("page-content");
+
 
 const homeLink =
     document.getElementById("home-link");
 
+
 const formativesLink =
     document.getElementById("formatives-link");
+
 
 const summativesLink =
     document.getElementById("summatives-link");
 
+
 const reviewersLink =
     document.getElementById("reviewers-link");
+
 
 const mainNavLinks =
     document.querySelectorAll(".main-nav .nav-item");
 
+
 const subjectLinks =
     document.querySelectorAll(".subject-link");
+
 
 const searchInput =
     document.getElementById("search-input");
 
+
 const searchContainer =
     document.querySelector(".search-container");
+
 
 
 /* =========================================================
@@ -815,8 +870,10 @@ const searchContainer =
 const linkViewStorageKey =
     "link-view-mode";
 
+
 const linkViewDefault =
     "practice";
+
 
 let currentLinkViewMode =
     localStorage.getItem(
@@ -825,45 +882,60 @@ let currentLinkViewMode =
         ? "edit"
         : linkViewDefault;
 
+
+
 const cardEditorOverlay =
     document.getElementById("card-editor-overlay");
+
 
 const cardEditor =
     document.getElementById("card-editor");
 
+
 const cardEditorClose =
     document.getElementById("card-editor-close");
+
 
 const editorSubjectCode =
     document.getElementById("editor-subject-code");
 
+
 const editorImageArea =
     document.getElementById("editor-image-area");
+
 
 const editorImagePreview =
     document.getElementById("editor-image-preview");
 
+
 const editorImagePlaceholder =
     document.getElementById("editor-image-placeholder");
+
 
 const editorAddImage =
     document.getElementById("editor-add-image");
 
+
 const editorImageInput =
     document.getElementById("editor-image-input");
+
 
 const editorRemoveImage =
     document.getElementById("editor-remove-image");
 
+
 const editorResetButton =
     document.getElementById("editor-reset-button");
+
 
 const colorOptions =
     document.querySelectorAll(".color-option");
 
+
 let currentSubjectId = null;
 let currentCategory = null;
 let activeReviewerFilter = null;
+
 
 let editorTarget = {
     type: null,
@@ -872,8 +944,10 @@ let editorTarget = {
     itemIndex: null
 };
 
+
 const homePageHTML =
     pageContent.innerHTML;
+
 
 
 /* =========================================================
@@ -882,15 +956,19 @@ const homePageHTML =
 
 function showSearchBar() {
     if (searchContainer) {
-        searchContainer.style.display = "";
+        searchContainer.style.display =
+            "";
     }
 }
 
+
 function hideSearchBar() {
     if (searchContainer) {
-        searchContainer.style.display = "none";
+        searchContainer.style.display =
+            "none";
     }
 }
+
 
 
 /* =========================================================
@@ -902,10 +980,12 @@ function getLinkForCurrentMode(item) {
         return "";
     }
 
+
     return currentLinkViewMode === "edit"
         ? item.collabLink || ""
         : item.link || "";
 }
+
 
 
 function getLinkLabelForCurrentMode() {
@@ -913,6 +993,7 @@ function getLinkLabelForCurrentMode() {
         ? "Collab Link"
         : "Open";
 }
+
 
 
 function updateLinkViewSwitch() {
@@ -924,18 +1005,23 @@ function updateLinkViewSwitch() {
                 button.dataset.linkView ===
                     currentLinkViewMode;
 
+
             button.classList.toggle(
                 "active",
                 isActive
             );
 
+
             button.setAttribute(
                 "aria-pressed",
-                isActive ? "true" : "false"
+                isActive
+                    ? "true"
+                    : "false"
             );
         }
     );
 }
+
 
 
 function refreshCurrentPageForLinkView() {
@@ -951,23 +1037,30 @@ function refreshCurrentPageForLinkView() {
             currentCategory
         );
 
+
         return;
     }
+
 
     if (currentCategory === "reviewers") {
         const previousReviewerFilter =
             activeReviewerFilter;
 
+
         showReviewersPage();
+
 
         activeReviewerFilter =
             previousReviewerFilter;
 
+
         updateReviewerFilterButtons();
+
 
         filterReviewerCards();
     }
 }
+
 
 
 function setLinkViewMode(mode) {
@@ -976,27 +1069,34 @@ function setLinkViewMode(mode) {
             ? "edit"
             : "practice";
 
+
     if (
         currentLinkViewMode ===
         resolvedMode
     ) {
         updateLinkViewSwitch();
 
+
         return;
     }
 
+
     currentLinkViewMode =
         resolvedMode;
+
 
     localStorage.setItem(
         linkViewStorageKey,
         currentLinkViewMode
     );
 
+
     updateLinkViewSwitch();
+
 
     refreshCurrentPageForLinkView();
 }
+
 
 
 function initializeLinkViewSwitch() {
@@ -1004,10 +1104,12 @@ function initializeLinkViewSwitch() {
         return;
     }
 
+
     let switchElement =
         document.getElementById(
             "link-view-switch"
         );
+
 
     if (!switchElement) {
         switchElement =
@@ -1015,21 +1117,26 @@ function initializeLinkViewSwitch() {
                 "div"
             );
 
+
         switchElement.id =
             "link-view-switch";
 
+
         switchElement.className =
             "link-view-switch";
+
 
         switchElement.setAttribute(
             "role",
             "group"
         );
 
+
         switchElement.setAttribute(
             "aria-label",
             "Choose which links to show"
         );
+
 
         switchElement.innerHTML = `
             <button
@@ -1051,9 +1158,11 @@ function initializeLinkViewSwitch() {
             </button>
         `;
 
+
         searchContainer.appendChild(
             switchElement
         );
+
 
         switchElement.querySelectorAll(
             ".link-view-option"
@@ -1071,8 +1180,10 @@ function initializeLinkViewSwitch() {
         );
     }
 
+
     updateLinkViewSwitch();
 }
+
 
 
 /* =========================================================
@@ -1085,8 +1196,12 @@ function getSavedThemeValue(setting) {
             themeStorageKeys[setting]
         );
 
-    return saved || themeDefaults[setting];
+
+    return saved ||
+        themeDefaults[setting];
 }
+
+
 
 /* =========================================================
    APPLY THEME SETTING
@@ -1100,12 +1215,14 @@ function applyThemeSetting(
     const root =
         document.documentElement;
 
+
     if (setting === "background") {
         root.style.setProperty(
             "--theme-background",
             value
         );
     }
+
 
     if (setting === "outline") {
         root.style.setProperty(
@@ -1114,12 +1231,14 @@ function applyThemeSetting(
         );
     }
 
+
     if (setting === "text") {
         root.style.setProperty(
             "--theme-text",
             value
         );
     }
+
 
     if (setting === "nonOutlineText") {
         root.style.setProperty(
@@ -1128,12 +1247,14 @@ function applyThemeSetting(
         );
     }
 
+
     if (save) {
         localStorage.setItem(
             themeStorageKeys[setting],
             value
         );
     }
+
 
     if (
         setting === "background" ||
@@ -1142,6 +1263,7 @@ function applyThemeSetting(
         scheduleAdaptiveBackgroundTextRefresh();
     }
 }
+
 
 
 /* =========================================================
@@ -1156,9 +1278,11 @@ function applyThemeBackgroundImage(
         document.body.style.backgroundImage =
             "";
 
+
         document.body.classList.remove(
             "theme-has-background-image"
         );
+
 
         if (save) {
             localStorage.removeItem(
@@ -1166,21 +1290,34 @@ function applyThemeBackgroundImage(
             );
         }
 
-        adaptiveBackgroundImageCache.src = null;
-        adaptiveBackgroundImageCache.image = null;
-        adaptiveBackgroundImageCache.promise = null;
+
+        adaptiveBackgroundImageCache.src =
+            null;
+
+
+        adaptiveBackgroundImageCache.image =
+            null;
+
+
+        adaptiveBackgroundImageCache.promise =
+            null;
+
 
         scheduleAdaptiveBackgroundTextRefresh();
+
 
         return;
     }
 
+
     document.body.style.backgroundImage =
         `url("${imageData}")`;
+
 
     document.body.classList.add(
         "theme-has-background-image"
     );
+
 
     if (save) {
         localStorage.setItem(
@@ -1189,12 +1326,22 @@ function applyThemeBackgroundImage(
         );
     }
 
-    adaptiveBackgroundImageCache.src = null;
-    adaptiveBackgroundImageCache.image = null;
-    adaptiveBackgroundImageCache.promise = null;
+
+    adaptiveBackgroundImageCache.src =
+        null;
+
+
+    adaptiveBackgroundImageCache.image =
+        null;
+
+
+    adaptiveBackgroundImageCache.promise =
+        null;
+
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
+
 
 
 /* =========================================================
@@ -1204,32 +1351,45 @@ function applyThemeBackgroundImage(
 function loadSavedTheme() {
     applyThemeSetting(
         "background",
-        getSavedThemeValue("background"),
+        getSavedThemeValue(
+            "background"
+        ),
         false
     );
+
 
     applyThemeSetting(
         "outline",
-        getSavedThemeValue("outline"),
+        getSavedThemeValue(
+            "outline"
+        ),
         false
     );
+
 
     applyThemeSetting(
         "text",
-        getSavedThemeValue("text"),
+        getSavedThemeValue(
+            "text"
+        ),
         false
     );
 
+
     applyThemeSetting(
         "nonOutlineText",
-        getSavedThemeValue("nonOutlineText"),
+        getSavedThemeValue(
+            "nonOutlineText"
+        ),
         false
     );
+
 
     const backgroundImage =
         localStorage.getItem(
             themeStorageKeys.backgroundImage
         );
+
 
     if (backgroundImage) {
         applyThemeBackgroundImage(
@@ -1240,16 +1400,20 @@ function loadSavedTheme() {
 }
 
 
+
 /* =========================================================
    RESET GLOBAL THEME
    ========================================================= */
 
 function resetGlobalTheme() {
-    Object.keys(themeDefaults).forEach(
+    Object.keys(
+        themeDefaults
+    ).forEach(
         function (setting) {
             localStorage.removeItem(
                 themeStorageKeys[setting]
             );
+
 
             applyThemeSetting(
                 setting,
@@ -1259,11 +1423,13 @@ function resetGlobalTheme() {
         }
     );
 
+
     applyThemeBackgroundImage(
         null,
         true
     );
 }
+
 
 
 /* =========================================================
@@ -1273,10 +1439,13 @@ function resetGlobalTheme() {
 function isValidUIStyle(styleId) {
     return uiStyles.some(
         function (style) {
-            return style.id === styleId;
+            return style.id ===
+                styleId;
         }
     );
 }
+
+
 
 function getSavedUIStyle() {
     const saved =
@@ -1284,10 +1453,13 @@ function getSavedUIStyle() {
             uiStyleStorageKey
         );
 
+
     return isValidUIStyle(saved)
         ? saved
         : uiStyleDefault;
 }
+
+
 
 function applyUIStyle(
     styleId,
@@ -1298,6 +1470,7 @@ function applyUIStyle(
             ? styleId
             : uiStyleDefault;
 
+
     uiStyleBodyClasses.forEach(
         function (className) {
             document.body.classList.remove(
@@ -1306,9 +1479,11 @@ function applyUIStyle(
         }
     );
 
+
     document.body.classList.add(
         `style-${resolvedStyle}`
     );
+
 
     if (save) {
         localStorage.setItem(
@@ -1317,18 +1492,23 @@ function applyUIStyle(
         );
     }
 
+
     const selector =
         document.getElementById(
             "ui-style-select"
         );
+
 
     if (selector) {
         selector.value =
             resolvedStyle;
     }
 
+
     scheduleAdaptiveBackgroundTextRefresh();
 }
+
+
 
 function loadSavedUIStyle() {
     applyUIStyle(
@@ -1337,30 +1517,37 @@ function loadSavedUIStyle() {
     );
 }
 
+
+
 function buildUIStyleOptionsHTML() {
     const savedStyle =
         localStorage.getItem(
             uiStyleStorageKey
         );
 
+
     const hasSavedStyle =
         isValidUIStyle(
             savedStyle
         );
+
 
     const placeholderSelected =
         hasSavedStyle
             ? ""
             : " selected";
 
+
     const styleOptions =
         uiStyles.map(
             function (style) {
                 const selected =
                     hasSavedStyle &&
-                    style.id === savedStyle
+                    style.id ===
+                        savedStyle
                         ? " selected"
                         : "";
+
 
                 return `
                     <option
@@ -1372,6 +1559,7 @@ function buildUIStyleOptionsHTML() {
                 `;
             }
         ).join("");
+
 
     return `
         <option
@@ -1385,6 +1573,7 @@ function buildUIStyleOptionsHTML() {
         ${styleOptions}
     `;
 }
+
 
 
 /* =========================================================
@@ -1406,13 +1595,17 @@ const adaptiveBackgroundTextSelector = [
     ".ui-style-hint"
 ].join(", ");
 
+
 const adaptiveBackgroundImageCache = {
     src: null,
     image: null,
     promise: null
 };
 
-let adaptiveRefreshFrame = null;
+
+let adaptiveRefreshFrame =
+    null;
+
 
 
 /* =========================================================
@@ -1429,113 +1622,184 @@ function clampColorChannel(value) {
     );
 }
 
+
+
 function parseThemeColor(value) {
     if (!value) {
         return null;
     }
 
+
     const color =
         value.trim();
 
+
     if (
-        color.startsWith("linear-gradient") ||
-        color.startsWith("radial-gradient")
+        color.startsWith(
+            "linear-gradient"
+        ) ||
+        color.startsWith(
+            "radial-gradient"
+        )
     ) {
         return getAverageGradientColor(
             color
         );
     }
 
+
     if (color.startsWith("#")) {
         const hex =
             color.slice(1);
 
+
         if (hex.length === 3) {
             return {
-                r: parseInt(hex[0] + hex[0], 16),
-                g: parseInt(hex[1] + hex[1], 16),
-                b: parseInt(hex[2] + hex[2], 16)
+                r: parseInt(
+                    hex[0] + hex[0],
+                    16
+                ),
+
+                g: parseInt(
+                    hex[1] + hex[1],
+                    16
+                ),
+
+                b: parseInt(
+                    hex[2] + hex[2],
+                    16
+                )
             };
         }
 
+
         if (hex.length >= 6) {
             return {
-                r: parseInt(hex.slice(0, 2), 16),
-                g: parseInt(hex.slice(2, 4), 16),
-                b: parseInt(hex.slice(4, 6), 16)
+                r: parseInt(
+                    hex.slice(0, 2),
+                    16
+                ),
+
+                g: parseInt(
+                    hex.slice(2, 4),
+                    16
+                ),
+
+                b: parseInt(
+                    hex.slice(4, 6),
+                    16
+                )
             };
         }
     }
+
 
     const rgbMatch =
         color.match(
             /rgba?\(\s*([\d.]+)\s*,\s*([\d.]+)\s*,\s*([\d.]+)/
         );
 
+
     if (rgbMatch) {
         return {
             r: clampColorChannel(
-                Number(rgbMatch[1])
+                Number(
+                    rgbMatch[1]
+                )
             ),
 
             g: clampColorChannel(
-                Number(rgbMatch[2])
+                Number(
+                    rgbMatch[2]
+                )
             ),
 
             b: clampColorChannel(
-                Number(rgbMatch[3])
+                Number(
+                    rgbMatch[3]
+                )
             )
         };
     }
 
+
     return null;
 }
 
-function getAverageGradientColor(gradient) {
+
+
+function getAverageGradientColor(
+    gradient
+) {
     const colors = [];
+
 
     const hexMatches =
         gradient.match(
             /#[0-9a-fA-F]{3,8}\b/g
         ) || [];
 
+
     hexMatches.forEach(
         function (hex) {
             const parsed =
-                parseThemeColor(hex);
+                parseThemeColor(
+                    hex
+                );
+
 
             if (parsed) {
-                colors.push(parsed);
+                colors.push(
+                    parsed
+                );
             }
         }
     );
+
 
     const rgbMatches =
         gradient.match(
             /rgba?\([^)]*\)/g
         ) || [];
 
+
     rgbMatches.forEach(
         function (rgb) {
             const parsed =
-                parseThemeColor(rgb);
+                parseThemeColor(
+                    rgb
+                );
+
 
             if (parsed) {
-                colors.push(parsed);
+                colors.push(
+                    parsed
+                );
             }
         }
     );
+
 
     if (!colors.length) {
         return null;
     }
 
+
     const total =
         colors.reduce(
-            function (result, color) {
-                result.r += color.r;
-                result.g += color.g;
-                result.b += color.b;
+            function (
+                result,
+                color
+            ) {
+                result.r +=
+                    color.r;
+
+                result.g +=
+                    color.g;
+
+                result.b +=
+                    color.b;
+
 
                 return result;
             },
@@ -1546,17 +1810,29 @@ function getAverageGradientColor(gradient) {
             }
         );
 
+
     return {
-        r: total.r / colors.length,
-        g: total.g / colors.length,
-        b: total.b / colors.length
+        r:
+            total.r /
+            colors.length,
+
+        g:
+            total.g /
+            colors.length,
+
+        b:
+            total.b /
+            colors.length
     };
 }
+
+
 
 function getRelativeLuminance(color) {
     if (!color) {
         return 1;
     }
+
 
     const channels = [
         color.r,
@@ -1567,14 +1843,20 @@ function getRelativeLuminance(color) {
             const value =
                 channel / 255;
 
+
             return value <= 0.03928
                 ? value / 12.92
                 : Math.pow(
-                    (value + 0.055) / 1.055,
+                    (
+                        value +
+                        0.055
+                    ) /
+                        1.055,
                     2.4
                 );
         }
     );
+
 
     return (
         0.2126 * channels[0] +
@@ -1582,6 +1864,8 @@ function getRelativeLuminance(color) {
         0.0722 * channels[2]
     );
 }
+
+
 
 function getContrastRatio(
     firstColor,
@@ -1592,10 +1876,12 @@ function getContrastRatio(
             firstColor
         );
 
+
     const second =
         getRelativeLuminance(
             secondColor
         );
+
 
     const lighter =
         Math.max(
@@ -1603,11 +1889,13 @@ function getContrastRatio(
             second
         );
 
+
     const darker =
         Math.min(
             first,
             second
         );
+
 
     return (
         (lighter + 0.05) /
@@ -1615,9 +1903,13 @@ function getContrastRatio(
     );
 }
 
+
+
 function rgbToCss(color) {
     return `rgb(${clampColorChannel(color.r)}, ${clampColorChannel(color.g)}, ${clampColorChannel(color.b)})`;
 }
+
+
 
 function getReadableAdaptiveTextColor(
     backgroundColor
@@ -1627,10 +1919,12 @@ function getReadableAdaptiveTextColor(
             "nonOutlineText"
         );
 
+
     const preferredColor =
         parseThemeColor(
             preferredValue
         );
+
 
     const black = {
         r: 17,
@@ -1638,14 +1932,17 @@ function getReadableAdaptiveTextColor(
         b: 17
     };
 
+
     const white = {
         r: 255,
         g: 255,
         b: 255
     };
 
+
     const requiredContrast =
         4.5;
+
 
     if (
         preferredColor &&
@@ -1657,11 +1954,13 @@ function getReadableAdaptiveTextColor(
         return preferredValue;
     }
 
+
     const blackContrast =
         getContrastRatio(
             black,
             backgroundColor
         );
+
 
     const whiteContrast =
         getContrastRatio(
@@ -1669,11 +1968,12 @@ function getReadableAdaptiveTextColor(
             backgroundColor
         );
 
-    return blackContrast >= whiteContrast
+
+    return blackContrast >=
+        whiteContrast
         ? rgbToCss(black)
         : rgbToCss(white);
 }
-
 
 /* =========================================================
    BACKGROUND IMAGE CACHE
@@ -1685,11 +1985,13 @@ function getAdaptiveBackgroundImage() {
             themeStorageKeys.backgroundImage
         );
 
+
     if (!imageData) {
         return Promise.resolve(
             null
         );
     }
+
 
     if (
         adaptiveBackgroundImageCache.src === imageData &&
@@ -1700,6 +2002,7 @@ function getAdaptiveBackgroundImage() {
         );
     }
 
+
     if (
         adaptiveBackgroundImageCache.src === imageData &&
         adaptiveBackgroundImageCache.promise
@@ -1707,14 +2010,18 @@ function getAdaptiveBackgroundImage() {
         return adaptiveBackgroundImageCache.promise;
     }
 
+
     const image =
         new Image();
+
 
     adaptiveBackgroundImageCache.src =
         imageData;
 
+
     adaptiveBackgroundImageCache.image =
         null;
+
 
     adaptiveBackgroundImageCache.promise =
         new Promise(
@@ -1724,37 +2031,46 @@ function getAdaptiveBackgroundImage() {
                         adaptiveBackgroundImageCache.image =
                             image;
 
+
                         adaptiveBackgroundImageCache.promise =
                             null;
+
 
                         resolve(
                             image
                         );
                     };
 
+
                 image.onerror =
                     function () {
                         adaptiveBackgroundImageCache.src =
                             null;
 
+
                         adaptiveBackgroundImageCache.image =
                             null;
 
+
                         adaptiveBackgroundImageCache.promise =
                             null;
+
 
                         resolve(
                             null
                         );
                     };
 
+
                 image.src =
                     imageData;
             }
         );
 
+
     return adaptiveBackgroundImageCache.promise;
 }
+
 
 
 /* =========================================================
@@ -1773,46 +2089,78 @@ function sampleBackgroundImageBehindElement(
         return null;
     }
 
+
     const rect =
         element.getBoundingClientRect();
+
 
     const viewportWidth =
         window.innerWidth;
 
+
     const viewportHeight =
         window.innerHeight;
 
+
     const scale =
         Math.max(
-            viewportWidth / image.naturalWidth,
-            viewportHeight / image.naturalHeight
+            viewportWidth /
+                image.naturalWidth,
+
+            viewportHeight /
+                image.naturalHeight
         );
 
+
     const renderedWidth =
-        image.naturalWidth * scale;
+        image.naturalWidth *
+        scale;
+
 
     const renderedHeight =
-        image.naturalHeight * scale;
+        image.naturalHeight *
+        scale;
+
 
     const cropX =
-        (renderedWidth - viewportWidth) / 2;
+        (
+            renderedWidth -
+            viewportWidth
+        ) / 2;
+
 
     const cropY =
-        (renderedHeight - viewportHeight) / 2;
+        (
+            renderedHeight -
+            viewportHeight
+        ) / 2;
+
 
     const centerX =
         rect.left +
         rect.width / 2;
 
+
     const centerY =
         rect.top +
         rect.height / 2;
 
+
     const sourceX =
-        (centerX + cropX) / scale;
+        (
+            centerX +
+            cropX
+        ) /
+        scale;
+
 
     const sourceY =
-        (centerY + cropY) / scale;
+        (
+            centerY +
+            cropY
+        ) /
+        scale;
+
 
     const sourceRadius =
         Math.max(
@@ -1823,29 +2171,38 @@ function sampleBackgroundImageBehindElement(
             ) * 0.012
         );
 
+
     const sx =
         Math.max(
             0,
-            sourceX - sourceRadius
+            sourceX -
+                sourceRadius
         );
+
 
     const sy =
         Math.max(
             0,
-            sourceY - sourceRadius
+            sourceY -
+                sourceRadius
         );
+
 
     const sw =
         Math.min(
             sourceRadius * 2,
-            image.naturalWidth - sx
+            image.naturalWidth -
+                sx
         );
+
 
     const sh =
         Math.min(
             sourceRadius * 2,
-            image.naturalHeight - sy
+            image.naturalHeight -
+                sy
         );
+
 
     if (
         sw <= 0 ||
@@ -1854,25 +2211,31 @@ function sampleBackgroundImageBehindElement(
         return null;
     }
 
+
     const canvas =
         document.createElement(
             "canvas"
         );
 
+
     canvas.width = 1;
     canvas.height = 1;
+
 
     const context =
         canvas.getContext(
             "2d",
             {
-                willReadFrequently: true
+                willReadFrequently:
+                    true
             }
         );
+
 
     if (!context) {
         return null;
     }
+
 
     try {
         context.drawImage(
@@ -1887,6 +2250,7 @@ function sampleBackgroundImageBehindElement(
             1
         );
 
+
         const pixel =
             context.getImageData(
                 0,
@@ -1894,6 +2258,7 @@ function sampleBackgroundImageBehindElement(
                 1,
                 1
             ).data;
+
 
         return {
             r: pixel[0],
@@ -1907,15 +2272,19 @@ function sampleBackgroundImageBehindElement(
     }
 }
 
+
+
 async function refreshAdaptiveBackgroundText() {
     const elements =
         document.querySelectorAll(
             adaptiveBackgroundTextSelector
         );
 
+
     if (!elements.length) {
         return;
     }
+
 
     elements.forEach(
         function (element) {
@@ -1925,8 +2294,10 @@ async function refreshAdaptiveBackgroundText() {
         }
     );
 
+
     const wallpaper =
         await getAdaptiveBackgroundImage();
+
 
     const fallbackBackground =
         parseThemeColor(
@@ -1939,10 +2310,12 @@ async function refreshAdaptiveBackgroundText() {
             b: 246
         };
 
+
     elements.forEach(
         function (element) {
             let backgroundColor =
                 fallbackBackground;
+
 
             if (wallpaper) {
                 const sampled =
@@ -1951,16 +2324,19 @@ async function refreshAdaptiveBackgroundText() {
                         element
                     );
 
+
                 if (sampled) {
                     backgroundColor =
                         sampled;
                 }
             }
 
+
             const textColor =
                 getReadableAdaptiveTextColor(
                     backgroundColor
                 );
+
 
             element.style.setProperty(
                 "--adaptive-background-text",
@@ -1970,6 +2346,8 @@ async function refreshAdaptiveBackgroundText() {
     );
 }
 
+
+
 function scheduleAdaptiveBackgroundTextRefresh() {
     if (adaptiveRefreshFrame) {
         cancelAnimationFrame(
@@ -1977,21 +2355,26 @@ function scheduleAdaptiveBackgroundTextRefresh() {
         );
     }
 
+
     adaptiveRefreshFrame =
         requestAnimationFrame(
             function () {
                 adaptiveRefreshFrame =
                     null;
 
+
                 refreshAdaptiveBackgroundText();
             }
         );
 }
 
+
+
 function startAdaptiveBackgroundTextObserver() {
     if (!pageContent) {
         return;
     }
+
 
     const observer =
         new MutationObserver(
@@ -1999,6 +2382,7 @@ function startAdaptiveBackgroundTextObserver() {
                 scheduleAdaptiveBackgroundTextRefresh();
             }
         );
+
 
     observer.observe(
         pageContent,
@@ -2008,10 +2392,12 @@ function startAdaptiveBackgroundTextObserver() {
         }
     );
 
+
     window.addEventListener(
         "resize",
         scheduleAdaptiveBackgroundTextRefresh
     );
+
 
     window.addEventListener(
         "scroll",
@@ -2023,6 +2409,7 @@ function startAdaptiveBackgroundTextObserver() {
 }
 
 
+
 /* =========================================================
    THEME SWATCHES
    ========================================================= */
@@ -2032,17 +2419,25 @@ function buildThemeSwatches(
     allowGradient
 ) {
     const currentValue =
-        getSavedThemeValue(setting);
+        getSavedThemeValue(
+            setting
+        );
+
 
     const values =
-        [...themeSolidSwatches];
+        [
+            ...themeSolidSwatches
+        ];
+
 
     return values.map(
         function (value) {
             const selected =
-                value === currentValue
+                value ===
+                currentValue
                     ? " selected"
                     : "";
+
 
             return `
                 <button
@@ -2058,6 +2453,8 @@ function buildThemeSwatches(
     ).join("");
 }
 
+
+
 function updateThemePreview(
     setting,
     value
@@ -2068,21 +2465,25 @@ function updateThemePreview(
                 "theme-outline-preview-accent"
             );
 
+
         if (outlineAccent) {
             outlineAccent.style.background =
                 value;
         }
+
 
         const textPreview =
             document.querySelector(
                 ".theme-text-preview"
             );
 
+
         if (textPreview) {
             textPreview.style.background =
                 value;
         }
     }
+
 
     if (setting === "text") {
         document.querySelectorAll(
@@ -2094,6 +2495,7 @@ function updateThemePreview(
             }
         );
     }
+
 
     if (setting === "nonOutlineText") {
         document.querySelectorAll(
@@ -2107,6 +2509,8 @@ function updateThemePreview(
     }
 }
 
+
+
 function updateSelectedThemeSwatch(
     setting,
     value
@@ -2119,10 +2523,12 @@ function updateSelectedThemeSwatch(
                 "selected"
             );
 
+
             const swatchValue =
                 decodeURIComponent(
                     swatch.dataset.themeValue
                 );
+
 
             if (
                 swatchValue.toLowerCase() ===
@@ -2136,27 +2542,34 @@ function updateSelectedThemeSwatch(
     );
 }
 
+
+
 function addThemeSettingsButtonEvents() {
     const button =
         document.getElementById(
             "theme-settings-button"
         );
 
+
     if (!button) {
         return;
     }
+
 
     button.addEventListener(
         "click",
         function (event) {
             event.preventDefault();
 
+
             event.stopPropagation();
+
 
             showThemeSettingsPage();
         }
     );
 }
+
 
 
 /* =========================================================
@@ -2169,9 +2582,11 @@ function getActivePremadeThemeId() {
             themeStorageKeys.backgroundImage
         );
 
+
     if (backgroundImage) {
         return null;
     }
+
 
     const currentSettings = {
         background:
@@ -2195,6 +2610,7 @@ function getActivePremadeThemeId() {
             )
     };
 
+
     const match =
         premadeThemes.find(
             function (theme) {
@@ -2214,14 +2630,18 @@ function getActivePremadeThemeId() {
             }
         );
 
+
     return match
         ? match.id
         : null;
 }
 
+
+
 function buildPremadeThemesHTML() {
     const activeThemeId =
         getActivePremadeThemeId();
+
 
     return premadeThemes.map(
         function (theme) {
@@ -2229,6 +2649,7 @@ function buildPremadeThemesHTML() {
                 theme.id === activeThemeId
                     ? " active"
                     : "";
+
 
             const paletteHTML =
                 theme.palette.map(
@@ -2242,6 +2663,7 @@ function buildPremadeThemesHTML() {
                         `;
                     }
                 ).join("");
+
 
             return `
                 <button
@@ -2265,9 +2687,12 @@ function buildPremadeThemesHTML() {
     ).join("");
 }
 
+
+
 function updatePremadeThemeSelection() {
     const activeThemeId =
         getActivePremadeThemeId();
+
 
     document.querySelectorAll(
         ".premade-theme-option"
@@ -2282,33 +2707,42 @@ function updatePremadeThemeSelection() {
     );
 }
 
+
+
 function clearThemeBackgroundPreview() {
     const preview =
         document.getElementById(
             "theme-background-preview-image"
         );
 
+
     const icon =
         document.getElementById(
             "theme-background-preview-icon"
         );
+
 
     const removeButton =
         document.getElementById(
             "theme-remove-background-button"
         );
 
+
     if (preview) {
-        preview.src = "";
+        preview.src =
+            "";
+
 
         preview.style.display =
             "none";
     }
 
+
     if (icon) {
         icon.style.display =
             "";
     }
+
 
     if (removeButton) {
         removeButton.hidden =
@@ -2316,40 +2750,52 @@ function clearThemeBackgroundPreview() {
     }
 }
 
+
+
 function applyPremadeTheme(themeId) {
     const theme =
         premadeThemes.find(
             function (item) {
-                return item.id === themeId;
+                return item.id ===
+                    themeId;
             }
         );
+
 
     if (!theme) {
         return;
     }
 
+
     applyThemeBackgroundImage(
         null
     );
 
+
     clearThemeBackgroundPreview();
+
 
     Object.keys(
         theme.settings
     ).forEach(
         function (setting) {
             const value =
-                theme.settings[setting];
+                theme.settings[
+                    setting
+                ];
+
 
             applyThemeSetting(
                 setting,
                 value
             );
 
+
             updateThemePreview(
                 setting,
                 value
             );
+
 
             updateSelectedThemeSwatch(
                 setting,
@@ -2358,10 +2804,13 @@ function applyPremadeTheme(themeId) {
         }
     );
 
+
     updatePremadeThemeSelection();
+
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
+
 
 
 /* =========================================================
@@ -2369,33 +2818,47 @@ function applyPremadeTheme(themeId) {
    ========================================================= */
 
 function showThemeSettingsPage() {
-    currentSubjectId = null;
-    currentCategory = "theme";
-    activeReviewerFilter = null;
+    currentSubjectId =
+        null;
+
+
+    currentCategory =
+        "theme";
+
+
+    activeReviewerFilter =
+        null;
+
 
     clearActiveNavigation();
 
+
     hideSearchBar();
+
 
     const outline =
         getSavedThemeValue(
             "outline"
         );
 
+
     const text =
         getSavedThemeValue(
             "text"
         );
+
 
     const nonOutlineText =
         getSavedThemeValue(
             "nonOutlineText"
         );
 
+
     const backgroundImage =
         localStorage.getItem(
             themeStorageKeys.backgroundImage
         );
+
 
     pageContent.innerHTML = `
         <section class="theme-page">
@@ -2406,6 +2869,7 @@ function showThemeSettingsPage() {
                 </h1>
             </div>
 
+
             <div class="theme-settings-columns">
 
                 <div class="theme-settings-column">
@@ -2415,6 +2879,7 @@ function showThemeSettingsPage() {
                         <h2 class="theme-control-title">
                             Background
                         </h2>
+
 
                         <button
                             type="button"
@@ -2431,6 +2896,7 @@ function showThemeSettingsPage() {
                                 style="display: ${backgroundImage ? "block" : "none"};"
                             >
 
+
                             <span
                                 class="theme-background-preview-icon"
                                 id="theme-background-preview-icon"
@@ -2442,12 +2908,14 @@ function showThemeSettingsPage() {
 
                         </button>
 
+
                         <input
                             type="file"
                             id="theme-background-image-input"
                             accept="image/*"
                             hidden
                         >
+
 
                         <button
                             type="button"
@@ -2458,6 +2926,7 @@ function showThemeSettingsPage() {
                             Remove Background Image
                         </button>
 
+
                         <div class="theme-swatch-grid">
                             ${buildThemeSwatches(
                                 "background",
@@ -2467,11 +2936,13 @@ function showThemeSettingsPage() {
 
                     </div>
 
+
                     <div class="theme-control-group">
 
                         <h2 class="theme-control-title">
                             Text
                         </h2>
+
 
                         <div
                             class="theme-preview theme-text-preview"
@@ -2484,6 +2955,7 @@ function showThemeSettingsPage() {
                                 TEXT
                             </strong>
 
+
                             <span
                                 style="color: ${text};"
                             >
@@ -2491,6 +2963,7 @@ function showThemeSettingsPage() {
                             </span>
 
                         </div>
+
 
                         <div class="theme-swatch-grid">
                             ${buildThemeSwatches(
@@ -2504,6 +2977,7 @@ function showThemeSettingsPage() {
                 </div>
 
 
+
                 <div class="theme-settings-column">
 
                     <div class="theme-control-group">
@@ -2511,6 +2985,7 @@ function showThemeSettingsPage() {
                         <h2 class="theme-control-title">
                             Outline
                         </h2>
+
 
                         <div
                             class="theme-preview theme-outline-preview"
@@ -2522,11 +2997,13 @@ function showThemeSettingsPage() {
                                 style="background: ${outline};"
                             ></div>
 
+
                             <div
                                 class="theme-outline-preview-body"
                             ></div>
 
                         </div>
+
 
                         <div class="theme-swatch-grid">
                             ${buildThemeSwatches(
@@ -2537,11 +3014,13 @@ function showThemeSettingsPage() {
 
                     </div>
 
+
                     <div class="theme-control-group">
 
                         <h2 class="theme-control-title">
                             Non-Outline Text
                         </h2>
+
 
                         <div
                             class="theme-preview theme-non-outline-preview"
@@ -2553,6 +3032,7 @@ function showThemeSettingsPage() {
                                 TEXT
                             </strong>
 
+
                             <span
                                 style="color: ${nonOutlineText};"
                             >
@@ -2560,6 +3040,7 @@ function showThemeSettingsPage() {
                             </span>
 
                         </div>
+
 
                         <div class="theme-swatch-grid">
                             ${buildThemeSwatches(
@@ -2587,6 +3068,7 @@ function showThemeSettingsPage() {
                         THEMES
                     </h2>
 
+
                     <button
                         type="button"
                         class="premade-themes-toggle"
@@ -2598,6 +3080,7 @@ function showThemeSettingsPage() {
                         <span class="premade-themes-placeholder">
                             Select Here
                         </span>
+
 
                         <span
                             class="premade-themes-arrow"
@@ -2612,11 +3095,13 @@ function showThemeSettingsPage() {
                 </section>
 
 
+
                 <section class="ui-style-section">
 
                     <h2 class="ui-style-title">
                         UI STYLE
                     </h2>
+
 
                     <div class="ui-style-selector-wrap">
 
@@ -2658,6 +3143,7 @@ function showThemeSettingsPage() {
                     Reset Theme
                 </button>
 
+
                 <button
                     type="button"
                     class="theme-back-button"
@@ -2668,15 +3154,19 @@ function showThemeSettingsPage() {
 
             </div>
 
+
             <div class="theme-page-spacer"></div>
 
         </section>
     `;
 
+
     addThemePageEvents();
+
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
+
 
 
 /* =========================================================
@@ -2694,10 +3184,12 @@ function addThemePageEvents() {
                     const setting =
                         swatch.dataset.themeSetting;
 
+
                     const value =
                         decodeURIComponent(
                             swatch.dataset.themeValue
                         );
+
 
                     if (
                         !setting ||
@@ -2705,6 +3197,7 @@ function addThemePageEvents() {
                     ) {
                         return;
                     }
+
 
 
                     /* -------------------------------------
@@ -2715,6 +3208,7 @@ function addThemePageEvents() {
                         applyThemeBackgroundImage(
                             null
                         );
+
 
                         clearThemeBackgroundPreview();
                     }
@@ -2776,10 +3270,12 @@ function addThemePageEvents() {
             "premade-themes-toggle"
         );
 
+
     const premadeThemesContent =
         document.getElementById(
             "premade-themes-content"
         );
+
 
     const premadeThemesArrow =
         document.getElementById(
@@ -2872,10 +3368,12 @@ function addThemePageEvents() {
             "theme-background-image-button"
         );
 
+
     const backgroundInput =
         document.getElementById(
             "theme-background-image-input"
         );
+
 
     const removeButton =
         document.getElementById(
@@ -2927,6 +3425,7 @@ function addThemePageEvents() {
                                 "theme-background-preview-image"
                             );
 
+
                         const icon =
                             document.getElementById(
                                 "theme-background-preview-icon"
@@ -2936,6 +3435,7 @@ function addThemePageEvents() {
                         if (preview) {
                             preview.src =
                                 imageData;
+
 
                             preview.style.display =
                                 "block";
@@ -3136,7 +3636,9 @@ function getMenuColor(
                 category
             )
         ) ||
-        subjectMenuDefaults[category].color
+        subjectMenuDefaults[
+            category
+        ].color
     );
 }
 
@@ -3269,6 +3771,7 @@ function applyItemCustomization(
                 image.src =
                     imageData;
 
+
                 image.style.display =
                     "block";
             }
@@ -3276,6 +3779,7 @@ function applyItemCustomization(
             else {
                 image.src =
                     "";
+
 
                 image.style.display =
                     "none";
@@ -3542,14 +4046,20 @@ function showEditorPlaceholder() {
 
 
 function getEditorColor() {
-    if (editorTarget.type === "home") {
+    if (
+        editorTarget.type ===
+        "home"
+    ) {
         return getSubjectColor(
             editorTarget.subjectId
         );
     }
 
 
-    if (editorTarget.type === "menu") {
+    if (
+        editorTarget.type ===
+        "menu"
+    ) {
         return getMenuColor(
             editorTarget.subjectId,
             editorTarget.category
@@ -3557,7 +4067,10 @@ function getEditorColor() {
     }
 
 
-    if (editorTarget.type === "item") {
+    if (
+        editorTarget.type ===
+        "item"
+    ) {
         return getItemColor(
             editorTarget.subjectId,
             editorTarget.category,
@@ -3571,7 +4084,10 @@ function getEditorColor() {
 
 
 function getEditorImage() {
-    if (editorTarget.type === "home") {
+    if (
+        editorTarget.type ===
+        "home"
+    ) {
         return localStorage.getItem(
             getHomeImageStorageKey(
                 editorTarget.subjectId
@@ -3580,7 +4096,10 @@ function getEditorImage() {
     }
 
 
-    if (editorTarget.type === "menu") {
+    if (
+        editorTarget.type ===
+        "menu"
+    ) {
         return localStorage.getItem(
             getMenuImageStorageKey(
                 editorTarget.subjectId,
@@ -3590,7 +4109,10 @@ function getEditorImage() {
     }
 
 
-    if (editorTarget.type === "item") {
+    if (
+        editorTarget.type ===
+        "item"
+    ) {
         return localStorage.getItem(
             getItemImageStorageKey(
                 editorTarget.subjectId,
@@ -3635,7 +4157,9 @@ function openHomeCardEditor(
     subjectId
 ) {
     const subject =
-        subjectData[subjectId];
+        subjectData[
+            subjectId
+        ];
 
 
     if (!subject) {
@@ -3664,12 +4188,16 @@ function openMenuCardEditor(
     category
 ) {
     const subject =
-        subjectData[subjectId];
+        subjectData[
+            subjectId
+        ];
 
 
     if (
         !subject ||
-        !subjectMenuDefaults[category]
+        !subjectMenuDefaults[
+            category
+        ]
     ) {
         return;
     }
@@ -3695,17 +4223,26 @@ function getItemFallbackTitle(
     category,
     index
 ) {
-    if (category === "formatives") {
+    if (
+        category ===
+        "formatives"
+    ) {
         return `Formative ${index + 1}`;
     }
 
 
-    if (category === "summatives") {
+    if (
+        category ===
+        "summatives"
+    ) {
         return `Summative ${index + 1}`;
     }
 
 
-    if (category === "reviewers") {
+    if (
+        category ===
+        "reviewers"
+    ) {
         return `Module ${index + 1}`;
     }
 
@@ -3720,24 +4257,34 @@ function openItemCardEditor(
     itemIndex
 ) {
     const subject =
-        subjectData[subjectId];
+        subjectData[
+            subjectId
+        ];
 
 
     const items =
-        subject?.categories?.[category];
+        subject
+            ?.categories
+            ?.[category];
 
 
     if (
         !subject ||
-        !Array.isArray(items) ||
-        !items[itemIndex]
+        !Array.isArray(
+            items
+        ) ||
+        !items[
+            itemIndex
+        ]
     ) {
         return;
     }
 
 
     const title =
-        items[itemIndex].title ||
+        items[
+            itemIndex
+        ].title ||
         getItemFallbackTitle(
             category,
             itemIndex
@@ -3802,7 +4349,10 @@ function saveEditorImage(file) {
                HOME CARD IMAGE
                --------------------------------------------- */
 
-            if (editorTarget.type === "home") {
+            if (
+                editorTarget.type ===
+                "home"
+            ) {
                 localStorage.setItem(
                     getHomeImageStorageKey(
                         editorTarget.subjectId
@@ -3823,7 +4373,10 @@ function saveEditorImage(file) {
                SUBJECT MENU IMAGE
                --------------------------------------------- */
 
-            if (editorTarget.type === "menu") {
+            if (
+                editorTarget.type ===
+                "menu"
+            ) {
                 localStorage.setItem(
                     getMenuImageStorageKey(
                         editorTarget.subjectId,
@@ -3846,7 +4399,10 @@ function saveEditorImage(file) {
                INDIVIDUAL ITEM IMAGE
                --------------------------------------------- */
 
-            if (editorTarget.type === "item") {
+            if (
+                editorTarget.type ===
+                "item"
+            ) {
                 localStorage.setItem(
                     getItemImageStorageKey(
                         editorTarget.subjectId,
@@ -3975,7 +4531,9 @@ function addItemEditEvents() {
    ========================================================= */
 
 function openImagePicker() {
-    if (!editorTarget.subjectId) {
+    if (
+        !editorTarget.subjectId
+    ) {
         return;
     }
 
@@ -4020,7 +4578,9 @@ editorImageInput.addEventListener(
 editorRemoveImage.addEventListener(
     "click",
     function () {
-        if (!editorTarget.subjectId) {
+        if (
+            !editorTarget.subjectId
+        ) {
             return;
         }
 
@@ -4030,7 +4590,10 @@ editorRemoveImage.addEventListener(
            HOME
            --------------------------------------------- */
 
-        if (editorTarget.type === "home") {
+        if (
+            editorTarget.type ===
+            "home"
+        ) {
             localStorage.removeItem(
                 getHomeImageStorageKey(
                     editorTarget.subjectId
@@ -4049,13 +4612,17 @@ editorRemoveImage.addEventListener(
            MENU
            --------------------------------------------- */
 
-        if (editorTarget.type === "menu") {
+        if (
+            editorTarget.type ===
+            "menu"
+        ) {
             localStorage.removeItem(
                 getMenuImageStorageKey(
                     editorTarget.subjectId,
                     editorTarget.category
                 )
             );
+
 
             hideMenuImage(
                 editorTarget.subjectId,
@@ -4069,7 +4636,10 @@ editorRemoveImage.addEventListener(
            ITEM
            --------------------------------------------- */
 
-        if (editorTarget.type === "item") {
+        if (
+            editorTarget.type ===
+            "item"
+        ) {
             localStorage.removeItem(
                 getItemImageStorageKey(
                     editorTarget.subjectId,
@@ -4094,7 +4664,6 @@ editorRemoveImage.addEventListener(
             "";
     }
 );
-
 
 
 /* =========================================================
@@ -4488,6 +5057,7 @@ function clearActiveNavigation() {
 }
 
 
+
 function setActiveSubject(subjectId) {
     clearActiveNavigation();
 
@@ -4517,6 +5087,7 @@ function setActiveSubject(subjectId) {
 }
 
 
+
 function addSubjectCardEvents() {
     document.querySelectorAll(
         ".subject-card"
@@ -4535,40 +5106,175 @@ function addSubjectCardEvents() {
 }
 
 
+
+/* =========================================================
+   WHOLE CATEGORY ITEM CARD LINK
+
+   The entire Formative / Summative item card follows
+   the currently selected link mode:
+
+   Practice Links -> item.link
+   Edit Links     -> item.collabLink
+
+   EXCEPT:
+   - edit icon
+   - the actual visible hyperlink
+
+   The visible hyperlink is excluded so clicking it
+   does not trigger two new tabs.
+   ========================================================= */
+
+function addCategoryItemCardEvents() {
+    document.querySelectorAll(
+        ".category-item-card"
+    ).forEach(
+        function (card) {
+            card.addEventListener(
+                "click",
+                function (event) {
+
+                    /* -------------------------------------
+                       EDIT ICON
+
+                       Editor only.
+                       Do not follow card link.
+                       ------------------------------------- */
+
+                    if (
+                        event.target.closest(
+                            ".item-edit-button"
+                        )
+                    ) {
+                        return;
+                    }
+
+
+
+                    /* -------------------------------------
+                       ACTUAL HYPERLINK
+
+                       Let the <a> element handle itself.
+                       Prevents opening the link twice.
+                       ------------------------------------- */
+
+                    if (
+                        event.target.closest(
+                            ".category-item-link"
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    const subjectId =
+                        card.dataset.subject;
+
+
+                    const category =
+                        card.dataset.category;
+
+
+                    const itemIndex =
+                        Number(
+                            card.dataset.itemIndex
+                        );
+
+
+                    const subject =
+                        subjectData[
+                            subjectId
+                        ];
+
+
+                    const item =
+                        subject
+                            ?.categories
+                            ?.[category]
+                            ?.[itemIndex];
+
+
+                    if (!item) {
+                        return;
+                    }
+
+
+                    const link =
+                        getLinkForCurrentMode(
+                            item
+                        );
+
+
+                    if (!link) {
+                        return;
+                    }
+
+
+                    window.open(
+                        link,
+                        "_blank",
+                        "noopener,noreferrer"
+                    );
+                }
+            );
+        }
+    );
+}
+
+
+
 /* =========================================================
    HOME
    ========================================================= */
 
 function showHomePage() {
-    currentSubjectId = null;
-    currentCategory = null;
-    activeReviewerFilter = null;
+    currentSubjectId =
+        null;
+
+
+    currentCategory =
+        null;
+
+
+    activeReviewerFilter =
+        null;
+
 
     showSearchBar();
+
 
     pageContent.innerHTML =
         homePageHTML;
 
+
     clearActiveNavigation();
+
 
     homeLink.classList.add(
         "active"
     );
 
+
     searchInput.value =
         "";
 
+
     addSubjectCardEvents();
+
 
     addHomeEditEvents();
 
+
     addThemeSettingsButtonEvents();
+
 
     loadSavedColors();
 
+
     loadSavedImages();
 
+
     updateLinkViewSwitch();
+
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
@@ -4581,34 +5287,45 @@ function showHomePage() {
 
 function showSubjectPage(subjectId) {
     const subject =
-        subjectData[subjectId];
+        subjectData[
+            subjectId
+        ];
+
 
     if (!subject) {
         return;
     }
 
+
     showSearchBar();
+
 
     currentSubjectId =
         subjectId;
 
+
     currentCategory =
         null;
 
+
     activeReviewerFilter =
         null;
+
 
     setActiveSubject(
         subjectId
     );
 
+
     searchInput.value =
         "";
+
 
     const color =
         getSubjectColor(
             subjectId
         );
+
 
     pageContent.innerHTML = `
         <div
@@ -4658,6 +5375,7 @@ function showSubjectPage(subjectId) {
                         src=""
                         alt=""
                     >
+
 
                     <button
                         type="button"
@@ -4709,6 +5427,7 @@ function showSubjectPage(subjectId) {
                         src=""
                         alt=""
                     >
+
 
                     <button
                         type="button"
@@ -4768,6 +5487,7 @@ function showSubjectPage(subjectId) {
 }
 
 
+
 function addSubjectMenuEvents() {
     document.querySelectorAll(
         ".subject-menu-card[data-category]:not(.global-category-card):not(.category-item-card):not(.reviewer-card)"
@@ -4785,6 +5505,7 @@ function addSubjectMenuEvents() {
         }
     );
 
+
     addMenuEditEvents();
 }
 
@@ -4799,10 +5520,16 @@ function openSubjectCategory(
     category
 ) {
     const subject =
-        subjectData[subjectId];
+        subjectData[
+            subjectId
+        ];
+
 
     const items =
-        subject?.categories?.[category];
+        subject
+            ?.categories
+            ?.[category];
+
 
     if (
         !subject ||
@@ -4811,33 +5538,46 @@ function openSubjectCategory(
         return;
     }
 
+
     showSearchBar();
+
 
     currentSubjectId =
         subjectId;
 
+
     currentCategory =
         category;
 
+
     activeReviewerFilter =
         null;
+
 
     setActiveSubject(
         subjectId
     );
 
+
     searchInput.value =
         "";
+
 
     const subjectColor =
         getSubjectColor(
             subjectId
         );
 
+
     const categoryTitle =
-        subjectMenuDefaults[category]
-            ? subjectMenuDefaults[category].title
+        subjectMenuDefaults[
+            category
+        ]
+            ? subjectMenuDefaults[
+                category
+            ].title
             : category.toUpperCase();
+
 
     let itemsHTML =
         "";
@@ -4875,9 +5615,11 @@ function openSubjectCategory(
                         index
                     );
 
+
                 const description =
                     item.description ||
                     "No description yet.";
+
 
                 const color =
                     getItemColor(
@@ -4885,6 +5627,7 @@ function openSubjectCategory(
                         category,
                         index
                     );
+
 
                 const image =
                     localStorage.getItem(
@@ -4894,6 +5637,7 @@ function openSubjectCategory(
                             index
                         )
                     );
+
 
 
                 /* =========================================
@@ -4911,8 +5655,10 @@ function openSubjectCategory(
                         item
                     );
 
+
                 const activeLinkLabel =
                     getLinkLabelForCurrentMode();
+
 
                 let links =
                     "";
@@ -4956,6 +5702,7 @@ function openSubjectCategory(
                                 style="display: ${image ? "block" : "none"};"
                             >
 
+
                             <button
                                 type="button"
                                 class="menu-edit-button item-edit-button"
@@ -4982,9 +5729,11 @@ function openSubjectCategory(
                                 ${title}
                             </h2>
 
+
                             <p>
                                 ${description}
                             </p>
+
 
                             ${
                                 links
@@ -5081,6 +5830,18 @@ function openSubjectCategory(
     addItemEditEvents();
 
 
+    /*
+        NEW:
+        Makes the whole Formative / Summative
+        item card clickable.
+
+        addItemEditEvents() is kept first so the
+        edit button continues to behave normally.
+    */
+
+    addCategoryItemCardEvents();
+
+
     updateLinkViewSwitch();
 
 
@@ -5096,14 +5857,18 @@ function openSubjectCategory(
 function showAllCategoryItems(category) {
     showSearchBar();
 
+
     currentSubjectId =
         null;
+
 
     currentCategory =
         category;
 
+
     activeReviewerFilter =
         null;
+
 
     clearActiveNavigation();
 
@@ -5142,7 +5907,6 @@ function showAllCategoryItems(category) {
         "";
 
 
-
     Object.keys(
         subjectData
     ).forEach(
@@ -5152,10 +5916,11 @@ function showAllCategoryItems(category) {
                     subjectId
                 ];
 
+
             const items =
-                subject?.categories?.[
-                    category
-                ];
+                subject
+                    ?.categories
+                    ?.[category];
 
 
             if (!Array.isArray(items)) {
@@ -5222,6 +5987,7 @@ function showAllCategoryItems(category) {
                                     style="display: ${image ? "block" : "none"};"
                                 >
 
+
                                 <button
                                     type="button"
                                     class="menu-edit-button item-edit-button"
@@ -5252,6 +6018,7 @@ function showAllCategoryItems(category) {
                                     ${itemTitle}
                                 </p>
 
+
                                 <span
                                     class="global-search-text"
                                     hidden
@@ -5271,7 +6038,6 @@ function showAllCategoryItems(category) {
     );
 
 
-
     if (!html.trim()) {
         html = `
             <p class="empty-category-message">
@@ -5279,7 +6045,6 @@ function showAllCategoryItems(category) {
             </p>
         `;
     }
-
 
 
     pageContent.innerHTML = `
@@ -5291,7 +6056,6 @@ function showAllCategoryItems(category) {
             ${html}
         </section>
     `;
-
 
 
     document.querySelectorAll(
@@ -5309,6 +6073,7 @@ function showAllCategoryItems(category) {
                     ) {
                         return;
                     }
+
 
                     openSubjectCategory(
                         card.dataset.subject,
@@ -5328,8 +6093,6 @@ function showAllCategoryItems(category) {
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
-
-
 
 /* =========================================================
    REVIEWERS
@@ -5541,7 +6304,6 @@ function showReviewersPage() {
         "";
 
 
-
     Object.keys(
         subjectData
     ).forEach(
@@ -5553,13 +6315,14 @@ function showReviewersPage() {
 
 
             const reviewers =
-                subject?.categories?.reviewers;
+                subject
+                    ?.categories
+                    ?.reviewers;
 
 
             if (!Array.isArray(reviewers)) {
                 return;
             }
-
 
 
             reviewers.forEach(
@@ -5633,6 +6396,7 @@ function showReviewersPage() {
                                     style="display: ${image ? "block" : "none"};"
                                 >
 
+
                                 <button
                                     type="button"
                                     class="menu-edit-button item-edit-button"
@@ -5663,6 +6427,7 @@ function showReviewersPage() {
                                     ${title}
                                 </p>
 
+
                                 <span
                                     class="global-search-text"
                                     hidden
@@ -5683,7 +6448,6 @@ function showReviewersPage() {
     );
 
 
-
     if (!cards.trim()) {
         cards = `
             <p class="empty-category-message">
@@ -5691,7 +6455,6 @@ function showReviewersPage() {
             </p>
         `;
     }
-
 
 
     pageContent.innerHTML = `
@@ -5724,6 +6487,8 @@ function showReviewersPage() {
     scheduleAdaptiveBackgroundTextRefresh();
 }
 
+
+
 /* =========================================================
    SIDEBAR NAVIGATION
    ========================================================= */
@@ -5732,6 +6497,7 @@ homeLink.addEventListener(
     "click",
     function (event) {
         event.preventDefault();
+
 
         showHomePage();
     }
@@ -5743,6 +6509,7 @@ if (formativesLink) {
         "click",
         function (event) {
             event.preventDefault();
+
 
             showAllCategoryItems(
                 "formatives"
@@ -5758,6 +6525,7 @@ if (summativesLink) {
         function (event) {
             event.preventDefault();
 
+
             showAllCategoryItems(
                 "summatives"
             );
@@ -5772,6 +6540,7 @@ if (reviewersLink) {
         function (event) {
             event.preventDefault();
 
+
             showReviewersPage();
         }
     );
@@ -5784,6 +6553,7 @@ subjectLinks.forEach(
             "click",
             function (event) {
                 event.preventDefault();
+
 
                 showSubjectPage(
                     link.dataset.subject
@@ -5822,6 +6592,7 @@ searchInput.addEventListener(
         if (reviewerCards.length) {
             filterReviewerCards();
 
+
             return;
         }
 
@@ -5857,6 +6628,7 @@ searchInput.addEventListener(
                             : "none";
                 }
             );
+
 
             return;
         }

@@ -445,7 +445,8 @@ body {
 
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     align-items: center;
 
@@ -552,7 +553,9 @@ body {
 
 
 .link-view-option:focus-visible {
-    outline: 2px solid var(--theme-non-outline-text);
+    outline:
+        2px solid
+        var(--theme-non-outline-text);
 
     outline-offset: -2px;
 }
@@ -703,7 +706,8 @@ body {
 
 
 .theme-settings-button:hover {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color:
+        rgba(255, 255, 255, 0.15);
 
     transform: scale(1.06);
 }
@@ -744,7 +748,10 @@ body {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fill, minmax(190px, 1fr));
+        repeat(
+            auto-fill,
+            minmax(190px, 1fr)
+        );
 
     gap: 17px 20px;
 }
@@ -764,12 +771,14 @@ body {
 
     cursor: pointer;
 
-    transition: transform 0.2s ease;
+    transition:
+        transform 0.2s ease;
 }
 
 
 .subject-card:hover {
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 }
 
 
@@ -852,9 +861,11 @@ body {
 
 
 .edit-image-button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color:
+        rgba(255, 255, 255, 0.3);
 
-    transform: scale(1.05);
+    transform:
+        scale(1.05);
 }
 
 
@@ -1033,6 +1044,8 @@ body {
     font-weight: bold;
 }
 
+
+
 /* =========================================================
    SUBJECT MENU GRID
    ========================================================= */
@@ -1062,7 +1075,8 @@ body {
 
     cursor: pointer;
 
-    transition: transform 0.2s ease;
+    transition:
+        transform 0.2s ease;
 }
 
 
@@ -1149,9 +1163,11 @@ body {
 
 
 .menu-edit-button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color:
+        rgba(255, 255, 255, 0.3);
 
-    transform: scale(1.05);
+    transform:
+        scale(1.05);
 }
 
 
@@ -1173,11 +1189,14 @@ body {
 .subject-menu-info {
     min-height: 79px;
 
-    background: var(--theme-outline);
+    background:
+        var(--theme-outline);
 
-    padding: 11px 13px 13px;
+    padding:
+        11px 13px 13px;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
@@ -1188,7 +1207,8 @@ body {
 
     margin-bottom: 3px;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
@@ -1197,22 +1217,29 @@ body {
 
     line-height: 1.35;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
 
 /* =========================================================
    CATEGORY ITEM CARDS
+
+   Whole Formative / Summative item card is clickable.
+
+   The edit icon still keeps its own pointer behavior
+   through .item-edit-button.
    ========================================================= */
 
 .category-item-card {
-    cursor: default;
+    cursor: pointer;
 }
 
 
 .category-item-card:hover {
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 }
 
 
@@ -1310,9 +1337,11 @@ body {
 
 
 .item-edit-button:hover {
-    background-color: rgba(255, 255, 255, 0.35);
+    background-color:
+        rgba(255, 255, 255, 0.35);
 
-    transform: scale(1.05);
+    transform:
+        scale(1.05);
 }
 
 
@@ -1334,11 +1363,14 @@ body {
 .category-item-info {
     min-height: 79px;
 
-    background: var(--theme-outline);
+    background:
+        var(--theme-outline);
 
-    padding: 11px 13px 13px;
+    padding:
+        11px 13px 13px;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
@@ -1349,7 +1381,8 @@ body {
 
     margin-bottom: 3px;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
@@ -1358,7 +1391,8 @@ body {
 
     line-height: 1.35;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
@@ -1377,11 +1411,15 @@ body {
 
 
 .category-item-link {
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 
     font-size: 9px;
 
-    text-decoration: underline;
+    text-decoration:
+        underline;
+
+    cursor: pointer;
 }
 
 
@@ -1398,7 +1436,8 @@ body {
 .empty-category-message {
     font-size: 12px;
 
-    color: var(--theme-muted-text);
+    color:
+        var(--theme-muted-text);
 
     margin-top: 7px;
 }
@@ -1423,12 +1462,14 @@ body {
 
     cursor: pointer;
 
-    transition: transform 0.2s ease;
+    transition:
+        transform 0.2s ease;
 }
 
 
 .global-category-card:hover {
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 }
 
 
@@ -1457,11 +1498,14 @@ body {
 .global-category-info {
     min-height: 79px;
 
-    background: var(--theme-outline);
+    background:
+        var(--theme-outline);
 
-    padding: 11px 13px 13px;
+    padding:
+        11px 13px 13px;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
@@ -1472,7 +1516,8 @@ body {
 
     margin-bottom: 3px;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
@@ -1481,7 +1526,8 @@ body {
 
     line-height: 1.35;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
@@ -1523,9 +1569,11 @@ body {
 
     border-radius: 7px;
 
-    background-color: var(--filter-color);
+    background-color:
+        var(--filter-color);
 
-    padding: 8px 12px;
+    padding:
+        8px 12px;
 
     color: #ffffff;
 
@@ -1538,10 +1586,12 @@ body {
     cursor: pointer;
 
     text-shadow:
-        0 1px 2px rgba(0, 0, 0, 0.55);
+        0 1px 2px
+        rgba(0, 0, 0, 0.55);
 
     box-shadow:
-        0 2px 3px rgba(0, 0, 0, 0.08);
+        0 2px 3px
+        rgba(0, 0, 0, 0.08);
 
     transition:
         transform 0.2s ease,
@@ -1551,10 +1601,12 @@ body {
 
 
 .reviewer-filter-button:hover {
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 
     box-shadow:
-        0 3px 5px rgba(0, 0, 0, 0.14);
+        0 3px 5px
+        rgba(0, 0, 0, 0.14);
 }
 
 
@@ -1564,11 +1616,14 @@ body {
    ========================================================= */
 
 .reviewer-filter-button.active {
-    outline: 2px solid #111111;
+    outline:
+        2px solid
+        #111111;
 
     outline-offset: 2px;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 
@@ -1593,7 +1648,8 @@ body {
 
 
 .reviewer-card:hover {
-    transform: translateY(-3px);
+    transform:
+        translateY(-3px);
 }
 
 
@@ -1603,12 +1659,14 @@ body {
    ========================================================= */
 
 .formatives-bg {
-    background-color: #8b2ca3;
+    background-color:
+        #8b2ca3;
 }
 
 
 .summatives-bg {
-    background-color: #2110b8;
+    background-color:
+        #2110b8;
 }
 
 
@@ -1658,18 +1716,22 @@ body {
     top: 50%;
     left: 50%;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 
     width: 241px;
 
-    background-color: var(--theme-editor-background);
+    background-color:
+        var(--theme-editor-background);
 
     border-radius: 27px;
 
-    padding: 16px 12px 15px;
+    padding:
+        16px 12px 15px;
 
     box-shadow:
-        0 13px 30px rgba(0, 0, 0, 0.28);
+        0 13px 30px
+        rgba(0, 0, 0, 0.28);
 
     z-index: 1001;
 }
@@ -1713,7 +1775,8 @@ body {
 
     border-radius: 50%;
 
-    background-color: transparent;
+    background-color:
+        transparent;
 
     color: #111111;
 
@@ -1726,7 +1789,8 @@ body {
 
 
 .card-editor-close:hover {
-    background-color: #e5e5e5;
+    background-color:
+        #e5e5e5;
 }
 
 
@@ -1757,7 +1821,8 @@ body {
 
     border-radius: 13px;
 
-    background-color: var(--theme-editor-preview);
+    background-color:
+        var(--theme-editor-preview);
 
     overflow: hidden;
 
@@ -1770,7 +1835,8 @@ body {
 
 
 .editor-image-area:hover {
-    background-color: var(--theme-editor-preview-hover);
+    background-color:
+        var(--theme-editor-preview-hover);
 }
 
 
@@ -1822,7 +1888,8 @@ body {
 
     border: none;
 
-    background-color: transparent;
+    background-color:
+        transparent;
 
     color: #111111;
 
@@ -1833,7 +1900,8 @@ body {
 
 
 .editor-add-image:hover {
-    text-decoration: underline;
+    text-decoration:
+        underline;
 }
 
 
@@ -1847,7 +1915,8 @@ body {
 
     border: none;
 
-    background-color: transparent;
+    background-color:
+        transparent;
 
     color: #777777;
 
@@ -1860,7 +1929,8 @@ body {
 .editor-remove-image:hover {
     color: #111111;
 
-    text-decoration: underline;
+    text-decoration:
+        underline;
 }
 
 
@@ -1872,9 +1942,12 @@ body {
 .editor-divider {
     width: 100%;
 
-    border-top: 2px dashed #8f8f8f;
+    border-top:
+        2px dashed
+        #8f8f8f;
 
-    margin: 7px 0 9px;
+    margin:
+        7px 0 9px;
 }
 
 
@@ -1907,7 +1980,8 @@ body {
 .color-palette {
     display: grid;
 
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns:
+        repeat(6, 1fr);
 
     gap: 7px;
 
@@ -1919,11 +1993,14 @@ body {
     width: 23px;
     height: 23px;
 
-    border: 2px solid transparent;
+    border:
+        2px solid
+        transparent;
 
     border-radius: 50%;
 
-    background-color: var(--swatch-color);
+    background-color:
+        var(--swatch-color);
 
     cursor: pointer;
 
@@ -1934,14 +2011,17 @@ body {
 
 
 .color-option:hover {
-    transform: scale(1.12);
+    transform:
+        scale(1.12);
 }
 
 
 .color-option.selected {
-    border-color: #111111;
+    border-color:
+        #111111;
 
-    transform: scale(1.08);
+    transform:
+        scale(1.08);
 }
 
 
@@ -1953,11 +2033,13 @@ body {
 .editor-reset-button {
     display: block;
 
-    margin: 12px auto 0;
+    margin:
+        12px auto 0;
 
     border: none;
 
-    background-color: transparent;
+    background-color:
+        transparent;
 
     color: #777777;
 
@@ -1970,7 +2052,8 @@ body {
 .editor-reset-button:hover {
     color: #111111;
 
-    text-decoration: underline;
+    text-decoration:
+        underline;
 }
 
 
@@ -1990,10 +2073,9 @@ body {
 .theme-page {
     width: 100%;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 }
-
-
 
 /* =========================================================
    THEME PAGE HEADER
@@ -2017,7 +2099,9 @@ body {
 
     padding-bottom: 7px;
 
-    border-bottom: 2px dashed var(--theme-non-outline-text);
+    border-bottom:
+        2px dashed
+        var(--theme-non-outline-text);
 }
 
 
@@ -2039,7 +2123,8 @@ body {
 .theme-settings-columns {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 45px;
 
@@ -2077,7 +2162,8 @@ body {
 
     margin-bottom: 9px;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 }
 
 
@@ -2111,7 +2197,8 @@ body {
 
     place-items: center;
 
-    background: var(--theme-input-background);
+    background:
+        var(--theme-input-background);
 }
 
 
@@ -2122,7 +2209,8 @@ body {
 
     line-height: 1;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
     z-index: 2;
 }
@@ -2158,9 +2246,11 @@ body {
 .theme-outline-preview {
     display: grid;
 
-    grid-template-columns: 25px 1fr;
+    grid-template-columns:
+        25px 1fr;
 
-    background-color: var(--theme-input-background);
+    background-color:
+        var(--theme-input-background);
 }
 
 
@@ -2168,7 +2258,8 @@ body {
     width: 100%;
     height: 100%;
 
-    background: var(--theme-outline);
+    background:
+        var(--theme-outline);
 }
 
 
@@ -2176,7 +2267,8 @@ body {
     width: 100%;
     height: 100%;
 
-    background-color: var(--theme-input-background);
+    background-color:
+        var(--theme-input-background);
 }
 
 
@@ -2190,7 +2282,8 @@ body {
 
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
     align-items: center;
 
@@ -2198,21 +2291,24 @@ body {
 
     padding: 10px;
 
-    background: var(--theme-outline);
+    background:
+        var(--theme-outline);
 }
 
 
 .theme-text-preview strong {
     font-size: 22px;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
 .theme-text-preview span {
     font-size: 22px;
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 }
 
 
@@ -2226,7 +2322,8 @@ body {
 
     display: grid;
 
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+        repeat(2, 1fr);
 
     align-items: center;
 
@@ -2234,21 +2331,24 @@ body {
 
     padding: 10px;
 
-    background-color: var(--theme-input-background);
+    background-color:
+        var(--theme-input-background);
 }
 
 
 .theme-non-outline-preview strong {
     font-size: 22px;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 }
 
 
 .theme-non-outline-preview span {
     font-size: 22px;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 }
 
 
@@ -2260,7 +2360,8 @@ body {
 .theme-swatch-grid {
     display: grid;
 
-    grid-template-columns: repeat(9, 30px);
+    grid-template-columns:
+        repeat(9, 30px);
 
     gap: 10px 12px;
 
@@ -2281,11 +2382,14 @@ body {
     width: 30px;
     height: 30px;
 
-    border: 3px solid transparent;
+    border:
+        3px solid
+        transparent;
 
     border-radius: 50%;
 
-    background: var(--theme-swatch);
+    background:
+        var(--theme-swatch);
 
     cursor: pointer;
 
@@ -2296,7 +2400,8 @@ body {
 
 
 .theme-swatch:hover {
-    transform: scale(1.1);
+    transform:
+        scale(1.1);
 }
 
 
@@ -2306,12 +2411,15 @@ body {
    ========================================================= */
 
 .theme-swatch.selected {
-    border-color: var(--theme-non-outline-text);
+    border-color:
+        var(--theme-non-outline-text);
 
     box-shadow:
-        0 0 0 2px var(--theme-input-background);
+        0 0 0 2px
+        var(--theme-input-background);
 
-    transform: scale(1.07);
+    transform:
+        scale(1.07);
 }
 
 
@@ -2532,7 +2640,8 @@ body {
 
     border-radius: 15px;
 
-    background-color: var(--theme-input-background);
+    background-color:
+        var(--theme-input-background);
 
     display: grid;
 
@@ -2542,7 +2651,8 @@ body {
 
     cursor: pointer;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
     transition:
         transform 0.2s ease,
@@ -2551,9 +2661,11 @@ body {
 
 
 .theme-background-image-button:hover {
-    background-color: var(--theme-input-focus);
+    background-color:
+        var(--theme-input-focus);
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 
@@ -2575,7 +2687,8 @@ body {
 .theme-choice-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap: 45px;
 
@@ -2613,7 +2726,8 @@ body {
 .premade-themes-title {
     display: block;
 
-    margin: 0 0 13px;
+    margin:
+        0 0 13px;
 
     font-size: 22px;
 
@@ -2621,7 +2735,8 @@ body {
 
     font-weight: bold;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 }
 
 
@@ -2649,15 +2764,18 @@ body {
 
     margin: 0;
 
-    padding: 0 16px;
+    padding:
+        0 16px;
 
     border: none;
 
     border-radius: 0;
 
-    background-color: var(--theme-input-background);
+    background-color:
+        var(--theme-input-background);
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
     text-align: left;
 
@@ -2672,17 +2790,21 @@ body {
 
 
 .premade-themes-toggle:hover {
-    background-color: var(--theme-input-focus);
+    background-color:
+        var(--theme-input-focus);
 }
 
 
 .premade-themes-toggle:active {
-    transform: translateY(1px);
+    transform:
+        translateY(1px);
 }
 
 
 .premade-themes-toggle:focus-visible {
-    outline: 2px solid var(--theme-outline);
+    outline:
+        2px solid
+        var(--theme-outline);
 
     outline-offset: 2px;
 }
@@ -2710,7 +2832,8 @@ body {
 
     font-weight: normal;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 }
 
 
@@ -2724,7 +2847,8 @@ body {
 
     place-items: center;
 
-    flex: 0 0 auto;
+    flex:
+        0 0 auto;
 
     min-width: 18px;
 
@@ -2732,7 +2856,8 @@ body {
 
     line-height: 1;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
     pointer-events: none;
 }
@@ -2751,9 +2876,12 @@ body {
 
     margin-top: 25px;
 
-    padding: 24px 0 5px;
+    padding:
+        24px 0 5px;
 
-    border-top: 1px solid var(--theme-divider);
+    border-top:
+        1px solid
+        var(--theme-divider);
 }
 
 
@@ -2770,7 +2898,8 @@ body {
 .premade-themes-grid {
     display: grid;
 
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     column-gap: 48px;
 
@@ -2798,9 +2927,11 @@ body {
 
     padding: 0;
 
-    background: transparent;
+    background:
+        transparent;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
     text-align: left;
 
@@ -2817,14 +2948,16 @@ body {
 
     font-weight: normal;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 }
 
 
 .premade-theme-palette {
     display: grid;
 
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
 
     gap: 6px;
 
@@ -2847,16 +2980,22 @@ body {
 }
 
 
-.premade-theme-option:hover .premade-theme-color {
-    transform: translateY(-2px);
+.premade-theme-option:hover
+.premade-theme-color {
+    transform:
+        translateY(-2px);
 
     box-shadow:
-        0 3px 7px rgba(0, 0, 0, 0.12);
+        0 3px 7px
+        rgba(0, 0, 0, 0.12);
 }
 
 
-.premade-theme-option.active .premade-theme-palette {
-    outline: 2px solid var(--theme-non-outline-text);
+.premade-theme-option.active
+.premade-theme-palette {
+    outline:
+        2px solid
+        var(--theme-non-outline-text);
 
     outline-offset: 4px;
 
@@ -2892,7 +3031,8 @@ body {
 .ui-style-title {
     display: block;
 
-    margin: 0 0 13px;
+    margin:
+        0 0 13px;
 
     font-size: 22px;
 
@@ -2900,7 +3040,8 @@ body {
 
     font-weight: bold;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 }
 
 
@@ -2959,15 +3100,18 @@ body {
 
     margin: 0;
 
-    padding: 0 46px 0 16px;
+    padding:
+        0 46px 0 16px;
 
     border: none;
 
     border-radius: 0;
 
-    background-color: var(--theme-input-background);
+    background-color:
+        var(--theme-input-background);
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
     font-family: inherit;
 
@@ -2982,7 +3126,9 @@ body {
     outline: none;
 
     appearance: none;
+
     -webkit-appearance: none;
+
     -moz-appearance: none;
 
     transition:
@@ -2992,17 +3138,22 @@ body {
 
 
 .ui-style-select:hover {
-    background-color: var(--theme-input-focus);
+    background-color:
+        var(--theme-input-focus);
 }
 
 
 .ui-style-select:active {
-    transform: translateY(1px);
+    transform:
+        translateY(1px);
+
 }
 
 
 .ui-style-select:focus {
-    outline: 2px solid var(--theme-outline);
+    outline:
+        2px solid
+        var(--theme-outline);
 
     outline-offset: 2px;
 }
@@ -3021,7 +3172,8 @@ body {
     top: 50%;
     right: 16px;
 
-    transform: translateY(-50%);
+    transform:
+        translateY(-50%);
 
     display: grid;
 
@@ -3031,7 +3183,8 @@ body {
 
     line-height: 1;
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
     pointer-events: none;
 }
@@ -3043,9 +3196,11 @@ body {
    ========================================================= */
 
 .ui-style-select option {
-    background-color: var(--theme-input-background);
+    background-color:
+        var(--theme-input-background);
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
     font-family: inherit;
 
@@ -3063,7 +3218,8 @@ body {
 .ui-style-options {
     display: grid;
 
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
 
     gap: 10px;
 
@@ -3078,13 +3234,17 @@ body {
 
     padding: 10px;
 
-    border: 1px solid var(--theme-divider);
+    border:
+        1px solid
+        var(--theme-divider);
 
     border-radius: 12px;
 
-    background-color: var(--theme-input-background);
+    background-color:
+        var(--theme-input-background);
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
     text-align: left;
 
@@ -3093,12 +3253,15 @@ body {
 
 
 .ui-style-option:hover {
-    background-color: var(--theme-input-focus);
+    background-color:
+        var(--theme-input-focus);
 }
 
 
 .ui-style-option.active {
-    outline: 2px solid var(--theme-non-outline-text);
+    outline:
+        2px solid
+        var(--theme-non-outline-text);
 
     outline-offset: 2px;
 }
@@ -3144,7 +3307,9 @@ body {
 
     padding-top: 15px;
 
-    border-top: 1px solid var(--theme-divider);
+    border-top:
+        1px solid
+        var(--theme-divider);
 }
 
 
@@ -3158,11 +3323,14 @@ body {
 
     border-radius: 9px;
 
-    background-color: var(--theme-input-background);
+    background-color:
+        var(--theme-input-background);
 
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
-    padding: 8px 14px;
+    padding:
+        8px 14px;
 
     font-size: 11px;
 
@@ -3177,9 +3345,11 @@ body {
 
 
 .theme-reset-button:hover {
-    background-color: var(--theme-input-focus);
+    background-color:
+        var(--theme-input-focus);
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 }
 
 
@@ -3193,11 +3363,14 @@ body {
 
     border-radius: 9px;
 
-    background: var(--theme-outline);
+    background:
+        var(--theme-outline);
 
-    color: var(--theme-text);
+    color:
+        var(--theme-text);
 
-    padding: 8px 14px;
+    padding:
+        8px 14px;
 
     font-size: 11px;
 
@@ -3214,7 +3387,8 @@ body {
 .theme-back-button:hover {
     opacity: 0.85;
 
-    transform: translateY(-1px);
+    transform:
+        translateY(-1px);
 }
 
 
@@ -3230,9 +3404,11 @@ body {
 
     border: none;
 
-    background-color: transparent;
+    background-color:
+        transparent;
 
-    color: var(--theme-muted-text);
+    color:
+        var(--theme-muted-text);
 
     font-size: 10px;
 
@@ -3241,9 +3417,11 @@ body {
 
 
 .theme-remove-background-button:hover {
-    color: var(--theme-non-outline-text);
+    color:
+        var(--theme-non-outline-text);
 
-    text-decoration: underline;
+    text-decoration:
+        underline;
 }
 
 
@@ -3263,7 +3441,8 @@ body.theme-has-background-image {
 }
 
 
-body.theme-has-background-image .main-content {
+body.theme-has-background-image
+.main-content {
     background: transparent;
 }
 
@@ -3278,7 +3457,8 @@ body.theme-has-background-image .main-content {
 
     inset: 0;
 
-    background-color: transparent;
+    background-color:
+        transparent;
 
     pointer-events: none;
 
@@ -3313,10 +3493,11 @@ body.theme-has-background-image .main-content {
 .premade-theme-name.adaptive-background-text,
 .ui-style-title.adaptive-background-text,
 .ui-style-hint.adaptive-background-text {
-    color: var(
-        --adaptive-background-text,
-        var(--theme-non-outline-text)
-    );
+    color:
+        var(
+            --adaptive-background-text,
+            var(--theme-non-outline-text)
+        );
 }
 
 
@@ -3325,11 +3506,13 @@ body.theme-has-background-image .main-content {
    ADAPTIVE THEME HEADER UNDERLINE
    ========================================================= */
 
-.theme-page-header h1.adaptive-background-text {
-    border-bottom-color: var(
-        --adaptive-background-text,
-        var(--theme-non-outline-text)
-    );
+.theme-page-header
+h1.adaptive-background-text {
+    border-bottom-color:
+        var(
+            --adaptive-background-text,
+            var(--theme-non-outline-text)
+        );
 }
 
 
@@ -3338,8 +3521,11 @@ body.theme-has-background-image .main-content {
    SUBJECT BREADCRUMB EXCEPTION
    ========================================================= */
 
-.breadcrumb-home.subject-heading-highlight.adaptive-background-text {
-    color: var(--subject-color);
+.breadcrumb-home
+.subject-heading-highlight
+.adaptive-background-text {
+    color:
+        var(--subject-color);
 }
 
 
@@ -3348,11 +3534,13 @@ body.theme-has-background-image .main-content {
    REMOVE BACKGROUND HOVER
    ========================================================= */
 
-.theme-remove-background-button.adaptive-background-text:hover {
-    color: var(
-        --adaptive-background-text,
-        var(--theme-non-outline-text)
-    );
+.theme-remove-background-button
+.adaptive-background-text:hover {
+    color:
+        var(
+            --adaptive-background-text,
+            var(--theme-non-outline-text)
+        );
 }
 
 
@@ -3394,11 +3582,18 @@ body.style-default {
     --ui-radius-large: 25px;
 
     --ui-border-width: 0px;
-    --ui-border-color: transparent;
 
-    --ui-shadow-small: none;
-    --ui-shadow-medium: none;
-    --ui-shadow-large: none;
+    --ui-border-color:
+        transparent;
+
+    --ui-shadow-small:
+        none;
+
+    --ui-shadow-medium:
+        none;
+
+    --ui-shadow-large:
+        none;
 }
 
 
@@ -3424,16 +3619,21 @@ body.style-retro-os {
     --ui-radius-large: 2px;
 
     --ui-border-width: 1px;
-    --ui-border-color: #161616;
+
+    --ui-border-color:
+        #161616;
 
     --ui-shadow-small:
-        2px 2px 0 rgba(0, 0, 0, 0.42);
+        2px 2px 0
+        rgba(0, 0, 0, 0.42);
 
     --ui-shadow-medium:
-        3px 3px 0 rgba(0, 0, 0, 0.42);
+        3px 3px 0
+        rgba(0, 0, 0, 0.42);
 
     --ui-shadow-large:
-        4px 4px 0 rgba(0, 0, 0, 0.45);
+        4px 4px 0
+        rgba(0, 0, 0, 0.45);
 
     font-family:
         "Courier New",
@@ -3492,7 +3692,9 @@ body.style-retro-os .subject-link:hover {
 
 
 body.style-retro-os #home-link.active,
-body.style-retro-os .main-nav .nav-item.active:not(#home-link) {
+body.style-retro-os
+.main-nav
+.nav-item.active:not(#home-link) {
     border:
         1px solid
         #111111;
@@ -3505,7 +3707,8 @@ body.style-retro-os .main-nav .nav-item.active:not(#home-link) {
 }
 
 
-body.style-retro-os .subject-link.active {
+body.style-retro-os
+.subject-link.active {
     border:
         1px solid
         #111111;
@@ -3521,7 +3724,8 @@ body.style-retro-os .subject-link.active {
 
 /* Retro Search */
 
-body.style-retro-os .search-container input {
+body.style-retro-os
+.search-container input {
     border:
         1px solid
         #111111;
@@ -3538,7 +3742,8 @@ body.style-retro-os .search-container input {
 }
 
 
-body.style-retro-os .search-container input:focus {
+body.style-retro-os
+.search-container input:focus {
     outline:
         1px solid
         var(--theme-outline);
@@ -3552,7 +3757,8 @@ body.style-retro-os .search-container input:focus {
    RETRO OS LINK VIEW SWITCH
    ========================================================= */
 
-body.style-retro-os .link-view-switch {
+body.style-retro-os
+.link-view-switch {
     border:
         1px solid
         #111111;
@@ -3570,7 +3776,8 @@ body.style-retro-os .link-view-switch {
 }
 
 
-body.style-retro-os .link-view-option {
+body.style-retro-os
+.link-view-option {
     border-radius: 0;
 
     font-family:
@@ -3582,7 +3789,8 @@ body.style-retro-os .link-view-option {
 }
 
 
-body.style-retro-os .link-view-option:hover {
+body.style-retro-os
+.link-view-option:hover {
     background:
         color-mix(
             in srgb,
@@ -3592,7 +3800,8 @@ body.style-retro-os .link-view-option:hover {
 }
 
 
-body.style-retro-os .link-view-option.active {
+body.style-retro-os
+.link-view-option.active {
     border:
         1px solid
         #111111;
@@ -3614,10 +3823,10 @@ body.style-retro-os .link-view-option.active {
 
 /* Retro Banner */
 
-body.style-retro-os .home-banner {
+body.style-retro-os
+.home-banner {
     border:
         1px solid
-
         color-mix(
             in srgb,
             var(--theme-text) 50%,
@@ -3632,10 +3841,12 @@ body.style-retro-os .home-banner {
 }
 
 
-body.style-retro-os .home-banner-left h1 {
+body.style-retro-os
+.home-banner-left h1 {
     letter-spacing: 1px;
 
-    text-transform: uppercase;
+    text-transform:
+        uppercase;
 }
 
 
@@ -3657,10 +3868,14 @@ body.style-retro-os .global-category-card {
 }
 
 
-body.style-retro-os .subject-card:hover,
-body.style-retro-os .subject-menu-card:hover,
-body.style-retro-os .global-category-card:hover,
-body.style-retro-os .reviewer-card:hover {
+body.style-retro-os
+.subject-card:hover,
+body.style-retro-os
+.subject-menu-card:hover,
+body.style-retro-os
+.global-category-card:hover,
+body.style-retro-os
+.reviewer-card:hover {
     transform:
         translate(-1px, -1px);
 
@@ -3692,9 +3907,12 @@ body.style-retro-os .global-category-info {
 
 /* Retro Edit Buttons */
 
-body.style-retro-os .edit-image-button,
-body.style-retro-os .menu-edit-button,
-body.style-retro-os .item-edit-button {
+body.style-retro-os
+.edit-image-button,
+body.style-retro-os
+.menu-edit-button,
+body.style-retro-os
+.item-edit-button {
     border:
         1px solid
         #111111;
@@ -3709,11 +3927,13 @@ body.style-retro-os .item-edit-button {
         rgba(0, 0, 0, 0.45);
 
     width: 26px;
+
     height: 26px;
 }
 
 
-body.style-retro-os .theme-settings-button {
+body.style-retro-os
+.theme-settings-button {
     border:
         1px solid
         #111111;
@@ -3728,6 +3948,7 @@ body.style-retro-os .theme-settings-button {
         rgba(0, 0, 0, 0.45);
 
     width: 26px;
+
     height: 26px;
 }
 
@@ -3735,7 +3956,8 @@ body.style-retro-os .theme-settings-button {
 
 /* Retro Reviewer Chips */
 
-body.style-retro-os .reviewer-filter-button {
+body.style-retro-os
+.reviewer-filter-button {
     border:
         1px solid
         #111111;
@@ -3753,7 +3975,8 @@ body.style-retro-os .reviewer-filter-button {
 
 /* Retro Editor */
 
-body.style-retro-os .card-editor {
+body.style-retro-os
+.card-editor {
     border:
         1px solid
         #111111;
@@ -3766,7 +3989,8 @@ body.style-retro-os .card-editor {
 }
 
 
-body.style-retro-os .editor-image-area {
+body.style-retro-os
+.editor-image-area {
     border:
         1px solid
         #111111;
@@ -3775,7 +3999,8 @@ body.style-retro-os .editor-image-area {
 }
 
 
-body.style-retro-os .card-editor-close {
+body.style-retro-os
+.card-editor-close {
     border:
         1px solid
         #111111;
@@ -3784,7 +4009,8 @@ body.style-retro-os .card-editor-close {
 }
 
 
-body.style-retro-os .color-option {
+body.style-retro-os
+.color-option {
     border-radius: 0;
 }
 
@@ -3793,7 +4019,8 @@ body.style-retro-os .color-option {
 /* Retro Theme Page */
 
 body.style-retro-os .theme-preview,
-body.style-retro-os .theme-background-image-button {
+body.style-retro-os
+.theme-background-image-button {
     border:
         1px solid
         #111111;
@@ -3806,27 +4033,35 @@ body.style-retro-os .theme-background-image-button {
 }
 
 
-body.style-retro-os .theme-swatch {
+body.style-retro-os
+.theme-swatch {
     border-radius: 0;
 }
 
 
-body.style-retro-os .premade-theme-color {
+body.style-retro-os
+.premade-theme-color {
     border-radius: 0;
 }
 
 
-body.style-retro-os .premade-theme-option.active .premade-theme-palette {
+body.style-retro-os
+.premade-theme-option.active
+.premade-theme-palette {
     border-radius: 0;
 
     outline-width: 1px;
 }
 
 
-body.style-retro-os .theme-reset-button,
-body.style-retro-os .theme-back-button,
-body.style-retro-os .ui-style-select,
-body.style-retro-os .ui-style-option {
+body.style-retro-os
+.theme-reset-button,
+body.style-retro-os
+.theme-back-button,
+body.style-retro-os
+.ui-style-select,
+body.style-retro-os
+.ui-style-option {
     border:
         1px solid
         #111111;
@@ -3881,7 +4116,8 @@ body.style-liquid-glass {
 
 /* Glass Sidebar */
 
-body.style-liquid-glass .sidebar {
+body.style-liquid-glass
+.sidebar {
     background:
         color-mix(
             in srgb,
@@ -3910,14 +4146,18 @@ body.style-liquid-glass .sidebar {
 
 /* Glass Nav */
 
-body.style-liquid-glass .nav-item,
-body.style-liquid-glass .subject-link {
+body.style-liquid-glass
+.nav-item,
+body.style-liquid-glass
+.subject-link {
     border-radius: 13px;
 }
 
 
-body.style-liquid-glass .nav-item:hover,
-body.style-liquid-glass .subject-link:hover {
+body.style-liquid-glass
+.nav-item:hover,
+body.style-liquid-glass
+.subject-link:hover {
     background:
         rgba(255, 255, 255, 0.12);
 
@@ -3927,8 +4167,11 @@ body.style-liquid-glass .subject-link:hover {
 }
 
 
-body.style-liquid-glass #home-link.active,
-body.style-liquid-glass .main-nav .nav-item.active:not(#home-link) {
+body.style-liquid-glass
+#home-link.active,
+body.style-liquid-glass
+.main-nav
+.nav-item.active:not(#home-link) {
     border-radius: 14px;
 
     box-shadow:
@@ -3942,7 +4185,8 @@ body.style-liquid-glass .main-nav .nav-item.active:not(#home-link) {
 
 /* Glass Search */
 
-body.style-liquid-glass .search-container input {
+body.style-liquid-glass
+.search-container input {
     border:
         1px solid
         rgba(255, 255, 255, 0.46);
@@ -3970,19 +4214,22 @@ body.style-liquid-glass .search-container input {
 }
 
 
-body.style-liquid-glass .search-container input:focus {
+body.style-liquid-glass
+.search-container input:focus {
     border-color:
         rgba(255, 255, 255, 0.78);
 
     box-shadow:
         inset 0 1px 0
         rgba(255, 255, 255, 0.7),
+
         0 0 0 3px
         color-mix(
             in srgb,
             var(--theme-outline) 22%,
             transparent
         ),
+
         0 9px 24px
         rgba(0, 0, 0, 0.13);
 }
@@ -3993,7 +4240,8 @@ body.style-liquid-glass .search-container input:focus {
    LIQUID GLASS LINK VIEW SWITCH
    ========================================================= */
 
-body.style-liquid-glass .link-view-switch {
+body.style-liquid-glass
+.link-view-switch {
     border:
         1px solid
         rgba(255, 255, 255, 0.42);
@@ -4023,18 +4271,21 @@ body.style-liquid-glass .link-view-switch {
 }
 
 
-body.style-liquid-glass .link-view-option {
+body.style-liquid-glass
+.link-view-option {
     border-radius: 999px;
 }
 
 
-body.style-liquid-glass .link-view-option:hover {
+body.style-liquid-glass
+.link-view-option:hover {
     background:
         rgba(255, 255, 255, 0.14);
 }
 
 
-body.style-liquid-glass .link-view-option.active {
+body.style-liquid-glass
+.link-view-option.active {
     border:
         1px solid
         rgba(255, 255, 255, 0.5);
@@ -4063,7 +4314,8 @@ body.style-liquid-glass .link-view-option.active {
 
 /* Glass Banner */
 
-body.style-liquid-glass .home-banner {
+body.style-liquid-glass
+.home-banner {
     background:
         color-mix(
             in srgb,
@@ -4096,9 +4348,12 @@ body.style-liquid-glass .home-banner {
 
 /* Glass Cards */
 
-body.style-liquid-glass .subject-card,
-body.style-liquid-glass .subject-menu-card,
-body.style-liquid-glass .global-category-card {
+body.style-liquid-glass
+.subject-card,
+body.style-liquid-glass
+.subject-menu-card,
+body.style-liquid-glass
+.global-category-card {
     border:
         1px solid
         rgba(255, 255, 255, 0.3);
@@ -4119,10 +4374,14 @@ body.style-liquid-glass .global-category-card {
 }
 
 
-body.style-liquid-glass .subject-card:hover,
-body.style-liquid-glass .subject-menu-card:hover,
-body.style-liquid-glass .global-category-card:hover,
-body.style-liquid-glass .reviewer-card:hover {
+body.style-liquid-glass
+.subject-card:hover,
+body.style-liquid-glass
+.subject-menu-card:hover,
+body.style-liquid-glass
+.global-category-card:hover,
+body.style-liquid-glass
+.reviewer-card:hover {
     transform:
         translateY(-5px)
         scale(1.01);
@@ -4135,10 +4394,14 @@ body.style-liquid-glass .reviewer-card:hover {
 }
 
 
-body.style-liquid-glass .card-info,
-body.style-liquid-glass .subject-menu-info,
-body.style-liquid-glass .category-item-info,
-body.style-liquid-glass .global-category-info {
+body.style-liquid-glass
+.card-info,
+body.style-liquid-glass
+.subject-menu-info,
+body.style-liquid-glass
+.category-item-info,
+body.style-liquid-glass
+.global-category-info {
     background:
         color-mix(
             in srgb,
@@ -4161,10 +4424,14 @@ body.style-liquid-glass .global-category-info {
 
 /* Glass Edit Buttons */
 
-body.style-liquid-glass .edit-image-button,
-body.style-liquid-glass .menu-edit-button,
-body.style-liquid-glass .item-edit-button,
-body.style-liquid-glass .theme-settings-button {
+body.style-liquid-glass
+.edit-image-button,
+body.style-liquid-glass
+.menu-edit-button,
+body.style-liquid-glass
+.item-edit-button,
+body.style-liquid-glass
+.theme-settings-button {
     border:
         1px solid
         rgba(255, 255, 255, 0.42);
@@ -4191,7 +4458,8 @@ body.style-liquid-glass .theme-settings-button {
 
 /* Glass Reviewer Chips */
 
-body.style-liquid-glass .reviewer-filter-button {
+body.style-liquid-glass
+.reviewer-filter-button {
     border:
         1px solid
         rgba(255, 255, 255, 0.36);
@@ -4209,7 +4477,8 @@ body.style-liquid-glass .reviewer-filter-button {
 
 /* Glass Editor */
 
-body.style-liquid-glass .card-editor {
+body.style-liquid-glass
+.card-editor {
     background:
         rgba(255, 255, 255, 0.68);
 
@@ -4235,7 +4504,8 @@ body.style-liquid-glass .card-editor {
 }
 
 
-body.style-liquid-glass .editor-image-area {
+body.style-liquid-glass
+.editor-image-area {
     border:
         1px solid
         rgba(255, 255, 255, 0.65);
@@ -4248,7 +4518,8 @@ body.style-liquid-glass .editor-image-area {
 }
 
 
-body.style-liquid-glass .color-option {
+body.style-liquid-glass
+.color-option {
     box-shadow:
         inset 0 1px 0
         rgba(255, 255, 255, 0.55),
@@ -4260,8 +4531,10 @@ body.style-liquid-glass .color-option {
 
 /* Glass Theme Settings */
 
-body.style-liquid-glass .theme-preview,
-body.style-liquid-glass .theme-background-image-button {
+body.style-liquid-glass
+.theme-preview,
+body.style-liquid-glass
+.theme-background-image-button {
     border:
         1px solid
         rgba(255, 255, 255, 0.45);
@@ -4282,7 +4555,8 @@ body.style-liquid-glass .theme-background-image-button {
 }
 
 
-body.style-liquid-glass .theme-swatch {
+body.style-liquid-glass
+.theme-swatch {
     box-shadow:
         inset 0 1px 0
         rgba(255, 255, 255, 0.7),
@@ -4291,7 +4565,8 @@ body.style-liquid-glass .theme-swatch {
 }
 
 
-body.style-liquid-glass .premade-theme-color {
+body.style-liquid-glass
+.premade-theme-color {
     border-radius: 14px;
 
     box-shadow:
@@ -4302,10 +4577,14 @@ body.style-liquid-glass .premade-theme-color {
 }
 
 
-body.style-liquid-glass .theme-reset-button,
-body.style-liquid-glass .theme-back-button,
-body.style-liquid-glass .ui-style-select,
-body.style-liquid-glass .ui-style-option {
+body.style-liquid-glass
+.theme-reset-button,
+body.style-liquid-glass
+.theme-back-button,
+body.style-liquid-glass
+.ui-style-select,
+body.style-liquid-glass
+.ui-style-option {
     border:
         1px solid
         rgba(255, 255, 255, 0.46);
@@ -4359,7 +4638,8 @@ body.style-pop-outline {
 
 /* Pop Sidebar */
 
-body.style-pop-outline .sidebar {
+body.style-pop-outline
+.sidebar {
     border-right:
         2px solid
         #111111;
@@ -4373,14 +4653,18 @@ body.style-pop-outline .sidebar {
 
 /* Pop Navigation */
 
-body.style-pop-outline .nav-item,
-body.style-pop-outline .subject-link {
+body.style-pop-outline
+.nav-item,
+body.style-pop-outline
+.subject-link {
     font-weight: bold;
 }
 
 
-body.style-pop-outline .nav-item:hover,
-body.style-pop-outline .subject-link:hover {
+body.style-pop-outline
+.nav-item:hover,
+body.style-pop-outline
+.subject-link:hover {
     outline:
         2px solid
         #111111;
@@ -4389,8 +4673,11 @@ body.style-pop-outline .subject-link:hover {
 }
 
 
-body.style-pop-outline #home-link.active,
-body.style-pop-outline .main-nav .nav-item.active:not(#home-link) {
+body.style-pop-outline
+#home-link.active,
+body.style-pop-outline
+.main-nav
+.nav-item.active:not(#home-link) {
     border:
         2px solid
         #111111;
@@ -4403,7 +4690,8 @@ body.style-pop-outline .main-nav .nav-item.active:not(#home-link) {
 }
 
 
-body.style-pop-outline .subject-link.active {
+body.style-pop-outline
+.subject-link.active {
     border:
         2px solid
         #111111;
@@ -4419,7 +4707,8 @@ body.style-pop-outline .subject-link.active {
 
 /* Pop Search */
 
-body.style-pop-outline .search-container input {
+body.style-pop-outline
+.search-container input {
     border:
         2px solid
         #111111;
@@ -4432,7 +4721,8 @@ body.style-pop-outline .search-container input {
 }
 
 
-body.style-pop-outline .search-container input:focus {
+body.style-pop-outline
+.search-container input:focus {
     transform:
         translate(-1px, -1px);
 
@@ -4447,7 +4737,8 @@ body.style-pop-outline .search-container input:focus {
    POP OUTLINE LINK VIEW SWITCH
    ========================================================= */
 
-body.style-pop-outline .link-view-switch {
+body.style-pop-outline
+.link-view-switch {
     border:
         2px solid
         #111111;
@@ -4463,14 +4754,16 @@ body.style-pop-outline .link-view-switch {
 }
 
 
-body.style-pop-outline .link-view-option {
+body.style-pop-outline
+.link-view-option {
     border-radius: 999px;
 
     font-weight: bold;
 }
 
 
-body.style-pop-outline .link-view-option:hover {
+body.style-pop-outline
+.link-view-option:hover {
     background:
         color-mix(
             in srgb,
@@ -4480,7 +4773,8 @@ body.style-pop-outline .link-view-option:hover {
 }
 
 
-body.style-pop-outline .link-view-option.active {
+body.style-pop-outline
+.link-view-option.active {
     border:
         2px solid
         #111111;
@@ -4500,7 +4794,8 @@ body.style-pop-outline .link-view-option.active {
 
 /* Pop Banner */
 
-body.style-pop-outline .home-banner {
+body.style-pop-outline
+.home-banner {
     border:
         2px solid
         #111111;
@@ -4513,7 +4808,8 @@ body.style-pop-outline .home-banner {
 }
 
 
-body.style-pop-outline .home-banner-left h1 {
+body.style-pop-outline
+.home-banner-left h1 {
     letter-spacing: 0.5px;
 }
 
@@ -4521,9 +4817,12 @@ body.style-pop-outline .home-banner-left h1 {
 
 /* Pop Cards */
 
-body.style-pop-outline .subject-card,
-body.style-pop-outline .subject-menu-card,
-body.style-pop-outline .global-category-card {
+body.style-pop-outline
+.subject-card,
+body.style-pop-outline
+.subject-menu-card,
+body.style-pop-outline
+.global-category-card {
     border:
         2px solid
         #111111;
@@ -4541,10 +4840,14 @@ body.style-pop-outline .global-category-card {
 }
 
 
-body.style-pop-outline .card-info,
-body.style-pop-outline .subject-menu-info,
-body.style-pop-outline .category-item-info,
-body.style-pop-outline .global-category-info {
+body.style-pop-outline
+.card-info,
+body.style-pop-outline
+.subject-menu-info,
+body.style-pop-outline
+.category-item-info,
+body.style-pop-outline
+.global-category-info {
     width: 100%;
 
     margin-top: -1px;
@@ -4558,10 +4861,14 @@ body.style-pop-outline .global-category-info {
 }
 
 
-body.style-pop-outline .subject-card:hover,
-body.style-pop-outline .subject-menu-card:hover,
-body.style-pop-outline .global-category-card:hover,
-body.style-pop-outline .reviewer-card:hover {
+body.style-pop-outline
+.subject-card:hover,
+body.style-pop-outline
+.subject-menu-card:hover,
+body.style-pop-outline
+.global-category-card:hover,
+body.style-pop-outline
+.reviewer-card:hover {
     transform:
         translate(-2px, -2px);
 
@@ -4571,20 +4878,28 @@ body.style-pop-outline .reviewer-card:hover {
 }
 
 
-body.style-pop-outline .card-info,
-body.style-pop-outline .subject-menu-info,
-body.style-pop-outline .category-item-info,
-body.style-pop-outline .global-category-info {
+body.style-pop-outline
+.card-info,
+body.style-pop-outline
+.subject-menu-info,
+body.style-pop-outline
+.category-item-info,
+body.style-pop-outline
+.global-category-info {
     border-top:
         2px solid
         #111111;
 }
 
 
-body.style-pop-outline .card-info h2,
-body.style-pop-outline .subject-menu-info h2,
-body.style-pop-outline .category-item-info h2,
-body.style-pop-outline .global-category-info h2 {
+body.style-pop-outline
+.card-info h2,
+body.style-pop-outline
+.subject-menu-info h2,
+body.style-pop-outline
+.category-item-info h2,
+body.style-pop-outline
+.global-category-info h2 {
     font-weight: bold;
 }
 
@@ -4592,9 +4907,12 @@ body.style-pop-outline .global-category-info h2 {
 
 /* Pop Edit Buttons */
 
-body.style-pop-outline .edit-image-button,
-body.style-pop-outline .menu-edit-button,
-body.style-pop-outline .item-edit-button {
+body.style-pop-outline
+.edit-image-button,
+body.style-pop-outline
+.menu-edit-button,
+body.style-pop-outline
+.item-edit-button {
     border:
         2px solid
         #111111;
@@ -4613,7 +4931,8 @@ body.style-pop-outline .item-edit-button {
 }
 
 
-body.style-pop-outline .theme-settings-button {
+body.style-pop-outline
+.theme-settings-button {
     border:
         2px solid
         #111111;
@@ -4632,7 +4951,8 @@ body.style-pop-outline .theme-settings-button {
 }
 
 
-body.style-pop-outline .theme-settings-button img {
+body.style-pop-outline
+.theme-settings-button img {
     background: transparent;
 
     border-radius: 0;
@@ -4644,7 +4964,8 @@ body.style-pop-outline .theme-settings-button img {
 
 /* Pop Reviewer Chips */
 
-body.style-pop-outline .reviewer-filter-button {
+body.style-pop-outline
+.reviewer-filter-button {
     border:
         2px solid
         #111111;
@@ -4662,7 +4983,8 @@ body.style-pop-outline .reviewer-filter-button {
 
 /* Pop Editor */
 
-body.style-pop-outline .card-editor {
+body.style-pop-outline
+.card-editor {
     border:
         2px solid
         #111111;
@@ -4675,7 +4997,8 @@ body.style-pop-outline .card-editor {
 }
 
 
-body.style-pop-outline .editor-image-area {
+body.style-pop-outline
+.editor-image-area {
     border:
         2px solid
         #111111;
@@ -4684,7 +5007,8 @@ body.style-pop-outline .editor-image-area {
 }
 
 
-body.style-pop-outline .card-editor-close {
+body.style-pop-outline
+.card-editor-close {
     border:
         2px solid
         #111111;
@@ -4698,10 +5022,12 @@ body.style-pop-outline .card-editor-close {
 }
 
 
-body.style-pop-outline .color-option.selected {
+body.style-pop-outline
+.color-option.selected {
     box-shadow:
         0 0 0 2px
         #ffffff,
+
         0 0 0 4px
         #111111;
 }
@@ -4710,8 +5036,10 @@ body.style-pop-outline .color-option.selected {
 
 /* Pop Theme Page */
 
-body.style-pop-outline .theme-preview,
-body.style-pop-outline .theme-background-image-button {
+body.style-pop-outline
+.theme-preview,
+body.style-pop-outline
+.theme-background-image-button {
     border:
         2px solid
         #111111;
@@ -4724,7 +5052,8 @@ body.style-pop-outline .theme-background-image-button {
 }
 
 
-body.style-pop-outline .theme-swatch {
+body.style-pop-outline
+.theme-swatch {
     border-width: 2px;
 
     box-shadow:
@@ -4733,7 +5062,8 @@ body.style-pop-outline .theme-swatch {
 }
 
 
-body.style-pop-outline .premade-theme-color {
+body.style-pop-outline
+.premade-theme-color {
     border:
         1px solid
         #111111;
@@ -4742,7 +5072,9 @@ body.style-pop-outline .premade-theme-color {
 }
 
 
-body.style-pop-outline .premade-theme-option.active .premade-theme-palette {
+body.style-pop-outline
+.premade-theme-option.active
+.premade-theme-palette {
     outline:
         3px solid
         #111111;
@@ -4751,11 +5083,16 @@ body.style-pop-outline .premade-theme-option.active .premade-theme-palette {
 }
 
 
-body.style-pop-outline .theme-reset-button,
-body.style-pop-outline .theme-back-button,
-body.style-pop-outline .premade-themes-toggle,
-body.style-pop-outline .ui-style-select,
-body.style-pop-outline .ui-style-option {
+body.style-pop-outline
+.theme-reset-button,
+body.style-pop-outline
+.theme-back-button,
+body.style-pop-outline
+.premade-themes-toggle,
+body.style-pop-outline
+.ui-style-select,
+body.style-pop-outline
+.ui-style-option {
     border:
         2px solid
         #111111;
@@ -4807,7 +5144,8 @@ body.style-soft-product {
 
 /* Soft Sidebar */
 
-body.style-soft-product .sidebar {
+body.style-soft-product
+.sidebar {
     box-shadow:
         5px 0 20px
         rgba(0, 0, 0, 0.09);
@@ -4817,22 +5155,30 @@ body.style-soft-product .sidebar {
 
 /* Soft Navigation */
 
-body.style-soft-product .nav-item,
-body.style-soft-product .subject-link {
+body.style-soft-product
+.nav-item,
+body.style-soft-product
+.subject-link {
     border-radius: 11px;
 }
 
 
-body.style-soft-product .nav-item:hover,
-body.style-soft-product .subject-link:hover {
+body.style-soft-product
+.nav-item:hover,
+body.style-soft-product
+.subject-link:hover {
     background:
         rgba(255, 255, 255, 0.1);
 }
 
 
-body.style-soft-product #home-link.active,
-body.style-soft-product .main-nav .nav-item.active:not(#home-link),
-body.style-soft-product .subject-link.active {
+body.style-soft-product
+#home-link.active,
+body.style-soft-product
+.main-nav
+.nav-item.active:not(#home-link),
+body.style-soft-product
+.subject-link.active {
     border-radius: 12px;
 
     box-shadow:
@@ -4844,7 +5190,8 @@ body.style-soft-product .subject-link.active {
 
 /* Soft Search */
 
-body.style-soft-product .search-container input {
+body.style-soft-product
+.search-container input {
     border:
         1px solid
         color-mix(
@@ -4858,21 +5205,25 @@ body.style-soft-product .search-container input {
     box-shadow:
         inset 0 1px 1px
         rgba(255, 255, 255, 0.5),
+
         0 5px 13px
         rgba(0, 0, 0, 0.08);
 }
 
 
-body.style-soft-product .search-container input:focus {
+body.style-soft-product
+.search-container input:focus {
     box-shadow:
         inset 0 1px 1px
         rgba(255, 255, 255, 0.55),
+
         0 0 0 3px
         color-mix(
             in srgb,
             var(--theme-outline) 22%,
             transparent
         ),
+
         0 6px 15px
         rgba(0, 0, 0, 0.09);
 }
@@ -4883,7 +5234,8 @@ body.style-soft-product .search-container input:focus {
    SOFT PRODUCT LINK VIEW SWITCH
    ========================================================= */
 
-body.style-soft-product .link-view-switch {
+body.style-soft-product
+.link-view-switch {
     border:
         1px solid
         rgba(0, 0, 0, 0.07);
@@ -4899,12 +5251,14 @@ body.style-soft-product .link-view-switch {
 }
 
 
-body.style-soft-product .link-view-option {
+body.style-soft-product
+.link-view-option {
     border-radius: 999px;
 }
 
 
-body.style-soft-product .link-view-option:hover {
+body.style-soft-product
+.link-view-option:hover {
     background:
         color-mix(
             in srgb,
@@ -4914,7 +5268,8 @@ body.style-soft-product .link-view-option:hover {
 }
 
 
-body.style-soft-product .link-view-option.active {
+body.style-soft-product
+.link-view-option.active {
     background:
         var(--theme-background);
 
@@ -4930,7 +5285,8 @@ body.style-soft-product .link-view-option.active {
 
 /* Soft Banner */
 
-body.style-soft-product .home-banner {
+body.style-soft-product
+.home-banner {
     border:
         1px solid
         color-mix(
@@ -4950,9 +5306,12 @@ body.style-soft-product .home-banner {
 
 /* Soft Cards */
 
-body.style-soft-product .subject-card,
-body.style-soft-product .subject-menu-card,
-body.style-soft-product .global-category-card {
+body.style-soft-product
+.subject-card,
+body.style-soft-product
+.subject-menu-card,
+body.style-soft-product
+.global-category-card {
     border:
         1px solid
         rgba(255, 255, 255, 0.16);
@@ -4965,10 +5324,14 @@ body.style-soft-product .global-category-card {
 }
 
 
-body.style-soft-product .subject-card:hover,
-body.style-soft-product .subject-menu-card:hover,
-body.style-soft-product .global-category-card:hover,
-body.style-soft-product .reviewer-card:hover {
+body.style-soft-product
+.subject-card:hover,
+body.style-soft-product
+.subject-menu-card:hover,
+body.style-soft-product
+.global-category-card:hover,
+body.style-soft-product
+.reviewer-card:hover {
     transform:
         translateY(-4px);
 
@@ -4978,10 +5341,14 @@ body.style-soft-product .reviewer-card:hover {
 }
 
 
-body.style-soft-product .card-info,
-body.style-soft-product .subject-menu-info,
-body.style-soft-product .category-item-info,
-body.style-soft-product .global-category-info {
+body.style-soft-product
+.card-info,
+body.style-soft-product
+.subject-menu-info,
+body.style-soft-product
+.category-item-info,
+body.style-soft-product
+.global-category-info {
     box-shadow:
         inset 0 1px 0
         rgba(255, 255, 255, 0.12);
@@ -4991,13 +5358,18 @@ body.style-soft-product .global-category-info {
 
 /* Soft Edit Buttons */
 
-body.style-soft-product .edit-image-button,
-body.style-soft-product .menu-edit-button,
-body.style-soft-product .item-edit-button,
-body.style-soft-product .theme-settings-button {
+body.style-soft-product
+.edit-image-button,
+body.style-soft-product
+.menu-edit-button,
+body.style-soft-product
+.item-edit-button,
+body.style-soft-product
+.theme-settings-button {
     border-radius: 10px;
 
     background:
+
         rgba(255, 255, 255, 0.18);
 
     box-shadow:
@@ -5009,7 +5381,8 @@ body.style-soft-product .theme-settings-button {
 
 /* Soft Reviewer Chips */
 
-body.style-soft-product .reviewer-filter-button {
+body.style-soft-product
+.reviewer-filter-button {
     border-radius: 13px;
 
     box-shadow:
@@ -5021,7 +5394,8 @@ body.style-soft-product .reviewer-filter-button {
 
 /* Soft Editor */
 
-body.style-soft-product .card-editor {
+body.style-soft-product
+.card-editor {
     border:
         1px solid
         rgba(0, 0, 0, 0.06);
@@ -5034,7 +5408,8 @@ body.style-soft-product .card-editor {
 }
 
 
-body.style-soft-product .editor-image-area {
+body.style-soft-product
+.editor-image-area {
     border-radius: 16px;
 
     box-shadow:
@@ -5046,8 +5421,10 @@ body.style-soft-product .editor-image-area {
 
 /* Soft Theme Settings */
 
-body.style-soft-product .theme-preview,
-body.style-soft-product .theme-background-image-button {
+body.style-soft-product
+.theme-preview,
+body.style-soft-product
+.theme-background-image-button {
     border:
         1px solid
         rgba(0, 0, 0, 0.06);
@@ -5060,14 +5437,16 @@ body.style-soft-product .theme-background-image-button {
 }
 
 
-body.style-soft-product .theme-swatch {
+body.style-soft-product
+.theme-swatch {
     box-shadow:
         0 4px 9px
         rgba(0, 0, 0, 0.1);
 }
 
 
-body.style-soft-product .premade-theme-color {
+body.style-soft-product
+.premade-theme-color {
     border-radius: 11px;
 
     box-shadow:
@@ -5076,11 +5455,16 @@ body.style-soft-product .premade-theme-color {
 }
 
 
-body.style-soft-product .theme-reset-button,
-body.style-soft-product .theme-back-button,
-body.style-soft-product .premade-themes-toggle,
-body.style-soft-product .ui-style-select,
-body.style-soft-product .ui-style-option {
+body.style-soft-product
+.theme-reset-button,
+body.style-soft-product
+.theme-back-button,
+body.style-soft-product
+.premade-themes-toggle,
+body.style-soft-product
+.ui-style-select,
+body.style-soft-product
+.ui-style-option {
     border:
         1px solid
         rgba(0, 0, 0, 0.07);
@@ -5152,16 +5536,20 @@ body.style-soft-product .item-visual {
    Keep BOTH selectors visually matched.
    ========================================================= */
 
-body.style-retro-os .premade-themes-title,
-body.style-retro-os .ui-style-title {
+body.style-retro-os
+.premade-themes-title,
+body.style-retro-os
+.ui-style-title {
     text-transform: uppercase;
 
     letter-spacing: 1px;
 }
 
 
-body.style-retro-os .premade-themes-toggle,
-body.style-retro-os .ui-style-select {
+body.style-retro-os
+.premade-themes-toggle,
+body.style-retro-os
+.ui-style-select {
     border:
         1px solid
         #111111;
@@ -5186,8 +5574,10 @@ body.style-retro-os .ui-style-select {
    Both selector bars receive the same glass treatment.
    ========================================================= */
 
-body.style-liquid-glass .premade-themes-toggle,
-body.style-liquid-glass .ui-style-select {
+body.style-liquid-glass
+.premade-themes-toggle,
+body.style-liquid-glass
+.ui-style-select {
     border:
         1px solid
         rgba(255, 255, 255, 0.46);
@@ -5215,8 +5605,10 @@ body.style-liquid-glass .ui-style-select {
 }
 
 
-body.style-liquid-glass .premade-themes-toggle:hover,
-body.style-liquid-glass .ui-style-select:hover {
+body.style-liquid-glass
+.premade-themes-toggle:hover,
+body.style-liquid-glass
+.ui-style-select:hover {
     background:
         color-mix(
             in srgb,
@@ -5234,8 +5626,10 @@ body.style-liquid-glass .ui-style-select:hover {
    Both selector bars remain paired.
    ========================================================= */
 
-body.style-pop-outline .premade-themes-toggle,
-body.style-pop-outline .ui-style-select {
+body.style-pop-outline
+.premade-themes-toggle,
+body.style-pop-outline
+.ui-style-select {
     border:
         2px solid
         #111111;
@@ -5250,8 +5644,10 @@ body.style-pop-outline .ui-style-select {
 }
 
 
-body.style-pop-outline .premade-themes-title,
-body.style-pop-outline .ui-style-title {
+body.style-pop-outline
+.premade-themes-title,
+body.style-pop-outline
+.ui-style-title {
     letter-spacing: 0.3px;
 }
 
@@ -5264,8 +5660,10 @@ body.style-pop-outline .ui-style-title {
    Again, style both sides identically.
    ========================================================= */
 
-body.style-soft-product .premade-themes-toggle,
-body.style-soft-product .ui-style-select {
+body.style-soft-product
+.premade-themes-toggle,
+body.style-soft-product
+.ui-style-select {
     border:
         1px solid
         rgba(0, 0, 0, 0.07);
@@ -5286,14 +5684,22 @@ body.style-soft-product .ui-style-select {
    to only one side.
    ========================================================= */
 
-body.style-retro-os .premade-themes-section,
-body.style-retro-os .ui-style-section,
-body.style-liquid-glass .premade-themes-section,
-body.style-liquid-glass .ui-style-section,
-body.style-pop-outline .premade-themes-section,
-body.style-pop-outline .ui-style-section,
-body.style-soft-product .premade-themes-section,
-body.style-soft-product .ui-style-section {
+body.style-retro-os
+.premade-themes-section,
+body.style-retro-os
+.ui-style-section,
+body.style-liquid-glass
+.premade-themes-section,
+body.style-liquid-glass
+.ui-style-section,
+body.style-pop-outline
+.premade-themes-section,
+body.style-pop-outline
+.ui-style-section,
+body.style-soft-product
+.premade-themes-section,
+body.style-soft-product
+.ui-style-section {
     margin: 0;
 
     padding: 0;
@@ -5355,7 +5761,8 @@ body.style-soft-product .ui-style-section {
         width: 100%;
         height: auto;
 
-        padding: 14px 16px;
+        padding:
+            14px 16px;
 
         overflow: visible;
     }
@@ -5379,7 +5786,10 @@ body.style-soft-product .ui-style-section {
 
     .main-nav {
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
 
         gap: 8px;
     }
@@ -5388,7 +5798,8 @@ body.style-soft-product .ui-style-section {
     .nav-item {
         text-align: center;
 
-        padding: 9px 8px;
+        padding:
+            9px 8px;
     }
 
 
@@ -5399,7 +5810,10 @@ body.style-soft-product .ui-style-section {
 
     .subject-list {
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
 
         gap: 8px;
     }
@@ -5420,7 +5834,8 @@ body.style-soft-product .ui-style-section {
     .search-container {
         display: grid;
 
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
 
         gap: 10px;
     }
@@ -5496,7 +5911,10 @@ body.style-soft-product .ui-style-section {
     .subject-menu-grid,
     .premade-themes-grid {
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
 
         gap: 14px;
     }
@@ -5524,6 +5942,8 @@ body.style-soft-product .ui-style-section {
         height: 100px;
     }
 
+
+
     /* -------------------------
        REVIEWER FILTERS
        ------------------------- */
@@ -5532,7 +5952,10 @@ body.style-soft-product .ui-style-section {
         display: grid;
 
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
     }
 
 
@@ -5571,7 +5994,10 @@ body.style-soft-product .ui-style-section {
 
     .theme-swatch-grid {
         grid-template-columns:
-            repeat(6, 30px);
+            repeat(
+                6,
+                30px
+            );
 
         gap: 10px;
     }
@@ -5584,7 +6010,10 @@ body.style-soft-product .ui-style-section {
 
     .ui-style-options {
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
     }
 
 
@@ -5633,34 +6062,42 @@ body.style-soft-product .ui-style-section {
 @media (max-width: 480px) {
 
     .main-nav {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
 
     .subject-list {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
 
     .subject-grid,
     .subject-menu-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
 
     .reviewer-filter-bar {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
     }
 
 
     .theme-swatch-grid {
         grid-template-columns:
-            repeat(5, 1fr);
+            repeat(
+                5,
+                1fr
+            );
     }
 
 
     .ui-style-options {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+            1fr;
     }
 
 
@@ -5673,5 +6110,415 @@ body.style-soft-product .ui-style-section {
     .subject-heading h1,
     .theme-page-header h1 {
         font-size: 22px;
+    }
+}
+
+
+
+/* =========================================================
+   FINAL LINK VIEW SWITCH NORMALIZATION
+
+   This overrides the older 350px version above.
+   Compact 235px is the intended desktop size.
+   ========================================================= */
+
+.link-view-switch {
+    flex: 0 0 auto;
+
+    width: 235px;
+
+    min-width: 235px;
+
+    min-height: 38px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            2,
+            minmax(0, 1fr)
+        );
+
+    align-items: stretch;
+
+    padding: 3px;
+
+    border:
+        2px solid
+        var(--theme-outline);
+
+    border-radius: 999px;
+
+    background:
+        var(--theme-outline);
+
+    overflow: hidden;
+
+    box-shadow: none;
+}
+
+
+.link-view-option {
+    min-width: 0;
+
+    min-height: 0;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background:
+        transparent;
+
+    color:
+        var(--theme-text);
+
+    padding:
+        7px 12px;
+
+    font-family: inherit;
+
+    font-size: 11px;
+
+    line-height: 1;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    box-shadow: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.link-view-option:hover:not(.active) {
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-text) 12%,
+            transparent
+        );
+}
+
+
+.link-view-option.active {
+    background:
+        var(--theme-background);
+
+    color:
+        var(--theme-non-outline-text);
+
+    box-shadow: none;
+}
+
+
+.link-view-option.active:hover {
+    background:
+        var(--theme-background);
+}
+
+
+.link-view-option:active {
+    transform:
+        scale(0.98);
+}
+
+
+.link-view-option:focus-visible {
+    outline:
+        2px solid
+        var(--theme-text);
+
+    outline-offset: -2px;
+}
+
+
+
+/* =========================================================
+   FINAL RETRO SWITCH
+   ========================================================= */
+
+body.style-retro-os
+.link-view-switch {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    padding: 2px;
+
+    background:
+        var(--theme-outline);
+
+    box-shadow:
+        2px 2px 0
+        rgba(0, 0, 0, 0.35);
+}
+
+
+body.style-retro-os
+.link-view-option {
+    border: none;
+
+    border-radius: 0;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    color:
+        var(--theme-text);
+
+    box-shadow: none;
+}
+
+
+body.style-retro-os
+.link-view-option:hover:not(.active) {
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-text) 14%,
+            transparent
+        );
+}
+
+
+body.style-retro-os
+.link-view-option.active {
+    border: none;
+
+    background:
+        var(--theme-background);
+
+    color:
+        var(--theme-non-outline-text);
+
+    box-shadow: none;
+}
+
+
+
+/* =========================================================
+   FINAL LIQUID GLASS SWITCH
+   ========================================================= */
+
+body.style-liquid-glass
+.link-view-switch {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.46);
+
+    border-radius: 999px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-outline) 68%,
+            transparent
+        );
+
+    backdrop-filter:
+        blur(12px);
+
+    -webkit-backdrop-filter:
+        blur(12px);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.42),
+
+        0 7px 17px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+body.style-liquid-glass
+.link-view-option {
+    border: none;
+
+    border-radius: 999px;
+
+    color:
+        var(--theme-text);
+
+    box-shadow: none;
+}
+
+
+body.style-liquid-glass
+.link-view-option.active {
+    border: none;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-background) 84%,
+            rgba(255, 255, 255, 0.28)
+        );
+
+    color:
+        var(--theme-non-outline-text);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.62);
+}
+
+
+
+/* =========================================================
+   FINAL POP OUTLINE SWITCH
+   ========================================================= */
+
+body.style-pop-outline
+.link-view-switch {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 999px;
+
+    background:
+        var(--theme-outline);
+
+    box-shadow:
+        3px 3px 0
+        #111111;
+}
+
+
+body.style-pop-outline
+.link-view-option {
+    border: none;
+
+    border-radius: 999px;
+
+    color:
+        var(--theme-text);
+
+    font-weight: bold;
+
+    box-shadow: none;
+}
+
+
+body.style-pop-outline
+.link-view-option.active {
+    border:
+        2px solid
+        #111111;
+
+    margin: -2px;
+
+    background:
+        var(--theme-background);
+
+    color:
+        var(--theme-non-outline-text);
+
+    box-shadow:
+        2px 2px 0
+        #111111;
+}
+
+
+
+/* =========================================================
+   FINAL SOFT PRODUCT SWITCH
+   ========================================================= */
+
+body.style-soft-product
+.link-view-switch {
+    border:
+        1px solid
+        rgba(0, 0, 0, 0.07);
+
+    border-radius: 999px;
+
+    background:
+        var(--theme-outline);
+
+    box-shadow:
+        0 6px 14px
+        rgba(0, 0, 0, 0.09);
+}
+
+
+body.style-soft-product
+.link-view-option {
+    border: none;
+
+    border-radius: 999px;
+
+    color:
+        var(--theme-text);
+
+    box-shadow: none;
+}
+
+
+body.style-soft-product
+.link-view-option.active {
+    background:
+        var(--theme-background);
+
+    color:
+        var(--theme-non-outline-text);
+
+    box-shadow:
+        0 4px 10px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+
+/* =========================================================
+   FINAL RESPONSIVE SWITCH
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    .search-container {
+        display: grid;
+
+        grid-template-columns:
+            1fr;
+
+        gap: 10px;
+    }
+
+
+    .search-container input {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    .link-view-switch {
+        width: 100%;
+
+        min-width: 0;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .link-view-option {
+        padding:
+            8px 7px;
+
+        font-size: 10px;
     }
 }
