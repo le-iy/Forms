@@ -804,6 +804,27 @@ const searchInput =
 const searchContainer =
     document.querySelector(".search-container");
 
+
+/* =========================================================
+   LINK VIEW SWITCH
+
+   Practice Links -> item.link
+   Edit Links     -> item.collabLink
+   ========================================================= */
+
+const linkViewStorageKey =
+    "link-view-mode";
+
+const linkViewDefault =
+    "practice";
+
+let currentLinkViewMode =
+    localStorage.getItem(
+        linkViewStorageKey
+    ) === "edit"
+        ? "edit"
+        : linkViewDefault;
+
 const cardEditorOverlay =
     document.getElementById("card-editor-overlay");
 
@@ -873,6 +894,188 @@ function hideSearchBar() {
 
 
 /* =========================================================
+   LINK VIEW SWITCH HELPERS
+   ========================================================= */
+
+function getLinkForCurrentMode(item) {
+    if (!item) {
+        return "";
+    }
+
+    return currentLinkViewMode === "edit"
+        ? item.collabLink || ""
+        : item.link || "";
+}
+
+
+function getLinkLabelForCurrentMode() {
+    return currentLinkViewMode === "edit"
+        ? "Collab Link"
+        : "Open";
+}
+
+
+function updateLinkViewSwitch() {
+    document.querySelectorAll(
+        ".link-view-option"
+    ).forEach(
+        function (button) {
+            const isActive =
+                button.dataset.linkView ===
+                    currentLinkViewMode;
+
+            button.classList.toggle(
+                "active",
+                isActive
+            );
+
+            button.setAttribute(
+                "aria-pressed",
+                isActive ? "true" : "false"
+            );
+        }
+    );
+}
+
+
+function refreshCurrentPageForLinkView() {
+    if (
+        currentSubjectId &&
+        (
+            currentCategory === "formatives" ||
+            currentCategory === "summatives"
+        )
+    ) {
+        openSubjectCategory(
+            currentSubjectId,
+            currentCategory
+        );
+
+        return;
+    }
+
+    if (currentCategory === "reviewers") {
+        const previousReviewerFilter =
+            activeReviewerFilter;
+
+        showReviewersPage();
+
+        activeReviewerFilter =
+            previousReviewerFilter;
+
+        updateReviewerFilterButtons();
+
+        filterReviewerCards();
+    }
+}
+
+
+function setLinkViewMode(mode) {
+    const resolvedMode =
+        mode === "edit"
+            ? "edit"
+            : "practice";
+
+    if (
+        currentLinkViewMode ===
+        resolvedMode
+    ) {
+        updateLinkViewSwitch();
+
+        return;
+    }
+
+    currentLinkViewMode =
+        resolvedMode;
+
+    localStorage.setItem(
+        linkViewStorageKey,
+        currentLinkViewMode
+    );
+
+    updateLinkViewSwitch();
+
+    refreshCurrentPageForLinkView();
+}
+
+
+function initializeLinkViewSwitch() {
+    if (!searchContainer) {
+        return;
+    }
+
+    let switchElement =
+        document.getElementById(
+            "link-view-switch"
+        );
+
+    if (!switchElement) {
+        switchElement =
+            document.createElement(
+                "div"
+            );
+
+        switchElement.id =
+            "link-view-switch";
+
+        switchElement.className =
+            "link-view-switch";
+
+        switchElement.setAttribute(
+            "role",
+            "group"
+        );
+
+        switchElement.setAttribute(
+            "aria-label",
+            "Choose which links to show"
+        );
+
+        switchElement.innerHTML = `
+            <button
+                type="button"
+                class="link-view-option"
+                data-link-view="practice"
+                aria-pressed="false"
+            >
+                Practice Links
+            </button>
+
+            <button
+                type="button"
+                class="link-view-option"
+                data-link-view="edit"
+                aria-pressed="false"
+            >
+                Edit Links
+            </button>
+        `;
+
+        searchContainer.appendChild(
+            switchElement
+        );
+
+        switchElement.querySelectorAll(
+            ".link-view-option"
+        ).forEach(
+            function (button) {
+                button.addEventListener(
+                    "click",
+                    function () {
+                        setLinkViewMode(
+                            button.dataset.linkView
+                        );
+                    }
+                );
+            }
+        );
+    }
+
+    updateLinkViewSwitch();
+}
+
+
+/* =========================================================
    THEME STORAGE
    ========================================================= */
 
@@ -884,7 +1087,6 @@ function getSavedThemeValue(setting) {
 
     return saved || themeDefaults[setting];
 }
-
 
 /* =========================================================
    APPLY THEME SETTING
@@ -1748,22 +1950,24 @@ async function refreshAdaptiveBackgroundText() {
                         wallpaper,
                         element
                     );
-            if (sampled) {
-                backgroundColor =
-                    sampled;
+
+                if (sampled) {
+                    backgroundColor =
+                        sampled;
+                }
             }
-        }
 
-        const textColor =
-            getReadableAdaptiveTextColor(
-                backgroundColor
+            const textColor =
+                getReadableAdaptiveTextColor(
+                    backgroundColor
+                );
+
+            element.style.setProperty(
+                "--adaptive-background-text",
+                textColor
             );
-
-        element.style.setProperty(
-            "--adaptive-background-text",
-            textColor
-        );
-    });
+        }
+    );
 }
 
 function scheduleAdaptiveBackgroundTextRefresh() {
@@ -2494,6 +2698,7 @@ function addThemePageEvents() {
                         decodeURIComponent(
                             swatch.dataset.themeValue
                         );
+
                     if (
                         !setting ||
                         !value
@@ -2853,8 +3058,6 @@ function addThemePageEvents() {
         );
     }
 }
-
-
 
 /* =========================================================
    CARD STORAGE
@@ -3854,7 +4057,6 @@ editorRemoveImage.addEventListener(
                 )
             );
 
-
             hideMenuImage(
                 editorTarget.subjectId,
                 editorTarget.category
@@ -4331,6 +4533,8 @@ function addSubjectCardEvents() {
         }
     );
 }
+
+
 /* =========================================================
    HOME
    ========================================================= */
@@ -4363,6 +4567,8 @@ function showHomePage() {
     loadSavedColors();
 
     loadSavedImages();
+
+    updateLinkViewSwitch();
 
     scheduleAdaptiveBackgroundTextRefresh();
 }
@@ -4555,6 +4761,9 @@ function showSubjectPage(subjectId) {
     addSubjectMenuEvents();
 
 
+    updateLinkViewSwitch();
+
+
     scheduleAdaptiveBackgroundTextRefresh();
 }
 
@@ -4686,35 +4895,38 @@ function openSubjectCategory(
                         )
                     );
 
+
+                /* =========================================
+                   LINK VIEW
+
+                   Practice Links:
+                   uses item.link only
+
+                   Edit Links:
+                   uses item.collabLink only
+                   ========================================= */
+
+                const activeLink =
+                    getLinkForCurrentMode(
+                        item
+                    );
+
+                const activeLinkLabel =
+                    getLinkLabelForCurrentMode();
+
                 let links =
                     "";
 
 
-
-                if (item.link) {
-                    links += `
+                if (activeLink) {
+                    links = `
                         <a
-                            href="${item.link}"
+                            href="${activeLink}"
                             class="category-item-link"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Open
-                        </a>
-                    `;
-                }
-
-
-
-                if (item.collabLink) {
-                    links += `
-                        <a
-                            href="${item.collabLink}"
-                            class="category-item-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            Collab Link
+                            ${activeLinkLabel}
                         </a>
                     `;
                 }
@@ -4846,7 +5058,6 @@ function openSubjectCategory(
     `;
 
 
-
     document.getElementById(
         "breadcrumb-home"
     ).addEventListener(
@@ -4868,6 +5079,9 @@ function openSubjectCategory(
 
 
     addItemEditEvents();
+
+
+    updateLinkViewSwitch();
 
 
     scheduleAdaptiveBackgroundTextRefresh();
@@ -5086,7 +5300,16 @@ function showAllCategoryItems(category) {
         function (card) {
             card.addEventListener(
                 "click",
-                function () {
+                function (event) {
+
+                    if (
+                        event.target.closest(
+                            ".item-edit-button"
+                        )
+                    ) {
+                        return;
+                    }
+
                     openSubjectCategory(
                         card.dataset.subject,
                         card.dataset.category
@@ -5095,7 +5318,12 @@ function showAllCategoryItems(category) {
             );
         }
     );
+
+
     addItemEditEvents();
+
+
+    updateLinkViewSwitch();
 
 
     scheduleAdaptiveBackgroundTextRefresh();
@@ -5333,6 +5561,7 @@ function showReviewersPage() {
             }
 
 
+
             reviewers.forEach(
                 function (
                     item,
@@ -5369,13 +5598,24 @@ function showReviewersPage() {
                         );
 
 
+                    /*
+                        Reviewer card destination also follows
+                        Practice Links / Edit Links.
+                    */
+
+                    const reviewerLink =
+                        getLinkForCurrentMode(
+                            item
+                        );
+
+
                     cards += `
                         <div
                             class="subject-menu-card global-category-card reviewer-card"
                             data-subject="${subjectId}"
                             data-category="reviewers"
                             data-item-index="${index}"
-                            data-link="${item.link || ""}"
+                            data-link="${reviewerLink}"
                         >
 
                             <div
@@ -5478,8 +5718,12 @@ function showReviewersPage() {
     addItemEditEvents();
 
 
+    updateLinkViewSwitch();
+
+
     scheduleAdaptiveBackgroundTextRefresh();
 }
+
 /* =========================================================
    SIDEBAR NAVIGATION
    ========================================================= */
@@ -5653,6 +5897,9 @@ loadSavedTheme();
 loadSavedUIStyle();
 
 
+initializeLinkViewSwitch();
+
+
 addSubjectCardEvents();
 
 
@@ -5666,6 +5913,9 @@ loadSavedColors();
 
 
 loadSavedImages();
+
+
+updateLinkViewSwitch();
 
 
 startAdaptiveBackgroundTextObserver();

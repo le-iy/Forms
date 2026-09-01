@@ -373,11 +373,21 @@ body {
 
 
 /* =========================================================
-   SEARCH BAR
+   SEARCH BAR + LINK VIEW SWITCH
    ========================================================= */
 
 .search-container {
+    width: 100%;
+
     margin-bottom: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
 }
 
 
@@ -409,6 +419,142 @@ body {
 
 .search-container input:focus {
     background-color: var(--theme-input-focus);
+}
+
+
+
+/* =========================================================
+   PRACTICE LINKS / EDIT LINKS SWITCH
+
+   Practice Links:
+   item.link
+
+   Edit Links:
+   item.collabLink
+
+   The JavaScript creates this automatically inside
+   .search-container.
+   ========================================================= */
+
+.link-view-switch {
+    width: 350px;
+
+    min-width: 350px;
+
+    min-height: 46px;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    align-items: center;
+
+    padding: 4px;
+
+    border: 2px solid var(--theme-outline);
+
+    border-radius: 999px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-outline) 45%,
+            var(--theme-background)
+        );
+
+    overflow: hidden;
+
+    box-shadow:
+        3px 3px 0
+        rgba(0, 0, 0, 0.12);
+
+    flex: 0 0 auto;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.link-view-option {
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 34px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 999px;
+
+    background: transparent;
+
+    color: var(--theme-non-outline-text);
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    line-height: 1;
+
+    text-align: center;
+
+    white-space: nowrap;
+
+    padding: 9px 20px;
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.link-view-option:hover {
+    background:
+        rgba(255, 255, 255, 0.12);
+}
+
+
+.link-view-option.active {
+    background: var(--theme-background);
+
+    color: var(--theme-non-outline-text);
+
+    box-shadow:
+        0 1px 4px
+        rgba(0, 0, 0, 0.14);
+}
+
+
+.link-view-option.active:hover {
+    background: var(--theme-background);
+}
+
+
+.link-view-option:active {
+    transform: scale(0.98);
+}
+
+
+.link-view-option:focus-visible {
+    outline: 2px solid var(--theme-non-outline-text);
+
+    outline-offset: -2px;
 }
 
 
@@ -720,6 +866,9 @@ body {
 
     pointer-events: none;
 }
+
+
+
 /* =========================================================
    HOME CARD INFORMATION
 
@@ -883,8 +1032,6 @@ body {
 
     font-weight: bold;
 }
-
-
 
 /* =========================================================
    SUBJECT MENU GRID
@@ -1683,6 +1830,8 @@ body {
 
     cursor: pointer;
 }
+
+
 .editor-add-image:hover {
     text-decoration: underline;
 }
@@ -2413,6 +2562,9 @@ body {
 
     line-height: 1;
 }
+
+
+
 /* =========================================================
    THEMES + UI STYLE CHOICE AREA
 
@@ -3073,6 +3225,7 @@ body {
 
 .theme-remove-background-button {
     margin-top: -9px;
+
     margin-bottom: 12px;
 
     border: none;
@@ -3201,6 +3354,8 @@ body.theme-has-background-image .main-content {
         var(--theme-non-outline-text)
     );
 }
+
+
 
 /* =========================================================
    =========================================================
@@ -3393,12 +3548,81 @@ body.style-retro-os .search-container input:focus {
 
 
 
+/* =========================================================
+   RETRO OS LINK VIEW SWITCH
+   ========================================================= */
+
+body.style-retro-os .link-view-switch {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    padding: 3px;
+
+    background:
+        var(--theme-input-background);
+
+    box-shadow:
+        2px 2px 0
+        rgba(0, 0, 0, 0.4);
+}
+
+
+body.style-retro-os .link-view-option {
+    border-radius: 0;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    color:
+        var(--theme-non-outline-text);
+}
+
+
+body.style-retro-os .link-view-option:hover {
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-input-background) 76%,
+            var(--theme-outline) 24%
+        );
+}
+
+
+body.style-retro-os .link-view-option.active {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    background:
+        var(--theme-background);
+
+    color:
+        var(--theme-non-outline-text);
+
+    box-shadow:
+        inset 1px 1px 0
+        rgba(0, 0, 0, 0.22);
+}
+
+
+
 /* Retro Banner */
 
 body.style-retro-os .home-banner {
     border:
         1px solid
-        #111111;
+
+        color-mix(
+            in srgb,
+            var(--theme-text) 50%,
+            transparent
+        );
 
     border-radius: 0;
 
@@ -3761,6 +3985,78 @@ body.style-liquid-glass .search-container input:focus {
         ),
         0 9px 24px
         rgba(0, 0, 0, 0.13);
+}
+
+
+
+/* =========================================================
+   LIQUID GLASS LINK VIEW SWITCH
+   ========================================================= */
+
+body.style-liquid-glass .link-view-switch {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.42);
+
+    border-radius: 999px;
+
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-outline) 38%,
+            transparent
+        );
+
+    backdrop-filter:
+        blur(18px)
+        saturate(145%);
+
+    -webkit-backdrop-filter:
+        blur(18px)
+        saturate(145%);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.38),
+        0 10px 24px
+        rgba(0, 0, 0, 0.12);
+}
+
+
+body.style-liquid-glass .link-view-option {
+    border-radius: 999px;
+}
+
+
+body.style-liquid-glass .link-view-option:hover {
+    background:
+        rgba(255, 255, 255, 0.14);
+}
+
+
+body.style-liquid-glass .link-view-option.active {
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.5);
+
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-background) 68%,
+            transparent
+        );
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    box-shadow:
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.72),
+        0 5px 14px
+        rgba(0, 0, 0, 0.12);
 }
 
 
@@ -4147,6 +4443,61 @@ body.style-pop-outline .search-container input:focus {
 
 
 
+/* =========================================================
+   POP OUTLINE LINK VIEW SWITCH
+   ========================================================= */
+
+body.style-pop-outline .link-view-switch {
+    border:
+        2px solid
+        #111111;
+
+    border-radius: 999px;
+
+    background:
+        var(--theme-input-background);
+
+    box-shadow:
+        4px 4px 0
+        #111111;
+}
+
+
+body.style-pop-outline .link-view-option {
+    border-radius: 999px;
+
+    font-weight: bold;
+}
+
+
+body.style-pop-outline .link-view-option:hover {
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-input-background) 72%,
+            var(--theme-background) 28%
+        );
+}
+
+
+body.style-pop-outline .link-view-option.active {
+    border:
+        2px solid
+        #111111;
+
+    background:
+        var(--theme-background);
+
+    color:
+        var(--theme-non-outline-text);
+
+    box-shadow:
+        2px 2px 0
+        #111111;
+}
+
+
+
 /* Pop Banner */
 
 body.style-pop-outline .home-banner {
@@ -4166,7 +4517,7 @@ body.style-pop-outline .home-banner-left h1 {
     letter-spacing: 0.5px;
 }
 
-/* Pop Cards */
+
 
 /* Pop Cards */
 
@@ -4188,6 +4539,7 @@ body.style-pop-outline .global-category-card {
         5px 5px 0
         #111111;
 }
+
 
 body.style-pop-outline .card-info,
 body.style-pop-outline .subject-menu-info,
@@ -4260,6 +4612,7 @@ body.style-pop-outline .item-edit-button {
     height: 26px;
 }
 
+
 body.style-pop-outline .theme-settings-button {
     border:
         2px solid
@@ -4278,6 +4631,7 @@ body.style-pop-outline .theme-settings-button {
     height: 26px;
 }
 
+
 body.style-pop-outline .theme-settings-button img {
     background: transparent;
 
@@ -4285,6 +4639,7 @@ body.style-pop-outline .theme-settings-button img {
 
     box-shadow: none;
 }
+
 
 
 /* Pop Reviewer Chips */
@@ -4524,6 +4879,55 @@ body.style-soft-product .search-container input:focus {
 
 
 
+/* =========================================================
+   SOFT PRODUCT LINK VIEW SWITCH
+   ========================================================= */
+
+body.style-soft-product .link-view-switch {
+    border:
+        1px solid
+        rgba(0, 0, 0, 0.07);
+
+    border-radius: 999px;
+
+    background:
+        var(--theme-input-background);
+
+    box-shadow:
+        0 6px 14px
+        rgba(0, 0, 0, 0.09);
+}
+
+
+body.style-soft-product .link-view-option {
+    border-radius: 999px;
+}
+
+
+body.style-soft-product .link-view-option:hover {
+    background:
+        color-mix(
+            in srgb,
+            var(--theme-input-background) 78%,
+            var(--theme-background) 22%
+        );
+}
+
+
+body.style-soft-product .link-view-option.active {
+    background:
+        var(--theme-background);
+
+    color:
+        var(--theme-non-outline-text);
+
+    box-shadow:
+        0 4px 10px
+        rgba(0, 0, 0, 0.08);
+}
+
+
+
 /* Soft Banner */
 
 body.style-soft-product .home-banner {
@@ -4687,6 +5091,8 @@ body.style-soft-product .ui-style-option {
         0 6px 14px
         rgba(0, 0, 0, 0.09);
 }
+
+
 
 /* =========================================================
    =========================================================
@@ -4903,6 +5309,8 @@ body.style-soft-product .ui-style-section {
     -webkit-backdrop-filter: none;
 }
 
+
+
 /* =========================================================
    ACCESSIBLE FOCUS FOR ALL STYLE MODES
    ========================================================= */
@@ -4915,13 +5323,16 @@ body.style-soft-product .ui-style-section {
 .reviewer-filter-button:focus-visible,
 .edit-image-button:focus-visible,
 .menu-edit-button:focus-visible,
-.item-edit-button:focus-visible {
+.item-edit-button:focus-visible,
+.link-view-option:focus-visible {
     outline:
         2px solid
         var(--theme-non-outline-text);
 
     outline-offset: 3px;
 }
+
+
 
 /* =========================================================
    MOBILE / RESPONSIVE LAYOUT
@@ -5003,10 +5414,26 @@ body.style-soft-product .ui-style-section {
 
 
     /* -------------------------
-       SEARCH
+       SEARCH + LINK VIEW SWITCH
        ------------------------- */
 
+    .search-container {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 10px;
+    }
+
+
     .search-container input {
+        width: 100%;
+
+        min-width: 0;
+    }
+
+
+    .link-view-switch {
         width: 100%;
 
         min-width: 0;
@@ -5096,8 +5523,6 @@ body.style-soft-product .ui-style-section {
     .item-visual {
         height: 100px;
     }
-
-
 
     /* -------------------------
        REVIEWER FILTERS
