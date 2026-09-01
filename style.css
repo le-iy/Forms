@@ -3427,30 +3427,9 @@ body.style-retro-os .global-category-card {
 
     border-radius: 0;
 
-    background:
-        var(--theme-outline);
-
-    overflow: hidden;
-
     box-shadow:
         3px 3px 0
         rgba(0, 0, 0, 0.38);
-}
-
-body.style-retro-os .card-info,
-body.style-retro-os .subject-menu-info,
-body.style-retro-os .category-item-info,
-body.style-retro-os .global-category-info {
-    width: 100%;
-
-    margin-top: -1px;
-
-    background:
-        var(--theme-outline);
-
-    border-top:
-        1px solid
-        #111111;
 }
 
 
@@ -3491,7 +3470,25 @@ body.style-retro-os .global-category-info {
 
 body.style-retro-os .edit-image-button,
 body.style-retro-os .menu-edit-button,
-body.style-retro-os .item-edit-button,
+body.style-retro-os .item-edit-button {
+    border:
+        1px solid
+        #111111;
+
+    border-radius: 0;
+
+    background:
+        rgba(180, 180, 180, 0.75);
+
+    box-shadow:
+        1px 1px 0
+        rgba(0, 0, 0, 0.45);
+
+    width: 26px;
+    height: 26px;
+}
+
+
 body.style-retro-os .theme-settings-button {
     border:
         1px solid
@@ -3500,15 +3497,14 @@ body.style-retro-os .theme-settings-button {
     border-radius: 0;
 
     background:
-        color-mix(
-            in srgb,
-            #ffffff 72%,
-            transparent
-        );
+        rgba(0, 0, 0, 0.75);
 
     box-shadow:
         1px 1px 0
         rgba(0, 0, 0, 0.45);
+
+    width: 26px;
+    height: 26px;
 }
 
 
