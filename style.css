@@ -1127,6 +1127,12 @@ body {
     z-index: 1;
 }
 
+.subject-image,
+.subject-menu-custom-image,
+.item-custom-image {
+    display: block;
+}
+
 
 
 /* =========================================================
