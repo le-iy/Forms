@@ -17,37 +17,37 @@ const IT0035 = {
                 title: "Network Map IT0035 Mod 01.pdf",
                 description: "",
                 link: "File_Bank/IT0035/Network Map_ IT0035 Mod 01.pdf",
-                collabLink: ""
+                collabLink: "File_Bank/IT0035/Network Map_ IT0035 Mod 01.pdf"
             },
             {
                 title: "Network Map IT0035 Mod 02.pdf",
                 description: "",
                 link: "File_Bank/IT0035/Network Map_ IT0035 Mod 02.pdf",
-                collabLink: ""
+                collabLink: "File_Bank/IT0035/Network Map_ IT0035 Mod 02.pdf"
             },
             {
                 title: "Network Map IT0035 Mod 03.pdf",
                 description: "",
                 link: "File_Bank/IT0035/Network Map_ IT0035 Mod 03.pdf",
-                collabLink: ""
+                collabLink: "File_Bank/IT0035/Network Map_ IT0035 Mod 03.pdf"
             },
             {
                 title: "Network Map IT0035 Mod 04.pdf",
                 description: "",
                 link: "File_Bank/IT0035/Network Map_ IT0035 Mod 04.pdf",
-                collabLink: ""
+                collabLink: "File_Bank/IT0035/Network Map_ IT0035 Mod 04.pdf"
             },
             {
                 title: "Network Map IT0035 Mod 05.pdf",
                 description: "",
                 link: "File_Bank/IT0035/Network Map_ IT0035 Mod 05.pdf",
-                collabLink: ""
+                collabLink: "File_Bank/IT0035/Network Map_ IT0035 Mod 05.pdf"
             },
             {
                 title: "Network Map IT0035 Mod 06.pdf",
                 description: "",
                 link: "File_Bank/IT0035/Network Map_ IT0035 Mod 06.pdf",
-                collabLink: ""
+                collabLink: "File_Bank/IT0035/Network Map_ IT0035 Mod 06.pdf"
             }
         ]
     }
