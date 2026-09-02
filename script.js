@@ -6472,7 +6472,7 @@ function showReviewersPage() {
 
     pageContent.innerHTML = `
         <h1 class="page-title">
-            REVIEWERS
+            REVIEWERS (pain)
         </h1>
 
         <div class="reviewer-filter-bar">
