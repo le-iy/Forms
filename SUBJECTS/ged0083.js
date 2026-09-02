@@ -12,6 +12,13 @@ const GED0083 = {
 
         summatives: [],
 
-        reviewers: []
+        reviewers: [
+            {
+                title: "Network Map GED0083 Mod 01.pdf",
+                description: "",
+                link: "File_Bank/GED0083/Network Map_ GED0083 Mod 01.pdf",
+                collabLink: ""
+            }
+        ]
     }
 };
