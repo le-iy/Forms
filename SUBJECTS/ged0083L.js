@@ -8,7 +8,14 @@ const GED0083L = {
     color: "#ffde59",
 
     categories: {
-        formatives: [],
+        formatives: [
+            {
+                title: "Formative 1",
+                description: "[GENERATED] Gizmo",
+                link: "https://gizmo.ai/deck/97915855?p=kQtK_vnHCVw&t=1&featureId=2&deckName=M1&deckColour=fbbf24&senderName=Nei&numDeckCards=29&senderUserId=12419649&source=copy",
+                collabLink: "https://gizmo.ai/deck/97915855?p=kQtK_vnHCVw&t=1&featureId=2&deckName=M1&deckColour=fbbf24&senderName=Nei&numDeckCards=29&senderUserId=12419649&source=copy"
+            }
+        ],
 
         summatives: [],
 
