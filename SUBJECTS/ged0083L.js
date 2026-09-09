@@ -73,6 +73,21 @@ const GED0083L = {
                 description: "",
                 link: "File_Bank/GED0083L/Network Map_ GED0083L Mod 09.pdf",
                 collabLink: "File_Bank/GED0083L/Network Map_ GED0083L Mod 09.pdf"
+            },
+
+
+
+            {
+                title: "GENERATED Formative 1",
+                description: "Sample Qs",
+                link: "File_Bank/GED0083L/GENERATED Formative 1.pdf",
+                collabLink: "File_Bank/GED0083L/GENERATED Formative 1.pdf"
+            },
+            {
+                title: "Canvas Module 1",
+                description: "Canvas pdf",
+                link: "File_Bank/GED0083L/M1 BUOYANCY.pdf",
+                collabLink: "File_Bank/GED0083L/M1 BUOYANCY.pdf"
             }
         ]
     }
