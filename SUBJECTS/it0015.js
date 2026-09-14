@@ -14,7 +14,7 @@ const IT0015 = {
                 description: "NETACAD",
                 link: "https://forms.cloud.microsoft/r/R1zz4BXfVq",
                 collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EK1ypcd9WIhGl16-VZ5DfUxUMEZGWlRQRjlBQTdDR041UU85NUdZMDhLRC4u&Token=710f6b2b71ac4b498b4fb1cd66c82594"
-            }
+            } 
         ],
 
         summatives: [],
