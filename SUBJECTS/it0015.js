@@ -20,6 +20,12 @@ const IT0015 = {
                 description: "NETACAD",
                 link: "https://forms.cloud.microsoft/r/zbmzXKUPRd",
                 collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EK1ypcd9WIhGl16-VZ5DfUxURVpRTkVLUDNSRk1JUFVQV0lLOUcwMzJQMi4u&Token=50b5b1f0f9aa4a7facc54103ba51e9c7"
+            },
+            {
+                title: "Module 3",
+                description: "NETACAD",
+                link: "https://forms.cloud.microsoft/r/RkJWBVaNe9",
+                collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EK1ypcd9WIhGl16-VZ5DfUxUNzBNUzJNSk1NR1dISU81Qkc2Ulc5VjVTTS4u&Token=134aa9ac1e81453cb83cbdc81761a04e"
             }
         ],
 
