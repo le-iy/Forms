@@ -10,7 +10,7 @@ const IT0015 = {
     categories: {
         formatives: [
             {
-                title: "CYU Module 1",
+                title: "CYU Module 1 (1)",
                 description: "NETACAD",
                 link: "https://forms.cloud.microsoft/r/R1zz4BXfVq",
                 collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EK1ypcd9WIhGl16-VZ5DfUxUMEZGWlRQRjlBQTdDR041UU85NUdZMDhLRC4u&Token=710f6b2b71ac4b498b4fb1cd66c82594"
@@ -32,6 +32,12 @@ const IT0015 = {
                 description: "NETACAD",
                 link: "https://forms.cloud.microsoft/r/XhnhjX0mMS",
                 collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EK1ypcd9WIhGl16-VZ5DfUxUNjRSWTdNREI5S1k2OVdaNzRQWDZFTkJLMy4u&Token=5b3e297d67764da888842631b05aa35d"
+            },
+            {
+                title: "Checkpoint 1",
+                description: "NETACAD",
+                link: "https://forms.cloud.microsoft/r/aB9PUCeYFN",
+                collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EGVakDeiDU9BujlyMTLO6NpUMEc5RE82RFJVQlhWQ1A2WVFLMVlUQldTWC4u&Token=45eadcff176141f1aff75621e7cd6816"
             }
         ],
 
