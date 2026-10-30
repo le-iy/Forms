@@ -1168,8 +1168,8 @@
 
         return `
             ${head(
-                "Your academic workspace",
-                "Organized resources, reviewers, and practice links in one cozy place."
+                "Dashboard",
+                "PANDORA v3 - Remodeled Coz Y Not"
             )}
 
             <div class="section-head">
