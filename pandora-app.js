@@ -123,19 +123,29 @@
         }[char]));
     }
 
+
     function validUrl(value) {
         if (!value) return null;
 
         try {
             const url = new URL(value, location.href);
 
-            return ["http:", "https:"].includes(url.protocol)
+            const allowedProtocols = ["http:", "https:"];
+
+            // Allow local resources only during file:// previews.
+            if (location.protocol === "file:") {
+                allowedProtocols.push("file:");
+            }
+
+            return allowedProtocols.includes(url.protocol)
                 ? url.href
                 : null;
+
         } catch {
             return null;
         }
     }
+
 
     function validHex(value) {
         return /^#[0-9a-fA-F]{6}$/.test(value || "");
@@ -1210,20 +1220,115 @@
         `;
     }
 
+    
+    // ==========================================
+    // EDITORIAL SECTIONS WITHIN EACH MODULE
+    // ==========================================
+
+    function moduleEditorialSections(resources) {
+        const sections = [
+            {
+                id: "reviewers",
+                title: "Reviewers",
+                icon: "▧",
+                description: "Study materials and review notes"
+            },
+            {
+                id: "practice",
+                title: "Practice / Edit Links",
+                icon: "✎",
+                description: "Exercises, quizzes and practice activities"
+            },
+            {
+                id: "references",
+                title: "References",
+                icon: "▤",
+                description: "Supporting documents and learning resources"
+            }
+        ];
+
+        return `
+            <div class="editorial-sections">
+                ${sections.map(section => {
+                    const items = resources.filter(resource => {
+                        const explicit = String(
+                            resource.section || ""
+                        ).toLowerCase();
+
+                        const resolved = [
+                            "reviewers",
+                            "practice",
+                            "references"
+                        ].includes(explicit)
+                            ? explicit
+                            : resource.kind === "reviewer"
+                                ? "reviewers"
+                                : "practice";
+
+                        return resolved === section.id;
+                    });
+
+                    if (!items.length) return "";
+
+                    return `
+                        <section
+                            class="editorial-section"
+                            aria-label="${safe(section.title)}"
+                        >
+                            <div class="editorial-section-heading">
+                                <span
+                                    class="editorial-section-icon"
+                                    aria-hidden="true"
+                                >
+                                    ${section.icon}
+                                </span>
+
+                                <div class="editorial-section-title">
+                                    <h3>${safe(section.title)}</h3>
+
+                                    <p>
+                                        ${safe(section.description)}
+                                    </p>
+                                </div>
+
+                                <span class="editorial-section-count">
+                                    ${items.length}
+                                </span>
+                            </div>
+
+                            <div class="editorial-section-resources">
+                                ${items.map(libraryRow).join("")}
+                            </div>
+                        </section>
+                    `;
+                }).join("")}
+            </div>
+        `;
+    }
+
+
+
     // ==========================================
     // 15. REDESIGNED SUBJECT LIBRARY
+    // Editorial Module Sections
     // ==========================================
 
     function subjects() {
         if (!selectedSubject) {
             const list = D.subjects.filter((subject) => {
-                const text = `${subject.id} ${subject.name}`.toLowerCase();
+                const text = `${subject.id} ${subject.name}`
+                    .toLowerCase();
 
-                return !search || text.includes(search.toLowerCase());
+                return !search ||
+                    text.includes(search.toLowerCase());
             });
 
             return `
-                ${head("Subjects", "Browse your courses and modules.", true)}
+                ${head(
+                    "Subjects",
+                    "Browse your courses and modules.",
+                    true
+                )}
 
                 <div class="cards">
                     ${list.map(subjectCard).join("")}
@@ -1232,7 +1337,7 @@
         }
 
         const subject = D.subjects.find(
-            (item) => item.id === selectedSubject
+            item => item.id === selectedSubject
         );
 
         if (!subject) {
@@ -1240,14 +1345,16 @@
         }
 
         const allResources = D.resources.filter(
-            (resource) => resource.subject === subject.id
+            resource => resource.subject === subject.id
         );
 
         const list = allResources.filter(matching);
 
         const modules = [
             ...new Set(
-                list.map((resource) => resource.module ?? "Other")
+                list.map(
+                    resource => resource.module ?? "Other"
+                )
             )
         ].sort((a, b) => {
             if (a === "Other") return 1;
@@ -1257,7 +1364,9 @@
         });
 
         const allModules = new Set(
-            allResources.map((resource) => resource.module ?? "Other")
+            allResources.map(
+                resource => resource.module ?? "Other"
+            )
         );
 
         return `
@@ -1273,20 +1382,34 @@
 
             <div class="library-stats">
                 <div class="library-stat">
-                    <span class="library-stat-icon">▤</span>
+                    <span class="library-stat-icon">
+                        ▤
+                    </span>
 
                     <div>
-                        <strong>${allModules.size}</strong>
-                        <small>Modules</small>
+                        <strong>
+                            ${allModules.size}
+                        </strong>
+
+                        <small>
+                            Modules
+                        </small>
                     </div>
                 </div>
 
                 <div class="library-stat">
-                    <span class="library-stat-icon">▧</span>
+                    <span class="library-stat-icon">
+                        ▧
+                    </span>
 
                     <div>
-                        <strong>${allResources.length}</strong>
-                        <small>Resources</small>
+                        <strong>
+                            ${allResources.length}
+                        </strong>
+
+                        <small>
+                            Resources
+                        </small>
                     </div>
                 </div>
             </div>
@@ -1294,8 +1417,9 @@
             <div class="academic-module-list">
                 ${modules.length
                     ? modules.map((number, index) => {
+
                         const resources = list.filter(
-                            (resource) =>
+                            resource =>
                                 (resource.module ?? "Other") === number
                         );
 
@@ -1308,15 +1432,23 @@
                                 class="academic-module"
                                 ${index === 0 || search ? "open" : ""}
                             >
-                                <summary class="academic-module-heading">
-                                    <span class="academic-module-number">
+                                <summary
+                                    class="academic-module-heading"
+                                >
+                                    <span
+                                        class="academic-module-number"
+                                    >
                                         ${number === "Other"
                                             ? "✦"
                                             : safe(number)}
                                     </span>
 
-                                    <span class="academic-module-title">
-                                        <strong>${safe(label)}</strong>
+                                    <span
+                                        class="academic-module-title"
+                                    >
+                                        <strong>
+                                            ${safe(label)}
+                                        </strong>
 
                                         <small>
                                             ${resources.length}
@@ -1326,13 +1458,15 @@
                                         </small>
                                     </span>
 
-                                    <span class="academic-module-chevron">
+                                    <span
+                                        class="academic-module-chevron"
+                                    >
                                         ⌄
                                     </span>
                                 </summary>
 
                                 <div class="academic-module-body">
-                                    ${resources.map(libraryRow).join("")}
+                                    ${moduleEditorialSections(resources)}
                                 </div>
                             </details>
                         `;
@@ -1341,6 +1475,7 @@
             </div>
         `;
     }
+
 
     // ==========================================
     // 16. SUBJECT DROPDOWN
@@ -3461,7 +3596,7 @@
                 "[data-platform]",
                 "[data-category]",
                 "[data-fav]",
-                "[data-theme]",
+                "button[data-theme]",
                 "[data-accent]",
                 "[data-corners]",
                 "[data-density]",
@@ -3483,6 +3618,7 @@
             ].join(",")
         );
 
+
         if (!element) {
             if (!event.target.closest(".custom-dropdown")) {
                 closeDropdown();
@@ -3490,6 +3626,7 @@
 
             return;
         }
+
 
         if (element.hasAttribute("data-cover-close")) {
             closeCoverModal();

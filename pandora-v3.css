@@ -2235,3 +2235,379 @@ body[data-background="color"] main::before {
         outline-width: 4px;
     }
 }
+
+
+/* =========================================================
+   PANDORA V.3 — EDITORIAL MODULE SECTIONS
+   Reviewers / Practice / References
+   Responsive desktop + mobile layout
+   ========================================================= */
+
+/* 01. SECTION CONTAINER */
+
+.academic-module-body .editorial-sections {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    width: 100%;
+    min-width: 0;
+}
+
+.academic-module-body .editorial-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+    min-width: 0;
+    padding: 16px 0 18px;
+}
+
+.academic-module-body .editorial-section + .editorial-section {
+    border-top: 1px solid var(--border);
+}
+
+
+/* 02. SECTION HEADINGS */
+
+.editorial-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 3px 12px 15px;
+}
+
+.editorial-section-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--border);
+    border-radius: var(--small-radius);
+    background: var(--panel-rose);
+    color: var(--accent-strong);
+    font-size: 19px;
+    line-height: 1;
+}
+
+.editorial-section-title {
+    flex: 1;
+    min-width: 0;
+}
+
+.editorial-section-title h3 {
+    margin: 0;
+    color: var(--text);
+    font: 700 17px/1.35 Georgia, serif;
+    letter-spacing: -0.015em;
+    overflow-wrap: anywhere;
+}
+
+.editorial-section-title p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.editorial-section-count {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    min-width: 30px;
+    height: 28px;
+    padding: 3px 9px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--panel-soft);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+
+/* 03. RESOURCE ROW GROUPS */
+
+.academic-module-body .editorial-section-resources {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--small-radius);
+    background: var(--panel);
+}
+
+.academic-module-body .editorial-section-resources .library-row {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    border: 0 !important;
+    border-bottom: 1px solid var(--border) !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.academic-module-body .editorial-section-resources .library-row:first-child {
+    border-top: 0 !important;
+}
+
+.academic-module-body .editorial-section-resources .library-row:last-child {
+    border-bottom: 0 !important;
+}
+
+.academic-module-body .editorial-section-resources .library-row:hover,
+.academic-module-body .editorial-section-resources .library-row:focus-within {
+    background: var(--panel-soft) !important;
+}
+
+.academic-module-body .editorial-section-resources .library-row-primary {
+    min-width: 0;
+    padding: 13px 14px;
+}
+
+.academic-module-body .editorial-section-resources .library-row-info {
+    min-width: 0;
+}
+
+.academic-module-body .editorial-section-resources .library-row-info strong {
+    overflow-wrap: anywhere;
+}
+
+
+/* 04. COMPACT DENSITY COMPATIBILITY */
+
+body[data-density="compact"] .academic-module-body .editorial-section {
+    padding-top: 11px;
+    padding-bottom: 13px;
+}
+
+body[data-density="compact"] .editorial-section-heading {
+    padding-bottom: 10px;
+}
+
+body[data-density="compact"] .academic-module-body
+.editorial-section-resources .library-row-primary {
+    padding: 10px 12px;
+}
+
+
+/* 05. TABLET */
+
+@media (max-width: 850px) {
+    .academic-module-body .editorial-section {
+        padding-top: 14px;
+        padding-bottom: 15px;
+    }
+
+    .editorial-section-heading {
+        padding: 3px 8px 12px;
+    }
+
+    .editorial-section-title h3 {
+        font-size: 16px;
+    }
+
+    .academic-module-body .editorial-section-resources
+    .library-row-primary {
+        padding: 12px;
+    }
+}
+
+
+/* 06. MOBILE */
+
+@media (max-width: 620px) {
+    .academic-module-body .editorial-sections {
+        gap: 0;
+    }
+
+    .academic-module-body .editorial-section {
+        padding: 14px 0;
+    }
+
+    .editorial-section-heading {
+        gap: 9px;
+        padding: 2px 4px 11px;
+    }
+
+    .editorial-section-icon {
+        flex-basis: 34px;
+        width: 34px;
+        height: 34px;
+        font-size: 17px;
+    }
+
+    .editorial-section-title h3 {
+        font-size: 15px;
+    }
+
+    .editorial-section-title p {
+        font-size: 11px;
+        line-height: 1.4;
+    }
+
+    .editorial-section-count {
+        min-width: 27px;
+        height: 26px;
+        padding: 3px 7px;
+        font-size: 11px;
+    }
+
+    .academic-module-body .editorial-section-resources {
+        border-radius: 12px;
+    }
+
+    .academic-module-body .editorial-section-resources
+    .library-row {
+        min-width: 0;
+    }
+
+    .academic-module-body .editorial-section-resources
+    .library-row-primary {
+        min-width: 0;
+        padding: 11px 9px;
+    }
+
+    .academic-module-body .editorial-section-resources
+    .library-row-info {
+        min-width: 0;
+    }
+
+    .academic-module-body .editorial-section-resources
+    .library-row-info strong {
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+
+    .academic-module-body .editorial-section-resources
+    .library-row-actions {
+        flex-shrink: 0;
+    }
+}
+
+
+/* 07. VERY SMALL PHONES */
+
+@media (max-width: 380px) {
+    .academic-module-body .editorial-section {
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+
+    .editorial-section-heading {
+        gap: 7px;
+    }
+
+    .editorial-section-title h3 {
+        font-size: 14px;
+    }
+
+    .editorial-section-title p {
+        font-size: 10px;
+    }
+
+    .academic-module-body .editorial-section-resources
+    .library-row-primary {
+        padding: 10px 7px;
+    }
+}
+
+
+/* =========================================================
+   PANDORA V.3 — EDITORIAL SECTION COLOR DEPTH
+   Theme-aware, soft academia treatment
+   ========================================================= */
+
+.academic-module-body .editorial-sections {
+    gap: 14px;
+}
+
+.academic-module-body .editorial-section {
+    position: relative;
+    padding: 17px;
+    border: 1px solid var(--border);
+    border-radius: var(--small-radius);
+    background:
+        linear-gradient(
+            135deg,
+            var(--panel-soft),
+            var(--panel)
+        );
+}
+
+.academic-module-body .editorial-section +
+.editorial-section {
+    border-top: 1px solid var(--border);
+}
+
+.editorial-section-heading {
+    padding: 0 2px 14px;
+}
+
+.editorial-section-icon {
+    width: 42px;
+    height: 42px;
+    flex-basis: 42px;
+    border-radius: 13px;
+    background: var(--panel-rose);
+    color: var(--accent-strong);
+}
+
+.editorial-section-title h3 {
+    font-size: 18px;
+}
+
+.editorial-section-count {
+    background: var(--panel);
+    border-color: var(--border);
+    color: var(--accent-strong);
+}
+
+.academic-module-body .editorial-section-resources {
+    background: var(--panel);
+    border-color: var(--border);
+    box-shadow: 0 2px 9px rgba(0, 0, 0, 0.025);
+}
+
+/* Distinguish sections without hardcoded pink/green/yellow
+   so custom Pandora palettes still work. */
+
+.editorial-section:nth-child(1) {
+    border-left: 3px solid var(--accent);
+}
+
+.editorial-section:nth-child(2) {
+    border-left: 3px solid var(--accent-strong);
+}
+
+.editorial-section:nth-child(3) {
+    border-left: 3px solid var(--muted);
+}
+
+@media (max-width: 620px) {
+    .academic-module-body .editorial-sections {
+        gap: 10px;
+    }
+
+    .academic-module-body .editorial-section {
+        padding: 11px;
+    }
+
+    .editorial-section-heading {
+        gap: 9px;
+        padding-bottom: 11px;
+    }
+
+    .editorial-section-icon {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+    }
+
+    .editorial-section-title h3 {
+        font-size: 15px;
+    }
+}

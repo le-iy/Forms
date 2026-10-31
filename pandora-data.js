@@ -1,12 +1,25 @@
 
 "use strict";
 
-// ==========================================
-// PANDORA V.3 - SUBJECT DATA ADAPTER
-// ==========================================
+/* ==========================================================
+   PANDORA V.3 — SUBJECT DATA ADAPTER
 
-// Read the original subject files.
-// These must load before pandora-data.js.
+   Editorial Sections Update
+
+   Supports:
+   - Explicit resource module assignment
+   - Automatic module detection from titles
+   - Reviewers / Practice / References sections
+   - Existing subject category compatibility
+   - Existing resource links and edit links
+
+   Load SUBJECTS/*.js before this file.
+   ========================================================== */
+
+
+/* ==========================================================
+   01. ORIGINAL SUBJECT FILES
+   ========================================================== */
 
 const originalSubjects = [
     typeof GED0083 !== "undefined" ? GED0083 : null,
@@ -19,9 +32,10 @@ const originalSubjects = [
     typeof IT0204 !== "undefined" ? IT0204 : null
 ];
 
-// ==========================================
-// 1. SUBJECT COLORS
-// ==========================================
+
+/* ==========================================================
+   02. SUBJECT COLORS
+   ========================================================== */
 
 const subjectColors = {
     IT0035: "pink",
@@ -34,9 +48,10 @@ const subjectColors = {
     GED0083L: "sky"
 };
 
-// ==========================================
-// 2. IDENTIFY RESOURCE PLATFORM
-// ==========================================
+
+/* ==========================================================
+   03. IDENTIFY RESOURCE PLATFORM
+   ========================================================== */
 
 function getPlatform(resource) {
     const url = String(resource.link || "").toLowerCase();
@@ -89,9 +104,19 @@ function getPlatform(resource) {
     return "Other";
 }
 
-// ==========================================
-// 3. IDENTIFY MODULE NUMBER
-// ==========================================
+
+/* ==========================================================
+   04. AUTOMATIC MODULE DETECTION
+
+   Examples:
+
+   "Canvas Module 1"       -> 1
+   "Network Map Mod 02"    -> 2
+   "Lecture Module 10"     -> 10
+   "Generated Formative 1" -> null
+
+   Explicit module assignments take priority.
+   ========================================================== */
 
 function getModuleNumber(title) {
     const text = String(title || "");
@@ -104,12 +129,100 @@ function getModuleNumber(title) {
         return null;
     }
 
-    return Number(match[1]);
+    const number = Number(match[1]);
+
+    return Number.isSafeInteger(number) && number > 0
+        ? number
+        : null;
 }
 
-// ==========================================
-// 4. NORMALIZE SUBJECT INFORMATION
-// ==========================================
+
+/* ==========================================================
+   05. EXPLICIT MODULE ASSIGNMENT
+
+   Example:
+
+   {
+       title: "Canvas Module 1",
+       module: 3,
+       ...
+   }
+
+   The resource belongs to Module 3, even when the
+   displayed title contains "Module 1".
+
+   Without a valid explicit module, existing title
+   detection is used.
+
+   module: null -> unassigned
+   ========================================================== */
+
+function resolveModule(resource) {
+    const value = resource.module;
+
+    if (
+        value !== undefined &&
+        value !== null &&
+        value !== ""
+    ) {
+        const number = Number(value);
+
+        if (
+            Number.isSafeInteger(number) &&
+            number > 0
+        ) {
+            return number;
+        }
+    }
+
+    return getModuleNumber(resource.title);
+}
+
+
+/* ==========================================================
+   06. SECTION ASSIGNMENT
+
+   Valid sections:
+
+   reviewers
+   practice
+   references
+
+   Defaults:
+   - reviewers category  -> reviewers
+   - formatives category -> practice
+   - summatives category -> practice
+
+   Explicit resource.section overrides the default.
+
+   This DOES NOT change the original category or kind,
+   so global Reviewers and Practice Links remain compatible.
+   ========================================================== */
+
+function resolveSection(resource, category) {
+    const section = String(
+        resource.section || ""
+    ).trim().toLowerCase();
+
+    const allowed = [
+        "reviewers",
+        "practice",
+        "references"
+    ];
+
+    if (allowed.includes(section)) {
+        return section;
+    }
+
+    return category === "reviewers"
+        ? "reviewers"
+        : "practice";
+}
+
+
+/* ==========================================================
+   07. NORMALIZE SUBJECT INFORMATION
+   ========================================================== */
 
 function convertSubject(subject) {
     const subjectCode = String(
@@ -125,9 +238,23 @@ function convertSubject(subject) {
     };
 }
 
-// ==========================================
-// 5. CONVERT ORIGINAL RESOURCES
-// ==========================================
+
+/* ==========================================================
+   08. CONVERT ORIGINAL RESOURCES
+
+   Preserve:
+   - Existing resource IDs
+   - Titles and descriptions
+   - Original categories
+   - Original kinds
+   - URLs and edit URLs
+   - Source URLs
+   - Existing references data
+
+   Add:
+   - Explicit / automatically resolved module
+   - Editorial section
+   ========================================================== */
 
 function convertResource(
     resource,
@@ -160,7 +287,9 @@ function convertResource(
 
         platform: getPlatform(resource),
 
-        module: getModuleNumber(resource.title),
+        module: resolveModule(resource),
+
+        section: resolveSection(resource, category),
 
         url: resourceUrl,
 
@@ -176,9 +305,10 @@ function convertResource(
     };
 }
 
-// ==========================================
-// 6. CREATE SUBJECT AND RESOURCE COLLECTIONS
-// ==========================================
+
+/* ==========================================================
+   09. CREATE SUBJECT AND RESOURCE COLLECTIONS
+   ========================================================== */
 
 const pandoraSubjects = [];
 const pandoraResources = [];
@@ -189,9 +319,8 @@ const categories = [
     "reviewers"
 ];
 
-originalSubjects.forEach((originalSubject) => {
+originalSubjects.forEach(originalSubject => {
 
-    // Skip files that failed to load.
     if (!originalSubject) {
         return;
     }
@@ -200,7 +329,7 @@ originalSubjects.forEach((originalSubject) => {
 
     pandoraSubjects.push(subject);
 
-    categories.forEach((category) => {
+    categories.forEach(category => {
 
         const entries =
             originalSubject.categories?.[category] || [];
@@ -226,18 +355,20 @@ originalSubjects.forEach((originalSubject) => {
 
 });
 
-// ==========================================
-// 7. EXPOSE DATA TO PANDORA V.3
-// ==========================================
+
+/* ==========================================================
+   10. EXPOSE DATA TO PANDORA V.3
+   ========================================================== */
 
 window.PANDORA_DATA = {
     subjects: pandoraSubjects,
     resources: pandoraResources
 };
 
-// ==========================================
-// 8. DEBUG INFORMATION
-// ==========================================
+
+/* ==========================================================
+   11. DEBUG INFORMATION
+   ========================================================== */
 
 console.log("Pandora V.3 Data Loaded");
 
@@ -252,17 +383,59 @@ console.log(
 );
 
 console.table(
-    pandoraSubjects.map((subject) => ({
+    pandoraSubjects.map(subject => ({
         Subject: subject.id,
+
         Name: subject.name,
+
         Resources: pandoraResources.filter(
-            (resource) => resource.subject === subject.id
+            resource => resource.subject === subject.id
         ).length
     }))
 );
 
-if (pandoraSubjects.length !== 8) {
-    console.warn(
-        "Some subject files did not load. Check the script paths in index.html."
+
+/* ==========================================================
+   12. MODULE ASSIGNMENT DEBUG
+
+   Display resources without detected / assigned modules.
+
+   This is informational only.
+   Unassigned resources are NOT removed.
+   ========================================================== */
+
+const unassignedResources = pandoraResources.filter(
+    resource => resource.module === null
+);
+
+if (unassignedResources.length) {
+    console.info(
+        "Pandora: Resources without a module assignment:",
+        unassignedResources.length
+    );
+
+    console.table(
+        unassignedResources.map(resource => ({
+            Subject: resource.subject,
+            Title: resource.title,
+            Category: resource.category,
+            Section: resource.section
+        }))
     );
 }
+
+
+/* ==========================================================
+   13. SUBJECT LOAD CHECK
+   ========================================================== */
+
+if (pandoraSubjects.length !== 8) {
+    console.warn(
+        "Some subject files did not load. " +
+        "Check the script paths in index.html."
+    );
+}
+
+console.info(
+    "Pandora Editorial Sections data adapter ready."
+);
