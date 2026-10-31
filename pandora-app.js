@@ -1430,7 +1430,7 @@
                         return `
                             <details
                                 class="academic-module"
-                                ${index === 0 || search ? "open" : ""}
+                                ${search ? "open" : ""}
                             >
                                 <summary
                                     class="academic-module-heading"
