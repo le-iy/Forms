@@ -1,7 +1,9 @@
     categories: {
         formatives: [
             {
-                title: "Formative 1",
+                title: "",
+                module: ,
+                section: "practice",
                 description: "",
                 link: "",
                 collabLink: ""
@@ -10,7 +12,9 @@
 
         summatives: [
             {
-                title: "Summative 1",
+                title: "",
+                module: ,
+                section: "summatives",
                 description: "",
                 link: "",
                 collabLink: ""
@@ -19,7 +23,9 @@
 
         reviewers: [
             {
-                title: "Reviewer 1 Title",
+                title: "",
+                module: ,
+                section: "references",
                 description: "",
                 link: "",
                 collabLink: ""

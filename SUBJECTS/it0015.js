@@ -1,3 +1,4 @@
+
 const IT0015 = {
     id: "it0015",
 
@@ -11,30 +12,39 @@ const IT0015 = {
         formatives: [
             {
                 title: "CYU Module 1 - GFORMS",
+                module: 1,
+                section: "practice",
                 description: "Src: NETACAD",
                 link: "https://forms.cloud.microsoft/r/R1zz4BXfVq",
                 collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EK1ypcd9WIhGl16-VZ5DfUxUMEZGWlRQRjlBQTdDR041UU85NUdZMDhLRC4u&Token=710f6b2b71ac4b498b4fb1cd66c82594"
             },
             {
                 title: "CYU Module 2 - GFORMS",
+                module: 2,
+                section: "practice",
                 description: "Src: NETACAD",
                 link: "https://forms.cloud.microsoft/r/zbmzXKUPRd",
                 collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EK1ypcd9WIhGl16-VZ5DfUxURVpRTkVLUDNSRk1JUFVQV0lLOUcwMzJQMi4u&Token=50b5b1f0f9aa4a7facc54103ba51e9c7"
             },
             {
                 title: "CYU Module 3 - GFORMS",
+                module: 3,
+                section: "practice",
                 description: "Src: NETACAD",
                 link: "https://forms.cloud.microsoft/r/RkJWBVaNe9",
                 collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EK1ypcd9WIhGl16-VZ5DfUxUNzBNUzJNSk1NR1dISU81Qkc2Ulc5VjVTTS4u&Token=134aa9ac1e81453cb83cbdc81761a04e"
             },
             {
                 title: "CYU Module 4 - GFORMS",
+                module: 4,
+                section: "practice",
                 description: "Src: NETACAD",
                 link: "https://forms.cloud.microsoft/r/XhnhjX0mMS",
                 collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EK1ypcd9WIhGl16-VZ5DfUxUNjRSWTdNREI5S1k2OVdaNzRQWDZFTkJLMy4u&Token=5b3e297d67764da888842631b05aa35d"
             },
             {
                 title: "Checkpoint 1 - GFORMS",
+                section: "practice",
                 description: "Src: NETACAD",
                 link: "https://forms.cloud.microsoft/r/aB9PUCeYFN",
                 collabLink: "https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?subpage=design&FormId=2SWgsIjLCESbFc531Hw4EGVakDeiDU9BujlyMTLO6NpUMEc5RE82RFJVQlhWQ1A2WVFLMVlUQldTWC4u&Token=45eadcff176141f1aff75621e7cd6816"
@@ -46,66 +56,88 @@ const IT0015 = {
         reviewers: [
             {
                 title: "Network Map IT0015 Mod 01.pdf",
+                module: 1,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 01.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 01.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 02.pdf",
+                module: 2,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 02.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 02.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 03.pdf",
+                module: 3,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 03.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 03.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 04.pdf",
+                module: 4,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 04.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 04.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 05.pdf",
+                module: 5,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 05.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 05.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 06.pdf",
+                module: 6,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 06.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 06.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 07.pdf",
+                module: 7,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 07.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 07.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 08.pdf",
+                module: 8,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 08.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 08.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 09.pdf",
+                module: 9,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 09.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 09.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 10.pdf",
+                module: 10,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 10.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 10.pdf"
             },
             {
                 title: "Network Map IT0015 Mod 11.pdf",
+                module: 11,
+                section: "reviewers",
                 description: "",
                 link: "File_Bank/IT0015/Network Map_ IT0015 Mod 11.pdf",
                 collabLink: "File_Bank/IT0015/Network Map_ IT0015 Mod 11.pdf"
