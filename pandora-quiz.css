@@ -1,0 +1,1385 @@
+
+/* ==========================================================
+   PANDORA V.3 — QUIZ STUDIO
+
+   Theme-aware editorial dashboard.
+   Works with Pandora's existing CSS variables.
+
+   Covers:
+   - Quiz Library
+   - Session Setup
+   - Quiz Player
+   - Navigator and Scratchpad
+   - Results and Attempt History
+   - Subject Module Quiz Cards
+   - Responsive layouts
+   ========================================================== */
+
+
+/* ==========================================================
+   01. DESIGN VARIABLES
+   ========================================================== */
+
+.pq-page,
+.pq-module-section {
+    --pq-bg: var(--bg);
+    --pq-panel: var(--panel);
+    --pq-soft: var(--panel-soft);
+    --pq-highlight: var(--panel-rose);
+    --pq-text: var(--text);
+    --pq-muted: var(--muted);
+    --pq-accent: var(--accent);
+    --pq-strong: var(--accent-strong);
+    --pq-border: var(--border);
+    --pq-button-text: var(--button-text);
+    --pq-radius: var(--card-radius, 22px);
+    --pq-small-radius: var(--small-radius, 13px);
+    --pq-shadow: var(--surface-shadow, 0 8px 25px rgba(0,0,0,.06));
+
+    color: var(--pq-text);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+
+.pq-page *,
+.pq-page *::before,
+.pq-page *::after,
+.pq-module-section *,
+.pq-module-section *::before,
+.pq-module-section *::after {
+    box-sizing: border-box;
+}
+
+.pq-page {
+    width: 100%;
+    min-width: 0;
+    padding-bottom: 42px;
+}
+
+.pq-page button,
+.pq-page input,
+.pq-page select,
+.pq-page textarea,
+.pq-module-section button {
+    font: inherit;
+}
+
+.pq-page button,
+.pq-module-section button {
+    cursor: pointer;
+}
+
+.pq-page button:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+}
+
+
+/* ==========================================================
+   02. SIDEBAR NAVIGATION
+   ========================================================== */
+
+#nav .pq-nav-item {
+    width: 100%;
+}
+
+#nav .pq-nav-item.active {
+    background: var(--panel-rose);
+    color: var(--text);
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   03. PAGE HEADING
+   ========================================================== */
+
+.pq-heading {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 22px;
+    padding: 29px 33px;
+    border: 1px solid var(--pq-border);
+    border-radius: var(--pq-radius);
+    background:
+        radial-gradient(
+            ellipse at 95% 10%,
+            var(--pq-highlight),
+            transparent 65%
+        ),
+        var(--pq-panel);
+    box-shadow: var(--pq-shadow);
+}
+
+.pq-heading::before {
+    content: "";
+    position: absolute;
+    top: 18%;
+    bottom: 18%;
+    left: 0;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--pq-accent);
+}
+
+.pq-eyebrow {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--pq-strong);
+    font-size: 10px;
+    font-weight: 750;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+.pq-heading h1 {
+    margin: 0 0 9px;
+    color: var(--pq-text);
+    font: 700 clamp(27px, 3vw, 37px)/1.2 Georgia, serif;
+    letter-spacing: -.025em;
+}
+
+.pq-heading p {
+    margin: 0;
+    color: var(--pq-muted);
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+
+/* ==========================================================
+   04. SHARED PANELS
+   ========================================================== */
+
+.pq-panel {
+    min-width: 0;
+    padding: 23px;
+    border: 1px solid var(--pq-border);
+    border-radius: var(--pq-radius);
+    background: var(--pq-panel);
+    color: var(--pq-text);
+    box-shadow: var(--pq-shadow);
+}
+
+.pq-panel + .pq-panel {
+    margin-top: 18px;
+}
+
+.pq-panel h2 {
+    margin: 0 0 17px;
+    font: 700 21px/1.3 Georgia, serif;
+}
+
+.pq-panel h3 {
+    margin: 19px 0 12px;
+    font: 700 16px/1.35 Georgia, serif;
+}
+
+.pq-panel p {
+    line-height: 1.65;
+}
+
+.pq-section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.pq-section-title h2 {
+    margin: 0;
+}
+
+.pq-section-title > span {
+    color: var(--pq-muted);
+    font-size: 12px;
+}
+
+.pq-hint {
+    color: var(--pq-muted);
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+
+/* ==========================================================
+   05. BUTTONS
+   ========================================================== */
+
+.pq-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
+    padding: 10px 16px;
+    border: 1px solid var(--pq-border);
+    border-radius: var(--pq-small-radius);
+    background: var(--pq-soft);
+    color: var(--pq-text);
+    font-size: 12px;
+    font-weight: 650;
+    text-decoration: none;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        transform 160ms ease;
+}
+
+.pq-button:hover:not(:disabled) {
+    background: var(--pq-highlight);
+    border-color: var(--pq-accent);
+    transform: translateY(-1px);
+}
+
+.pq-button.pq-primary {
+    background: var(--pq-accent);
+    border-color: var(--pq-accent);
+    color: var(--pq-button-text);
+    font-weight: 750;
+}
+
+.pq-button.pq-primary:hover:not(:disabled) {
+    background: var(--pq-strong);
+    border-color: var(--pq-strong);
+}
+
+.pq-button.pq-danger {
+    color: #ca5a66;
+    background: var(--pq-panel);
+}
+
+.pq-button.pq-danger:hover {
+    border-color: #ca5a66;
+    background: color-mix(
+        in srgb,
+        #ca5a66 9%,
+        var(--pq-panel)
+    );
+}
+
+.pq-text-button {
+    padding: 7px 9px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--pq-strong);
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.pq-text-button:hover {
+    background: var(--pq-soft);
+}
+
+.pq-actions,
+.pq-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pq-toolbar {
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================================
+   06. LIBRARY STATISTICS
+   ========================================================== */
+
+.pq-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+}
+
+.pq-stat {
+    position: relative;
+    min-width: 0;
+    padding: 20px;
+    overflow: hidden;
+    border: 1px solid var(--pq-border);
+    border-radius: var(--pq-small-radius);
+    background: var(--pq-panel);
+    box-shadow: var(--pq-shadow);
+}
+
+.pq-stat::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    bottom: 20%;
+    left: 0;
+    width: 3px;
+    border-radius: 999px;
+    background: var(--pq-accent);
+}
+
+.pq-stat strong {
+    display: block;
+    margin-bottom: 6px;
+    font: 700 30px/1.1 Georgia, serif;
+    font-variant-numeric: tabular-nums;
+}
+
+.pq-stat span {
+    color: var(--pq-muted);
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   07. LIBRARY FILTERS
+   ========================================================== */
+
+.pq-filters {
+    display: grid;
+    grid-template-columns:
+        minmax(180px, 1.6fr)
+        repeat(3, minmax(130px, 1fr));
+    gap: 11px;
+}
+
+.pq-filters input,
+.pq-filters select,
+.pq-identification input,
+.pq-time-input input {
+    width: 100%;
+    min-width: 0;
+    min-height: 43px;
+    padding: 10px 13px;
+    border: 1px solid var(--pq-border);
+    border-radius: var(--pq-small-radius);
+    outline: none;
+    background: var(--pq-soft);
+    color: var(--pq-text);
+    font-size: 12px;
+}
+
+.pq-filters input::placeholder,
+.pq-identification input::placeholder {
+    color: var(--pq-muted);
+}
+
+.pq-filters input:focus,
+.pq-filters select:focus,
+.pq-identification input:focus,
+.pq-time-input input:focus {
+    border-color: var(--pq-accent);
+    box-shadow: 0 0 0 3px color-mix(
+        in srgb,
+        var(--pq-accent) 14%,
+        transparent
+    );
+}
+
+
+/* ==========================================================
+   08. QUIZ LIST
+   ========================================================== */
+
+.pq-quiz-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--pq-border);
+}
+
+.pq-quiz-card:last-child {
+    border-bottom: 0;
+}
+
+.pq-quiz-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--pq-border);
+    border-radius: 14px;
+    background: var(--pq-highlight);
+    color: var(--pq-strong);
+    font-size: 24px;
+}
+
+.pq-quiz-info {
+    display: grid;
+    flex: 1;
+    gap: 5px;
+    min-width: 0;
+}
+
+.pq-quiz-info > strong {
+    font: 700 17px/1.35 Georgia, serif;
+    overflow-wrap: anywhere;
+}
+
+.pq-quiz-info small {
+    color: var(--pq-muted);
+    font-size: 11px;
+}
+
+.pq-kind {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 4px 10px;
+    border: 1px solid var(--pq-border);
+    border-radius: 999px;
+    background: var(--pq-soft);
+    color: var(--pq-muted);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.pq-empty {
+    padding: 37px 17px;
+    text-align: center;
+    color: var(--pq-muted);
+}
+
+.pq-empty strong {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--pq-text);
+    font: 700 18px Georgia, serif;
+}
+
+.pq-empty p {
+    margin: 0;
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   09. SESSION SETUP
+   ========================================================== */
+
+.pq-setup {
+    max-width: 900px;
+}
+
+.pq-setting-group {
+    margin: 20px 0;
+    padding: 19px;
+    border: 1px solid var(--pq-border);
+    border-radius: var(--pq-small-radius);
+    background: var(--pq-soft);
+}
+
+.pq-setting-group h3 {
+    margin: 0 0 14px;
+}
+
+.pq-setting-group > label {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 11px;
+    padding: 13px 14px;
+    border: 1px solid var(--pq-border);
+    border-radius: 12px;
+    background: var(--pq-panel);
+    cursor: pointer;
+}
+
+.pq-setting-group > label:last-of-type {
+    margin-bottom: 0;
+}
+
+.pq-setting-group input[type="radio"] {
+    flex-shrink: 0;
+    margin-top: 3px;
+    accent-color: var(--pq-accent);
+}
+
+.pq-setting-group label span {
+    display: grid;
+    gap: 4px;
+    font-size: 13px;
+}
+
+.pq-setting-group label strong {
+    font-weight: 750;
+}
+
+.pq-setting-group label small {
+    color: var(--pq-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.pq-time-input {
+    display: grid;
+    gap: 7px;
+    max-width: 200px;
+    margin-top: 15px;
+}
+
+.pq-time-input[hidden] {
+    display: none !important;
+}
+
+.pq-time-input label {
+    font-size: 11px;
+    font-weight: 650;
+}
+
+.pq-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 17px 0;
+    font-size: 13px;
+}
+
+.pq-check input {
+    accent-color: var(--pq-accent);
+}
+
+.pq-notice {
+    padding: 17px 19px;
+    margin-bottom: 19px;
+    border: 1px solid var(--pq-accent);
+    border-radius: var(--pq-small-radius);
+    background: var(--pq-highlight);
+}
+
+.pq-notice strong {
+    font-size: 13px;
+}
+
+.pq-notice p {
+    margin: 5px 0 13px;
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   10. QUIZ PLAYER LAYOUT
+   ========================================================== */
+
+.pq-player {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1.85fr)
+        minmax(280px, .85fr);
+    align-items: start;
+    gap: 20px;
+}
+
+.pq-player-main,
+.pq-player-side {
+    display: grid;
+    min-width: 0;
+    gap: 18px;
+}
+
+.pq-player .pq-panel + .pq-panel {
+    margin-top: 0;
+}
+
+.pq-breadcrumb {
+    padding: 5px 0;
+    color: var(--pq-muted);
+    font-size: 12px;
+}
+
+.pq-player-title {
+    position: relative;
+    overflow: hidden;
+    border-left: 3px solid var(--pq-accent);
+}
+
+.pq-player-title h1 {
+    margin: 0 0 7px;
+    font: 700 clamp(25px, 3vw, 35px)/1.2 Georgia, serif;
+}
+
+.pq-player-title p {
+    margin: 0;
+    color: var(--pq-muted);
+    font-size: 12px;
+}
+
+
+/* ==========================================================
+   11. PROGRESS INDICATOR
+   ========================================================== */
+
+.pq-progress-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 18px 21px;
+}
+
+.pq-progress-bar > span {
+    font-size: 12px;
+    font-weight: 650;
+}
+
+.pq-progress-bar > span:nth-child(2) {
+    color: var(--pq-muted);
+}
+
+.pq-progress-track {
+    grid-column: 1 / -1;
+    height: 7px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--pq-soft);
+    border: 1px solid var(--pq-border);
+}
+
+.pq-progress-track > div {
+    height: 100%;
+    min-width: 0;
+    border-radius: inherit;
+    background: var(--pq-accent);
+    transition: width 180ms ease;
+}
+
+
+/* ==========================================================
+   12. QUESTION PANEL
+   ========================================================== */
+
+.pq-question-panel {
+    padding: 23px 25px 25px;
+}
+
+.pq-question-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 26px;
+}
+
+.pq-question-tools > div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pq-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 13px;
+    border: 1px solid var(--pq-border);
+    border-radius: 999px;
+    background: var(--pq-highlight);
+    color: var(--pq-text);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.pq-question-panel > h2 {
+    margin: 0 0 25px;
+    color: var(--pq-text);
+    font: 700 clamp(20px, 2.1vw, 27px)/1.45 Georgia, serif;
+    letter-spacing: -.015em;
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================================
+   13. ANSWER OPTIONS
+   ========================================================== */
+
+.pq-options {
+    display: grid;
+    gap: 11px;
+}
+
+.pq-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+    min-height: 66px;
+    padding: 14px 16px;
+    border: 1px solid var(--pq-border);
+    border-radius: var(--pq-small-radius);
+    background: var(--pq-panel);
+    cursor: pointer;
+    transition:
+        border-color 160ms ease,
+        background 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.pq-option:hover {
+    border-color: var(--pq-accent);
+    background: var(--pq-soft);
+}
+
+.pq-option.selected {
+    border-color: var(--pq-accent);
+    background: color-mix(
+        in srgb,
+        var(--pq-accent) 12%,
+        var(--pq-panel)
+    );
+    box-shadow: inset 0 0 0 1px var(--pq-accent);
+}
+
+.pq-option input[type="radio"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+}
+
+.pq-option:focus-within {
+    outline: 2px solid var(--pq-accent);
+    outline-offset: 2px;
+}
+
+.pq-option-letter {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border: 1px solid var(--pq-border);
+    border-radius: 50%;
+    background: var(--pq-soft);
+    color: var(--pq-text);
+    font: 700 15px Georgia, serif;
+}
+
+.pq-option.selected .pq-option-letter {
+    border-color: var(--pq-accent);
+    background: var(--pq-accent);
+    color: var(--pq-button-text);
+}
+
+.pq-option > span:last-child {
+    min-width: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+
+.pq-identification {
+    display: grid;
+    gap: 9px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* ==========================================================
+   14. ANSWER FEEDBACK
+   ========================================================== */
+
+.pq-feedback {
+    margin-top: 22px;
+    padding: 18px 20px;
+    border: 1px solid var(--pq-accent);
+    border-radius: var(--pq-small-radius);
+    background: var(--pq-soft);
+}
+
+.pq-feedback strong {
+    display: block;
+    margin-bottom: 10px;
+    font: 700 17px Georgia, serif;
+}
+
+.pq-feedback p {
+    margin: 8px 0;
+    font-size: 13px;
+}
+
+.pq-feedback small {
+    display: block;
+    margin-top: 11px;
+    color: var(--pq-muted);
+    line-height: 1.5;
+}
+
+.pq-check-answer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.pq-question-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--pq-border);
+}
+
+.pq-bottom-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+
+/* ==========================================================
+   15. RIGHT SIDE — QUIZ OVERVIEW
+   ========================================================== */
+
+.pq-player-side {
+    position: sticky;
+    top: 18px;
+    align-self: start;
+}
+
+.pq-player-side .pq-panel {
+    padding: 22px;
+}
+
+.pq-player-side h2 {
+    margin-bottom: 16px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid var(--pq-border);
+    font-size: 20px;
+}
+
+.pq-player-side h3 {
+    margin: 22px 0 14px;
+    font-size: 16px;
+}
+
+.pq-details {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: center;
+}
+
+.pq-details span {
+    min-width: 0;
+    color: var(--pq-muted);
+    font-size: 12px;
+}
+
+.pq-details strong {
+    font-size: 12px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    text-transform: capitalize;
+}
+
+.pq-details [data-pq-clock] {
+    color: var(--pq-strong);
+}
+
+
+/* ==========================================================
+   16. QUESTION NAVIGATOR
+   ========================================================== */
+
+.pq-navigator {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.pq-nav-number {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    min-height: 39px;
+    padding: 7px 3px;
+    border: 1px solid var(--pq-border);
+    border-radius: 10px;
+    background: var(--pq-panel);
+    color: var(--pq-text);
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.pq-nav-number:hover {
+    border-color: var(--pq-accent);
+    background: var(--pq-soft);
+}
+
+.pq-nav-number.answered {
+    background: var(--pq-highlight);
+    border-color: var(--pq-accent);
+}
+
+.pq-nav-number.current {
+    border: 2px solid var(--pq-strong);
+    background: var(--pq-accent);
+    color: var(--pq-button-text);
+}
+
+.pq-nav-number.flagged::after {
+    content: "⚑";
+    position: absolute;
+    top: -6px;
+    right: -4px;
+    font-size: 10px;
+    color: var(--pq-strong);
+}
+
+
+/* ==========================================================
+   17. QUIZ SCRATCHPAD
+   ========================================================== */
+
+.pq-player-side textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 160px;
+    padding: 14px;
+    resize: vertical;
+    border: 1px solid var(--pq-border);
+    border-radius: var(--pq-small-radius);
+    outline: none;
+    background: var(--pq-soft);
+    color: var(--pq-text);
+    font-size: 12px;
+    line-height: 1.65;
+}
+
+.pq-player-side textarea::placeholder {
+    color: var(--pq-muted);
+}
+
+.pq-player-side textarea:focus {
+    border-color: var(--pq-accent);
+    box-shadow: 0 0 0 3px color-mix(
+        in srgb,
+        var(--pq-accent) 14%,
+        transparent
+    );
+}
+
+.pq-player-side [data-pq-save-status] {
+    display: block;
+    margin-top: 9px;
+    color: var(--pq-muted);
+    font-size: 10px;
+}
+
+
+/* ==========================================================
+   18. RESULT SUMMARY
+   ========================================================== */
+
+.pq-results-summary {
+    display: grid;
+    justify-items: center;
+    gap: 11px;
+    padding: 36px 25px;
+    text-align: center;
+    background:
+        radial-gradient(
+            ellipse at center top,
+            var(--pq-highlight),
+            transparent 75%
+        ),
+        var(--pq-panel);
+}
+
+.pq-result-score {
+    font: 700 clamp(43px, 5vw, 66px)/1.15 Georgia, serif;
+    color: var(--pq-text);
+    font-variant-numeric: tabular-nums;
+}
+
+.pq-results-summary p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.pq-results-summary small {
+    color: var(--pq-muted);
+    font-size: 11px;
+}
+
+.pq-results-summary .pq-actions {
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+/* ==========================================================
+   19. ANSWER REVIEW
+   ========================================================== */
+
+.pq-review-item {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--pq-border);
+}
+
+.pq-review-item:last-child {
+    border-bottom: 0;
+}
+
+.pq-review-item > strong {
+    display: block;
+    margin-bottom: 12px;
+    font: 700 17px/1.5 Georgia, serif;
+}
+
+.pq-review-item p {
+    margin: 7px 0;
+    font-size: 13px;
+}
+
+.pq-result-label {
+    display: inline-flex;
+    margin-top: 9px;
+    padding: 5px 11px;
+    border: 1px solid var(--pq-border);
+    border-radius: 999px;
+    background: var(--pq-highlight);
+    font-size: 11px;
+    font-weight: 750;
+}
+
+.pq-review-explanation {
+    margin-top: 12px;
+    padding: 16px;
+    border: 1px solid var(--pq-border);
+    border-radius: 11px;
+    background: var(--pq-soft);
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.pq-review-item small {
+    display: block;
+    margin-top: 10px;
+    color: var(--pq-muted);
+    font-size: 11px;
+}
+
+
+/* ==========================================================
+   20. ATTEMPT HISTORY
+   ========================================================== */
+
+.pq-history-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 17px;
+    padding: 19px 0;
+    border-bottom: 1px solid var(--pq-border);
+}
+
+.pq-history-card:last-child {
+    border-bottom: 0;
+}
+
+.pq-history-card > div:first-child {
+    display: grid;
+    gap: 7px;
+    min-width: 0;
+}
+
+.pq-history-card > div:first-child > strong {
+    font: 700 17px Georgia, serif;
+}
+
+.pq-history-card small {
+    color: var(--pq-muted);
+    font-size: 11px;
+}
+
+.pq-history-card .pq-actions {
+    justify-content: flex-end;
+}
+
+
+/* ==========================================================
+   21. BUILT-IN QUIZZES INSIDE SUBJECT MODULES
+   ========================================================== */
+
+.pq-module-section {
+    border-color: var(--pq-accent);
+}
+
+.pq-module-section .editorial-section-heading {
+    background: color-mix(
+        in srgb,
+        var(--pq-accent) 8%,
+        var(--pq-panel)
+    );
+}
+
+.pq-module-quiz {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--pq-border);
+}
+
+.pq-module-quiz:last-child {
+    border-bottom: 0;
+}
+
+.pq-module-quiz-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+    border: 1px solid var(--pq-border);
+    border-radius: 12px;
+    background: var(--pq-highlight);
+    color: var(--pq-strong);
+    font-size: 22px;
+}
+
+.pq-module-quiz-info {
+    display: grid;
+    flex: 1;
+    gap: 5px;
+    min-width: 0;
+}
+
+.pq-module-quiz-info strong {
+    font: 700 15px Georgia, serif;
+    overflow-wrap: anywhere;
+}
+
+.pq-module-quiz-info small {
+    color: var(--pq-muted);
+    font-size: 11px;
+    text-transform: capitalize;
+}
+
+.pq-module-open {
+    flex-shrink: 0;
+    min-height: 37px;
+    padding: 9px 13px;
+    border: 1px solid var(--pq-accent);
+    border-radius: 10px;
+    background: var(--pq-accent);
+    color: var(--pq-button-text);
+    font-size: 11px;
+    font-weight: 750;
+}
+
+.pq-module-open:hover {
+    background: var(--pq-strong);
+    border-color: var(--pq-strong);
+}
+
+
+/* ==========================================================
+   22. RESPONSIVE LAYOUT
+   ========================================================== */
+
+@media (max-width: 1220px) {
+    .pq-player {
+        grid-template-columns:
+            minmax(0, 1.45fr)
+            minmax(260px, .9fr);
+        gap: 15px;
+    }
+
+    .pq-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .pq-question-panel {
+        padding: 21px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .pq-player {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pq-player-side {
+        position: static;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
+    }
+
+    .pq-player-side .pq-panel {
+        height: 100%;
+    }
+}
+
+@media (max-width: 700px) {
+    .pq-heading {
+        padding: 23px 21px;
+    }
+
+    .pq-panel {
+        padding: 18px;
+    }
+
+    .pq-stats {
+        gap: 9px;
+    }
+
+    .pq-stat {
+        padding: 15px 12px;
+    }
+
+    .pq-stat strong {
+        font-size: 24px;
+    }
+
+    .pq-stat span {
+        font-size: 10px;
+    }
+
+    .pq-player-side {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pq-quiz-card {
+        flex-wrap: wrap;
+    }
+
+    .pq-quiz-card > .pq-button {
+        margin-left: 63px;
+    }
+
+    .pq-module-quiz {
+        flex-wrap: wrap;
+        padding: 14px;
+    }
+
+    .pq-module-open {
+        margin-left: 55px;
+    }
+}
+
+@media (max-width: 480px) {
+    .pq-filters {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .pq-heading h1 {
+        font-size: 27px;
+    }
+
+    .pq-question-panel > h2 {
+        font-size: 21px;
+    }
+
+    .pq-option {
+        gap: 11px;
+        padding: 12px;
+        min-height: 59px;
+    }
+
+    .pq-option-letter {
+        width: 33px;
+        height: 33px;
+    }
+
+    .pq-option > span:last-child {
+        font-size: 12px;
+    }
+
+    .pq-question-footer > .pq-button {
+        flex: 1;
+    }
+
+    .pq-bottom-actions > .pq-button {
+        flex: 1;
+    }
+
+    .pq-navigator {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 6px;
+    }
+
+    .pq-nav-number {
+        min-height: 37px;
+    }
+}
+
+
+/* ==========================================================
+   23. ACCESSIBILITY
+   ========================================================== */
+
+.pq-page :focus-visible,
+.pq-module-section :focus-visible {
+    outline: 2px solid var(--pq-strong);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pq-page *,
+    .pq-module-section * {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}
+
+
+/* ==========================================================
+   QUIZ PLAYER — READABILITY REFINEMENT
+   ========================================================== */
+
+/* Keep the editorial font for the quiz title only */
+.pq-player-title h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(24px, 2.4vw, 32px);
+}
+
+/* Use a cleaner font for the actual questions */
+.pq-question-panel > h2 {
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: clamp(17px, 1.45vw, 20px);
+    font-weight: 650;
+    line-height: 1.65;
+    letter-spacing: 0;
+}
+
+/* More readable answer choices */
+.pq-option > span:last-child {
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 450;
+    line-height: 1.6;
+}
+
+/* Slightly smaller question indicators */
+.pq-pill,
+.pq-progress-bar > span {
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* Cleaner navigation numbers */
+.pq-nav-number {
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+}

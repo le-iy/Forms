@@ -2611,3 +2611,89 @@ body[data-density="compact"] .academic-module-body
         font-size: 15px;
     }
 }
+
+
+
+
+/* ==========================================================
+   HOME — HORIZONTAL BUILT-IN QUIZ ROWS
+   ========================================================== */
+
+[data-pq-home-recent] .pq-home-quiz {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+[data-pq-home-recent] .pq-home-quiz .resource-left {
+    flex: 1;
+    min-width: 0;
+}
+
+[data-pq-home-recent] .pq-home-quiz .resource-main {
+    flex: 1;
+    min-width: 0;
+}
+
+[data-pq-home-recent] .pq-home-quiz .resource-title {
+    overflow-wrap: anywhere;
+}
+
+[data-pq-home-recent] .pq-home-quiz .resource-right {
+    flex-shrink: 0;
+}
+
+[data-pq-home-recent] .pq-home-quiz .tag-row {
+    flex-wrap: wrap;
+}
+
+.pq-home-progress {
+    width: 100%;
+    max-width: 360px;
+    margin-top: 12px;
+}
+
+.pq-home-progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+    color: var(--muted);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+}
+
+.pq-home-progress-track {
+    height: 6px;
+    overflow: hidden;
+    border-radius: 999px;
+    background: var(--border);
+}
+
+.pq-home-progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    background: var(--accent-strong);
+}
+
+@media (max-width: 600px) {
+    [data-pq-home-recent] .pq-home-quiz {
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    [data-pq-home-recent] .pq-home-quiz .resource-left {
+        flex-basis: 100%;
+    }
+
+    [data-pq-home-recent] .pq-home-quiz .resource-right {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .pq-home-progress {
+        max-width: none;
+    }
+}

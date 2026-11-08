@@ -891,10 +891,28 @@
     // 11. SUBJECT CARDS
     // ==========================================
 
-    function subjectCard(subject) {
-        const count = D.resources.filter(
-            (resource) => resource.subject === subject.id
+    function subjectResourceCount(subjectId) {
+        const normalized = String(subjectId)
+            .trim()
+            .toUpperCase();
+
+        const resources = D.resources.filter(resource =>
+            String(resource.subject).trim().toUpperCase() ===
+            normalized
         ).length;
+
+        const quizzes = window.PandoraQuizzes
+            ?.list({ subject: normalized }).length ?? 0;
+
+        return resources + quizzes;
+    }
+
+    function subjectCountLabel(count) {
+        return `${count} ${count === 1 ? "resource" : "resources"}`;
+    }
+
+    function subjectCard(subject) {
+        const count = subjectResourceCount(subject.id);
 
         return `
             <article class="card">
@@ -907,15 +925,43 @@
                     <button
                         type="button"
                         class="foot"
-                        data-subject="${safe(subject.id)}"
-                    >
-                        <span>${count} resources</span>
+                        data-subject="${safe(subject.id)}">
+                        <span
+                            data-subject-resource-count="${safe(subject.id)}">
+                            ${subjectCountLabel(count)}
+                        </span>
                         <span>View →</span>
                     </button>
                 </div>
             </article>
         `;
     }
+
+    function refreshSubjectResourceCounts() {
+        document.querySelectorAll(
+            "#content [data-subject-resource-count]"
+        ).forEach(element => {
+            const count = subjectResourceCount(
+                element.dataset.subjectResourceCount
+            );
+
+            const label = subjectCountLabel(count);
+
+            if (element.textContent !== label) {
+                element.textContent = label;
+            }
+        });
+    }
+
+    [
+        "pandora:quizzes-changed",
+        "pandora:quiz-manifest-changed"
+    ].forEach(eventName => {
+        document.addEventListener(
+            eventName,
+            refreshSubjectResourceCounts
+        );
+    });
 
     // ==========================================
     // 12. RESOURCE CARDS
@@ -1157,17 +1203,180 @@
         `).join("");
     }
 
+    /* ======================================================
+       HOME — RECENT RESOURCES + BUILT-IN QUIZZES
+       ====================================================== */
+
+    function recentDate(value) {
+        if (typeof value !== "string") return 0;
+
+        const timestamp = Date.parse(value);
+        return Number.isFinite(timestamp) ? timestamp : 0;
+    }
+
+    function recentQuizCard(quiz) {
+        const sessions = window.PandoraQuizSessions;
+
+        const attempt = sessions?.findInProgress(quiz.id);
+        const progress = attempt
+            ? sessions.progress(attempt.id)
+            : null;
+
+        // Use the attempt's question count because saved
+        // attempts retain their original quiz snapshot.
+        const total = progress?.total ?? quiz.questionCount;
+        const answered = progress?.answered ?? 0;
+        const percentage = progress?.percentage ?? 0;
+
+        const progressText = attempt
+            ? `${answered} of ${total} answered`
+            : "Not started";
+
+        const action = attempt
+            ? `data-pq-home-attempt="${safe(attempt.id)}"`
+            : `data-pq-open-quiz="${safe(quiz.id)}"`;
+
+        return `
+            <article class="resource-card pq-home-quiz">
+                <div class="resource-left">
+                    <div
+                        class="resource-tile tone-sage"
+                        aria-hidden="true">
+                        ✎
+                    </div>
+
+                    <div class="resource-main">
+                        <div class="resource-title">
+                            ${safe(quiz.title)}
+                        </div>
+
+                        <div class="meta">
+                            ${safe(quiz.subject)}
+                            · Module ${safe(quiz.module)}
+                            · ${safe(total)} questions
+                        </div>
+
+                        <div class="tag-row">
+                            <span class="tag">
+                                ${safe(quiz.subject)}
+                            </span>
+
+                            <span class="tag muted-tag">
+                                Built-in quiz
+                            </span>
+
+                            <span class="tag muted-tag">
+                                ${safe(quiz.kind)}
+                            </span>
+                        </div>
+
+                        <div class="pq-home-progress">
+                            <div class="pq-home-progress-label">
+                                <span>${safe(progressText)}</span>
+                                <span>${percentage}%</span>
+                            </div>
+
+                            <div
+                                class="pq-home-progress-track"
+                                role="progressbar"
+                                aria-label="${safe(
+                                    `${quiz.title}: questions answered`
+                                )}"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                aria-valuenow="${percentage}"
+                                aria-valuetext="${safe(
+                                    `${answered} of ${total} answered`
+                                )}">
+                                <div
+                                    class="pq-home-progress-fill"
+                                    style="width: ${percentage}%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resource-right">
+                    <div class="resource-actions">
+                        <button
+                            type="button"
+                            class="btn"
+                            ${action}>
+                            ${attempt ? "Continue" : "Start Quiz"}
+                        </button>
+                    </div>
+                </div>
+            </article>
+        `;
+    }
+
+    function homeRecentItems() {
+        const resources = D.resources
+            .map((resource, index) => ({
+                type: "resource",
+                item: resource,
+                date: recentDate(resource.createdAt),
+                order: index
+            }))
+            .filter(entry => matching(entry.item));
+
+        const quizzes = (
+            window.PandoraQuizzes?.list({
+                showOnHome: true,
+                search
+            }) || []
+        ).map((quiz, index) => ({
+            type: "quiz",
+            item: quiz,
+            date: recentDate(quiz.createdAt),
+            order: index
+        }));
+
+        return [...resources, ...quizzes]
+            .sort((a, b) => {
+                // Explicit publication dates take priority.
+                if (a.date !== b.date) {
+                    return b.date - a.date;
+                }
+
+                // Keep existing resource ordering when dates
+                // are unavailable. Undated quizzes follow.
+                if (a.type !== b.type) {
+                    return a.type === "resource" ? -1 : 1;
+                }
+
+                if (a.type === "resource") {
+                    return b.order - a.order;
+                }
+
+                return a.order - b.order;
+            })
+            .slice(0, 4);
+    }
+
+    function homeRecentHTML() {
+        const recent = homeRecentItems();
+
+        return recent.length
+            ? recent.map(entry =>
+                entry.type === "quiz"
+                    ? recentQuizCard(entry.item)
+                    : resourceCard(entry.item)
+            ).join("")
+            : empty();
+    }
+
     function home() {
-        const subjects = D.subjects.filter((subject) => {
-            const text = `${subject.id} ${subject.name}`.toLowerCase();
+        const subjects = D.subjects.filter(subject => {
+            const text =
+                `${subject.id} ${subject.name}`.toLowerCase();
 
-            return !search || text.includes(search.toLowerCase());
+            return (
+                !search ||
+                text.includes(search.toLowerCase())
+            );
         });
-
-        const recent = D.resources
-            .filter(matching)
-            .slice(-4)
-            .reverse();
 
         const shortcuts = [
             ["reviewers", "▧", "Reviewers", "Open study materials"],
@@ -1198,27 +1407,85 @@
                 <h2>Recently Added</h2>
             </div>
 
-            <div class="resource-list compact-list">
-                ${recent.length
-                    ? recent.map(resourceCard).join("")
-                    : empty()}
+            <div
+                class="resource-list compact-list"
+                data-pq-home-recent>
+                ${homeRecentHTML()}
             </div>
 
             <div class="quick-grid">
-                ${shortcuts.map(([id, icon, label, description]) => `
-                    <button
-                        type="button"
-                        class="quick-card"
-                        data-page="${id}"
-                    >
-                        <span class="quick-icon">${icon}</span>
-                        <strong>${label}</strong>
-                        <small>${description}</small>
-                    </button>
-                `).join("")}
+                ${shortcuts.map(
+                    ([id, icon, label, description]) => `
+                        <button
+                            type="button"
+                            class="quick-card"
+                            data-page="${id}">
+                            <span class="quick-icon">${icon}</span>
+                            <strong>${label}</strong>
+                            <small>${description}</small>
+                        </button>
+                    `
+                ).join("")}
             </div>
         `;
     }
+
+    /* Update only the Home feed, leaving the rest of the
+       page and the active Quiz Studio container alone. */
+
+    let homeRecentRefreshQueued = false;
+
+    function scheduleHomeRecentRefresh() {
+        if (homeRecentRefreshQueued) return;
+
+        homeRecentRefreshQueued = true;
+
+        queueMicrotask(() => {
+            try {
+                const list = document.querySelector(
+                    "#content [data-pq-home-recent]"
+                );
+
+                if (!list) return;
+
+                const html = homeRecentHTML();
+
+                if (list.innerHTML !== html) {
+                    list.innerHTML = html;
+                }
+            } finally {
+                homeRecentRefreshQueued = false;
+            }
+        });
+    }
+
+    [
+        "pandora:quizzes-changed",
+        "pandora:quiz-manifest-changed",
+        "pandora:quiz-attempts-changed"
+    ].forEach(eventName => {
+        document.addEventListener(
+            eventName,
+            scheduleHomeRecentRefresh
+        );
+    });
+
+    window.addEventListener("storage", event => {
+        const storageKey =
+            window.PandoraQuizSessions?.storageKey;
+
+        if (
+            storageKey &&
+            (event.key === storageKey || event.key === null)
+        ) {
+            scheduleHomeRecentRefresh();
+        }
+    });
+
+    window.addEventListener(
+        "focus",
+        scheduleHomeRecentRefresh
+    );
 
     
     // ==========================================
