@@ -59,6 +59,7 @@
         // IT0015 — Networking 2
         "./SUBJECTS/quizzes/IT0015/diagnostic-2.js",
         "./SUBJECTS/quizzes/IT0015/summative-2.js",
+        "./SUBJECTS/quizzes/IT0015/formative-2.js",
 
         // IT0035 — Applied Operating System
         "./SUBJECTS/quizzes/IT0035/diagnostic-test.js",
