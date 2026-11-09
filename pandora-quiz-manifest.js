@@ -53,6 +53,8 @@
         "./SUBJECTS/quizzes/GED0083/midterm-exam.js",
         "./SUBJECTS/quizzes/GED0083/formative-5.js",
         "./SUBJECTS/quizzes/GED0083/formative-4.js",
+        "./SUBJECTS/quizzes/GED0083/formative-6.js",
+        "./SUBJECTS/quizzes/GED0083/formative-7.js",
 
         // GED0083L — Physics 2 Laboratory
 
@@ -76,6 +78,8 @@
 
         // IT0049 — Web System Technologies
         "./SUBJECTS/quizzes/IT0049/formative-3.js",
+        "./SUBJECTS/quizzes/IT0049/summative-1.js",
+        "./SUBJECTS/quizzes/IT0049/summative-3.js",
 
         // IT0204 — Cybersecurity and Privacy
         "./SUBJECTS/quizzes/IT0204/summative-1.js",
