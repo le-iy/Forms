@@ -1,8 +1,8 @@
 
 window.PandoraQuizzes.register({
-  id: "GED0083-M05-F07",
+  id: "GED0083-M07-F07",
   subject: "GED0083",
-  module: 5,
+  module: 7,
   title: "Formative Assessment 7",
   kind: "formative",
   version: 1,
