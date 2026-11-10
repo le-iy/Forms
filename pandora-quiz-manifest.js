@@ -55,6 +55,8 @@
         "./SUBJECTS/quizzes/GED0083/formative-4.js",
         "./SUBJECTS/quizzes/GED0083/formative-6.js",
         "./SUBJECTS/quizzes/GED0083/formative-7.js",
+        "./SUBJECTS/quizzes/GED0083/formative-8.js",
+        "./SUBJECTS/quizzes/GED0083/formative-9.js",
 
         // GED0083L — Physics 2 Laboratory
 
