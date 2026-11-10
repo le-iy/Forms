@@ -2697,3 +2697,148 @@ body[data-density="compact"] .academic-module-body
         max-width: none;
     }
 }
+
+
+/* ==========================================================
+   PANDORA V.3 — MOBILE HOME LAYOUT FIX
+   Fixes:
+   - Recently Added quiz card overflow
+   - Start Quiz buttons outside cards
+   - Excessive card height
+   - Home dashboard column sizing
+   ========================================================== */
+
+@media (max-width: 850px) {
+
+    /* Keep the Home dashboard within phone width */
+    .pt-home-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        width: 100%;
+        min-width: 0;
+    }
+
+    .pt-home-main,
+    .pt-home-aside {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* Recently Added must occupy its available width */
+    [data-pq-home-recent] {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* Stack quiz card contents vertically */
+    [data-pq-home-recent] .pq-home-quiz {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        gap: 16px;
+    }
+
+    /* Remove the 100% flex-basis causing extra space */
+    [data-pq-home-recent] .pq-home-quiz .resource-left {
+        display: flex;
+        align-items: flex-start;
+        flex: 0 1 auto;
+        flex-basis: auto;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* Allow titles, badges and progress bars to shrink */
+    [data-pq-home-recent] .pq-home-quiz .resource-main {
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    /* Move button below quiz information */
+    [data-pq-home-recent] .pq-home-quiz .resource-right {
+        display: flex;
+        flex: 0 0 auto;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0;
+        justify-content: stretch;
+    }
+
+    [data-pq-home-recent] .pq-home-quiz .resource-actions {
+        display: flex;
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0;
+    }
+
+    /* Full-width Start Quiz / Continue button */
+    [data-pq-home-recent] .pq-home-quiz .resource-actions .btn {
+        display: flex;
+        flex: 1 1 auto;
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+        min-height: 44px;
+        margin: 0;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Progress bar fits within card */
+    [data-pq-home-recent] .pq-home-progress {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+}
+
+/* Extra adjustments for narrow phones */
+@media (max-width: 480px) {
+
+    [data-pq-home-recent] .pq-home-quiz {
+        padding: 16px;
+        gap: 14px;
+    }
+
+    [data-pq-home-recent] .pq-home-quiz .resource-left {
+        gap: 12px;
+    }
+
+    [data-pq-home-recent] .pq-home-quiz .resource-tile {
+        flex: 0 0 38px;
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    [data-pq-home-recent] .pq-home-quiz .resource-title {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    [data-pq-home-recent] .pq-home-quiz .meta {
+        font-size: 11px;
+    }
+
+    [data-pq-home-recent] .pq-home-quiz .tag-row {
+        gap: 6px;
+    }
+
+    [data-pq-home-recent] .pq-home-quiz .tag {
+        font-size: 10px;
+        padding: 4px 8px;
+    }
+}
