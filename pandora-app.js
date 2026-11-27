@@ -4222,10 +4222,38 @@
         render();
     });
 
-    $("mobileMenu").addEventListener("click", () => {
-        document.querySelector(".sidebar")
-            .classList.toggle("open");
+    /* Pandora responsive sidebar toggle */
+    const menuButton = $("mobileMenu");
+    const sidebar = document.querySelector(".app > .sidebar");
+    const app = sidebar.closest(".app");
+    const mobileSidebar = window.matchMedia("(max-width: 850px)");
+    sidebar.id ||= "pandora-sidebar";
+    menuButton.setAttribute("aria-controls", sidebar.id);
+    function sidebarIsOpen() {
+        return mobileSidebar.matches ? sidebar.classList.contains("open") : !app.classList.contains("sidebar-collapsed");
+    }
+    function syncSidebarButton() {
+        menuButton.setAttribute("aria-expanded", String(sidebarIsOpen()));
+        menuButton.setAttribute("aria-label", sidebarIsOpen() ? "Hide navigation" : "Show navigation");
+    }
+    function setSidebarOpen(open) {
+        if (mobileSidebar.matches) sidebar.classList.toggle("open", open);
+        else app.classList.toggle("sidebar-collapsed", !open);
+        syncSidebarButton();
+    }
+    menuButton.addEventListener("click", () => setSidebarOpen(!sidebarIsOpen()));
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape" && mobileSidebar.matches && sidebarIsOpen() && !event.defaultPrevented) {
+            setSidebarOpen(false);
+            menuButton.focus();
+        }
     });
+    new MutationObserver(syncSidebarButton).observe(sidebar, { attributes: true, attributeFilter: ["class"] });
+    mobileSidebar.addEventListener("change", () => {
+        sidebar.classList.remove("open");
+        syncSidebarButton();
+    });
+    syncSidebarButton();
 
     // ==========================================
     // 31. INITIALIZE

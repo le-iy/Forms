@@ -2844,7 +2844,7 @@ body[data-density="compact"] .academic-module-body
 }
 
 /* Pandora desktop scale */
-@media (min-width: 1251px) { html { zoom: 87%; } }
+@media (min-width: 1251px) { html { --pandora-desktop-zoom: 0.87; zoom: var(--pandora-desktop-zoom); } .sidebar { height: calc(100dvh / var(--pandora-desktop-zoom)); } }
 
 /* Pandora module interior */
 .academic-module-body .editorial-sections { gap: 0; }
@@ -3019,4 +3019,50 @@ body:has(#nav [data-page="favorites"].active) #content > .resource-list .resourc
 body:has(#nav [data-page="favorites"].active) #content > .resource-list .resource-main { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: start; }
 body:has(#nav [data-page="favorites"].active) #content > .resource-list .resource-main > :is(.resource-title, .meta, .resource-description) { grid-column: 1; }
 body:has(#nav [data-page="favorites"].active) #content > .resource-list .resource-main > .tag-row { grid-area: 1 / 2; justify-self: end; margin: 0; }
+}
+
+/* Pandora Home dashboard spacing */
+#content:has(> .pt-home-layout) > .hero { min-height: 0; padding: 20px clamp(18px, 3vw, 30px); margin-bottom: 18px; }
+#content:has(> .pt-home-layout) > .hero h1 { margin-bottom: 5px; }
+#content > .pt-home-layout { gap: 18px; }
+#content .pt-home-main > .cards { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; }
+#content .pt-home-main > .cards .cover { height: clamp(64px, 7vw, 88px); }
+#content .pt-home-main > .cards .card-body { padding: 13px 15px; }
+#content .pt-home-main > .cards .card-body p { margin-block: 4px 10px; }
+#content .pt-home-main > .cards .foot { padding: 7px 10px; }
+@media (min-width: 1051px) { #content > .pt-home-layout { grid-template-columns: minmax(0, 1fr) minmax(290px, 32%); } }
+
+/* Pandora collapsible sidebar */
+.top > #mobileMenu { display: inline-grid; place-items: center; flex: 0 0 auto; line-height: 1; }
+@media (min-width: 851px) { .app.sidebar-collapsed { grid-template-columns: minmax(0, 1fr); } .app.sidebar-collapsed > .sidebar { display: none; } }
+@media (max-width: 850px) { .app:has(> .sidebar.open) > main > .top > #mobileMenu { position: fixed; inset-block-start: 12px; inset-inline-start: calc(min(280px, 85vw) - 56px); z-index: 201; } }
+
+@media (min-width: 851px) { .app.sidebar-collapsed > main > .top { max-width: 1480px; margin-inline: auto; } }
+
+@media (min-width: 851px) { .app > main > :is(.top, #content), .app.sidebar-collapsed > main > .top { width: 100%; max-width: none; margin-inline: 0; } .app > main > .top > .search { flex: 1; min-width: 0; max-width: none; } }
+
+/* Pandora mobile layout */
+@media (max-width: 850px) {
+  .app > .sidebar { width: min(250px, 82vw); padding: 12px; }
+  .app > .sidebar .brand { gap: 3px; padding: 8px 44px 14px 4px; text-align: left; }
+  .app > .sidebar .brand-icon { font-size: 22px; }
+  .app > .sidebar .brand strong { font-size: 20px; }
+  .app > .sidebar .brand small { font-size: 14px; }
+  .app > .sidebar nav { gap: 4px; }
+  .app > .sidebar .nav-item { min-height: 44px; padding: 8px 12px; font-size: 14px; }
+  .app:has(> .sidebar.open)::after { content: ""; position: fixed; inset: 0; z-index: 199; background: rgb(45 28 35 / 28%); }
+  .app:has(> .sidebar.open) > main > .top > #mobileMenu { position: fixed; top: 10px; left: calc(min(250px, 82vw) - 54px); z-index: 201; }
+  .app > main > .top { gap: 8px; padding: 12px 12px 4px; }
+  .app > main > .top > #mobileMenu { flex: 0 0 44px; width: 44px; height: 44px; padding: 0; }
+  .app > main > .top > .search { flex: 1 1 0; min-width: 0; min-height: 44px; padding: 8px 12px; gap: 8px; }
+  .app > main > .top #search { width: 0; font-size: 16px; text-overflow: ellipsis; }
+  #content:has(> .pt-home-layout) > .hero { min-height: 0; padding: 16px 18px; margin-bottom: 12px; }
+  #content:has(> .pt-home-layout) > .hero::after { display: none; }
+  #content .pt-home-aside .pc-calendar { padding: 12px; margin-bottom: 12px; }
+  #content .pc-calendar .pc-heading { margin-bottom: 8px; }
+  #content .pc-calendar .pc-monthbar { margin-bottom: 4px; }
+  #content .pc-calendar .pc-grid { gap: 2px; }
+  #content .pc-calendar .pc-weekday { height: 22px; }
+  #content .pc-calendar :is(.pc-day, .pc-day-spacer) { height: 32px; }
+  #content .pc-calendar .pc-preview { margin-top: 8px; padding-top: 8px; }
 }
