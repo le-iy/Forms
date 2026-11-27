@@ -35,6 +35,15 @@ const IT0204 = {
         summatives: [],
 
         reviewers: [
+            {"title":"Module 1 - Cybersecurity \u0026 privacy law","module":1,"section":"reviewers","link":"File_Bank/IT0204/references/IT0204%20%E2%80%A2%2001%20Cybersecurity%20%26%20privacy%20law.png"},
+            {"title":"Module 2 - Data protection regulations","module":2,"section":"reviewers","link":"File_Bank/IT0204/references/IT0204%20%E2%80%A2%2002%20Data%20protection%20regulations.png"},
+            {"title":"Module 3 - Incident response \u0026 breach notification","module":3,"section":"reviewers","link":"File_Bank/IT0204/references/IT0204%20%E2%80%A2%2003%20Incident%20response%20%26%20breach%20notification.png"},
+            {"title":"Module 4 - Privacy laws in the Philippines","module":4,"section":"reviewers","link":"File_Bank/IT0204/references/IT0204%20%E2%80%A2%2004%20Privacy%20laws%20in%20the%20Philippines.png"},
+            {"title":"Module 5 - Compliance frameworks \u0026 security standards","module":5,"section":"reviewers","link":"File_Bank/IT0204/references/IT0204%20%E2%80%A2%2005%20Compliance%20frameworks%20%26%20security%20standards.png"},
+            {"title":"Module 6 - International legal aspects","module":6,"section":"reviewers","link":"File_Bank/IT0204/references/IT0204%20%E2%80%A2%2006%20International%20legal%20aspects.png"},
+            {"title":"Module 7 - Emerging technology law \u0026 ethics","module":7,"section":"reviewers","link":"File_Bank/IT0204/references/IT0204%20%E2%80%A2%2007%20Emerging%20technology_%20law%20%26%20ethics.png"},
+            {"title":"Module 8 - Cybersecurity in the Philippine context","module":8,"section":"reviewers","link":"File_Bank/IT0204/references/IT0204%20%E2%80%A2%2008%20Cybersecurity%20in%20the%20Philippine%20context.png"},
+        
             {"title":"Module 1 - Privacy Law and Regulation in the Phil","module":1,"section":"reviewers","link":"File_Bank/IT0204/Module 1 - Privacy Law and Regulation in the Phil.pptx.pdf"},
             {"title":"Module 2 - Data Protection Regulations","module":2,"section":"reviewers","link":"File_Bank/IT0204/Module 2 -Data Protection Regulations.pptx.pdf"},
             {"title":"Module 3 - Incident Response and Breach Notification","module":3,"section":"reviewers","link":"File_Bank/IT0204/Module 3 - Incident Response and Breach Notification.pptx.pdf"},
