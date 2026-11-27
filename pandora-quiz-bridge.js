@@ -109,7 +109,7 @@
 
         button.innerHTML = `
             <span class="nav-icon" aria-hidden="true">
-                ✎
+                ${window.PandoraIcons.icon("quiz")}
             </span>
             <span>Quiz Studio</span>
         `;
@@ -346,7 +346,7 @@
                 <span
                     class="editorial-section-icon"
                     aria-hidden="true">
-                    ✎
+                    ${window.PandoraIcons.icon("quiz")}
                 </span>
 
                 <div class="editorial-section-title">
@@ -367,7 +367,7 @@
                         <span
                             class="pq-module-quiz-icon"
                             aria-hidden="true">
-                            ✎
+                            ${window.PandoraIcons.icon("quiz")}
                         </span>
 
                         <div class="pq-module-quiz-info">

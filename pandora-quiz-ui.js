@@ -446,7 +446,7 @@
 
                 ${shown.length ? shown.map(quiz => `
                     <article class="pq-quiz-card">
-                        <div class="pq-quiz-icon">✎</div>
+                        <div class="pq-quiz-icon">${window.PandoraIcons.icon("quiz")}</div>
 
                         <div class="pq-quiz-info">
                             <strong>${escapeHTML(quiz.title)}</strong>

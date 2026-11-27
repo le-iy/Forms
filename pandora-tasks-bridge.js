@@ -136,7 +136,7 @@
         button.dataset.ptNavigate = "tasks";
 
         button.innerHTML = `
-            <span class="nav-icon" aria-hidden="true">☷</span>
+            <span class="nav-icon" aria-hidden="true">${window.PandoraIcons.icon("tasks")}</span>
             <span>Tasks</span>
         `;
 

@@ -10,6 +10,7 @@
 
   if (window.PandoraPaletteEditor) return;
 
+  const icons = window.PandoraIcons;
   const KEY = "pandora_personal_palettes_v1";
   const APP_KEY = "pandora_appearance";
 
@@ -118,7 +119,8 @@
         ).map(p => ({
           id: p.id,
           name: p.name,
-          colors: normalize(p.colors)
+          colors: normalize(p.colors),
+          icons: icons.normalize(p.icons)
         }))
       : [],
 
@@ -133,6 +135,9 @@
   };
 
   let draft = null;
+  let draftIcons = null;
+  let iconEditorOpen = false;
+  const currentIcons = () => draftIcons ?? active()?.icons ?? {};
   let dirty = false;
   let expanded = false;
   let selectedId = store.activeId;
@@ -201,7 +206,7 @@
         }"
         data-pu-select="${esc(p.id)}"
       >
-        ${esc(p.name)}
+        <span class="pu-saved-name">${esc(p.name)}</span><span data-pu-swatches aria-hidden="true">${["--bg", "--panel", "--accent", "--text"].map(key => `<span style="background:${esc(p.colors[key])}"></span>`).join("")}</span>${p.id === store.activeId ? `<small class="pu-theme-active">Active</small>` : ""}
       </button>
     `).join("");
   }
@@ -291,10 +296,14 @@
 
         <div class="studio-divider"></div>
 
-        <h3>5. Save Your Theme</h3>
+        ${icons.editor(currentIcons(), iconEditorOpen)}
+
+        <div class="studio-divider"></div>
+
+        <h3>6. Save Custom Theme</h3>
 
         <label class="pu-label" for="pu-name">
-          Palette name
+          Theme name
         </label>
 
         <input
@@ -326,7 +335,7 @@
 
         <div class="studio-divider"></div>
 
-        <h3>My Saved Palettes</h3>
+        <h3>Saved Themes</h3><p class="pu-theme-help">Save &amp; Apply keeps your current colors and icons together. To switch back later, select a saved theme and choose Apply Theme.</p>
 
         <div
           class="pu-saved-list"
@@ -345,7 +354,7 @@
             class="pu-secondary"
             data-pu-apply
           >
-            Apply Selected
+            Apply Theme
           </button>
 
           <button
@@ -408,6 +417,7 @@
       root
     )?.value || "";
 
+    iconEditorOpen = $("[data-icon-editor]", root)?.open || false;
     root.outerHTML = markup();
 
     $("[data-pu-name]").value = name;
@@ -422,18 +432,27 @@
   }
 
   function activate(palette) {
+    const previousId = store.activeId;
+    const previousSignature = store.appearanceSignature;
     store.activeId = palette.id;
     store.appearanceSignature =
       appearanceSignature();
 
-    if (!write()) return;
+    if (!write()) {
+      store.activeId = previousId;
+      store.appearanceSignature = previousSignature;
+      return false;
+    }
 
+    draftIcons = null;
+    icons.apply(palette.icons);
     selectedId = palette.id;
     draft = { ...palette.colors };
     dirty = false;
 
     apply(draft);
     refresh();
+    return true;
   }
 
   function chosen() {
@@ -442,10 +461,37 @@
     );
   }
 
+  function setIcon(key, value, focusSelector) {
+    draftIcons = icons.normalize({ ...currentIcons(), [key]: value });
+    icons.apply(draftIcons);
+    refresh();
+    $(focusSelector)?.focus();
+  }
+
+  document.addEventListener("input", event => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement) || !input.matches("[data-icon-search]")) return;
+    const query = input.value.trim().toLowerCase();
+    input.closest("dialog").querySelectorAll("[data-icon-choice]").forEach(button => {
+      button.hidden = !button.textContent.toLowerCase().includes(query);
+    });
+  });
+
   function click(event) {
     const target = event.target;
 
     if (!(target instanceof Element)) return;
+
+    /* Customize Icons toggle */
+    const summary = target.closest("[data-pu-root] [data-icon-editor] > summary");
+    if (summary) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const editor = summary.parentElement;
+      editor.open = !editor.open;
+      iconEditorOpen = editor.open;
+      return;
+    }
 
     const button = target.closest(
       "[data-pu-root] button"
@@ -455,6 +501,32 @@
 
     event.preventDefault();
     event.stopImmediatePropagation();
+
+    if (button.dataset.iconOpen) {
+      const dialog = $("[data-icon-dialog]");
+      dialog.dataset.slot = button.dataset.iconOpen;
+      dialog.showModal();
+      $("[data-icon-search]", dialog).focus();
+      return;
+    }
+
+    if (button.hasAttribute("data-icon-close")) {
+      button.closest("dialog").close();
+      return;
+    }
+
+    if (button.dataset.iconChoice) {
+      const key = button.closest("dialog").dataset.slot;
+      button.closest("dialog").close();
+      setIcon(key, button.dataset.iconChoice, `[data-icon-open="${key}"]`);
+      return;
+    }
+
+    if (button.dataset.iconReset) {
+      const key = button.dataset.iconReset;
+      setIcon(key, null, `[data-icon-open="${key}"]`);
+      return;
+    }
 
     if (button.hasAttribute("data-pu-select")) {
       selectedId = button.dataset.puSelect;
@@ -495,11 +567,12 @@
           "-" +
           Math.random().toString(36).slice(2, 8),
         name,
-        colors
+        colors,
+        icons: icons.normalize(currentIcons())
       };
 
       store.palettes.push(palette);
-      activate(palette);
+      if (!activate(palette)) store.palettes.pop();
       return;
     }
 
@@ -536,7 +609,8 @@
       const copy = {
         id: "palette-" + Date.now(),
         name: palette.name + " Copy",
-        colors: { ...palette.colors }
+        colors: { ...palette.colors },
+        icons: { ...palette.icons }
       };
 
       store.palettes.push(copy);
@@ -584,10 +658,11 @@
       return;
     }
 
-    if (
-      button.hasAttribute("data-pu-reset") ||
-      button.hasAttribute("data-pu-cancel")
-    ) {
+    if (button.hasAttribute("data-pu-cancel")) {
+      location.reload();
+      return;
+    }
+    if (button.hasAttribute("data-pu-reset")) {
       resetToPandora();
     }
   }
@@ -705,6 +780,7 @@
       store.appearanceSignature = null;
 
       draft = null;
+      draftIcons = null;
       dirty = false;
       selectedId = null;
 
@@ -723,6 +799,7 @@
       store.appearanceSignature = null;
 
       draft = null;
+      draftIcons = null;
       dirty = false;
 
       write();
@@ -738,6 +815,7 @@
       }
     }
 
+    icons.apply(currentIcons());
     mount();
   }
 

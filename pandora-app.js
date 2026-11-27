@@ -973,25 +973,25 @@
         ).toLowerCase();
 
         if (platform.includes("pdf")) {
-            return { icon: "📄", tone: "pdf" };
+            return { icon: window.PandoraIcons.icon("pdf"), tone: "pdf" };
         }
 
         if (
             platform.includes("google forms") ||
             platform.includes("microsoft forms")
         ) {
-            return { icon: "📝", tone: "form" };
+            return { icon: window.PandoraIcons.icon("form"), tone: "form" };
         }
 
         if (platform.includes("gizmo")) {
-            return { icon: "🔗", tone: "gizmo" };
+            return { icon: window.PandoraIcons.icon("practice"), tone: "gizmo" };
         }
 
         if (resource.kind === "reviewer") {
-            return { icon: "📚", tone: "reviewer" };
+            return { icon: window.PandoraIcons.icon("reviewers"), tone: "reviewer" };
         }
 
-        return { icon: "↗", tone: "generic" };
+        return { icon: window.PandoraIcons.icon("practice"), tone: "generic" };
     }
 
     function resourceCard(resource) {
@@ -1007,7 +1007,7 @@
             <article class="resource-card">
                 <div class="resource-left">
                     <div class="resource-tile tone-${safe(icon.tone)}">
-                        ${safe(icon.icon)}
+                        ${icon.icon}
                     </div>
 
                     <div class="resource-main">
@@ -1109,7 +1109,7 @@
                             aria-label="${label}: ${safe(resource.title)}"
                         >
                             <span class="library-row-icon tone-${safe(icon.tone)}">
-                                ${safe(icon.icon)}
+                                ${icon.icon}
                             </span>
 
                             <span class="library-row-info">
@@ -1144,7 +1144,7 @@
                     : `
                         <div class="library-row-primary unavailable">
                             <span class="library-row-icon tone-${safe(icon.tone)}">
-                                ${safe(icon.icon)}
+                                ${icon.icon}
                             </span>
 
                             <span class="library-row-info">
@@ -1197,7 +1197,7 @@
                 class="nav-item ${page === id ? "active" : ""}"
                 data-page="${id}"
             >
-                <span class="nav-icon">${icon}</span>
+                <span class="nav-icon">${window.PandoraIcons.icon(id) || icon}</span>
                 ${label}
             </button>
         `).join("");
@@ -1242,7 +1242,7 @@
                     <div
                         class="resource-tile tone-sage"
                         aria-hidden="true">
-                        ✎
+                        ${window.PandoraIcons.icon("quiz")}
                     </div>
 
                     <div class="resource-main">
@@ -1420,7 +1420,7 @@
                             type="button"
                             class="quick-card"
                             data-page="${id}">
-                            <span class="quick-icon">${icon}</span>
+                            <span class="quick-icon">${window.PandoraIcons.icon(id) || icon}</span>
                             <strong>${label}</strong>
                             <small>${description}</small>
                         </button>
@@ -1547,7 +1547,7 @@
                                     class="editorial-section-icon"
                                     aria-hidden="true"
                                 >
-                                    ${section.icon}
+                                    ${window.PandoraIcons.icon(section.id) || section.icon}
                                 </span>
 
                                 <div class="editorial-section-title">
@@ -2594,6 +2594,8 @@
     // 23. SETTINGS PAGE
     // ==========================================
 
+    const studioTabs = [["presets", "Presets"], ["custom", "Custom Theme"], ["background", "Background"], ["covers", "Subject Covers"], ["layout", "Layout"]]; let studioTab = "presets"; document.addEventListener("click", event => { const button = event.target.closest?.("button[data-studio-tab]"); if (!button) return; const studio = button.closest(".theme-studio"); studioTab = button.dataset.studioTab; studio.dataset.studioActive = studioTab; studio.querySelectorAll("[data-studio-tab]").forEach(tab => tab.setAttribute("aria-pressed", String(tab === button))); });
+
     function settings() {
         const currentTheme = appearance.theme === "builder"
             ? [
@@ -2610,9 +2612,9 @@
                 true
             )}
 
-            <div class="theme-studio">
+            <div class="theme-studio" data-studio-active="${studioTab}"><div class="studio-tabs" role="group" aria-label="Theme Studio sections">${studioTabs.map(([id, label]) => `<button type="button" data-studio-tab="${id}" aria-pressed="${studioTab === id}">${label}</button>`).join("")}</div>
                 <div>
-                    <section class="studio-panel">
+                    <section class="studio-panel" data-studio-section="presets">
                         <div class="studio-heading">
                             <h2>Curated Themes</h2>
                             <p>Ten ready-made palettes.</p>
@@ -2654,13 +2656,13 @@
                         </button>
                     </section>
 
-                    ${themeBuilder()}
+                    <div data-studio-section="custom">${themeBuilder()}</div>
 
-                    ${backgroundStudio()}
+                    <div data-studio-section="background">${backgroundStudio()}</div>
 
-                    ${subjectCoverStudio()}
+                    <div data-studio-section="covers">${subjectCoverStudio()}</div>
 
-                    <section class="studio-panel builder-panel">
+                    <section class="studio-panel builder-panel" data-studio-section="layout">
                         <div class="studio-heading">
                             <h2>Layout Preferences</h2>
                             <p>Customize corners and spacing.</p>
@@ -2733,7 +2735,7 @@
                         </div>
 
                         <div class="preview-resource">
-                            <div class="preview-file">📄</div>
+                            <div class="preview-file">${window.PandoraIcons?.icon("pdf") || "📄"}</div>
 
                             <div class="preview-info">
                                 <strong>Network Map Module 1</strong>
@@ -2746,7 +2748,7 @@
                         <div class="preview-chips">
                             <span class="preview-chip active">All</span>
                             <span class="preview-chip">PDF</span>
-                            <span class="preview-chip">Gizmo</span>
+                            <span class="preview-chip">${window.PandoraIcons?.icon("practice") || ""} Practice Links</span><span class="preview-chip">${window.PandoraIcons?.icon("quiz") || ""} Quiz</span>
                         </div>
                     </div>
 
