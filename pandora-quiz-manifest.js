@@ -91,7 +91,11 @@
         "./SUBJECTS/quizzes/IT0204/formative-4.js",
         "./SUBJECTS/quizzes/IT0204/formative-3.js",
         "./SUBJECTS/quizzes/IT0204/summative-3.js",
-        "./SUBJECTS/quizzes/IT0204/formative-5.js"
+        "./SUBJECTS/quizzes/IT0204/formative-5.js",
+        "./SUBJECTS/quizzes/IT0204/formative-8.js",
+        "./SUBJECTS/quizzes/IT0204/formative-6.js",
+        "./SUBJECTS/quizzes/IT0204/formative-7.js",
+        "./SUBJECTS/quizzes/IT0204/diagnostic-4.js"
 
     ];
 

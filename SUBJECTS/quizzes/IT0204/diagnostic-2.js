@@ -2,7 +2,7 @@
 window.PandoraQuizzes.register({
   id: "IT0204-M04-D02",
   subject: "IT0204",
-  module: 4,
+  module: 3,
   title: "Diagnostic 2",
   kind: "practice",
   version: 1,
