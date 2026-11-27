@@ -1388,7 +1388,7 @@
         return `
             ${head(
                 "Dashboard",
-                "PANDORA v3 - Remodeled Coz Y Not"
+                "PANDORA v3 - Remodeled Coz Y Not", true
             )}
 
             <div class="section-head">

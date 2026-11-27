@@ -1466,3 +1466,37 @@
         max-height: 220px;
     }
 }
+
+/* Pandora Quiz Studio library layout */
+.pq-page:has(> .pq-stats) > .pq-heading { margin-bottom: 12px; padding: 18px clamp(16px, 3vw, 28px); }
+.pq-page:has(> .pq-stats) > .pq-heading .pq-eyebrow { display: none; }
+.pq-page:has(> .pq-stats) > .pq-heading h1 { margin-bottom: 4px; }
+.pq-page:has(> .pq-stats) > .pq-stats { grid-template-columns: repeat(auto-fit, minmax(min(100%, 130px), 1fr)); gap: 0; margin-bottom: 12px; border: 1px solid var(--pq-border); border-radius: var(--pq-small-radius); background: var(--pq-panel); overflow: hidden; }
+.pq-page:has(> .pq-stats) > .pq-stats .pq-stat { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; padding: 10px 14px; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.pq-page:has(> .pq-stats) > .pq-stats .pq-stat::before { content: none; }
+.pq-page:has(> .pq-stats) > .pq-stats .pq-stat strong { margin: 0; font-size: 21px; }
+.pq-page:has(> .pq-stats) > .pq-toolbar { gap: 6px; margin-bottom: 12px; }
+.pq-page:has(> .pq-stats) > .pq-toolbar .pq-button { min-height: 36px; padding: 6px 12px; }
+.pq-page:has(> .pq-stats) > .pq-panel:has(> .pq-filters) { padding: 12px 16px; box-shadow: none; }
+.pq-page:has(> .pq-stats) > .pq-panel:has(> .pq-filters) > h2 { margin: 0 0 8px; font-size: 17px; }
+.pq-page:has(> .pq-stats) .pq-filters { gap: 8px; }
+.pq-page:has(> .pq-stats) .pq-filters :is(input, select) { min-height: 36px; padding-block: 6px; border-radius: 9px; }
+.pq-page:has(> .pq-stats) > .pq-panel:has(.pq-quiz-card) { margin-top: 12px; padding: 14px 16px; }
+.pq-page:has(> .pq-stats) > .pq-panel:has(.pq-quiz-card) .pq-section-title { margin-bottom: 4px; }
+.pq-page:has(> .pq-stats) .pq-quiz-card { gap: 10px; padding-block: 10px; }
+.pq-page:has(> .pq-stats) .pq-quiz-icon { width: 36px; height: 36px; flex-basis: 36px; font-size: 18px; }
+.pq-page:has(> .pq-stats) .pq-quiz-actions .pq-button { min-height: 36px; padding: 6px 11px; }
+
+/* Pandora Quiz Studio header and counts */
+.pq-page:has(> .pq-heading + .pq-stats) > .pq-heading { margin-bottom: 0; border-bottom: 0; border-radius: var(--pq-radius) var(--pq-radius) 0 0; box-shadow: none; }
+.pq-page:has(> .pq-heading + .pq-stats) > .pq-stats { margin-bottom: 14px; border-radius: 0 0 var(--pq-radius) var(--pq-radius); }
+.pq-page:has(> .pq-heading + .pq-stats) > .pq-stats .pq-stat { justify-content: center; text-align: center; }
+.pq-page:has(> .pq-heading + .pq-stats) > .pq-stats .pq-stat strong { font-size: 21px; }
+@media (min-width: 1200px) {
+.pq-page:has(> .pq-heading + .pq-stats) { display: grid; grid-template-columns: minmax(0, 1fr); }
+.pq-page:has(> .pq-heading + .pq-stats) > * { grid-column: 1; min-width: 0; }
+.pq-page:has(> .pq-heading + .pq-stats) > .pq-heading { grid-row: 1; padding-inline-end: 460px; margin-bottom: 14px; border-bottom: 1px solid var(--pq-border); border-radius: var(--pq-radius); }
+.pq-page:has(> .pq-heading + .pq-stats) > .pq-stats { grid-row: 1; z-index: 1; align-self: center; justify-self: end; grid-template-columns: repeat(3, minmax(0, 1fr)); width: 410px; margin: 0 20px 14px 0; overflow: visible; background: transparent; border: 0; border-radius: 0; }
+.pq-page:has(> .pq-heading + .pq-stats) > .pq-stats .pq-stat { display: grid; gap: 4px; padding: 4px 10px; }
+.pq-page:has(> .pq-heading + .pq-stats) > .pq-stats .pq-stat + .pq-stat { border-inline-start: 1px solid var(--pq-border); }
+}

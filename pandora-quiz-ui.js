@@ -1943,6 +1943,11 @@
        PUBLIC API
        ====================================================== */
 
+    /* Refresh the quiz library after manifest loading. */
+    document.addEventListener("pandora:quiz-manifest-changed", (event) => {
+        if (event.detail?.finishedAt && state.view === "library") render();
+    });
+
     window.PandoraQuizUI = Object.freeze({
         mount,
         render,

@@ -127,6 +127,41 @@
     <script src="./pandora-quiz-sessions.js"></script>
     <script src="./pandora-quiz-ui.js"></script>
     <script src="./pandora-quiz-bridge.js"></script>
+    <script>
+    /* Pandora restore active page */
+    (() => {
+        const key = "pandora-v1.active-view";
+        const nav = document.getElementById("nav");
+        const content = document.getElementById("content");
+        if (!nav || !content) return;
+        const pageButtons = () => [...nav.querySelectorAll("[data-page]")];
+        let saved;
+        try { saved = JSON.parse(sessionStorage.getItem(key)); } catch {}
+        if (saved?.page === "tasks") {
+            window.PandoraTasksBridge?.openTasksPage();
+        } else if (saved?.page === "quiz-studio") {
+            window.PandoraQuizBridge?.openQuizStudio();
+        } else if (saved?.page) {
+            pageButtons().find(button => button.dataset.page === saved.page)?.click();
+            if (saved.page === "subjects" && saved.subject) {
+                [...content.querySelectorAll("[data-subject]")].find(button => button.dataset.subject === saved.subject)?.click();
+            }
+        }
+        function rememberPage() {
+            const active = pageButtons().find(button => button.classList.contains("active"));
+            const page = content.querySelector("[data-pandora-tasks-page]") ? "tasks"
+                : content.querySelector("[data-pandora-quiz-page]") ? "quiz-studio"
+                : active?.dataset.page;
+            if (!page) return;
+            const subject = page === "subjects" && content.querySelector("[data-back]")
+                ? content.querySelector(".hero h1")?.textContent.replace(/\s+\u2726\s*$/, "").trim()
+                : null;
+            try { sessionStorage.setItem(key, JSON.stringify({ page, subject })); } catch {}
+        }
+        new MutationObserver(rememberPage).observe(content, { childList: true });
+        rememberPage();
+    })();
+    </script>
 
 </body>
 
