@@ -23,6 +23,11 @@ const IT0204 = {
                 description: "Src: CANVAS",
                 link: "https://gizmo.ai/deck/101092814?p=OMITWmGZgiU&t=1&featureId=2&deckName=Formative+2&deckColour=2dd4bf&senderName=Nei&senderUserId=12419649&source=copy",
                 collabLink: "https://gizmo.ai/deck/101092814?p=OMITWmGZgiU&t=1&featureId=2&deckName=Formative+2&deckColour=2dd4bf&senderName=Nei&senderUserId=12419649&source=copy"
+            },
+            {
+                title: "FINALS Bulk Prep - GIZMO",
+                section: "practice",
+                link: "https://share.gizmo.ai/s/RDD4N5X7Z8286?s=c&si=4UiVwa9VnO"
             }
         ],
 
