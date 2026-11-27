@@ -27,7 +27,8 @@ const IT0204 = {
             {
                 title: "FINALS Bulk Prep - GIZMO",
                 section: "practice",
-                link: "https://share.gizmo.ai/s/RDD4N5X7Z8286?s=c&si=4UiVwa9VnO"
+                link: "https://share.gizmo.ai/s/RDD4N5X7Z8286?s=c&si=4UiVwa9VnO",
+                createdAt: "2026-11-27T22:45:58.8235385Z"
             }
         ],
 

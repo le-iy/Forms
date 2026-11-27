@@ -291,6 +291,7 @@ function convertResource(
 
         section: resolveSection(resource, category),
 
+        createdAt: resource.createdAt || "",
         url: resourceUrl,
 
         editUrl: hasEditLink
