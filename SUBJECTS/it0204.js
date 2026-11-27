@@ -44,8 +44,12 @@ const IT0204 = {
             {"title":"Module 6 - International Legal Aspects, Laws, and Regulation - Global Data Protection","module":6,"section":"reviewers","link":"File_Bank/IT0204/Module 6 -International Legal Aspects, Laws, and Regulation - Global Data Protection.pptx.pdf"},
             {"title":"Module 7 - Legal and Ethical Considerations in Emerging Technologies","module":7,"section":"reviewers","link":"File_Bank/IT0204/Module 7 - Legal and Ethical Considerations in Emerging Technologies.pptx.pdf"},
             {"title":"Module 8 - Key Issues in Cybersecurity The Philippine Context","module":8,"section":"reviewers","link":"File_Bank/IT0204/Module 8 - Key Issues in Cybersecurity The Philippine Context.pptx.pdf"},
-            {"title":"IT0204 Points","section":"reviewers","link":"File_Bank/IT0204/IT0204 Points.pdf"},
-            {"title":"IT0204 Points 2","section":"reviewers","link":"File_Bank/IT0204/IT0204 Points 2.pdf"}
+            {"title":"IT0204 Points","section":"reviewers","link":"File_Bank/IT0204/IT0204 Points.pdf",
+                createdAt: "2026-11-27T23:51:05.5646948Z"
+            },
+            {"title":"IT0204 Points 2","section":"reviewers","link":"File_Bank/IT0204/IT0204 Points 2.pdf",
+                createdAt: "2026-11-27T23:51:05.5646948Z"
+            }
         ]
     }
 };
