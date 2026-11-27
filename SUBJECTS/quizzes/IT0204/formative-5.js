@@ -2,7 +2,7 @@
 window.PandoraQuizzes.register({
   id: "IT0204-M04-F05",
   subject: "IT0204",
-  module: 4,
+  module: 5,
   title: "Formative Assessment 5",
   kind: "formative",
   version: 1,
