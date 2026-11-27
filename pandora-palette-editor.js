@@ -107,6 +107,7 @@
     });
   }
 
+  const hangyodonPack = { id: "theme-pack-hangyodon", name: "Hangyodon", pack: "hangyodon", colors: { "--bg": "#e6f6f3", "--panel": "#fffdf5", "--panel-soft": "#eef9f7", "--panel-rose": "#f8c5ce", "--text": "#233942", "--muted": "#4b666c", "--accent": "#287982", "--accent-strong": "#185860", "--border": "#bbdcd8", "--sidebar": "#f0fbf9", "--tag": "#d0ede9", "--button-text": "#ffffff" }, icons: Object.fromEntries(Object.entries({ home: "home", subjects: "subjects", reviewers: "reviewers", practice: "practice-links", quiz: "quiz", favorites: "favorites", tasks: "tasks", settings: "settings", pdf: "pdf", form: "forms" }).map(([slot, icon]) => [slot, "hangyodon/pixel/" + icon])) };
   const raw = read(KEY, {});
 
   const store = {
@@ -120,7 +121,7 @@
           id: p.id,
           name: p.name,
           colors: normalize(p.colors),
-          icons: icons.normalize(p.icons)
+          icons: icons.normalize(p.icons), pack: p.pack === "hangyodon" ? p.pack : undefined
         }))
       : [],
 
@@ -146,7 +147,7 @@
   const active = () =>
     store.palettes.find(
       p => p.id === store.activeId
-    ) || null;
+    ) || (store.activeId === hangyodonPack.id ? hangyodonPack : null);
 
   function colorsFromTheme() {
     const style = getComputedStyle(document.body);
@@ -270,6 +271,11 @@
       <div class="pu-unified" data-pu-root>
         <div class="studio-divider"></div>
 
+        <div class="builder-result">
+          <div class="builder-result-top"><strong>Hangyodon</strong><button type="button" class="pu-secondary" data-pu-hangyodon aria-pressed="${active()?.pack === "hangyodon"}">${active()?.pack === "hangyodon" ? "Restore Hangyodon Defaults" : "Apply Hangyodon"}</button></div>
+          <div class="builder-preview-colors" aria-hidden="true"><span style="background:#e6f6f3"></span><span style="background:#fffdf5"></span><span style="background:#d0ede9"></span><span style="background:#287982"></span><span style="background:#f8c5ce"></span></div>
+        </div>
+        <div class="studio-divider"></div>
         <div class="pu-heading">
           <div>
             <h3>4. Fine-tune Colors</h3>
@@ -296,7 +302,7 @@
 
         <div class="studio-divider"></div>
 
-        ${icons.editor(currentIcons(), iconEditorOpen)}
+        ${icons.editor(currentIcons(), iconEditorOpen, active()?.pack === "hangyodon" ? hangyodonPack.icons : null)}
 
         <div class="studio-divider"></div>
 
@@ -502,6 +508,15 @@
     event.preventDefault();
     event.stopImmediatePropagation();
 
+    if (button.hasAttribute("data-pu-hangyodon")) {
+      if (activate(hangyodonPack)) {
+        const name = $("[data-pu-name]");
+        if (name && !name.value.trim()) name.value = "Hangyodon";
+        $("[data-pu-hangyodon]")?.focus();
+      }
+      return;
+    }
+
     if (button.dataset.iconOpen) {
       const dialog = $("[data-icon-dialog]");
       dialog.dataset.slot = button.dataset.iconOpen;
@@ -524,7 +539,7 @@
 
     if (button.dataset.iconReset) {
       const key = button.dataset.iconReset;
-      setIcon(key, null, `[data-icon-open="${key}"]`);
+      setIcon(key, active()?.pack === "hangyodon" ? hangyodonPack.icons[key] : null, `[data-icon-open="${key}"]`);
       return;
     }
 
@@ -568,7 +583,7 @@
           Math.random().toString(36).slice(2, 8),
         name,
         colors,
-        icons: icons.normalize(currentIcons())
+        icons: icons.normalize(currentIcons()), pack: active()?.pack
       };
 
       store.palettes.push(palette);
@@ -610,7 +625,7 @@
         id: "palette-" + Date.now(),
         name: palette.name + " Copy",
         colors: { ...palette.colors },
-        icons: { ...palette.icons }
+        icons: { ...palette.icons }, pack: palette.pack
       };
 
       store.palettes.push(copy);

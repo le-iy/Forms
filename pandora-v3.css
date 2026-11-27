@@ -3199,3 +3199,16 @@ body:has(#nav [data-page="favorites"].active) #content > .resource-list .resourc
 .theme-studio .pu-saved-name { grid-column: 1; grid-row: 1; font-weight: 600; overflow-wrap: anywhere; }
 .theme-studio [data-pu-swatches] { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); height: 14px; overflow: hidden; border: 1px solid var(--border); border-radius: 4px; }
 .theme-studio .pu-theme-active { grid-column: 2; grid-row: 1; color: var(--accent-strong); font-size: 11px; }
+
+/* Icon Stash gallery layout */
+.p-icon-dialog[open] { display: grid; grid-template-rows: auto auto minmax(0, 1fr); gap: 12px; box-sizing: border-box; width: min(720px, calc(100% - 24px)); max-height: min(740px, 85dvh); overflow: hidden; padding: clamp(12px, 3vw, 20px); }
+.p-icon-dialog .p-icon-dialog-head { margin: 0; }
+.p-icon-dialog .p-icon-dialog-head h4 { margin: 0; font: 700 21px/1.2 Georgia, serif; }
+.p-icon-dialog input[data-icon-search] { box-sizing: border-box; min-width: 0; min-height: 42px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 9px; background: var(--panel-soft); color: var(--text); font: inherit; }
+.p-icon-dialog [data-icon-choices] { min-height: 0; overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; padding: 3px 8px 6px 3px; }
+.p-icon-dialog [data-icon-choices] > section { margin: 0 0 16px; }
+.p-icon-dialog [data-icon-choices] h5 { margin: 0 0 8px; font-size: 13px; font-weight: 650; color: var(--text); }
+.p-icon-dialog .p-icon-grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 108px), 1fr)); gap: 8px; }
+.p-icon-dialog .p-icon-grid button { min-width: 0; min-height: 94px; grid-template-rows: 48px auto; align-content: start; gap: 6px; padding: 8px 6px; background: var(--panel); font-size: 12px; line-height: 1.25; text-align: center; overflow-wrap: anywhere; }
+.p-icon-dialog .p-icon-grid button:hover { background: var(--panel-rose); border-color: var(--accent); }
+.p-icon-dialog .p-icon-grid .p-icon-preview { width: 48px; height: 48px; background: transparent; border-radius: 0; }

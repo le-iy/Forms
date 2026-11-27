@@ -15,7 +15,15 @@
     form: ["Forms", "resources/form"]
   };
 
+  function iconGroupPath(group) {
+    const themed = { "Hangyodon Pixel": "hangyodon/pixel", "Hangyodon Stickers 01": "hangyodon/stickers-01", "Hangyodon Stickers 02": "hangyodon/stickers-02" };
+    return themed[group] || group.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-");
+  }
+
   const groups = {
+    "Hangyodon Pixel": ["home","subjects","reviewers","practice-links","quiz","favorites","tasks","settings","pdf","forms"],
+    "Hangyodon Stickers 01": ["chef-hangyodon","clover-day","detective","headphone-hangyodon","pajama-buddy","party-hat","peek-a-boo","pool-float","rose-bouquet","study-with-sayuri","thinking-at-the-desk","thumbs-up"],
+    "Hangyodon Stickers 02": ["bedtime-story","birthday-balloons","bow-tie","bubble-mail","bunny-plush","candy-heart","cozy-scarf","document-delivery","flashcard-drill","goofy-grin","happy-tears","ice-cream-cone","library-stack","midnight-nap","ninja-hood","paint-swatches","planner-stamp","rainy-doorstep","sayuri-hat","survey-check"],
     Campus: ["backpack","calculator","globe","graduation","laptop","microscope","pencil","ruler"],
     General: ["bookmark","diamond","heart","leaf","moon","sparkle","star","sun"],
     "Nature & Symbols": ["compass","flower","gear","home","key","mountain","paw","umbrella"],
@@ -25,7 +33,7 @@
     Subjects: ["lab","math","networking","physics","security","systems","terminal","web"]
   };
   const builtins = new Set(Object.entries(groups).flatMap(([group, names]) =>
-    names.map(name => group.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-") + "/" + name)
+    names.map(name => iconGroupPath(group) + "/" + name)
   ));
   const normalize = value => Object.fromEntries(Object.keys(slots).flatMap(key => {
     const icon = value?.[key];
@@ -54,10 +62,10 @@
     return `<span class="p-icon" aria-hidden="true" style="--p-icon:var(--pandora-icon-${key}, url('${url(key, {})}'))"></span>`;
   }
 
-  function editor(icons, opened) {
+  function editor(icons, opened, themeDefaults) {
     const safe = normalize(icons);
-    const choices = Object.entries(groups).map(([group, names]) => {
-      const category = group.toLowerCase().replace(/ & /g, "-").replace(/ /g, "-");
+    const choices = Object.entries(groups).filter(([group]) => iconGroupPath(group).startsWith("hangyodon/") === Boolean(themeDefaults)).map(([group, names]) => {
+      const category = iconGroupPath(group);
       return `<section><h5>${group}</h5><div class="p-icon-grid">${names.map(name => {
         const id = category + "/" + name;
         return `<button type="button" data-icon-choice="${id}">${previewUrl(url("quiz", { quiz: id }))}<span>${name.replace(/-/g, " ")}</span></button>`;
@@ -71,7 +79,7 @@
           ${previewUrl(url(key, safe))}<strong>${label}</strong>
           <button type="button" data-icon-open="${key}">Choose</button>
           
-          <button type="button" data-icon-reset="${key}" ${safe[key] ? "" : "disabled"}>Reset</button>
+          <button type="button" data-icon-reset="${key}" ${safe[key] && safe[key] !== themeDefaults?.[key] ? "" : "disabled"}>Reset</button>
         </div>`).join("")}</div>
       <dialog class="p-icon-dialog" aria-labelledby="p-icon-stash-title" data-icon-dialog>
         <div class="p-icon-dialog-head"><h4 id="p-icon-stash-title">Icon Stash</h4><button type="button" data-icon-close>Close</button></div>
